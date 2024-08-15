@@ -1,0 +1,16 @@
+:root {
+    --black-400: #131313;
+    --black-300: #212121;
+    --black-200: #282828;
+    --black-100: #2E2E2E;
+
+    --gray-400: #333333;
+    --gray-300: #4B4B4B;
+    --gray-200: #747474;
+    --gray-100: #D8D8D8;
+
+    --brand-orange: #EB5230;
+    --blue-blue: #558FFF;
+    --error-red: #C41013;
+}
+
