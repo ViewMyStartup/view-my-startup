@@ -6,14 +6,17 @@ import React, { useState } from "react";
 import Pagination from "./components/common/Pagination.js";
 import HeaderColumns from "./components/common/HeaderColumns.js";
 import CompanyDataPerRow from "./components/common/CompanyDataPerRow.js";
+import InputBar from "./components/common/inputBar.js";
 
 //테스트용 이미지
 import Companyimg from "./assets/images/mock_img/company_temp.svg";
 
 const App = () => {
+  // 페이지네이션 상태
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 5; // 테스트를 위해 총 페이지 수를 설정
 
+  // 페이지네이션 핸들러
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
@@ -45,9 +48,11 @@ const App = () => {
     user_comment: "너무 어려워요",
   };
 
-  // 
+  //
   return (
     <div>
+      <h1>inputBar(유효성 검사 포함) test</h1>
+      <InputBar />
       <h1>Pagination test</h1>
       <Pagination
         currentPage={currentPage}
@@ -69,4 +74,3 @@ const App = () => {
 };
 
 export default App;
-
