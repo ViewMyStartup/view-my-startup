@@ -1,7 +1,7 @@
 .companyItem {
   display: flex;
   justify-content: space-between;
-  background: #030303;
+  margin: 0 auto;
   width: 448px;
   height: 48px;
   margin-bottom: 12px; /* 여기 기업아이템간 간격 마음대로 바꾸셔도됩니당 */
