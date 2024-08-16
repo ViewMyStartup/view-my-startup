@@ -2,9 +2,14 @@ import React from "react";
 import "../styles/style.css";
 import styles from "./MediumBtn.module.css";
 
-const MediumBtn = ({ text }) => {
+const MediumBtn = ({ text, onClick }) => {
   return (
-    <button className={`${styles.mediumBtn} ${styles.active}`}>{text}</button>
+    <button
+      className={`${styles.mediumBtn} ${styles.active}`}
+      onClick={onClick}
+    >
+      {text}
+    </button>
   );
 };
 
