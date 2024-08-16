@@ -1,0 +1,7 @@
+.companyItem {
+  display: flex;
+  justify-content: space-between;
+  background: #81d8cc;
+  width: 448px;
+  height: 48px;
+}
