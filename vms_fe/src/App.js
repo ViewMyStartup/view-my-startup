@@ -1,22 +1,11 @@
-import './App.css';
-import './assets/styles/reset.css';
+import "./App.css";
+import "./styles/reset.css";
+import InputBar from "./components/inputBar.js";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <InputBar />
     </div>
   );
 }
