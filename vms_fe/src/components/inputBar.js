@@ -44,16 +44,29 @@ const InputBar = () => {
           />
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="investmentComment" className={styles.label}>
-            투자 코멘트
+          <label htmlFor="password" className={styles.label}>
+            비밀번호
           </label>
           <input
-            type="text"
-            id="investmentComment"
-            placeholder="코멘트를 입력해주세요"
-            value={investmentComment}
-            onChange={(e) => setInvestmentComment(e.target.value)}
-            className={`${styles.input} ${styles.investmentComment}`}
+            type="password"
+            id="password"
+            placeholder="비밀번호를 입력해주세요"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className={`${styles.input} ${styles.passwordInput}`}
+          />
+        </div>
+        <div className={styles.formGroup}>
+          <label htmlFor="confirmPassword" className={styles.label}>
+            비밀번호 확인
+          </label>
+          <input
+            type="password"
+            id="confirmPassword"
+            placeholder="비밀번호를 다시 한번 입력해주세요"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            className={`${styles.input} ${styles.passwordInput}`}
           />
         </div>
       </form>
