@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./CompanyDataPerRow.module.css";
 
 //이미지
-import iconKebab from "../assets/images/ic_kebab.svg"
+import iconKebab from "../../assets/images/ic_kebab.svg"
 
 function CompanyDataPerRow({ type = "rank", companyData = {}, vmsData = {}, userData = {} }) {
   //단위 변환
