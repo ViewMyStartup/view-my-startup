@@ -20,7 +20,7 @@ const CompanyItem = ({ logo, name, category }) => {
         className={`${styles.selectBtn} ${selected ? styles.selected : ""}`}
         onClick={handleClick}
       >
-        {selected ? "✔ 선택완료" : "선택하기"}
+        {selected ? "선택완료" : "선택하기"}
       </button>
     </div>
   );
