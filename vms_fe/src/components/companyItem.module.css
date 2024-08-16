@@ -4,7 +4,7 @@
   background: #030303;
   width: 448px;
   height: 48px;
-  margin-bottom: 12px;
+  margin-bottom: 12px; /* 여기 기업아이템간 간격 마음대로 바꾸셔도됩니당 */
 }
 
 /* 기업로고 기업명 카테고리 박스 */
@@ -39,6 +39,7 @@
 /* 선택하기 버튼 */
 .selectBtn {
   width: 104px;
+  height: 100%;
   padding: 13px 24px;
   gap: 10px;
   border-radius: 10px;
@@ -60,4 +61,61 @@
   border: 1px solid var(--white);
   color: var(--white);
   font-size: 16px;
+}
+
+/* --------모바일 화면용 미디어 쿼리---------- */
+@media (max-width: 600px) {
+  .companyItem {
+    width: 311px;
+    height: 40px;
+    padding: 8px;
+  }
+
+  /* 기업로고 기업명 카테고리 박스 */
+  .companyItemContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    text-align: left;
+  }
+
+  /* 기업 로고 이미지 */
+  .companyLogo {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+  }
+
+  /* 기업명 */
+  .companyName {
+    font-size: 12px;
+  }
+
+  /* 카테고리 */
+  .category {
+    font-size: 10px;
+  }
+
+  /* 선택하기 버튼 */
+  .selectBtn {
+    width: 73px;
+    height: 24px;
+    padding: 4px 8px;
+    font-size: 12px;
+    border-radius: 8px;
+  }
+
+  /* 선택하기 버튼 클릭 시, 선택완료 */
+  .selectBtn.selected {
+    background-image: url("/src/assets/images/ic_check.png");
+    background-position: 6px center;
+    background-size: 16px;
+    padding-left: 24px;
+    text-align: left;
+    background-repeat: no-repeat;
+    border: 1px solid var(--white);
+    color: var(--white);
+    font-size: 12px;
+  }
 }
