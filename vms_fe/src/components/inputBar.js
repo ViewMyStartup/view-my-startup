@@ -35,6 +35,14 @@ const InputBar = () => {
         "비밀번호와 비밀번호 확인이 일치하지 않습니다.";
     }
 
+    // 투자자 이름 유효성 검사
+    if (!investorName) {
+      newErrors.investorName = "이름은 필수로 입력해주세요.";
+    } else if (/^\d+$/.test(investorName)) {
+      // 입력값이 숫자로만 이루어져 있는 경우
+      newErrors.investorName = "이름은 한글 또는 영어로 입력해주세요.";
+    }
+
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
@@ -72,6 +80,9 @@ const InputBar = () => {
             className={styles.input}
           />
         </div>
+        {errors.investorName && (
+          <p className={styles.errorMessage}>{errors.investorName}</p>
+        )}
         <div className={styles.formGroup}>
           <label htmlFor="investmentAmount" className={styles.label}>
             투자 금액
