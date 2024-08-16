@@ -11,12 +11,15 @@ import InvestmentComment from "./components/common/InvestmentComment";
 import DropdownComponent from "./components/common/DropdownComponent";
 import SearchBar from "./components/common/SearchBar.js";
 import CompanyCard from "./components/common/CompanyCard.js";
-import ToggleIcon from "./assets/images/ic_toggle.svg";
 import ModalSelectComparision from "components/ModalSelectComparision";
+import PageNav from "./components/PageNav.js";
+
 
 //테스트용 이미지
 import Companyimg from "./assets/images/mock_img/company_temp.svg";
 import defaultLogo from "./assets/images/company_logo_1.svg";
+import ToggleIcon from "./assets/images/ic_toggle.svg";
+
 
 const App = () => {
   // 페이지네이션 상태
@@ -151,9 +154,16 @@ const App = () => {
         />
       ))}
 
+      <h1>PageNav Component 테스트</h1>
+      <PageNav />
+      <PageNav />
+
       <h1>모달 테스트입니다</h1>
       <button onClick={openModal}>Open Investment Modal</button>
       <ModalSelectComparision isOpen={isModalOpen} onClose={closeModal} />
+
+
+
     </div>
   );
 };
