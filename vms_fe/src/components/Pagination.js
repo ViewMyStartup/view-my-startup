@@ -1,6 +1,10 @@
 import React from "react";
 
-const Pagination = () => {
+const Pagination = ({ currentPage, totalPages, onPageChange }) => {
+  // 페이지 범위 계산
+  const startPage = Math.floor((currentPage - 1) / 5) * 5 + 1;
+  const endPage = Math.min(startPage + 4, totalPages);
+
   return (
     <div className={styles.pagination}>
       <button
@@ -10,6 +14,19 @@ const Pagination = () => {
       >
         &lt;
       </button>
+      <div className={styles.pageNumberButtons}>
+        {Array.from({ length: endPage - startPage + 1 }, (_, index) => (
+          <button
+            key={startPage + index}
+            onClick={() => onPageChange(startPage + index)}
+            className={`${styles.button} ${
+              startPage + index === currentPage ? styles.active : ""
+            }`}
+          >
+            {startPage + index}
+          </button>
+        ))}
+      </div>
     </div>
   );
 };
