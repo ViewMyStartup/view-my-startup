@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./Pagination.module.css"; // CSS 모듈 import
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   // 페이지 범위 계산
