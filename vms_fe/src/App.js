@@ -12,7 +12,7 @@ const App = () => {
       setCurrentPage(page);
     }
   };
-
+  
   return (
     <div>
       <h1>Pagination test</h1>
@@ -27,3 +27,5 @@ const App = () => {
 };
 
 export default App;
+
+

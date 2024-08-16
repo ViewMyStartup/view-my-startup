@@ -1,0 +1,22 @@
+
+/* 버튼 사용 관련 정확한 목적파악을 못하겠어서 일단 CSS를 active로 표기했습니다 */
+
+.mediumBtn {
+  background-color: var(--black-100);
+  color: var(--gray-200);
+  border-radius: 50px;
+  border: none;
+  width: 135px;
+  height: 40px;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 13px 24px;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.mediumBtn.active {
+  width: 124px;
+  background-color: var(--brand-orange);
+  color: var(--pure-white);
+}
