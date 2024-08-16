@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const CompanyItem = (logo, name, category) => {
+const CompanyItem = ({ logo, name, category }) => {
   const [selected, setSelected] = useState(false); // 처음에는 선택 안된 상태
 
   // 선택하기 버튼 클릭 시,

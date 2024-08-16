@@ -1,6 +1,6 @@
 //여러 개의 CompanyItem 컴포넌트를 포함하는 컴포넌트
 import React from "react";
-import CompanyItem from "./companyItem.Js";
+import CompanyItem from "./companyItem.js";
 
 // 테스트를 위해 mock데이터 넣음
 const companies = [
