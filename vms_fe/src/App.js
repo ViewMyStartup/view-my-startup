@@ -11,6 +11,8 @@ import InvestmentComment from "./components/common/InvestmentComment";
 import DropdownComponent from "./components/common/DropdownComponent";
 import SearchBar from "./components/common/SearchBar.js";
 import CompanyCard from "./components/common/CompanyCard.js";
+import MessagePopUpOneBtn from "./components/MessagePopUpOneBtn";
+import LargeBtn from "./components/common/LargeBtn";
 import ToggleIcon from "./assets/images/ic_toggle.svg";
 
 //테스트용 이미지
@@ -90,6 +92,21 @@ const App = () => {
     const updatedStartups = startups.filter((startup) => startup.name !== name);
     setStartups(updatedStartups);
   };
+  // 원버튼 팝업 테스트
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const handleOpenPopup = () => {
+    setIsPopupOpen(true);
+  };
+
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
+
+  const handleConfirm = () => {
+    console.log("확인");
+    setIsPopupOpen(false);
+  };
 
   return (
     <div>
@@ -137,6 +154,15 @@ const App = () => {
           onDelete={() => handleDelete(startup.name)}
         />
       ))}
+      <h1>one button popup 테스트</h1>
+      <LargeBtn text="팝업 열기" onClick={handleOpenPopup} />
+      {isPopupOpen && (
+        <MessagePopUpOneBtn
+          text="팝업 내용이 들어갑니다"
+          onClose={handleClosePopup}
+          onConfirm={handleConfirm}
+        />
+      )}
     </div>
   );
 };
