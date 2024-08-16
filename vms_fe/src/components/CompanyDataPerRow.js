@@ -135,3 +135,4 @@ function CompanyDataPerRow({ type = "rank", companyData = {}, vmsData = {}, user
 }
 
 export default CompanyDataPerRow;
+

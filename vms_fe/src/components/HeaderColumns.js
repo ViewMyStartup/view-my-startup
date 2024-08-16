@@ -85,3 +85,4 @@ function HeaderColumns({ type = "rank" }) {
 }
 
 export default HeaderColumns;
+
