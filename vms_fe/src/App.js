@@ -9,10 +9,13 @@ import CompanyDataPerRow from "./components/common/CompanyDataPerRow.js";
 import InputBar from "./components/common/inputBar.js";
 import InvestmentComment from "./components/common/InvestmentComment";
 import DropdownComponent from "./components/common/DropdownComponent";
+import SearchBar from "./components/common/SearchBar.js";
+import CompanyCard from "./components/common/CompanyCard.js";
 import ToggleIcon from "./assets/images/ic_toggle.svg";
 
 //테스트용 이미지
 import Companyimg from "./assets/images/mock_img/company_temp.svg";
+import defaultLogo from "./assets/images/company_logo_1.svg";
 
 const App = () => {
   // 페이지네이션 상태
@@ -51,7 +54,43 @@ const App = () => {
     user_comment: "너무 어려워요",
   };
 
-  
+  //SearchBar 테스트
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearchChange = (value) => {
+    setSearchQuery(value);
+  };
+
+  const handleClearSearch = () => {
+    setSearchQuery("");
+  };
+
+  //CompanyCard 테스트
+  const initialStartups = [
+    {
+      name: "코드잇",
+      category: "에듀테크",
+      logoSrc: defaultLogo,
+    },
+    {
+      name: "코딩마스터",
+      category: "에듀테크",
+      logoSrc: defaultLogo,
+    },
+    {
+      name: "러닝큐브",
+      category: "에듀테크",
+      logoSrc: defaultLogo,
+    },
+  ];
+
+  const [startups, setStartups] = useState(initialStartups);
+
+  const handleDelete = (name) => {
+    const updatedStartups = startups.filter((startup) => startup.name !== name);
+    setStartups(updatedStartups);
+  };
+
   return (
     <div>
       <h1>inputBar(유효성 검사 포함) test</h1>
@@ -82,9 +121,24 @@ const App = () => {
 
       <h1>DropdownComponent 테스트</h1>
       <DropdownComponent />
+      <h1>검색창 테스트</h1>
+      <SearchBar
+        value={searchQuery}
+        onChange={handleSearchChange}
+        onClear={handleClearSearch}
+      />
+      <h1>CompanyCard 테스트</h1>
+      {startups.map((startup, index) => (
+        <CompanyCard
+          key={index}
+          name={startup.name}
+          category={startup.category}
+          logoSrc={Companyimg}
+          onDelete={() => handleDelete(startup.name)}
+        />
+      ))}
     </div>
   );
 };
 
 export default App;
-
