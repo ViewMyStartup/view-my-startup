@@ -3,9 +3,9 @@ import "./styles/reset.css";
 import React, { useState } from "react";
 
 // 컴포넌트
-import Pagination from "./components/Pagination.js";
-import HeaderColumns from "./components/HeaderColumns";
-import CompanyDataPerRow from "./components/CompanyDataPerRow";
+import Pagination from "./components/common/Pagination.js";
+import HeaderColumns from "./components/common/HeaderColumns.js";
+import CompanyDataPerRow from "./components/common/CompanyDataPerRow.js";
 
 //테스트용 이미지
 import Companyimg from "./assets/images/mock_img/company_temp.svg";
