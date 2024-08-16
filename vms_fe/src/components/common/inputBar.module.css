@@ -24,6 +24,7 @@
 
 /* 투자 기업 정보 문구 */
 .h2 {
+  text-align: left;
   color: #ffffff;
   font-size: 16px;
 }
@@ -77,6 +78,7 @@
 .input::placeholder {
   font-size: 16px;
   color: var(--gray-100);
+  text-align: left;
 }
 
 /* 판매 가격 입력 필드 옆의 증가/감소 버튼 숨기기 */
@@ -93,7 +95,7 @@ input[type="number"]::-webkit-outer-spin-button {
   padding: 12px 2.5rem 12px 12px;
   box-sizing: border-box;
   background: var(--black-300);
-  background-image: url("../assets/images/ic_password_eye.png");
+  background-image: url("../../assets/images/ic_password_eye.png");
   background-repeat: no-repeat;
   background-position: right 12px center;
   background-size: 24px 24px;
@@ -138,5 +140,5 @@ input[type="number"]::-webkit-outer-spin-button {
   text-align: left;
   color: var(--error-red);
   font-size: 0.875rem;
-  margin-top: 0.5rem;
+  margin: 10px;
 }

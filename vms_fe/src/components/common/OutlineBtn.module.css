@@ -1,0 +1,16 @@
+.outlineBtn {
+  background: none;
+  color: var(--brand-orange);
+  border-radius: 50px;
+  border: 1px solid var(--brand-orange);
+  font-weight: 600;
+  font-size: 18px;
+  padding: 13px 48px;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.outlineBtn.active {
+  padding: 12px 24px;
+  font-size: 14px;
+}
