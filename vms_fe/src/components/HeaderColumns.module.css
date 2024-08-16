@@ -1,0 +1,127 @@
+.HeaderColumns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 744px;
+  max-width: 1200px;
+  height: 39px;
+  background-color: #4B4B4B;
+  border-radius: 4px;
+}
+
+.diffSizeContainer > div,
+.sameSizeContainer > span{
+  font-size: 0.875rem;
+  color: #FFFFFF;
+}
+
+.diffSizeContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+/* 상위 콘테이너 컨트롤 */
+.rankSize {
+  min-width: 380px;
+  max-width: 585px;
+}
+
+.noRankSize {
+  min-width: 330px;
+  max-width: 517px;
+}
+
+.investSize {
+  min-width: 380px;
+  max-width: 738px;
+}
+
+.commentSize {
+  min-width: 445px;
+  max-width: 948px;
+}
+
+/* 하위 div 콘트롤*/
+.columnRank {
+  min-width: 60px;
+  max-width: 68px;
+  width: 100%;
+}
+
+.columnCompanyName {
+  min-width: 140px;
+  max-width: 213px;
+  width: 100%;
+}
+
+.columnCompanyDescription {
+  min-width: 180px;
+  max-width: 304px;
+  width: 100%;
+}
+
+.columnCategory {
+  min-width: 84px;
+  max-width: 153px;
+  width: 100%;
+}
+
+.columnComment {
+  min-width: 381px;
+  max-width: 884px;
+  width: 100%;
+}
+
+.columnNone {
+  width: 64px;
+}
+
+.sameSizeContainer{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-width: 366px;
+  width: 100%;
+}
+
+.commentSizeForSame {
+  min-width: 252px;
+  max-width: 252px;
+}
+
+.ivestSizeForSame {
+  min-width: 232px;
+  max-width: 460px;
+}
+
+.wrapText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 116px;
+  max-width: 230px;
+  flex-wrap: wrap;
+}
+
+.wrapText > span {
+  color: #FFFFFF;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 1200px) and (min-width: 744px) {
+  .HeaderColumns {
+    min-width: 744px;
+  }
+  
+}
+
+@media (max-width: 1000px) {
+  .wrapText {
+    max-width: 116px;
+  }
+}
+
+
+
