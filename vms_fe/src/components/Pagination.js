@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Pagination.module.css"; // CSS 모듈 import
 
-const Pagination = ({ currentPage, totalPages, onPageChange }) => {
+const Pagination = ({ currentPage, totalPages, onPageChange, hasNext }) => {
   // 페이지 범위 계산
   const startPage = Math.floor((currentPage - 1) / 5) * 5 + 1;
   const endPage = Math.min(startPage + 4, totalPages);
