@@ -1,4 +1,3 @@
-
 /* 버튼 사용 관련 정확한 목적파악을 못하겠어서 일단 CSS를 active로 표기했습니다 */
 
 .mediumBtn {
@@ -18,5 +17,11 @@
 .mediumBtn.active {
   width: 124px;
   background-color: var(--brand-orange);
-  color: var(--pure-white);
+  color: var(--white);
+}
+@media (max-width: 743px) {
+  .mediumBtn {
+    width: 128px;
+    height: 32px;
+  }
 }
