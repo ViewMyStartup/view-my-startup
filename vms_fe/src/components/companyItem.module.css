@@ -4,6 +4,7 @@
   background: #030303;
   width: 448px;
   height: 48px;
+  margin-bottom: 12px;
 }
 
 /* 기업로고 기업명 카테고리 박스 */
@@ -17,6 +18,8 @@
 .companyLogo {
   width: 48px;
   height: auto;
+  border-radius: 50%; /* 둥근 모양으로 만들기 */
+  object-fit: cover; /* 이미지 비율 유지 */
 }
 
 /* 기업명 */
