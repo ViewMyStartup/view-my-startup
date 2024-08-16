@@ -11,8 +11,8 @@ import InvestmentComment from "./components/common/InvestmentComment";
 import DropdownComponent from "./components/common/DropdownComponent";
 import SearchBar from "./components/common/SearchBar.js";
 import CompanyCard from "./components/common/CompanyCard.js";
-import MessagePopUpOneBtn from "./components/MessagePopUpOneBtn";
-import LargeBtn from "./components/common/LargeBtn";
+import MessagePopUpOneBtn from "./components/MessagePopUpOneBtn.js";
+import LargeBtn from "./components/common/LargeBtn.js";
 import ToggleIcon from "./assets/images/ic_toggle.svg";
 
 //테스트용 이미지

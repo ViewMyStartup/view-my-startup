@@ -1,5 +1,5 @@
-import styles from "./Popup.module.css";
-import LargeBtn from "./LargeBtn";
+import styles from "./MessagePopUpOneBtn.module.css";
+import LargeBtn from "./common/LargeBtn.js";
 import closeButton from "../assets/images/ic_delete.svg";
 
 const MessagePopUpOneBtn = ({ text, onClose, onConfirm }) => {
