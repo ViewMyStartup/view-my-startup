@@ -1,4 +1,4 @@
-.largeBtn {
+.largenBtn {
   background-color: var(--black-100);
   color: var(--gray-200);
   border-radius: 50px;
@@ -14,5 +14,11 @@
 
 .largeBtn.active {
   background-color: var(--brand-orange);
-  color: var(--pure-white);
+  color: var(--white);
+}
+@media (max-width: 743px) {
+  .largenBtn {
+    width: 124px;
+    height: 40px;
+  }
 }
