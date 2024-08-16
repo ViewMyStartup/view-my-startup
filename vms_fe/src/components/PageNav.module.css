@@ -1,0 +1,60 @@
+.outlineContain {
+  /* background-color: inherit; */
+  background-color:#2E2E2E;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #DFDFDF;
+}
+
+.pageNavBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 375px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.pageNavBox > img {
+  margin: 0px 24px;
+}
+
+.boardList {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 34px;
+  font-size: inherit;
+}
+
+.boardList li {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #747474;
+}
+
+/* 미리 생성 */
+.boardActive {
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+
+@media (max-width: 744px) {
+  .boardList {
+    gap: 16px;
+  }
+  .boardList li {
+    font-size: 0.8125rem;
+    font-weight: 700;
+  }
+  .pageNavBox > img {
+    margin: 0px 16px;
+    width: 63.5px;
+    height: 100%;
+  }
+
+}
