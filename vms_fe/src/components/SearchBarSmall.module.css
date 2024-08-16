@@ -1,0 +1,28 @@
+.searchBar {
+  position: relative;
+  /*크기 조절*/
+  width: 83px;
+  height: 40px;
+}
+.searchInput {
+  width: 100%;
+  height: 100%;
+  background-color: var(--black-300);
+  color: var(--gray-100);
+  border: 1px solid var(--gray-200);
+  border-radius: 10px;
+  text-indent: 12px;
+  &::placeholder {
+    color: var(--gray-100);
+    padding-left: 32px;
+  }
+}
+.searchIcon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+.searchIconActive {
+  display: none;
+}
