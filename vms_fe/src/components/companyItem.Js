@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 
 const CompanyItem = (logo, name, category) => {
   const [selected, setSelected] = useState(false); // 처음에는 선택 안된 상태
@@ -23,3 +22,5 @@ const CompanyItem = (logo, name, category) => {
     </div>
   );
 };
+
+export default CompanyItem;
