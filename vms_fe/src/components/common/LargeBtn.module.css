@@ -1,4 +1,4 @@
-.largenBtn {
+.largeBtn {
   background-color: var(--black-100);
   color: var(--gray-200);
   border-radius: 50px;
@@ -17,7 +17,7 @@
   color: var(--white);
 }
 @media (max-width: 743px) {
-  .largenBtn {
+  .largeBtn {
     width: 124px;
     height: 40px;
   }
