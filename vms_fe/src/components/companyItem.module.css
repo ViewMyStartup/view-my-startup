@@ -5,3 +5,14 @@
   width: 448px;
   height: 48px;
 }
+
+/* 선택하기 버튼 */
+.selectBtn {
+  width: 104px;
+  padding: 13px 24px;
+  gap: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--brand-orange);
+  color: var(--brand-orange);
+  background-color: transparent; /* 기본 배경을 투명하게 설정 */
+}
