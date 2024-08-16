@@ -8,6 +8,15 @@ const InputBar = () => {
   const [confirmPassword, setConfirmPassword] = useState(""); // 비밀번호 확인
   const [errors, setErrors] = useState({}); // 에러 처리
 
+  // 투자 금액 숫자로만 입력하도록 설정
+  const handleInvestmentAmountChange = (e) => {
+    const value = e.target.value;
+    if (/^\d*\.?\d*$/.test(value)) {
+      // 숫자만 입력
+      setInvestmentAmount(value);
+    }
+  };
+
   return (
     <div className={styles.inputFormContainer}>
       <div className={styles.inputFormTop}>
@@ -39,7 +48,7 @@ const InputBar = () => {
             id="investmentAmount"
             placeholder="투자 금액을 숫자로 입력해주세요"
             value={investmentAmount}
-            onChange={(e) => setInvestmentAmount(e.target.value)}
+            onChange={handleInvestmentAmountChange}
             className={styles.input}
           />
         </div>
