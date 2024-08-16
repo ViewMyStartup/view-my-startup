@@ -30,6 +30,19 @@ const InputBar = () => {
             className={styles.input}
           />
         </div>
+        <div className={styles.formGroup}>
+          <label htmlFor="investmentAmount" className={styles.label}>
+            투자 금액
+          </label>
+          <input
+            type="text"
+            id="investmentAmount"
+            placeholder="투자 금액을 숫자로 입력해주세요"
+            value={investmentAmount}
+            onChange={(e) => setInvestmentAmount(e.target.value)}
+            className={styles.input}
+          />
+        </div>
       </form>
     </div>
   );
