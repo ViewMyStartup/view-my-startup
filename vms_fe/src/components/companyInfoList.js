@@ -1,5 +1,4 @@
 //여러 개의 CompanyItem 컴포넌트를 포함하는 컴포넌트
-
 import React from "react";
 import CompanyItem from "./companyItem.Js";
 
@@ -11,8 +10,15 @@ const companies = [
 
 const CompanyListSelect = () => {
   return (
-    <div>
-      <CompanyItem />
+    <div className="company-list">
+      {companies.map((company, index) => (
+        <CompanyItem
+          key={index}
+          logo={company.logo}
+          name={company.name}
+          category={company.category}
+        />
+      ))}
     </div>
   );
 };
