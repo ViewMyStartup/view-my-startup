@@ -1,5 +1,5 @@
-import searchIcon from "../assets/images/ic_search.svg";
-import deleteIcon from "../assets/images/ic_delete_circle_small.svg";
+import searchIcon from "../../assets/images/ic_search.svg";
+import deleteIcon from "../../assets/images/ic_delete_circle_small.svg";
 import styles from "./SearchBar.module.css";
 
 const SearchBar = ({ value, onChange, onClear }) => {

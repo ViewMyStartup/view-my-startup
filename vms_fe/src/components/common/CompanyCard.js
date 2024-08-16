@@ -1,5 +1,5 @@
 import styles from "./CompanyCard.module.css";
-import deleteIcon from "../assets/images/ic_minus.svg";
+import deleteIcon from "../../assets/images/ic_minus.svg";
 
 const CompanyCard = ({ name, category, logoSrc, onDelete }) => {
   return (

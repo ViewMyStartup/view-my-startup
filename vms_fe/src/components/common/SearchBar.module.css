@@ -12,6 +12,7 @@
   border: 1px solid var(--gray-200);
   border-radius: 10px;
   text-indent: 44px;
+  text-align: start;
   &::placeholder {
     color: var(--gray-100);
   }
