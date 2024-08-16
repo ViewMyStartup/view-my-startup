@@ -1,0 +1,81 @@
+.dropdown {
+  position: relative;
+  display: inline-block;
+  width: 188px;
+  height: 35px;
+  background-color: #131313;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.dropdownToggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  background-color: #131313;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 0 0 1px #747474; /* 테두리 효과 추가 */
+}
+
+.dropdownLabel {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16.71px;
+  color: #D8D8D8;
+  text-align: center;
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.dropdownIcon {
+  width: 22px;
+  height: 22px;
+  margin-left: auto;
+  transform: translateX(-20px);
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 63px;
+  left: 0;
+  width: 208px;
+  background-color: #131313;
+  border-radius: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  box-shadow: 0 0 0 1px #747474; /* 테두리 효과 추가 */
+  box-sizing: border-box;
+}
+
+.dropdownMenuItem {
+  padding: 12px 10px;
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16.71px;
+  color: #D8D8D8;
+  text-align: center;
+  cursor: pointer;
+  border-top: 1px solid #747474;
+}
+
+.dropdownMenuItemFirst {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.dropdownMenuItemLast {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.dropdownMenuItemHover {
+  background-color: #333333;
+}
+
