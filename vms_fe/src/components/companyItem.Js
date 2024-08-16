@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./companyItem.module.css";
 
 const CompanyItem = ({ logo, name, category }) => {
   const [selected, setSelected] = useState(false); // 처음에는 선택 안된 상태
@@ -9,9 +10,9 @@ const CompanyItem = ({ logo, name, category }) => {
   };
 
   return (
-    <div className="company-item">
-      <img src={logo} alt="기업 로고" className="company-logo" />
-      <span className="company-name">{name}</span>
+    <div className="companyItem">
+      <img src={logo} alt="기업 로고" className="companyLogo" />
+      <span className="companyName">{name}</span>
       <span className="category">{category}</span>
       <button
         className={`selectBtn ${selected ? "selected" : ""}`}
