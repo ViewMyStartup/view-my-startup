@@ -1,8 +1,8 @@
 .dropdown {
   position: relative;
   display: inline-block;
-  width: 188px;
-  height: 35px;
+  width: 205px;
+  height: 40px;
   background-color: #131313;
   border-radius: 10px;
   box-sizing: border-box;
@@ -41,7 +41,7 @@
 
 .dropdownMenu {
   position: absolute;
-  top: 63px;
+  top: 50px;
   left: 0;
   width: 208px;
   background-color: #131313;

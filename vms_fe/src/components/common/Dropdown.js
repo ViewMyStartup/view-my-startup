@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Dropdown.module.css";  
-import toggleIcon from "./../assets/images/ic_toggle.svg"; 
+import ToggleIcon from "./../../assets/images/ic_toggle.svg";
+
 
 const Dropdown = ({ options, initialLabel }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,7 +18,7 @@ const Dropdown = ({ options, initialLabel }) => {
     <div className={styles.dropdown}>
       <div className={styles.dropdownToggle} onClick={toggleDropdown}>
         <span className={styles.dropdownLabel}>{selectedOption}</span>
-        <img src={toggleIcon} alt="Toggle Dropdown" className={styles.dropdownIcon} />
+        <img src={ToggleIcon} alt="Toggle Icon" />
       </div>
       {isOpen && (
         <ul className={styles.dropdownMenu}>
