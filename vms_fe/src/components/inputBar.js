@@ -17,6 +17,39 @@ const InputBar = () => {
     }
   };
 
+  // 폼 제출 핸들러
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const newErrors = {};
+
+    // 비밀번호 유효성 검사
+    if (!password) {
+      newErrors.password = "비밀번호는 필수로 입력해주세요.";
+    }
+
+    if (!confirmPassword) {
+      newErrors.confirmPassword = "비밀번호 확인은 필수로 입력해주세요.";
+    } else if (confirmPassword !== password) {
+      newErrors.confirmPassword =
+        "비밀번호와 비밀번호 확인이 일치하지 않습니다.";
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    // 폼 제출 추가
+    console.log({
+      investorName,
+      investmentAmount,
+      investmentComment,
+      password,
+      confirmPassword,
+    });
+  };
+
   return (
     <div className={styles.inputFormContainer}>
       <div className={styles.inputFormTop}>
@@ -65,6 +98,9 @@ const InputBar = () => {
             className={`${styles.input} ${styles.passwordInput}`}
           />
         </div>
+        {errors.password && (
+          <p className={styles.errorMessage}>{errors.password}</p>
+        )}
         <div className={styles.formGroup}>
           <label htmlFor="confirmPassword" className={styles.label}>
             비밀번호 확인
@@ -77,6 +113,9 @@ const InputBar = () => {
             onChange={(e) => setConfirmPassword(e.target.value)}
             className={`${styles.input} ${styles.passwordInput}`}
           />
+          {errors.confirmPassword && (
+            <p className={styles.errorMessage}>{errors.confirmPassword}</p>
+          )}
         </div>
         <div className={styles.inputButtons}>
           <button className={styles.cancelButton}>취소</button>
