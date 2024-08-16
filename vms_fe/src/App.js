@@ -6,14 +6,10 @@ import React, { useState } from "react";
 import Pagination from "./components/common/Pagination.js";
 import HeaderColumns from "./components/common/HeaderColumns.js";
 import CompanyDataPerRow from "./components/common/CompanyDataPerRow.js";
-<<<<<<< HEAD
 import InputBar from "./components/common/inputBar.js";
-=======
 import InvestmentComment from "./components/common/InvestmentComment";
 import DropdownComponent from "./components/common/DropdownComponent";
 import ToggleIcon from "./assets/images/ic_toggle.svg";
-
->>>>>>> 8af2956 (:white_check_mark: app.js에서 Investcomment 컴포넌트랑 Dropdown 컴포넌트 테스트)
 
 //테스트용 이미지
 import Companyimg from "./assets/images/mock_img/company_temp.svg";
@@ -55,10 +51,6 @@ const App = () => {
     user_comment: "너무 어려워요",
   };
 
-<<<<<<< HEAD
-  //
-=======
->>>>>>> 8af2956 (:white_check_mark: app.js에서 Investcomment 컴포넌트랑 Dropdown 컴포넌트 테스트)
   return (
     <div>
       <h1>inputBar(유효성 검사 포함) test</h1>
@@ -94,8 +86,3 @@ const App = () => {
 };
 
 export default App;
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 8af2956 (:white_check_mark: app.js에서 Investcomment 컴포넌트랑 Dropdown 컴포넌트 테스트)
