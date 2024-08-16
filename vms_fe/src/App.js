@@ -1,24 +1,31 @@
-import './App.css';
-import './styles/reset.css';
+import "./App.css";
+import "./styles/reset.css";
+import React, { useState } from "react";
+import Pagination from "./components/Pagination.js";
 
-function App() {
+const App = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 5; // 테스트를 위해 총 페이지 수를 설정
+
+  const handlePageChange = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Pagination test</h1>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+        hasNext={currentPage < totalPages}
+      />
     </div>
   );
-}
+};
 
 export default App;
+
+
