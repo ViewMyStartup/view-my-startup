@@ -69,6 +69,12 @@ const InputBar = () => {
             className={`${styles.input} ${styles.passwordInput}`}
           />
         </div>
+        <div className={styles.inputButtons}>
+          <button className={styles.cancelButton}>취소</button>
+          <button className={styles.submitInvestButton} type="submit">
+            투자하기
+          </button>
+        </div>
       </form>
     </div>
   );
