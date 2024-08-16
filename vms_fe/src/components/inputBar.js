@@ -43,6 +43,19 @@ const InputBar = () => {
             className={styles.input}
           />
         </div>
+        <div className={styles.formGroup}>
+          <label htmlFor="investmentComment" className={styles.label}>
+            투자 코멘트
+          </label>
+          <input
+            type="text"
+            id="investmentComment"
+            placeholder="코멘트를 입력해주세요"
+            value={investmentComment}
+            onChange={(e) => setInvestmentComment(e.target.value)}
+            className={`${styles.input} ${styles.investmentComment}`}
+          />
+        </div>
       </form>
     </div>
   );
