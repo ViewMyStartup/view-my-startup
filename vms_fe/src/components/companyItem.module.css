@@ -1,7 +1,7 @@
 .companyItem {
   display: flex;
   justify-content: space-between;
-  background: #81d8cc;
+  background: #030303;
   width: 448px;
   height: 48px;
 }
@@ -21,6 +21,7 @@
 
 /* 기업명 */
 .companyName {
+  color: var(--white);
   font-size: 16px;
   font-weight: 500;
 }
@@ -46,7 +47,14 @@
 
 /* 선택완료 시 버튼 */
 .selectBtn.selected {
-  background-color: transparent; /* 기본 배경을 투명하게 설정 */
+  background-image: url("/src/assets/images/ic_check.png");
+  background-position: 10px center;
+  background-size: 24px;
+  padding-left: 35px; /* 텍스트와 이미지 사이 간격 조정 */
+  text-align: center; /* 텍스트 중앙 정렬 */
+  background-repeat: no-repeat;
+  background-color: transparent;
   border: 1px solid var(--white);
-  color: white;
+  color: var(--white);
+  font-size: 16px;
 }
