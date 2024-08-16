@@ -27,6 +27,13 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
           </button>
         ))}
       </div>
+      <button
+        className={`${styles.button} ${styles.rightPageButton}`}
+        onClick={() => onPageChange(currentPage + 1)}
+        disabled={!hasNext || currentPage === totalPages}
+      >
+        &gt;
+      </button>
     </div>
   );
 };
