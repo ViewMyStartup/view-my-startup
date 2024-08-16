@@ -1,0 +1,105 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--gray-300);
+  border-radius: 16px;
+}
+
+.companyColumnsHug {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  gap: 12px;
+}
+
+.companyColumns {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.companyColumnsNameCategoryHug {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.companyColumnsName {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--white);
+}
+
+.companyColumnsCategory {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--gray-200)
+}
+
+.companyColumnsLogoTextHug {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.modalContent {
+  display:flex;
+  flex-direction: column;
+  width: 500px;
+  height: 930px;
+  padding: 24px 24px;
+  gap:24px;
+}
+
+.companyLogo {
+  width: 48px;
+  height: 48px;
+  border-radius: 9999px;
+}
+
+.modalHeadText {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--white);
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.CompaniesColumnText {
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--white);
+  text-align:left;
+}
+
+.errorMessage {
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--error-red);
+}
+
+.deleteLogo {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+@import "../styles/reset.css"
