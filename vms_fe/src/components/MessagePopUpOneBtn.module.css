@@ -33,3 +33,16 @@
     cursor: pointer;
   }
 }
+@media (max-width: 743px) {
+  .modal {
+    width: 343px;
+    height: 161px;
+  }
+  .closeButton {
+    width: 24px;
+    height: 24px;
+  }
+  .modalContent {
+    font-size: 14px;
+  }
+}
