@@ -15,22 +15,19 @@ import ModalSelectComparision from "./components/ModalSelectComparision";
 import PageNav from "./components/PageNav.js";
 import ModalPassword from "./components/ModalPassword";
 import MediumBtn from "./components/common/MediumBtn.js"; // MediumBtn 임포트
+import DataRowSetRender from "components/DataRowSetRender";
+
+//커스텀 훅
+import usePageHandler from "hook/usePageHandler";
+
 
 // 테스트용 이미지
 import Companyimg from "./assets/images/mock_img/company_temp.svg";
 import defaultLogo from "./assets/images/company_logo_1.svg";
 
 const App = () => {
-  // 페이지네이션 상태
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 5; // 테스트를 위해 총 페이지 수를 설정
-
-  // 페이지네이션 핸들러
-  const handlePageChange = (page) => {
-    if (page >= 1 && page <= totalPages) {
-      setCurrentPage(page);
-    }
-  };
+  // 커스텀 훅 적용
+  const { currentPage, totalPages, handlePageChange } = usePageHandler();
 
   // 모달 핸들러
   const [isModalOpen, setModalOpen] = useState(false);
@@ -112,6 +109,20 @@ const App = () => {
     setStartups(updatedStartups);
   };
 
+  const dataObject = {
+    id: "1",
+    rank: "3",
+    name: "코딩마스터",
+    img: Companyimg,
+    description: "코딩마스터는 청소년들을 위한 코딩 교육 플랫폼을 운영하는 기업입니다.",
+    category: "에듀테크",
+    total_investment_vms: 100000000,
+    total_investment_infact: 9988776655
+  }
+
+  // 테스트용 데이터 세트
+  const dataList = [dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, ]
+
   return (
     <div>
       <h1>inputBar(유효성 검사 포함) test</h1>
@@ -123,15 +134,13 @@ const App = () => {
         onPageChange={handlePageChange}
         hasNext={currentPage < totalPages}
       />
-      <h1>CompanyPerRow & HeaderColumns 컴포넌트 테스트</h1>
-      <HeaderColumns />
-      <CompanyDataPerRow type="rank" companyData={data} />
-      <HeaderColumns type="noRank" />
-      <CompanyDataPerRow type="noRank" companyData={data} />
+      <h1>CompanyPerRow & HeaderColumns 컴포넌트 테스트 * 테스트 코드 수정</h1> 
       <HeaderColumns type="invest" />
-      <CompanyDataPerRow type="invest" companyData={data} vmsData={vmsData} />
-      <HeaderColumns type="comment" />
-      <CompanyDataPerRow type="comment" userData={userData} />
+      <CompanyDataPerRow type="invest" dataObject={dataObject} />
+      <HeaderColumns type="invest" />
+      <DataRowSetRender type="invest" dataList={dataList} />
+      
+
 
       <h1>InvestmentComment Component 테스트</h1>
       <InvestmentComment
@@ -161,7 +170,8 @@ const App = () => {
 
       <h1>PageNav Component 테스트</h1>
       <PageNav />
-      <PageNav />
+      {/* 하단 보더 확인을 위한 Nav 1개 더 추가 */}
+      <PageNav /> 
 
       <h1>모달 테스트입니다</h1>
       <button onClick={openModal}>Open Investment Modal</button>
@@ -177,6 +187,8 @@ const App = () => {
       )}
     </div>
   );
+
+
 };
 
 export default App;
