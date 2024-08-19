@@ -1,6 +1,6 @@
 .buttonWrapper {
   display: flex;
-  justify-content: center; /* 가로 방향으로 가운데 정렬 */
+  justify-content: center; /* 가로 방향으로 중앙 정렬 */
   width: 100%; /* 부모 요소의 가로 너비를 채움 */
 }
 
@@ -9,27 +9,29 @@
   color: var(--gray-200);
   border-radius: 50px;
   border: none;
-  width: 135px;
-  height: 40px;
+  width: 194px; /* 고정 너비 */
+  height: 48px; /* 고정 높이 */
   font-weight: 600;
-  font-size: 14px;
-  padding: 0 24px;
+  font-size: 16px; /* 기본 폰트 크기 */
+  padding: 0 24px; /* 수평 패딩 */
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: center; /* 텍스트 가로 중앙 정렬 */
+  align-items: center; /* 텍스트 세로 중앙 정렬 */
   cursor: pointer;
 }
 
 .mediumBtn.active {
-  width: 124px;
   background-color: var(--brand-orange);
   color: var(--white);
 }
 
 @media (max-width: 743px) {
   .mediumBtn {
-    width: 128px;
-    height: 32px;
+    width: 135px; /* 모바일 버전 고정 너비 */
+    height: 44px; /* 모바일 버전 고정 높이 */
+    font-size: 14px; /* 모바일 버전 폰트 크기 */
   }
 }
+
+
 
