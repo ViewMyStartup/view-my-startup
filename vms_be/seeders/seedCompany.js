@@ -13,6 +13,10 @@ async function main() {
     skipDuplicates: true,
   });
 
+  // 투자자(유저)의 companyId와 company의 ID를 일치시키기 위해, 모든 회사 데이터 가져오기
+  const companies = await prisma.company.findMany();
+  console.log(companies);
+
   console.log("초기 데이터 시딩 작업 완료되었습니다.");
 }
 
