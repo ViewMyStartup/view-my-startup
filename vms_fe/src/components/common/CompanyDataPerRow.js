@@ -96,8 +96,8 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
       img,
       description,
       category,
-      total_investment_vms,
-      total_investment_infact,
+      investmentVmsTotal,
+      investmentInfactTotal,
     } = dataObject;
 
     return (
@@ -112,8 +112,8 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
           <span className={styles.columnCategory}>{category}</span>
         </section>
         <section className={`${styles.sameSizeContainer} ${styles.ivestSizeForSame}`}>
-          <span>{`${formatNumberWithCommas(total_investment_vms)}`}</span>
-          <span>{`${formatNumberWithCommas(total_investment_infact)}`}</span>
+          <span>{`${formatNumberWithCommas(investmentVmsTotal)}`}</span>
+          <span>{`${formatNumberWithCommas(investmentInfactTotal)}`}</span>
         </section>
       </li>
     );
