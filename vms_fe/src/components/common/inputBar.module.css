@@ -95,7 +95,7 @@ input[type="number"]::-webkit-outer-spin-button {
   padding: 12px 2.5rem 12px 12px;
   box-sizing: border-box;
   background: var(--black-300);
-  background-image: url("../../assets/images/ic_password_eye.svg");
+  background-image: url("../../assets/images/ic_password_eye_open.svg");
   background-repeat: no-repeat;
   background-position: right 12px center;
   background-size: 24px 24px;

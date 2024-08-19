@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import MediumBtn from "./common/MediumBtn.js";
 import styles from "./ModalPassword.module.css";
-import eyeIcon from "../assets/images/ic_password_eye.svg";
-
-
+import eyeOpenIcon from "../assets/images/ic_password_eye_open.svg";
+import eyeCloseIcon from "../assets/images/ic_password_eye_close.svg";
 
 const ModalPassword = ({ onClose }) => {
   const [password, setPassword] = useState("");
@@ -61,7 +60,7 @@ const ModalPassword = ({ onClose }) => {
                 className={styles.input}
               />
               <img
-                src={eyeIcon}
+                src={isPasswordVisible ? eyeCloseIcon : eyeOpenIcon}
                 alt="Toggle visibility"
                 className={styles.passwordToggle}
                 onClick={togglePasswordVisibility}
@@ -79,4 +78,5 @@ const ModalPassword = ({ onClose }) => {
 };
 
 export default ModalPassword;
+
 
