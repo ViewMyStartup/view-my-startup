@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function usePageCtrl() {
+function usePageHandler() {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 5; // 테스트를 위해 총 페이지 수를 설정, 추후 별도 계산 필요
 
@@ -13,4 +13,4 @@ function usePageCtrl() {
   return { currentPage, totalPages, handlePageChange };
 }
 
-export default usePageCtrl;
+export default usePageHandler;
