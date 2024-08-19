@@ -2,11 +2,11 @@ import "./App.css";
 import "./styles/reset.css";
 import React, { useState } from "react";
 
-// 컴포넌트
-import Pagination from "./components/common/Pagination.js";
-import HeaderColumns from "./components/common/HeaderColumns.js";
-import CompanyDataPerRow from "./components/common/CompanyDataPerRow.js";
-import InputBar from "./components/common/inputBar.js";
+// 컴포넌트 임포트
+import Pagination from "./components/common/Pagination";
+import HeaderColumns from "./components/common/HeaderColumns";
+import CompanyDataPerRow from "./components/common/CompanyDataPerRow";
+import InputBar from "./components/common/InputBar";
 import InvestmentComment from "./components/common/InvestmentComment";
 import DropdownComponent from "./components/common/DropdownComponent";
 import SearchBar from "./components/common/SearchBar.js";
@@ -125,9 +125,9 @@ const App = () => {
 
   return (
     <div>
-      <h1>inputBar(유효성 검사 포함) test</h1>
+      <h1>InputBar (유효성 검사 포함) Test</h1>
       <InputBar />
-      <h1>Pagination test</h1>
+      <h1>Pagination Test</h1>
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
@@ -146,15 +146,15 @@ const App = () => {
         placeholderText="비밀번호를 입력해 주세요"
         errorMessage="비밀번호를 입력해야 합니다."
       />
-      <h1>DropdownComponent 테스트</h1>
+      <h1>DropdownComponent Test</h1>
       <DropdownComponent />
-      <h1>검색창 테스트</h1>
+      <h1>검색창 Test</h1>
       <SearchBar
         value={searchQuery}
         onChange={handleSearchChange}
         onClear={handleClearSearch}
       />
-      <h1>CompanyCard 테스트</h1>
+      <h1>CompanyCard Test</h1>
       {startups.map((startup, index) => (
         <CompanyCard
           key={index}

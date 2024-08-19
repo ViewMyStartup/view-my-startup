@@ -41,13 +41,13 @@
 }
 
 .companyColumnsName {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 500;
   color: var(--white);
 }
 
 .companyColumnsCategory {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
   color: var(--gray-200)
 }
@@ -68,8 +68,8 @@
 }
 
 .companyLogo {
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   border-radius: 9999px;
 }
 

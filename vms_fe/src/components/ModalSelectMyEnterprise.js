@@ -3,12 +3,10 @@ import style from "./ModalSelectMyEnterprise.module.css";
 import mockupData from "assets/mock/mockData";
 import Pagination from "components/common/Pagination";
 import SearchBar from "components/common/SearchBar";
-import logo from "assets/images/company_logo_1.svg";
 import SelectBtn from "./common/SelectBtn";
 import deleteIcon from "assets/images/ic_delete.svg";
 
 const ModalSelectMyEnterprise = ({ isOpen, onClose }) => {
-
   // 검색어 상태 (검색창의 입력 값을 관리)
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -138,7 +136,7 @@ const ModalSelectMyEnterprise = ({ isOpen, onClose }) => {
                   <li key={company.name} className={style.companyColumns}>
                     <div className={style.companyColumnsLogoTextHug}>
                       <img
-                        src={logo}
+                        src={company.logoUrl}
                         alt={`${company.name} logo`}
                         className={style.companyLogo}
                       />
@@ -189,7 +187,7 @@ const ModalSelectMyEnterprise = ({ isOpen, onClose }) => {
                       <li key={company.name} className={style.companyColumns}>
                         <div className={style.companyColumnsLogoTextHug}>
                           <img
-                            src={logo}
+                            src={company.logoUrl}
                             alt={`${company.name} logo`}
                             className={style.companyLogo}
                           />
