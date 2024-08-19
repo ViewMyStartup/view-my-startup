@@ -1,0 +1,56 @@
+/* 오버레이 있으면 app.js 테스트에서 안나옴 */
+/* .overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+} */
+.modal {
+  width: 496px;
+  height: 186px;
+  background-color: var(--black-300);
+  border-radius: 16px;
+  position: relative;
+}
+.modalContent {
+  padding-top: 64px;
+  padding-bottom: 32px;
+  color: var(--white);
+  font-size: 15px;
+  font-weight: 400;
+}
+.closeButton {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  top: 24px;
+  right: 24px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+@media (max-width: 743px) {
+  .modal {
+    width: 343px;
+    height: 161px;
+  }
+  .modalContent {
+    padding-top: 56px;
+  }
+  .closeButton {
+    width: 24px;
+    height: 24px;
+  }
+  .modalContent {
+    font-size: 14px;
+  }
+}

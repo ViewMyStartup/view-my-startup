@@ -1,32 +1,29 @@
 import React, { useState } from "react";
-import styles from "./inputBar.module.css";
-import deleteIcon from "./../../assets/images/ic_delete.svg";
+import styles from "./InputBar.module.css";
+import eyeIcon from "assets/images/ic_password_eye_open.svg";
+import eyeSlashIcon from "assets/images/ic_password_eye_close.svg";
 
-const InputBar = () => {
-  // 상태 관리
-  const [investorName, setInvestorName] = useState(""); // 투자자 이름
-  const [investmentAmount, setInvestmentAmount] = useState(""); // 투자 금액
-  const [investmentComment, setInvestmentComment] = useState(""); // 투자 코멘트
-  const [password, setPassword] = useState(""); // 비밀번호
-  const [confirmPassword, setConfirmPassword] = useState(""); // 비밀번호 확인
-  const [errors, setErrors] = useState({}); // 에러 처리
+const InputBar = ({ onClose }) => {
+  const [investorName, setInvestorName] = useState("");
+  const [investmentAmount, setInvestmentAmount] = useState("");
+  const [investmentComment, setInvestmentComment] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [errors, setErrors] = useState({});
+  const [showPassword, setShowPassword] = useState(false);
 
-  // 투자 금액 숫자로만 입력하도록 설정
   const handleInvestmentAmountChange = (e) => {
     const value = e.target.value;
     if (/^\d*\.?\d*$/.test(value)) {
-      // 숫자만 입력
       setInvestmentAmount(value);
     }
   };
 
-  // 폼 제출 핸들러
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const newErrors = {};
 
-    // 비밀번호 유효성 검사
     if (!password) {
       newErrors.password = "비밀번호는 필수로 입력해주세요.";
     }
@@ -38,11 +35,9 @@ const InputBar = () => {
         "비밀번호와 비밀번호 확인이 일치하지 않습니다.";
     }
 
-    // 투자자 이름 유효성 검사
     if (!investorName) {
       newErrors.investorName = "이름은 필수로 입력해주세요.";
     } else if (/^\d+$/.test(investorName)) {
-      // 입력값이 숫자로만 이루어져 있는 경우
       newErrors.investorName = "이름은 한글 또는 영어로 입력해주세요.";
     }
 
@@ -51,7 +46,6 @@ const InputBar = () => {
       return;
     }
 
-    // 폼 제출 추가
     console.log({
       investorName,
       investmentAmount,
@@ -59,19 +53,19 @@ const InputBar = () => {
       password,
       confirmPassword,
     });
+
+    onClose();
+  };
+
+  // 비밀번호 가시성 토글 함수
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
     <div className={styles.inputFormContainer}>
-      <div className={styles.inputFormTop}>
-        <h1 className={styles.h1}>기업에 투자하기</h1>
-        <button className={styles.inputTopX}>
-          <img src={deleteIcon} alt="Delete" />
-        </button>
-      </div>
-      <h2 className={styles.h2}>투자 기업 정보</h2>
-      <p>(기업아이콘) 기업명: 여기는 기업 정보 데이터 불러와야함</p>
       <form onSubmit={handleSubmit} className={styles.inputForm}>
+        {/* 투자자 이름 입력란 */}
         <div className={styles.formGroup}>
           <label htmlFor="investorName" className={styles.label}>
             투자자 이름
@@ -88,6 +82,8 @@ const InputBar = () => {
         {errors.investorName && (
           <p className={styles.errorMessage}>{errors.investorName}</p>
         )}
+
+        {/* 투자 금액 입력란 */}
         <div className={styles.formGroup}>
           <label htmlFor="investmentAmount" className={styles.label}>
             투자 금액
@@ -101,6 +97,8 @@ const InputBar = () => {
             className={styles.input}
           />
         </div>
+
+        {/* 투자 코멘트 입력란 */}
         <div className={styles.formGroup}>
           <label htmlFor="investmentComment" className={styles.label}>
             투자 코멘트
@@ -111,43 +109,70 @@ const InputBar = () => {
             placeholder="코멘트를 입력해주세요"
             value={investmentComment}
             onChange={(e) => setInvestmentComment(e.target.value)}
-            className={`${styles.input} ${styles.investmentComment}`} // Apply multiple classes
+            className={`${styles.input} ${styles.investmentComment}`}
           />
         </div>
+
+        {/* 비밀번호 입력란 */}
         <div className={styles.formGroup}>
           <label htmlFor="password" className={styles.label}>
             비밀번호
           </label>
-          <input
-            type="password"
-            id="password"
-            placeholder="비밀번호를 입력해주세요"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className={`${styles.input} ${styles.passwordInput}`}
-          />
+          <div className={styles.passwordInputWrapper}>
+            <input
+              type={showPassword ? "text" : "password"} // 비밀번호 입력란의 type 변경
+              id="password"
+              placeholder="비밀번호를 입력해주세요"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className={`${styles.input} ${styles.passwordInput}`}
+            />
+            <img
+              src={showPassword ? eyeSlashIcon : eyeIcon} // 가시성에 따른 아이콘 변경
+              alt="비밀번호 가시성 토글"
+              onClick={togglePasswordVisibility}
+              className={styles.passwordToggleIcon}
+            />
+          </div>
         </div>
         {errors.password && (
           <p className={styles.errorMessage}>{errors.password}</p>
         )}
+
+        {/* 비밀번호 확인 입력란 */}
         <div className={styles.formGroup}>
           <label htmlFor="confirmPassword" className={styles.label}>
             비밀번호 확인
           </label>
-          <input
-            type="password"
-            id="confirmPassword"
-            placeholder="비밀번호를 다시 한번 입력해주세요"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            className={`${styles.input} ${styles.passwordInput}`}
-          />
+          <div className={styles.passwordInputWrapper}>
+            <input
+              type={showPassword ? "text" : "password"} // 비밀번호 확인 입력란의 type 변경
+              id="confirmPassword"
+              placeholder="비밀번호를 다시 한번 입력해주세요"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              className={`${styles.input} ${styles.passwordInput}`}
+            />
+            <img
+              src={showPassword ? eyeSlashIcon : eyeIcon} // 가시성에 따른 아이콘 변경
+              alt="비밀번호 가시성 토글"
+              onClick={togglePasswordVisibility}
+              className={styles.ConfirmPasswordToggleIcon}
+            />
+          </div>
           {errors.confirmPassword && (
             <p className={styles.errorMessage}>{errors.confirmPassword}</p>
           )}
         </div>
+
         <div className={styles.inputButtons}>
-          <button className={styles.cancelButton}>취소</button>
+          <button
+            className={styles.cancelButton}
+            type="button"
+            onClick={onClose}
+          >
+            취소
+          </button>
           <button className={styles.submitInvestButton} type="submit">
             투자하기
           </button>
