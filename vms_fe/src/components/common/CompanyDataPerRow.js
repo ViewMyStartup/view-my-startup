@@ -112,8 +112,8 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
           <span className={styles.columnCategory}>{category}</span>
         </section>
         <section className={`${styles.sameSizeContainer} ${styles.ivestSizeForSame}`}>
-          <span>{`${formatNumberWithCommas(investmentVmsTotal)}`}</span>
-          <span>{`${formatNumberWithCommas(investmentInfactTotal)}`}</span>
+          <span>{`${convertToBillion(investmentVmsTotal)}억 원`}</span>
+          <span>{`${convertToBillion(investmentInfactTotal)}억 원`}</span>
         </section>
       </li>
     );
@@ -169,8 +169,8 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
           <span className={styles.columnCategory}>{category}</span>
         </section>
         <section className={`${styles.sameSizeContainer} ${styles.ivestSizeForSame}`}>
-          <span>{`${convertToBillion(myCompanyChooseCount)}`}</span>
-          <span>{`${convertToBillion(CompareChoohseCount)}`}</span>
+          <span>{`${formatNumberWithCommas(myCompanyChooseCount)}`}</span>
+          <span>{`${formatNumberWithCommas(CompareChoohseCount)}`}</span>
         </section>
       </li>
     );
