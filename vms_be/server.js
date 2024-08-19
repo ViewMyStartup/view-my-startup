@@ -13,6 +13,7 @@ app.use(cors());
 // 정적 파일 제공 설정
 app.use("/images", express.static(path.join(__dirname, "seeders/images")));
 
-// 라우터 등록
+// 라우터 등록( API 추가시, 라우터 추가 예정 )
 
+// 서버 시작
 app.listen(process.env.PORT || 8000, () => console.log("Server Started"));
