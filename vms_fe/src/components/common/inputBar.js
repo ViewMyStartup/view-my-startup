@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./inputBar.module.css";
+import deleteIcon from "./../../assets/images/ic_delete.svg";
 
 const InputBar = () => {
   // 상태 관리
@@ -64,7 +65,9 @@ const InputBar = () => {
     <div className={styles.inputFormContainer}>
       <div className={styles.inputFormTop}>
         <h1 className={styles.h1}>기업에 투자하기</h1>
-        <button className={styles.inputTopX}>X</button>
+        <button className={styles.inputTopX}>
+          <img src={deleteIcon} alt="Delete" />
+        </button>
       </div>
       <h2 className={styles.h2}>투자 기업 정보</h2>
       <p>(기업아이콘) 기업명: 여기는 기업 정보 데이터 불러와야함</p>

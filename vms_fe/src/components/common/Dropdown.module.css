@@ -1,7 +1,7 @@
 .dropdown {
   position: relative;
   display: inline-block;
-  width: 205px;
+  width: 168px;
   height: 40px;
   background-color: #131313;
   border-radius: 10px;
@@ -43,7 +43,8 @@
   position: absolute;
   top: 50px;
   left: 0;
-  width: 208px;
+  width: 168px;
+  height: 240px;
   background-color: #131313;
   border-radius: 10px;
   list-style: none;
@@ -54,15 +55,18 @@
 }
 
 .dropdownMenuItem {
-  padding: 12px 10px;
+  height: 40px;
+  padding: 0 10px;
   font-family: 'Pretendard', sans-serif;
   font-weight: 400;
   font-size: 14px;
-  line-height: 16.71px;
   color: #D8D8D8;
   text-align: center;
   cursor: pointer;
   border-top: 1px solid #747474;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .dropdownMenuItemFirst {
@@ -77,5 +81,37 @@
 
 .dropdownMenuItemHover {
   background-color: #333333;
+}
+
+/* 모바일 버전 (화면 크기 743px ~ 375px) 스타일링 */
+@media (min-width: 375px) and (max-width: 743px) {
+  .dropdown {
+    width: 146px;
+    height: 40px;
+  }
+
+  .dropdownToggle {
+    padding: 8px;
+  }
+
+  .dropdownLabel {
+    font-size: 12px;
+    line-height: 14px;
+  }
+
+  .dropdownIcon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .dropdownMenu {
+    width: 146px;
+    height: 228px;
+  }
+
+  .dropdownMenuItem {
+    height: 38px;
+    font-size: 12px;
+  }
 }
 
