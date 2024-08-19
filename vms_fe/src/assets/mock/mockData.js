@@ -1,8 +1,8 @@
 import logo1 from "../images/company_logo_1.svg";
-import logo2 from "../images/company_logo_2.png";
-import logo3 from "../images/company_logo_3.png";
-import logo4 from "../images/company_logo_4.png";
-import logo5 from "../images/company_logo_5.png";
+import logo2 from "../images/company_logo_2.svg";
+import logo3 from "../images/company_logo_3.svg";
+import logo4 from "../images/company_logo_4.svg";
+import logo5 from "../images/company_logo_5.svg";
 
 const mockupData = [
   {
