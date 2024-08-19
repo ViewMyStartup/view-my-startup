@@ -30,7 +30,7 @@ const ModalInvestment = ({ isOpen, onClose, selectedCompanies }) => {
                   key={company.name}
                 >
                   <img
-                    src={logo}
+                    src={company.logoUrl}
                     alt={`${company.name} logo`}
                     className={style.companyLogo}
                   />
