@@ -1,4 +1,8 @@
-
+.dataRowSet {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
 
 @media (max-width: 744px) {
   .dataRowSet {

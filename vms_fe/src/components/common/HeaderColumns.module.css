@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-width: 744px;
+  min-width: 696px;
   max-width: 1200px;
   height: 39px;
   background-color: #4B4B4B;
@@ -82,8 +82,9 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  min-width: 366px;
   width: 100%;
+  min-width: 228px;
+
 }
 
 .commentSizeForSame {
@@ -92,7 +93,7 @@
 }
 
 .ivestSizeForSame {
-  min-width: 232px;
+  min-width: 228px;
   max-width: 460px;
 }
 
@@ -108,13 +109,6 @@
 .wrapText > span {
   color: #FFFFFF;
   font-size: 0.875rem;
-}
-
-@media (max-width: 1200px) and (min-width: 744px) {
-  .HeaderColumns {
-    min-width: 744px;
-  }
-  
 }
 
 @media (max-width: 1000px) {

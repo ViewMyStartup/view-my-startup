@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./HeaderColumns.module.css";
 
 function HeaderColumns({ type = "rank" }) {
-  const renderRank = () => {
+  const typeRank = () => {
     return (
       <header className={styles.HeaderColumns}>
         <section className={`${styles.diffSizeContainer} ${styles.rankSize}`}>
@@ -20,7 +20,7 @@ function HeaderColumns({ type = "rank" }) {
     );
   };
 
-  const renderNoRank = () => {
+  const typeNoRank = () => {
     return (
       <header className={styles.HeaderColumns}>
         <section className={`${styles.diffSizeContainer} ${styles.noRankSize}`}>
@@ -37,7 +37,7 @@ function HeaderColumns({ type = "rank" }) {
     );
   };
 
-  const renderInfoInvest = () => {
+  const typeInvest = () => {
     return (
       <header className={styles.HeaderColumns}>
         <section className={`${styles.diffSizeContainer} ${styles.investSize}`}>
@@ -57,7 +57,7 @@ function HeaderColumns({ type = "rank" }) {
     );
   };
 
-  const renderComment = () => {
+  const typeComment = () => {
     return (
       <header className={styles.HeaderColumns}>
         <section className={`${styles.sameSizeContainer} ${styles.commentSizeForSame}`}>
@@ -73,14 +73,33 @@ function HeaderColumns({ type = "rank" }) {
     );
   };
 
+  const typeChoose = () => {
+    return (
+      <header className={styles.HeaderColumns}>
+        <section className={`${styles.diffSizeContainer} ${styles.investSize}`}>
+          <div className={styles.columnRank}>순위</div>
+          <div className={styles.columnCompanyName}>기업 명</div>
+          <div className={styles.columnCompanyDescription}>기업 소개</div>
+          <div className={styles.columnCategory}>카테고리</div>
+        </section>
+        <section className={`${styles.sameSizeContainer} ${styles.ivestSizeForSame}`}>
+          <span>나의 기업 선택 횟수</span>
+          <span>비교 기업 선택 횟수</span>
+        </section>
+      </header>
+    );
+  };
+
   if (type === "rank") {
-    return renderRank();
+    return typeRank();
   } else if (type === "noRank") {
-    return renderNoRank();
+    return typeNoRank();
   } else if (type === "invest") {
-    return renderInfoInvest();
+    return typeInvest();
   } else if (type === "comment") {
-    return renderComment();
+    return typeComment();
+  } else if (type === "choose") {
+    return typeChoose();
   }
 }
 

@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 744px;
+  min-width: 696px;
   max-width: 1200px;
   height: 64px;
   background-color: #2E2E2E;
@@ -76,7 +76,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  min-width: 366px;
+  min-width: 228px;
   width: 100%;
 }
 
@@ -86,7 +86,7 @@
 }
 
 .ivestSizeForSame {
-  min-width: 232px;
+  min-width: 228px;
   max-width: 460px;
 }
 

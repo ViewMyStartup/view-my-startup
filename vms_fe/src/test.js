@@ -85,8 +85,17 @@ const App = () => {
     img: Companyimg,
     description: "코딩마스터는 청소년들을 위한 코딩 교육 플랫폼을 운영하는 기업입니다.",
     category: "에듀테크",
-    total_investment_vms: 100000000,
-    total_investment_infact: 9988776655
+    total_investment: 12312959459,
+    revenue: 3245204304,
+    employees: 5230,
+    investmentVmsTotal: 200342345,
+    investmentInfactTotal: 342534123124,
+    myCompanyChooseCount: 124123,
+    CompareChoohseCount: 12315565,
+    userName: "정준호", 
+    userRank: 3, 
+    userTotalInvestment: 3423401234, 
+    userComment: "테스트입니다." 
   }
 
   // 테스트용 데이터 세트
@@ -104,10 +113,11 @@ const App = () => {
         hasNext={currentPage < totalPages}
       />
       <h1>CompanyPerRow & HeaderColumns 컴포넌트 테스트 * 테스트 코드 수정</h1> 
-      <HeaderColumns type="invest" />
-      <CompanyDataPerRow type="invest" dataObject={dataObject} />
-      <HeaderColumns type="invest" />
+      <DataRowSetRender type="rank" dataList={dataList} />
+      <DataRowSetRender type="norank" dataList={dataList} />
+      <DataRowSetRender type="comment" dataList={dataList} />
       <DataRowSetRender type="invest" dataList={dataList} />
+      <DataRowSetRender type="choose" dataList={dataList} />
       
 
 
