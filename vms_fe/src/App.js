@@ -12,6 +12,7 @@ import DropdownComponent from "./components/common/DropdownComponent";
 import SearchBar from "./components/common/SearchBar.js";
 import CompanyCard from "./components/common/CompanyCard.js";
 import MessagePopUpOneBtn from "./components/MessagePopUpOneBtn.js";
+import MessagePopUpTwoBtn from "./components/MessagePopUpTwoBtn.js";
 import LargeBtn from "./components/common/LargeBtn.js";
 import ToggleIcon from "./assets/images/ic_toggle.svg";
 
@@ -108,6 +109,11 @@ const App = () => {
     setIsPopupOpen(false);
   };
 
+  const handleCancel = () => {
+    console.log("취소");
+    setIsPopupOpen(false);
+  };
+
   return (
     <div>
       <h1>inputBar(유효성 검사 포함) test</h1>
@@ -161,6 +167,14 @@ const App = () => {
           text="팝업 내용이 들어갑니다"
           onClose={handleClosePopup}
           onConfirm={handleConfirm}
+        />
+      )}
+      {isPopupOpen && (
+        <MessagePopUpTwoBtn
+          text="팝업 내용이 들어갑니다"
+          onClose={handleClosePopup}
+          onConfirm={handleConfirm}
+          onCancel={handleCancel}
         />
       )}
     </div>
