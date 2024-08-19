@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/style.css";
+
 import styles from "./LargeBtn.module.css";
 
 const LargeBtn = ({ text, onClick, className }) => {

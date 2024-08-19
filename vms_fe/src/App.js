@@ -11,19 +11,27 @@ import InvestmentComment from "./components/common/InvestmentComment";
 import DropdownComponent from "./components/common/DropdownComponent";
 import SearchBar from "./components/common/SearchBar.js";
 import CompanyCard from "./components/common/CompanyCard.js";
+
 import ModalSelectComparision from "./components/ModalSelectComparision";
 import PageNav from "./components/PageNav.js";
 import ModalPassword from "./components/ModalPassword";
 import MediumBtn from "./components/common/MediumBtn.js"; // MediumBtn 임포트
+import LargeBtn from "./components/common/LargeBtn.js";
+import MessagePopUpOneBtn from "./components/MessagePopUpOneBtn.js";
+import MessagePopUpTwoBtn from "./components/MessagePopUpTwoBtn.js";
 import DataRowSetRender from "components/DataRowSetRender";
 
 //커스텀 훅
 import usePageHandler from "hook/usePageHandler";
 
+//테스트용 이미지
+import Companyimg from "./assets/images/mock_img/company_temp.svg";
+import defaultLogo from "./assets/images/company_logo_1.svg";
 
 // 테스트용 이미지
 import Companyimg from "./assets/images/mock_img/company_temp.svg";
 import defaultLogo from "./assets/images/company_logo_1.svg";
+import ToggleIcon from "./assets/images/ic_toggle.svg";
 
 const App = () => {
   // 커스텀 훅 적용
@@ -37,6 +45,7 @@ const App = () => {
   const closeModal = () => {
     setModalOpen(false);
   };
+
 
   // ModalPassword 모달 상태 관리
   const [isPasswordModalOpen, setPasswordModalOpen] = useState(false);
@@ -108,6 +117,26 @@ const App = () => {
     const updatedStartups = startups.filter((startup) => startup.name !== name);
     setStartups(updatedStartups);
   };
+  // 원버튼 팝업 테스트
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const handleOpenPopup = () => {
+    setIsPopupOpen(true);
+  };
+
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
+
+  const handleConfirm = () => {
+    console.log("확인");
+    setIsPopupOpen(false);
+  };
+
+  const handleCancel = () => {
+    console.log("취소");
+    setIsPopupOpen(false);
+  };
 
   const dataObject = {
     id: "1",
@@ -172,6 +201,27 @@ const App = () => {
       <h1>모달 테스트입니다</h1>
       <button onClick={openModal}>Open Investment Modal</button>
       <ModalSelectComparision isOpen={isModalOpen} onClose={closeModal} />
+
+      <h1>one button popup 테스트</h1>
+      <LargeBtn text="팝업 열기" onClick={handleOpenPopup} />
+      <br />
+      {isPopupOpen && (
+        <MessagePopUpOneBtn
+          text="팝업 내용이 들어갑니다"
+          onClose={handleClosePopup}
+          onConfirm={handleConfirm}
+        />
+      )}
+      <br />
+      {isPopupOpen && (
+        <MessagePopUpTwoBtn
+          text="팝업 내용이 들어갑니다"
+          onClose={handleClosePopup}
+          onConfirm={handleConfirm}
+          onCancel={handleCancel}
+        />
+      )}
+      <br />
 
       <h1>MediumBtn 테스트</h1>
       <MediumBtn text="Medium Button" onClick={() => alert("버튼 클릭됨!")} />
