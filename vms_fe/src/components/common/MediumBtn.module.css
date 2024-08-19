@@ -1,4 +1,8 @@
-/* 버튼 사용 관련 정확한 목적파악을 못하겠어서 일단 CSS를 active로 표기했습니다 */
+.buttonWrapper {
+  display: flex;
+  justify-content: center; /* 가로 방향으로 가운데 정렬 */
+  width: 100%; /* 부모 요소의 가로 너비를 채움 */
+}
 
 .mediumBtn {
   background-color: var(--black-100);
@@ -9,8 +13,10 @@
   height: 40px;
   font-weight: 600;
   font-size: 14px;
-  padding: 13px 24px;
-  gap: 10px;
+  padding: 0 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
 }
 
@@ -19,9 +25,11 @@
   background-color: var(--brand-orange);
   color: var(--white);
 }
+
 @media (max-width: 743px) {
   .mediumBtn {
     width: 128px;
     height: 32px;
   }
 }
+
