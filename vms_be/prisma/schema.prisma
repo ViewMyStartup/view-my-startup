@@ -12,3 +12,33 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Company {
+  id               Int               @id @default(autoincrement())
+  name             String            @unique
+  logoUrl          String
+  description      String
+  category         String
+  totalInvestment  Float
+  revenue          Float
+  employees        Int
+  investments      Investment[]      @relation("CompanyInvestments")
+  selections       CompanySelection[] @relation("CompanySelections")
+}
+
+model Investment {
+  id                Int       @id @default(autoincrement())
+  companyId         Int
+  investorName      String
+  investmentAmount Float
+  investmentComment String
+  password          String
+  company           Company   @relation("CompanyInvestments", fields: [companyId], references: [id])
+}
+
+model CompanySelection {
+  id             Int     @id @default(autoincrement())
+  companyId      Int
+  selectionCount Int
+  company        Company @relation("CompanySelections", fields: [companyId], references: [id])
+}
