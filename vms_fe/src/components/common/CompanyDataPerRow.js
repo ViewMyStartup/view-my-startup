@@ -7,7 +7,8 @@ import iconKebab from "../../assets/images/ic_kebab.svg"
 function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
   //단위 변환
   const convertToBillion = (number) => {
-    return number / 100000000
+    return parseFloat((number / 100000000).toFixed(2)); // 반올림
+    // return Math.floor((number / 100000000) * 100) / 100; // 버림
   }
 
   //텍스트 자르기 (사전 작성)
@@ -19,7 +20,7 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
     }
   }
 
-  const typeRank = (data) => {
+  const typeRank = () => {
     const {
       id,
       rank,
@@ -30,7 +31,7 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
       total_investment,
       revenue,
       employees,
-    } = data;
+    } = dataObject;
 
     return (
       <li key={id} className={styles.dataPerRowContainer}>
@@ -52,7 +53,7 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
     );
   };
 
-  const typeNoRank = (data) => {
+  const typeNoRank = () => {
     const {
       id,
       name,
@@ -62,7 +63,7 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
       total_investment,
       revenue,
       employees,
-    } = data;
+    } = dataObject;
 
     return (
       <li key={id} className={styles.dataPerRowContainer}>
@@ -83,7 +84,7 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
     );
   };
 
-  const typeInvest = (data) => {
+  const typeInvest = () => {
     const {
       id,
       rank,
@@ -93,7 +94,7 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
       category,
       total_investment_vms,
       total_investment_infact,
-    } = data;
+    } = dataObject;
 
     return (
       <li key={id} className={styles.dataPerRowContainer}>
@@ -121,7 +122,7 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
       userRank, 
       user_total_investment, 
       user_comment 
-    } = userData;
+    } = dataObject;
 
     return (
       <li key={id} className={styles.dataPerRowContainer}>

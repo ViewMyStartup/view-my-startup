@@ -13,9 +13,10 @@ import SearchBar from "./components/common/SearchBar.js";
 import CompanyCard from "./components/common/CompanyCard.js";
 import ModalSelectComparision from "components/ModalSelectComparision";
 import PageNav from "./components/PageNav.js";
+import DataRowSetRender from "components/DataRowSetRender";
 
 //테스트 페이지
-import InvestInfoPage from "pages/InvestInfoPage";
+// import InvestInfoPage from "pages/InvestInfoPage";
 
 
 //테스트용 이미지
@@ -25,129 +26,139 @@ import ToggleIcon from "./assets/images/ic_toggle.svg";
 
 
 const App = () => {
-  // // 페이지네이션 상태
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const totalPages = 5; // 테스트를 위해 총 페이지 수를 설정
+  // 페이지네이션 상태
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 5; // 테스트를 위해 총 페이지 수를 설정
 
-  // // 페이지네이션 핸들러
-  // const handlePageChange = (page) => {
-  //   if (page >= 1 && page <= totalPages) {
-  //     setCurrentPage(page);
-  //   }
-  // };
+  // 페이지네이션 핸들러
+  const handlePageChange = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
 
-  // // 모달 핸들러
-  // const [isModalOpen, setModalOpen] = useState(false);
+  // 모달 핸들러
+  const [isModalOpen, setModalOpen] = useState(false);
 
-  // const openModal = () => {
-  //   setModalOpen(true);
-  // };
+  const openModal = () => {
+    setModalOpen(true);
+  };
 
-  // const closeModal = () => {
-  //   setModalOpen(false);
-  // };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
 
-  // //SearchBar 테스트
-  // const [searchQuery, setSearchQuery] = useState("");
+  //SearchBar 테스트
+  const [searchQuery, setSearchQuery] = useState("");
 
-  // const handleSearchChange = (value) => {
-  //   setSearchQuery(value);
-  // };
+  const handleSearchChange = (value) => {
+    setSearchQuery(value);
+  };
 
-  // const handleClearSearch = () => {
-  //   setSearchQuery("");
-  // };
+  const handleClearSearch = () => {
+    setSearchQuery("");
+  };
 
-  // //CompanyCard 테스트
-  // const initialStartups = [
-  //   {
-  //     name: "코드잇",
-  //     category: "에듀테크",
-  //     logoSrc: defaultLogo,
-  //   },
-  //   {
-  //     name: "코딩마스터",
-  //     category: "에듀테크",
-  //     logoSrc: defaultLogo,
-  //   },
-  //   {
-  //     name: "러닝큐브",
-  //     category: "에듀테크",
-  //     logoSrc: defaultLogo,
-  //   },
-  // ];
+  //CompanyCard 테스트
+  const initialStartups = [
+    {
+      name: "코드잇",
+      category: "에듀테크",
+      logoSrc: defaultLogo,
+    },
+    {
+      name: "코딩마스터",
+      category: "에듀테크",
+      logoSrc: defaultLogo,
+    },
+    {
+      name: "러닝큐브",
+      category: "에듀테크",
+      logoSrc: defaultLogo,
+    },
+  ];
 
-  // const [startups, setStartups] = useState(initialStartups);
+  const [startups, setStartups] = useState(initialStartups);
 
-  // const handleDelete = (name) => {
-  //   const updatedStartups = startups.filter((startup) => startup.name !== name);
-  //   setStartups(updatedStartups);
-  // };
+  const handleDelete = (name) => {
+    const updatedStartups = startups.filter((startup) => startup.name !== name);
+    setStartups(updatedStartups);
+  };
 
-  // return (
-  //   <div>
-  //     <h1>inputBar(유효성 검사 포함) test</h1>
-  //     <InputBar />
-  //     <h1>Pagination test</h1>
-  //     <Pagination
-  //       currentPage={currentPage}
-  //       totalPages={totalPages}
-  //       onPageChange={handlePageChange}
-  //       hasNext={currentPage < totalPages}
-  //     />
-  //     <h1>CompanyPerRow & HeaderColumns 컴포넌트 테스트</h1>
-  //     <HeaderColumns />
-  //     <CompanyDataPerRow type="rank" companyData={data} />
-  //     <HeaderColumns type="noRank" />
-  //     <CompanyDataPerRow type="noRank" companyData={data} />
-  //     <HeaderColumns type="invest" />
-  //     <CompanyDataPerRow type="invest" companyData={data} vmsData={vmsData} />
-  //     <HeaderColumns type="comment" />
-  //     <CompanyDataPerRow type="comment" userData={userData} />
+  const dataObject = {
+    id: "1",
+    rank: "3",
+    name: "코딩마스터",
+    img: Companyimg,
+    description: "코딩마스터는 청소년들을 위한 코딩 교육 플랫폼을 운영하는 기업입니다.",
+    category: "에듀테크",
+    total_investment_vms: 100000000,
+    total_investment_infact: 9988776655
+  }
 
-  //     <h1>InvestmentComment Component 테스트</h1>
-  //     <InvestmentComment
-  //       headerText="투자 코멘트"
-  //       placeholderText="비밀번호를 입력해 주세요"
-  //       errorMessage="비밀번호를 입력해야 합니다."
-  //     />
+  // 테스트용 데이터 세트
+  const dataList = [dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, ]
 
-  //     <h1>DropdownComponent 테스트</h1>
-  //     <DropdownComponent />
-  //     <h1>검색창 테스트</h1>
-  //     <SearchBar
-  //       value={searchQuery}
-  //       onChange={handleSearchChange}
-  //       onClear={handleClearSearch}
-  //     />
-  //     <h1>CompanyCard 테스트</h1>
-  //     {startups.map((startup, index) => (
-  //       <CompanyCard
-  //         key={index}
-  //         name={startup.name}
-  //         category={startup.category}
-  //         logoSrc={Companyimg}
-  //         onDelete={() => handleDelete(startup.name)}
-  //       />
-  //     ))}
-
-  //     <h1>PageNav Component 테스트</h1>
-  //     <PageNav />
-  //     {/* 하단 보더 확인을 위한 Nav 1개 더 추가 */}
-  //     <PageNav /> 
-
-  //     <h1>모달 테스트입니다</h1>
-  //     <button onClick={openModal}>Open Investment Modal</button>
-  //     <ModalSelectComparision isOpen={isModalOpen} onClose={closeModal} />
-
+  return (
+    <div>
+      <h1>inputBar(유효성 검사 포함) test</h1>
+      <InputBar />
+      <h1>Pagination test</h1>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+        hasNext={currentPage < totalPages}
+      />
+      <h1>CompanyPerRow & HeaderColumns 컴포넌트 테스트 * 테스트 코드 수정</h1> 
+      <HeaderColumns type="invest" />
+      <CompanyDataPerRow type="invest" dataObject={dataObject} />
+      <HeaderColumns type="invest" />
+      <DataRowSetRender type="invest" dataList={dataList} />
       
-  //     {/* 페이지 테스트 */}
-  //     <InvestInfoPage />
 
-  //   </div>
-  //);
-    return <InvestInfoPage />
+
+      <h1>InvestmentComment Component 테스트</h1>
+      <InvestmentComment
+        headerText="투자 코멘트"
+        placeholderText="비밀번호를 입력해 주세요"
+        errorMessage="비밀번호를 입력해야 합니다."
+      />
+
+      <h1>DropdownComponent 테스트</h1>
+      <DropdownComponent />
+      <h1>검색창 테스트</h1>
+      <SearchBar
+        value={searchQuery}
+        onChange={handleSearchChange}
+        onClear={handleClearSearch}
+      />
+      <h1>CompanyCard 테스트</h1>
+      {startups.map((startup, index) => (
+        <CompanyCard
+          key={index}
+          name={startup.name}
+          category={startup.category}
+          logoSrc={Companyimg}
+          onDelete={() => handleDelete(startup.name)}
+        />
+      ))}
+
+      <h1>PageNav Component 테스트</h1>
+      <PageNav />
+      {/* 하단 보더 확인을 위한 Nav 1개 더 추가 */}
+      <PageNav /> 
+
+      <h1>모달 테스트입니다</h1>
+      <button onClick={openModal}>Open Investment Modal</button>
+      <ModalSelectComparision isOpen={isModalOpen} onClose={closeModal} />
+
+
+
+    </div>
+  );
+
 
 };
 
