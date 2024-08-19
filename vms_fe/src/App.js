@@ -156,8 +156,8 @@ const App = () => {
       <PageNav />
       <PageNav />
       <h1>모달 테스트입니다</h1>
-      <button onClick={openModal}>내 기업 비교 모달 열기</button>
-      <ModalSelectComparision isOpen={isModalOpen} onClose={closeModal} />
+      <button onClick={openModal}>내 기업 선택</button>
+      <ModalSelectMyEnterprise isOpen={isModalOpen} onClose={closeModal} />
     </div>
   );
 };
