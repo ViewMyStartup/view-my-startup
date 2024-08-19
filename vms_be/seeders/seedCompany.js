@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import mockupData from "./seedData.js";
+import companyData from "./CompanyData.js";
 
 const prisma = new PrismaClient();
 
@@ -9,7 +9,7 @@ async function main() {
 
   // 초기 데이터 삽입
   await prisma.company.createMany({
-    data: mockupData,
+    data: companyData,
     skipDuplicates: true,
   });
 

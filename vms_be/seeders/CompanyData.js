@@ -1,4 +1,4 @@
-const mockupData = [
+const companyData = [
   {
     name: "에듀넥스트",
     description:
@@ -291,4 +291,4 @@ const mockupData = [
   },
 ];
 
-export default mockupData;
+export default companyData;
