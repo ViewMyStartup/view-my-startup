@@ -15,6 +15,3 @@ const MediumBtn = ({ text, onClick }) => {
 };
 
 export default MediumBtn;
-
-
-

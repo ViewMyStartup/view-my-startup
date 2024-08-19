@@ -140,15 +140,12 @@ const App = () => {
       <HeaderColumns type="invest" />
       <DataRowSetRender type="invest" dataList={dataList} />
       
-
-
       <h1>InvestmentComment Component 테스트</h1>
       <InvestmentComment
         headerText="투자 코멘트"
         placeholderText="비밀번호를 입력해 주세요"
         errorMessage="비밀번호를 입력해야 합니다."
       />
-
       <h1>DropdownComponent 테스트</h1>
       <DropdownComponent />
       <h1>검색창 테스트</h1>
@@ -167,7 +164,6 @@ const App = () => {
           onDelete={() => handleDelete(startup.name)}
         />
       ))}
-
       <h1>PageNav Component 테스트</h1>
       <PageNav />
       {/* 하단 보더 확인을 위한 Nav 1개 더 추가 */}
