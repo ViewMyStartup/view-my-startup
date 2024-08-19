@@ -8,7 +8,6 @@ import SelectBtn from "./common/SelectBtn";
 import deleteIcon from "assets/images/ic_delete.svg";
 
 const ModalSelectMyEnterprise = ({ isOpen, onClose }) => {
-
   // 검색어 상태 (검색창의 입력 값을 관리)
   const [searchTerm, setSearchTerm] = useState("");
 
