@@ -19,6 +19,7 @@ import PageNav from "./components/PageNav.js";
 import Companyimg from "./assets/images/mock_img/company_temp.svg";
 import defaultLogo from "./assets/images/company_logo_1.svg";
 import ToggleIcon from "./assets/images/ic_toggle.svg";
+import ModalSelectMyEnterprise from "components/ModalSelectMyEnterprise";
 
 
 const App = () => {
@@ -127,14 +128,12 @@ const App = () => {
       <CompanyDataPerRow type="invest" companyData={data} vmsData={vmsData} />
       <HeaderColumns type="comment" />
       <CompanyDataPerRow type="comment" userData={userData} />
-
       <h1>InvestmentComment Component 테스트</h1>
       <InvestmentComment
         headerText="투자 코멘트"
         placeholderText="비밀번호를 입력해 주세요"
         errorMessage="비밀번호를 입력해야 합니다."
       />
-
       <h1>DropdownComponent 테스트</h1>
       <DropdownComponent />
       <h1>검색창 테스트</h1>
@@ -153,17 +152,12 @@ const App = () => {
           onDelete={() => handleDelete(startup.name)}
         />
       ))}
-
       <h1>PageNav Component 테스트</h1>
       <PageNav />
       <PageNav />
-
       <h1>모달 테스트입니다</h1>
-      <button onClick={openModal}>Open Investment Modal</button>
+      <button onClick={openModal}>내 기업 비교 모달 열기</button>
       <ModalSelectComparision isOpen={isModalOpen} onClose={closeModal} />
-
-
-
     </div>
   );
 };
