@@ -17,7 +17,7 @@
 /* 기업 로고 이미지*/
 .companyLogo {
   width: 48px;
-  height: auto;
+  height: 48px;
   border-radius: 50%; /* 둥근 모양으로 만들기 */
   object-fit: cover; /* 이미지 비율 유지 */
 }
