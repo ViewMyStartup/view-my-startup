@@ -17,13 +17,11 @@ import PageNav from "./components/PageNav.js";
 import MessagePopUpOneBtn from "./components/MessagePopUpOneBtn.js";
 import MessagePopUpTwoBtn from "./components/MessagePopUpTwoBtn.js";
 import LargeBtn from "./components/common/LargeBtn.js";
-import ToggleIcon from "./assets/images/ic_toggle.svg";
 
 //테스트용 이미지
 import Companyimg from "./assets/images/mock_img/company_temp.svg";
 import defaultLogo from "./assets/images/company_logo_1.svg";
 import ToggleIcon from "./assets/images/ic_toggle.svg";
-
 
 const App = () => {
   // 페이지네이션 상태
@@ -47,7 +45,6 @@ const App = () => {
   const closeModal = () => {
     setModalOpen(false);
   };
-
 
   // CompanyPerRow & HeaderColumns 컴포넌트 테스트용 데이터 데이터
   const data = {
