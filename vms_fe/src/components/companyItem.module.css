@@ -51,7 +51,7 @@
 
 /* 선택완료 시 버튼 */
 .selectBtn.selected {
-  background-image: url("/src/assets/images/ic_check.png");
+  background-image: url("/src/assets/images/ic_check.svg");
   background-position: 10px center;
   background-size: 24px;
   padding-left: 35px; /* 텍스트와 이미지 사이 간격 조정 */
@@ -108,7 +108,7 @@
 
   /* 선택하기 버튼 클릭 시, 선택완료 */
   .selectBtn.selected {
-    background-image: url("/src/assets/images/ic_check.png");
+    background-image: url("/src/assets/images/ic_check.svg");
     background-position: 6px center;
     background-size: 16px;
     padding-left: 24px;
