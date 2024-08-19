@@ -162,6 +162,7 @@ const App = () => {
       ))}
       <h1>one button popup 테스트</h1>
       <LargeBtn text="팝업 열기" onClick={handleOpenPopup} />
+      <br />
       {isPopupOpen && (
         <MessagePopUpOneBtn
           text="팝업 내용이 들어갑니다"
@@ -169,6 +170,7 @@ const App = () => {
           onConfirm={handleConfirm}
         />
       )}
+      <br />
       {isPopupOpen && (
         <MessagePopUpTwoBtn
           text="팝업 내용이 들어갑니다"
@@ -177,6 +179,7 @@ const App = () => {
           onCancel={handleCancel}
         />
       )}
+      <br />
     </div>
   );
 };

@@ -33,6 +33,11 @@
     cursor: pointer;
   }
 }
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
 @media (max-width: 743px) {
   .modal {
     width: 343px;
