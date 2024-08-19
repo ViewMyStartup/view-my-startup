@@ -9,7 +9,8 @@
     "dev": "nodemon server.js",
     "build": "npm install",
     "seed-company": "node seeders/seedCompany.js",
-    "seed-investment": "node seeders/seedInvestment.js"
+    "seed-investment": "node seeders/seedInvestment.js",
+    "seed-companyselection": "node seeders/seedCompanySelection.js"
   },
   "author": "",
   "license": "ISC",
