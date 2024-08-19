@@ -1,10 +1,10 @@
 import React from "react";
-import styles from "./LargeBtn.module.css";
 import "../styles/style.css";
+import styles from "./LargeBtn.module.css";
 
-const LargeBtn = ({ text, onClick }) => {
+const LargeBtn = ({ text, onClick, className }) => {
   return (
-    <button className={`${styles.largeBtn} ${styles.active}`} onClick={onClick}>
+    <button className={className || styles.largeBtn} onClick={onClick}>
       {text}
     </button>
   );

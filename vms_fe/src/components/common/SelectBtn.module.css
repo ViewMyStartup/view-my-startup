@@ -1,0 +1,65 @@
+.selectBtnDefault {
+  width: 104px;
+  height: 48px;
+  background: none;
+  color: var(--brand-orange);
+  border-radius: 10px;
+  border: 1px solid var(--brand-orange);
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.selectBtnSelected {
+  width: 104px;
+  height: 48px;
+  background: none;
+  color: var(--gray-100);
+  border-radius: 10px;
+  border: 1px solid var(--gray-100);
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  padding-left: 28.5px;
+  background-image: url("assets/images/ic_check.svg");
+  background-repeat: no-repeat;
+  background-position: 11px center;
+}
+
+.selectBtnDeselected {
+  width: 104px;
+  height: 48px;
+  background: none;
+  color: var(--gray-200);
+  border-radius: 10px;
+  border: 1px solid var(--gray-200);
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
+
+@media (max-width: 743px) {
+  .selectBtnDefault {
+    width: 73px;
+    height: 32px;
+    font-size: 14px;
+  }
+
+  .selectBtnSelected {
+    width: 73px;
+    height: 32px;
+    font-size: 14px;
+    background-size: 16px 16px;
+    background-position: 3px center;
+    padding-left: 15px;
+  }
+
+  .selectBtnDeselected {
+    width: 73px;
+    height: 32px;
+    font-size: 14px;
+  }
+}

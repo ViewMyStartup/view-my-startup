@@ -59,18 +59,24 @@
 }
 
 .modalContent {
-  display:flex;
+  display: flex;
   flex-direction: column;
-  width: 500px;
-  height: 930px;
+  max-width: 500px;
+  max-height: 950px;
   padding: 24px 24px;
-  gap:24px;
+  gap: 24px;
 }
 
 .companyLogo {
   width: 48px;
   height: 48px;
   border-radius: 9999px;
+}
+
+.PartitionHug {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .modalHeadText {
@@ -87,19 +93,62 @@
   font-weight: 700;
   font-size: 18px;
   color: var(--white);
-  text-align:left;
+  text-align: left;
 }
 
 .errorMessage {
   font-weight: 400;
   font-size: 14px;
   color: var(--error-red);
+  text-align: start;
 }
 
 .deleteLogo {
   width: 32px;
   height: 32px;
   cursor: pointer;
+}
+
+@media (max-width: 743px) {
+  .modalContent {
+    max-width: 350px;
+    max-height: 820px;
+  }
+
+  .companyColumnsName {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--white);
+  }
+
+  .companyColumnsCategory {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--gray-200)
+  }
+
+  .companyLogo {
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px;
+  }
+
+  .CompaniesColumnText {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--white);
+    text-align: left;
+  }
+
+  .modalHeadText {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--white);
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
 
 @import "../styles/reset.css"

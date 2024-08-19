@@ -2,12 +2,9 @@ import React from "react";
 import "../styles/style.css";
 import styles from "./MediumBtn.module.css";
 
-const MediumBtn = ({ text, onClick }) => {
+const MediumBtn = ({ text, onClick, className }) => {
   return (
-    <button
-      className={`${styles.mediumBtn} ${styles.active}`}
-      onClick={onClick}
-    >
+<button className={className || styles.outlineBtn} onClick={onClick}>
       {text}
     </button>
   );
