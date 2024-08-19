@@ -3,14 +3,17 @@ import React from "react";
 // 컴포넌트
 import PageNav from "components/PageNav";
 import HeaderColumns from "components/common/HeaderColumns";
-import styles  from "./InvestInfoPage.module.css"
+import styles from "./InvestInfoPage.module.css";
 import CompanyDataPerRow from "components/common/CompanyDataPerRow";
+import Pagination from "components/common/Pagination";
+
+// 커스텀 훅
+import usePageCtrl from "hook/usePageCtrl";
 
 //테스트 이미지
 import Companyimg from "../assets/images/mock_img/company_temp.svg";
 
 function InvestInfoPage() {
-
   // CompanyPerRow & HeaderColumns 컴포넌트 테스트용 데이터 데이터
   const data = {
     rank: 1,
@@ -29,14 +32,7 @@ function InvestInfoPage() {
     total_investment_infact: 120000000000,
   };
 
-  const userData = {
-    userName: "정준호",
-    userRank: 1,
-    user_total_investment: 9999000000,
-    user_comment: "너무 어려워요",
-  };
-
-
+  const { currentPage, totalPages, handlePageChange } = usePageCtrl();
 
   return (
     <div className={styles.bgSet}>
@@ -49,10 +45,21 @@ function InvestInfoPage() {
           <HeaderColumns type="invest" />
         </header>
         <section>
-          <CompanyDataPerRow type="invest" companyData={data} vmsData={vmsData} />
+          <CompanyDataPerRow
+            type="invest"
+            companyData={data}
+            vmsData={vmsData}
+          />
         </section>
       </main>
-
+      <footer className={styles.footerSet}>
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+          hasNext={currentPage < totalPages}
+        />
+      </footer>
     </div>
   );
 }

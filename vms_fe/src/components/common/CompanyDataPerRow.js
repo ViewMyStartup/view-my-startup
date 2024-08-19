@@ -4,7 +4,7 @@ import styles from "./CompanyDataPerRow.module.css";
 //이미지
 import iconKebab from "../../assets/images/ic_kebab.svg"
 
-function CompanyDataPerRow({ type = "rank", companyData = {}, vmsData = {}, userData = {} }) {
+function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
   //단위 변환
   const convertToBillion = (number) => {
     return number / 100000000
@@ -19,7 +19,7 @@ function CompanyDataPerRow({ type = "rank", companyData = {}, vmsData = {}, user
     }
   }
 
-  const renderRank = () => {
+  const typeRank = (data) => {
     const {
       rank,
       name,
@@ -29,7 +29,7 @@ function CompanyDataPerRow({ type = "rank", companyData = {}, vmsData = {}, user
       total_investment,
       revenue,
       employees,
-    } = companyData;
+    } = data;
 
     return (
       <li className={styles.dataPerRowContainer}>
@@ -51,7 +51,7 @@ function CompanyDataPerRow({ type = "rank", companyData = {}, vmsData = {}, user
     );
   };
 
-  const renderNoRank = () => {
+  const typeNoRank = (data) => {
     const {
       name,
       img,
@@ -60,7 +60,7 @@ function CompanyDataPerRow({ type = "rank", companyData = {}, vmsData = {}, user
       total_investment,
       revenue,
       employees,
-    } = companyData;
+    } = data;
 
     return (
       <li className={styles.dataPerRowContainer}>
@@ -81,9 +81,17 @@ function CompanyDataPerRow({ type = "rank", companyData = {}, vmsData = {}, user
     );
   };
 
-  const renderInfoInvest = () => {
-    const { rank, name, img, description, category } = companyData;
-    const { total_investment_vms, total_investment_infact } = vmsData;
+  const typeInvest = (data) => {
+    const {
+      rank,
+      name,
+      img,
+      description,
+      category,
+      total_investment_vms,
+      total_investment_infact,
+    } = data;
+
     return (
       <li className={styles.dataPerRowContainer}>
         <section className={`${styles.diffSizeContainer} ${styles.investSize}`}>
@@ -103,7 +111,7 @@ function CompanyDataPerRow({ type = "rank", companyData = {}, vmsData = {}, user
     );
   };
 
-  const renderComment = () => {
+  const typeComment = () => {
     const { userName, userRank, user_total_investment, user_comment } = userData;
 
     return (
@@ -123,14 +131,15 @@ function CompanyDataPerRow({ type = "rank", companyData = {}, vmsData = {}, user
     );
   };
 
+
   if (type === "rank") {
-    return renderRank();
+    return typeRank();
   } else if (type === "noRank") {
-    return renderNoRank();
+    return typeNoRank();
   } else if (type === "invest") {
-    return renderInfoInvest();
+    return typeInvest();
   } else if (type === "comment") {
-    return renderComment();
+    return typeComment();
   }
 }
 
