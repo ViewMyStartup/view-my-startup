@@ -48,31 +48,6 @@ const App = () => {
   // };
 
 
-  // // CompanyPerRow & HeaderColumns 컴포넌트 테스트용 데이터 데이터
-  // const data = {
-  //   rank: 1,
-  //   name: "에듀넥스트",
-  //   img: Companyimg,
-  //   description:
-  //     "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
-  //   category: "에듀테크",
-  //   total_investment: 5000000,
-  //   revenue: 12000000,
-  //   employees: 50,
-  // };
-
-  // const vmsData = {
-  //   total_investment_vms: 500000000,
-  //   total_investment_infact: 120000000000,
-  // };
-
-  // const userData = {
-  //   userName: "정준호",
-  //   userRank: 1,
-  //   user_total_investment: 9999000000,
-  //   user_comment: "너무 어려워요",
-  // };
-
   // //SearchBar 테스트
   // const [searchQuery, setSearchQuery] = useState("");
 

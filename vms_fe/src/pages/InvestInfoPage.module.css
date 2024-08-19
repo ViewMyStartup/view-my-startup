@@ -1,7 +1,6 @@
 .bgSet {
   background-color:#131313;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
 }
@@ -12,20 +11,18 @@
 
 .mainContainer {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
   width: 100%;
   max-width: 1248px;
   min-width: 792px;
-  padding: 24px;
-
+  padding: 40px 24px;
+  flex-basis: 1000px;
+  gap: 16px 0px
 }
 .headerBox {
   display: flex;
   flex-direction: column;
-
   width: 100%;
-  flex-basis: 1200px;
   gap: 28px;
 }
 
