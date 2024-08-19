@@ -18,6 +18,7 @@ import Companyimg from "./assets/images/mock_img/company_temp.svg";
 import defaultLogo from "./assets/images/company_logo_1.svg";
 import ToggleIcon from "./assets/images/ic_toggle.svg";
 import PageNav from "./components/PageNav";
+import ModalSelectComparision from "components/ModalSelectComparision";
 
 const App = () => {
   // 페이지네이션 상태
