@@ -11,15 +11,14 @@ import InvestmentComment from "./components/common/InvestmentComment";
 import DropdownComponent from "./components/common/DropdownComponent";
 import SearchBar from "./components/common/SearchBar.js";
 import CompanyCard from "./components/common/CompanyCard.js";
-import ModalSelectComparision from "components/ModalSelectComparision";
+import ModalSelectComparision from "./components/ModalSelectComparision";
 import PageNav from "./components/PageNav.js";
+import ModalPassword from "./components/ModalPassword";
+import MediumBtn from "./components/common/MediumBtn.js"; // MediumBtn 임포트
 
-
-//테스트용 이미지
+// 테스트용 이미지
 import Companyimg from "./assets/images/mock_img/company_temp.svg";
 import defaultLogo from "./assets/images/company_logo_1.svg";
-import ToggleIcon from "./assets/images/ic_toggle.svg";
-
 
 const App = () => {
   // 페이지네이션 상태
@@ -35,17 +34,23 @@ const App = () => {
 
   // 모달 핸들러
   const [isModalOpen, setModalOpen] = useState(false);
-
   const openModal = () => {
     setModalOpen(true);
   };
-
   const closeModal = () => {
     setModalOpen(false);
   };
 
+  // ModalPassword 모달 상태 관리
+  const [isPasswordModalOpen, setPasswordModalOpen] = useState(false);
+  const openPasswordModal = () => {
+    setPasswordModalOpen(true);
+  };
+  const closePasswordModal = () => {
+    setPasswordModalOpen(false);
+  };
 
-  // CompanyPerRow & HeaderColumns 컴포넌트 테스트용 데이터 데이터
+  // CompanyPerRow & HeaderColumns 컴포넌트 테스트용 데이터
   const data = {
     rank: 1,
     name: "에듀넥스트",
@@ -70,7 +75,7 @@ const App = () => {
     user_comment: "너무 어려워요",
   };
 
-  //SearchBar 테스트
+  // SearchBar 테스트
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearchChange = (value) => {
@@ -81,7 +86,7 @@ const App = () => {
     setSearchQuery("");
   };
 
-  //CompanyCard 테스트
+  // CompanyCard 테스트
   const initialStartups = [
     {
       name: "코드잇",
@@ -162,10 +167,17 @@ const App = () => {
       <button onClick={openModal}>Open Investment Modal</button>
       <ModalSelectComparision isOpen={isModalOpen} onClose={closeModal} />
 
+      <h1>MediumBtn 테스트</h1>
+      <MediumBtn text="Medium Button" onClick={() => alert("버튼 클릭됨!")} />
 
-
+      <h1>비밀번호 모달 테스트</h1>
+      <button onClick={openPasswordModal}>Open Password Modal</button>
+      {isPasswordModalOpen && (
+        <ModalPassword onClose={closePasswordModal} />
+      )}
     </div>
   );
 };
 
 export default App;
+
