@@ -21,6 +21,7 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
 
   const typeRank = (data) => {
     const {
+      id,
       rank,
       name,
       img,
@@ -32,7 +33,7 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
     } = data;
 
     return (
-      <li className={styles.dataPerRowContainer}>
+      <li key={id} className={styles.dataPerRowContainer}>
         <section className={`${styles.diffSizeContainer} ${styles.rankSize}`}>
           <span className={styles.columnRank}>{`${rank}위`}</span>
           <article className={styles.companyInfoContainer}>
@@ -53,6 +54,7 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
 
   const typeNoRank = (data) => {
     const {
+      id,
       name,
       img,
       description,
@@ -63,7 +65,7 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
     } = data;
 
     return (
-      <li className={styles.dataPerRowContainer}>
+      <li key={id} className={styles.dataPerRowContainer}>
         <section className={`${styles.diffSizeContainer} ${styles.noRankSize}`}>
           <article className={styles.companyInfoContainer}>
             <img src={img} alt="기업 이미지" />
@@ -83,6 +85,7 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
 
   const typeInvest = (data) => {
     const {
+      id,
       rank,
       name,
       img,
@@ -93,7 +96,7 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
     } = data;
 
     return (
-      <li className={styles.dataPerRowContainer}>
+      <li key={id} className={styles.dataPerRowContainer}>
         <section className={`${styles.diffSizeContainer} ${styles.investSize}`}>
           <span className={styles.columnRank}>{`${rank}위`}</span>
           <div className={styles.companyInfoContainer}>
@@ -112,10 +115,16 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
   };
 
   const typeComment = () => {
-    const { userName, userRank, user_total_investment, user_comment } = userData;
+    const { 
+      id,
+      userName, 
+      userRank, 
+      user_total_investment, 
+      user_comment 
+    } = userData;
 
     return (
-      <li className={styles.dataPerRowContainer}>
+      <li key={id} className={styles.dataPerRowContainer}>
         <section className={`${styles.sameSizeContainer} ${styles.commentSizeForSame}`}>
           <span>{userName}</span>
           <span>{`${userRank}위`}</span>
