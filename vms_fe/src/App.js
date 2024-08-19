@@ -15,8 +15,8 @@ import ModalSelectComparision from "components/ModalSelectComparision";
 import PageNav from "./components/PageNav.js";
 import DataRowSetRender from "components/DataRowSetRender";
 
-//테스트 페이지
-// import InvestInfoPage from "pages/InvestInfoPage";
+//커스텀 훅
+import usePageHandler from "hook/usePageHandler";
 
 
 //테스트용 이미지
@@ -26,16 +26,8 @@ import ToggleIcon from "./assets/images/ic_toggle.svg";
 
 
 const App = () => {
-  // 페이지네이션 상태
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 5; // 테스트를 위해 총 페이지 수를 설정
-
-  // 페이지네이션 핸들러
-  const handlePageChange = (page) => {
-    if (page >= 1 && page <= totalPages) {
-      setCurrentPage(page);
-    }
-  };
+  // 커스텀 훅 적용
+  const { currentPage, totalPages, handlePageChange } = usePageHandler();
 
   // 모달 핸들러
   const [isModalOpen, setModalOpen] = useState(false);
