@@ -4,9 +4,6 @@ import companySelectionData from "./companySelectionData.js";
 const prisma = new PrismaClient();
 
 async function main() {
-  // 기존 데이터 삭제 (필요한 경우)
-  await prisma.companySelection.deleteMany();
-
   // 초기 데이터 삽입
   await prisma.companySelection.createMany({
     data: companySelectionData,
