@@ -44,7 +44,7 @@
 }
 
 .investSize {
-  min-width: 380px;
+  min-width: 464px;
   max-width: 738px;
 }
 
@@ -123,10 +123,4 @@
 
 .columnNone {
   width: 64px;
-}
-
-@media (max-width: 1200px) and (min-width: 744px) {
-  .dataPerRowContainer {
-    min-width: 744px;
-  }
 }
