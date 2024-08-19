@@ -38,6 +38,9 @@
     width: 343px;
     height: 161px;
   }
+  .modalContent {
+    padding-top: 56px;
+  }
   .closeButton {
     width: 24px;
     height: 24px;
