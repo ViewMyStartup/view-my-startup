@@ -6,9 +6,9 @@ import React, { useState } from "react";
 import Pagination from "./components/common/Pagination.js";
 import HeaderColumns from "./components/common/HeaderColumns.js";
 import CompanyDataPerRow from "./components/common/CompanyDataPerRow.js";
-import InputBar from "./components/common/inputBar.js";
-import InvestmentComment from "./components/common/InvestmentComment";
-import DropdownComponent from "./components/common/DropdownComponent";
+import InputBar from "./components/common/InputBar.js";
+import InvestmentComment from "./components/common/InvestmentComment.js";
+import DropdownComponent from "./components/common/DropdownComponent.js";
 import SearchBar from "./components/common/SearchBar.js";
 import CompanyCard from "./components/common/CompanyCard.js";
 import ModalSelectComparision from "components/ModalSelectComparision";
@@ -90,7 +90,7 @@ const App = () => {
   }
 
   // 테스트용 데이터 세트
-  const dataList = [dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, ]
+  const dataList = [dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject ]
 
   return (
     <div>
@@ -118,8 +118,7 @@ const App = () => {
         errorMessage="비밀번호를 입력해야 합니다."
       />
 
-      <h1>DropdownComponent 테스트</h1>
-      <DropdownComponent />
+
       <h1>검색창 테스트</h1>
       <SearchBar
         value={searchQuery}
