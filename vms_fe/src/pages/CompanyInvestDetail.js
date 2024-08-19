@@ -1,9 +1,9 @@
 import React from "react";
-import styles from "./DefaultPage.module.css";
+import styles from "./CompanyInvestDetail.module.css";
 
 import PageNav from "components/PageNav";
 
-function DefaultPage() {
+function CompanyInvestDetail() {
   return (
     <div>
       <h1>PageNav Component 테스트</h1>
@@ -12,4 +12,4 @@ function DefaultPage() {
   );
 }
 
-export default DefaultPage;
+export default CompanyInvestDetail;
