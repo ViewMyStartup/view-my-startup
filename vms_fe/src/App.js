@@ -2,27 +2,33 @@ import "./App.css";
 import "./styles/reset.css";
 import React, { useState } from "react";
 
-// 컴포넌트
-import Pagination from "./components/common/Pagination.js";
-import HeaderColumns from "./components/common/HeaderColumns.js";
-import CompanyDataPerRow from "./components/common/CompanyDataPerRow.js";
-import InputBar from "./components/common/inputBar.js";
+// 컴포넌트 임포트
+import Pagination from "./components/common/Pagination";
+import HeaderColumns from "./components/common/HeaderColumns";
+import CompanyDataPerRow from "./components/common/CompanyDataPerRow";
+import InputBar from "./components/common/InputBar";
 import InvestmentComment from "./components/common/InvestmentComment";
 import DropdownComponent from "./components/common/DropdownComponent";
 import SearchBar from "./components/common/SearchBar.js";
 import CompanyCard from "./components/common/CompanyCard.js";
 
-import ModalSelectComparision from "components/ModalSelectComparision";
+import ModalSelectComparision from "./components/ModalSelectComparision";
 import PageNav from "./components/PageNav.js";
+import ModalPassword from "./components/ModalPassword";
+import MediumBtn from "./components/common/MediumBtn.js"; // MediumBtn 임포트
+import LargeBtn from "./components/common/LargeBtn.js";
 import MessagePopUpOneBtn from "./components/MessagePopUpOneBtn.js";
 import MessagePopUpTwoBtn from "./components/MessagePopUpTwoBtn.js";
-import LargeBtn from "./components/common/LargeBtn.js";
 import DataRowSetRender from "components/DataRowSetRender";
 
 //커스텀 훅
 import usePageHandler from "hook/usePageHandler";
 
 //테스트용 이미지
+import Companyimg from "./assets/images/mock_img/company_temp.svg";
+import defaultLogo from "./assets/images/company_logo_1.svg";
+
+// 테스트용 이미지
 import Companyimg from "./assets/images/mock_img/company_temp.svg";
 import defaultLogo from "./assets/images/company_logo_1.svg";
 import ToggleIcon from "./assets/images/ic_toggle.svg";
@@ -33,16 +39,24 @@ const App = () => {
 
   // 모달 핸들러
   const [isModalOpen, setModalOpen] = useState(false);
-
   const openModal = () => {
     setModalOpen(true);
   };
-
   const closeModal = () => {
     setModalOpen(false);
   };
 
-  // CompanyPerRow & HeaderColumns 컴포넌트 테스트용 데이터 데이터
+
+  // ModalPassword 모달 상태 관리
+  const [isPasswordModalOpen, setPasswordModalOpen] = useState(false);
+  const openPasswordModal = () => {
+    setPasswordModalOpen(true);
+  };
+  const closePasswordModal = () => {
+    setPasswordModalOpen(false);
+  };
+
+  // CompanyPerRow & HeaderColumns 컴포넌트 테스트용 데이터
   const data = {
     rank: 1,
     name: "에듀넥스트",
@@ -67,7 +81,7 @@ const App = () => {
     user_comment: "너무 어려워요",
   };
 
-  //SearchBar 테스트
+  // SearchBar 테스트
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearchChange = (value) => {
@@ -78,7 +92,7 @@ const App = () => {
     setSearchQuery("");
   };
 
-  //CompanyCard 테스트
+  // CompanyCard 테스트
   const initialStartups = [
     {
       name: "코드잇",
@@ -140,9 +154,9 @@ const App = () => {
 
   return (
     <div>
-      <h1>inputBar(유효성 검사 포함) test</h1>
+      <h1>InputBar (유효성 검사 포함) Test</h1>
       <InputBar />
-      <h1>Pagination test</h1>
+      <h1>Pagination Test</h1>
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
@@ -155,24 +169,21 @@ const App = () => {
       <HeaderColumns type="invest" />
       <DataRowSetRender type="invest" dataList={dataList} />
       
-
-
       <h1>InvestmentComment Component 테스트</h1>
       <InvestmentComment
         headerText="투자 코멘트"
         placeholderText="비밀번호를 입력해 주세요"
         errorMessage="비밀번호를 입력해야 합니다."
       />
-
-      <h1>DropdownComponent 테스트</h1>
+      <h1>DropdownComponent Test</h1>
       <DropdownComponent />
-      <h1>검색창 테스트</h1>
+      <h1>검색창 Test</h1>
       <SearchBar
         value={searchQuery}
         onChange={handleSearchChange}
         onClear={handleClearSearch}
       />
-      <h1>CompanyCard 테스트</h1>
+      <h1>CompanyCard Test</h1>
       {startups.map((startup, index) => (
         <CompanyCard
           key={index}
@@ -211,6 +222,15 @@ const App = () => {
         />
       )}
       <br />
+
+      <h1>MediumBtn 테스트</h1>
+      <MediumBtn text="Medium Button" onClick={() => alert("버튼 클릭됨!")} />
+
+      <h1>비밀번호 모달 테스트</h1>
+      <button onClick={openPasswordModal}>Open Password Modal</button>
+      {isPasswordModalOpen && (
+        <ModalPassword onClose={closePasswordModal} />
+      )}
     </div>
   );
 
@@ -218,3 +238,4 @@ const App = () => {
 };
 
 export default App;
+

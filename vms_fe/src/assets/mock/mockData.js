@@ -1,4 +1,4 @@
-const logoUrl = require("../images/company_logo_1.svg").default;
+import logoUrl from "../images/company_logo_1.svg?url";
 
 const mockupData = [
   {
