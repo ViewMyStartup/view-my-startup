@@ -3,6 +3,7 @@ import "./styles/reset.css";
 import React, { useState } from "react";
 
 // 컴포넌트 임포트
+import CompanyListSelect from "./components/companyInfoList.js";
 import Pagination from "./components/common/Pagination";
 import HeaderColumns from "./components/common/HeaderColumns";
 import CompanyDataPerRow from "./components/common/CompanyDataPerRow";
@@ -201,6 +202,9 @@ const App = () => {
       <h1>모달 테스트입니다</h1>
       <button onClick={openModal}>Open Investment Modal</button>
       <ModalSelectComparision isOpen={isModalOpen} onClose={closeModal} />
+        
+      <h1>기업 리스트 test</h1>
+      <CompanyListSelect />
 
       <h1>one button popup 테스트</h1>
       <LargeBtn text="팝업 열기" onClick={handleOpenPopup} />
@@ -238,4 +242,3 @@ const App = () => {
 };
 
 export default App;
-

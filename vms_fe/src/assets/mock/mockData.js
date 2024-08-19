@@ -1,4 +1,9 @@
-import logoUrl from "../images/company_logo_1.svg?url";
+import logo1 from "../images/company_logo_1.svg";
+import logo2 from "../images/company_logo_2.svg";
+import logo3 from "../images/company_logo_3.svg";
+import logo4 from "../images/company_logo_4.svg";
+import logo5 from "../images/company_logo_5.svg";
+
 
 const mockupData = [
   {
@@ -9,7 +14,7 @@ const mockupData = [
     total_investment: 5000000,
     revenue: 12000000,
     employees: 50,
-    logoUrl: logoUrl,
+    logoUrl: logo1,
   },
   {
     name: "코딩마스터",
@@ -19,7 +24,7 @@ const mockupData = [
     total_investment: 3000000,
     revenue: 8000000,
     employees: 35,
-    logoUrl: logoUrl,
+    logoUrl: logo2,
   },
   {
     name: "러닝큐브",
@@ -29,7 +34,7 @@ const mockupData = [
     total_investment: 4000000,
     revenue: 10000000,
     employees: 40,
-    logoUrl: logoUrl,
+    logoUrl: logo3,
   },
   {
     name: "스터디온",
@@ -39,7 +44,7 @@ const mockupData = [
     total_investment: 2000000,
     revenue: 6000000,
     employees: 25,
-    logoUrl: logoUrl,
+    logoUrl: logo4,
   },
   {
     name: "에듀브릭",
@@ -49,7 +54,7 @@ const mockupData = [
     total_investment: 3500000,
     revenue: 9000000,
     employees: 30,
-    logoUrl: logoUrl,
+    logoUrl: logo5,
   },
   {
     name: "핏러닝",
@@ -58,7 +63,7 @@ const mockupData = [
     total_investment: 2500000,
     revenue: 7000000,
     employees: 20,
-    logoUrl: logoUrl,
+    logoUrl: logo1,
   },
   {
     name: "코딩클래스",
@@ -68,7 +73,7 @@ const mockupData = [
     total_investment: 1500000,
     revenue: 5000000,
     employees: 15,
-    logoUrl: logoUrl,
+    logoUrl: logo2,
   },
   {
     name: "에코러닝",
@@ -77,7 +82,7 @@ const mockupData = [
     total_investment: 1000000,
     revenue: 3000000,
     employees: 10,
-    logoUrl: logoUrl,
+    logoUrl: logo3,
   },
   {
     name: "비즈테크",
@@ -87,7 +92,7 @@ const mockupData = [
     total_investment: 4500000,
     revenue: 11000000,
     employees: 55,
-    logoUrl: logoUrl,
+    logoUrl: logo4,
   },
   {
     name: "헬로월드",
@@ -97,7 +102,7 @@ const mockupData = [
     total_investment: 2000000,
     revenue: 6000000,
     employees: 25,
-    logoUrl: logoUrl,
+    logoUrl: logo5,
   },
   {
     name: "마이핏",
@@ -106,7 +111,7 @@ const mockupData = [
     total_investment: 3000000,
     revenue: 7500000,
     employees: 30,
-    logoUrl: logoUrl,
+    logoUrl: logo1,
   },
   {
     name: "피플네트워크",
@@ -115,7 +120,7 @@ const mockupData = [
     total_investment: 2500000,
     revenue: 7000000,
     employees: 20,
-    logoUrl: logoUrl,
+    logoUrl: logo2,
   },
   {
     name: "테크스쿨",
@@ -124,7 +129,7 @@ const mockupData = [
     total_investment: 3500000,
     revenue: 9000000,
     employees: 40,
-    logoUrl: logoUrl,
+    logoUrl: logo3,
   },
   {
     name: "스마트에듀",
@@ -133,7 +138,7 @@ const mockupData = [
     total_investment: 2000000,
     revenue: 5500000,
     employees: 18,
-    logoUrl: logoUrl,
+    logoUrl: logo4,
   },
   {
     name: "이러닝팩토리",
@@ -142,7 +147,7 @@ const mockupData = [
     total_investment: 5000000,
     revenue: 12000000,
     employees: 60,
-    logoUrl: logoUrl,
+    logoUrl: logo5,
   },
   {
     name: "넥스트랩",
@@ -152,7 +157,7 @@ const mockupData = [
     total_investment: 4500000,
     revenue: 11000000,
     employees: 50,
-    logoUrl: logoUrl,
+    logoUrl: logo1,
   },
   {
     name: "에듀케어",
@@ -162,7 +167,7 @@ const mockupData = [
     total_investment: 3000000,
     revenue: 8000000,
     employees: 35,
-    logoUrl: logoUrl,
+    logoUrl: logo2,
   },
   {
     name: "온더런",
@@ -171,7 +176,7 @@ const mockupData = [
     total_investment: 2500000,
     revenue: 6500000,
     employees: 22,
-    logoUrl: logoUrl,
+    logoUrl: logo3,
   },
   {
     name: "스킬업",
@@ -181,7 +186,7 @@ const mockupData = [
     total_investment: 4000000,
     revenue: 10000000,
     employees: 42,
-    logoUrl: logoUrl,
+    logoUrl: logo4,
   },
   {
     name: "크리에이티브마인드",
@@ -191,7 +196,7 @@ const mockupData = [
     total_investment: 1500000,
     revenue: 4500000,
     employees: 15,
-    logoUrl: logoUrl,
+    logoUrl: logo5,
   },
   {
     name: "커넥트러닝",
@@ -201,7 +206,7 @@ const mockupData = [
     total_investment: 3500000,
     revenue: 9000000,
     employees: 35,
-    logoUrl: logoUrl,
+    logoUrl: logo1,
   },
   {
     name: "애니웨어런",
@@ -211,7 +216,7 @@ const mockupData = [
     total_investment: 3000000,
     revenue: 7500000,
     employees: 28,
-    logoUrl: logoUrl,
+    logoUrl: logo2,
   },
   {
     name: "이코노믹스쿨",
@@ -221,7 +226,7 @@ const mockupData = [
     total_investment: 2000000,
     revenue: 5500000,
     employees: 20,
-    logoUrl: logoUrl,
+    logoUrl: logo3,
   },
   {
     name: "헬스러닝",
@@ -231,7 +236,7 @@ const mockupData = [
     total_investment: 2800000,
     revenue: 6500000,
     employees: 25,
-    logoUrl: logoUrl,
+    logoUrl: logo4,
   },
   {
     name: "비즈니스랩",
@@ -241,7 +246,7 @@ const mockupData = [
     total_investment: 4500000,
     revenue: 10000000,
     employees: 50,
-    logoUrl: logoUrl,
+    logoUrl: logo5,
   },
   {
     name: "리더십아카데미",
@@ -251,7 +256,7 @@ const mockupData = [
     total_investment: 3200000,
     revenue: 8000000,
     employees: 30,
-    logoUrl: logoUrl,
+    logoUrl: logo1,
   },
   {
     name: "지니어스랩",
@@ -260,7 +265,7 @@ const mockupData = [
     total_investment: 4000000,
     revenue: 9000000,
     employees: 32,
-    logoUrl: logoUrl,
+    logoUrl: logo2,
   },
   {
     name: "프로그래밍101",
@@ -269,7 +274,7 @@ const mockupData = [
     total_investment: 2500000,
     revenue: 6000000,
     employees: 25,
-    logoUrl: logoUrl,
+    logoUrl: logo3,
   },
   {
     name: "크리애티브러닝",
@@ -279,7 +284,7 @@ const mockupData = [
     total_investment: 3000000,
     revenue: 7000000,
     employees: 28,
-    logoUrl: logoUrl,
+    logoUrl: logo4,
   },
   {
     name: "아이디어팩토리",
@@ -289,7 +294,7 @@ const mockupData = [
     total_investment: 2000000,
     revenue: 5000000,
     employees: 18,
-    logoUrl: logoUrl,
+    logoUrl: logo5,
   },
 ];
 
