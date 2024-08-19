@@ -20,6 +20,10 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
     }
   }
 
+  function formatNumberWithCommas(number) {
+    return number.toLocaleString();
+  }
+
   const typeRank = () => {
     const {
       id,
@@ -108,8 +112,8 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
           <span className={styles.columnCategory}>{category}</span>
         </section>
         <section className={`${styles.sameSizeContainer} ${styles.ivestSizeForSame}`}>
-          <span>{`${convertToBillion(total_investment_vms)}억 원`}</span>
-          <span>{`${convertToBillion(total_investment_infact)}억 원`}</span>
+          <span>{`${formatNumberWithCommas(total_investment_vms)}`}</span>
+          <span>{`${formatNumberWithCommas(total_investment_infact)}`}</span>
         </section>
       </li>
     );
@@ -120,8 +124,8 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
       id,
       userName, 
       userRank, 
-      user_total_investment, 
-      user_comment 
+      userTotalInvestment, 
+      userComment 
     } = dataObject;
 
     return (
@@ -129,10 +133,10 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
         <section className={`${styles.sameSizeContainer} ${styles.commentSizeForSame}`}>
           <span>{userName}</span>
           <span>{`${userRank}위`}</span>
-          <span>{`${convertToBillion(user_total_investment)}억 원`}</span>
+          <span>{`${convertToBillion(userTotalInvestment)}억 원`}</span>
         </section>
         <section className={`${styles.diffSizeContainer} ${styles.commentSize}`}>
-          <span className={styles.columnComment}>{user_comment}</span>
+          <span className={styles.columnComment}>{userComment}</span>
           <div className={styles.columnNone}>
             <img src={iconKebab} alt="kebab" />
           </div>
@@ -140,6 +144,38 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
       </li>
     );
   };
+
+  const typeChoose = () => {
+    const { 
+      id,
+      rank,
+      name,
+      img,
+      description,
+      category,
+      myCompanyChooseCount,
+      CompareChoohseCount
+    } = dataObject;
+
+    return (
+      <li key={id} className={styles.dataPerRowContainer}>
+        <section className={`${styles.diffSizeContainer} ${styles.investSize}`}>
+          <span className={styles.columnRank}>{`${rank}위`}</span>
+          <div className={styles.companyInfoContainer}>
+            <img src={img} alt="기업 이미지" />
+            <span>{name}</span>
+          </div>
+          <span className={styles.columnCompanyDescription}>{truncateText(description, 58)}</span>
+          <span className={styles.columnCategory}>{category}</span>
+        </section>
+        <section className={`${styles.sameSizeContainer} ${styles.ivestSizeForSame}`}>
+          <span>{`${convertToBillion(myCompanyChooseCount)}`}</span>
+          <span>{`${convertToBillion(CompareChoohseCount)}`}</span>
+        </section>
+      </li>
+    );
+  };
+
 
 
   if (type === "rank") {
@@ -150,6 +186,8 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
     return typeInvest();
   } else if (type === "comment") {
     return typeComment();
+  } else if (type === "choose") {
+    return typeChoose();
   }
 }
 
