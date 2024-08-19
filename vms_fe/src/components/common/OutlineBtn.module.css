@@ -3,8 +3,11 @@
   color: var(--brand-orange);
   border-radius: 50px;
   border: 1px solid var(--brand-orange);
+  width: 183px;
+  height: 48px;
   font-weight: 600;
   font-size: 18px;
+  line-height: 1;
   padding: 13px 48px;
   gap: 10px;
   cursor: pointer;
@@ -13,4 +16,10 @@
 .outlineBtn.active {
   padding: 12px 24px;
   font-size: 14px;
+}
+@media (max-width: 743px) {
+  .outlineBtn {
+    width: 124px;
+    height: 40px;
+  }
 }

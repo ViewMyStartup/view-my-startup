@@ -1,6 +1,5 @@
 /* 페이지네이션 버튼 */
 .pagination {
-  margin-top: 20px;
   text-align: center;
   display: flex;
   align-items: center;
@@ -10,8 +9,10 @@
 .button {
   width: 48px;
   height: 48px;
-  border-radius: 20.83%; /* 10px의 반지름을 퍼센트로 변환한 값 */
-  background-color: var(--black-100); /* 버튼 배경 색상 */
+  border-radius: 20.83%;
+  /* 10px의 반지름을 퍼센트로 변환한 값 */
+  background-color: var(--black-100);
+  /* 버튼 배경 색상 */
   font-weight: 400;
   border: none;
   color: var(--gray-200);
@@ -47,13 +48,16 @@
 
 /* 비활성화된 버튼 스타일 */
 .button:disabled {
-  background-color: var(--gray-300); /* 비활성화된 버튼 배경 색상 */
-  color: var(--gray-400); /* 비활성화된 버튼 텍스트 색상 */
-  cursor: not-allowed; /* 비활성화된 버튼 커서 */
+  background-color: var(--gray-300);
+  /* 비활성화된 버튼 배경 색상 */
+  color: var(--gray-400);
+  /* 비활성화된 버튼 텍스트 색상 */
+  cursor: not-allowed;
+  /* 비활성화된 버튼 커서 */
 }
 
 /* 모바일 화면에서 버튼 크기 조정 */
-@media (max-width: 600px) {
+@media (max-width: 743px) {
   .button {
     width: 32px;
     height: 32px;

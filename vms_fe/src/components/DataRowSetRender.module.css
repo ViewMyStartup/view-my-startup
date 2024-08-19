@@ -1,0 +1,30 @@
+
+
+@media (max-width: 744px) {
+  .dataRowSet {
+    max-width: 744px;
+    overflow: auto;
+    padding-bottom: 12px;
+  }
+
+  .dataRowSet::-webkit-scrollbar {
+    height: 12px;
+}
+
+.dataRowSet::-webkit-scrollbar-track {
+    background: #212121;
+    border-radius: 10px;
+}
+
+.dataRowSet::-webkit-scrollbar-thumb {
+    min-width: 101px;
+    background-color: #131313;
+    border-radius: 10px;
+    border: 2px solid #212121;
+
+}
+
+.dataRowSet::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+}

@@ -4,6 +4,7 @@ import logo3 from "../images/company_logo_3.svg";
 import logo4 from "../images/company_logo_4.svg";
 import logo5 from "../images/company_logo_5.svg";
 
+
 const mockupData = [
   {
     name: "에듀넥스트",

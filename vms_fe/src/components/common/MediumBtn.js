@@ -1,15 +1,16 @@
 import React from "react";
-import "../styles/style.css";
 import styles from "./MediumBtn.module.css";
 
 const MediumBtn = ({ text, onClick }) => {
   return (
-    <button
-      className={`${styles.mediumBtn} ${styles.active}`}
-      onClick={onClick}
-    >
-      {text}
-    </button>
+    <div className={styles.buttonWrapper}>
+      <button
+        className={`${styles.mediumBtn} ${styles.active}`}
+        onClick={onClick}
+      >
+        {text}
+      </button>
+    </div>
   );
 };
 
