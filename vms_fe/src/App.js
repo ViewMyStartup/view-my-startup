@@ -9,52 +9,42 @@ import CompanyDataPerRow from "./components/common/CompanyDataPerRow";
 import InputBar from "./components/common/InputBar";
 import InvestmentComment from "./components/common/InvestmentComment";
 import DropdownComponent from "./components/common/DropdownComponent";
-import SearchBar from "./components/common/SearchBar";
-import CompanyCard from "./components/common/CompanyCard";
-import ModalSelectMyEnterprise from "./components/ModalSelectMyEnterprise";
-import ModalInvestment from "./components/ModalInvestment";
+import SearchBar from "./components/common/SearchBar.js";
+import CompanyCard from "./components/common/CompanyCard.js";
+import ModalSelectComparision from "./components/ModalSelectComparision";
+import PageNav from "./components/PageNav.js";
+import ModalPassword from "./components/ModalPassword";
+import MediumBtn from "./components/common/MediumBtn.js"; // MediumBtn 임포트
+import DataRowSetRender from "components/DataRowSetRender";
 
+//커스텀 훅
+import usePageHandler from "hook/usePageHandler";
+
+
+// 테스트용 이미지
 import Companyimg from "./assets/images/mock_img/company_temp.svg";
 import defaultLogo from "./assets/images/company_logo_1.svg";
-import ToggleIcon from "./assets/images/ic_toggle.svg";
-import PageNav from "./components/PageNav";
-import ModalSelectComparision from "components/ModalSelectComparision";
 
 const App = () => {
-  // 페이지네이션 상태
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 5;
+  // 커스텀 훅 적용
+  const { currentPage, totalPages, handlePageChange } = usePageHandler();
 
-  // 페이지네이션 핸들러
-  const handlePageChange = (page) => {
-    if (page >= 1 && page <= totalPages) {
-      setCurrentPage(page);
-    }
+  // 모달 핸들러
+  const [isModalOpen, setModalOpen] = useState(false);
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
   };
 
-  // 모달 상태
-  const [isSelectModalOpen, setIsSelectModalOpen] = useState(false);
-  const [isInvestmentModalOpen, setIsInvestmentModalOpen] = useState(false);
-  const [selectedCompanies, setSelectedCompanies] = useState([]);
-
-  // 선택 모달 열기 및 닫기 핸들러
-  const openSelectModal = () => setIsSelectModalOpen(true);
-  const closeSelectModal = () => setIsSelectModalOpen(false);
-
-  // 투자 모달 열기 및 닫기 핸들러
-  const openInvestmentModal = () => setIsInvestmentModalOpen(true);
-  const closeInvestmentModal = () => setIsInvestmentModalOpen(false);
-
-  // 선택 모달 닫기 핸들러
-  const handleSelectModalClose = (companies) => {
-    setSelectedCompanies(companies); // 선택된 기업 목록 업데이트
-    closeSelectModal(); // 선택 모달 닫기
-    // 투자 모달을 열려면 별도의 사용자 조작이 필요하도록 합니다.
+  // ModalPassword 모달 상태 관리
+  const [isPasswordModalOpen, setPasswordModalOpen] = useState(false);
+  const openPasswordModal = () => {
+    setPasswordModalOpen(true);
   };
-
-  // 투자 모달 닫기 핸들러
-  const handleInvestmentModalClose = () => {
-    closeInvestmentModal(); // 투자 모달 닫기
+  const closePasswordModal = () => {
+    setPasswordModalOpen(false);
   };
 
   // CompanyPerRow & HeaderColumns 컴포넌트 테스트용 데이터
@@ -119,6 +109,20 @@ const App = () => {
     setStartups(updatedStartups);
   };
 
+  const dataObject = {
+    id: "1",
+    rank: "3",
+    name: "코딩마스터",
+    img: Companyimg,
+    description: "코딩마스터는 청소년들을 위한 코딩 교육 플랫폼을 운영하는 기업입니다.",
+    category: "에듀테크",
+    total_investment_vms: 100000000,
+    total_investment_infact: 9988776655
+  }
+
+  // 테스트용 데이터 세트
+  const dataList = [dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, ]
+
   return (
     <div>
       <h1>InputBar (유효성 검사 포함) Test</h1>
@@ -130,16 +134,13 @@ const App = () => {
         onPageChange={handlePageChange}
         hasNext={currentPage < totalPages}
       />
-      <h1>CompanyPerRow & HeaderColumns 컴포넌트 테스트</h1>
-      <HeaderColumns />
-      <CompanyDataPerRow type="rank" companyData={data} />
-      <HeaderColumns type="noRank" />
-      <CompanyDataPerRow type="noRank" companyData={data} />
+      <h1>CompanyPerRow & HeaderColumns 컴포넌트 테스트 * 테스트 코드 수정</h1> 
       <HeaderColumns type="invest" />
-      <CompanyDataPerRow type="invest" companyData={data} vmsData={vmsData} />
-      <HeaderColumns type="comment" />
-      <CompanyDataPerRow type="comment" userData={userData} />
-      <h1>InvestmentComment Component Test</h1>
+      <CompanyDataPerRow type="invest" dataObject={dataObject} />
+      <HeaderColumns type="invest" />
+      <DataRowSetRender type="invest" dataList={dataList} />
+      
+      <h1>InvestmentComment Component 테스트</h1>
       <InvestmentComment
         headerText="투자 코멘트"
         placeholderText="비밀번호를 입력해 주세요"
@@ -163,26 +164,28 @@ const App = () => {
           onDelete={() => handleDelete(startup.name)}
         />
       ))}
-      <h1>PageNav Component Test</h1>
+      <h1>PageNav Component 테스트</h1>
       <PageNav />
+      {/* 하단 보더 확인을 위한 Nav 1개 더 추가 */}
+      <PageNav /> 
+
       <h1>모달 테스트입니다</h1>
-      <button onClick={openSelectModal}>기업 선택하기</button>
-      <button onClick={openInvestmentModal}>투자하기</button>
+      <button onClick={openModal}>Open Investment Modal</button>
+      <ModalSelectComparision isOpen={isModalOpen} onClose={closeModal} />
 
-      {/* 기업 선택 모달 */}
-      <ModalSelectMyEnterprise
-        isOpen={isSelectModalOpen}
-        onClose={handleSelectModalClose}
-      />
+      <h1>MediumBtn 테스트</h1>
+      <MediumBtn text="Medium Button" onClick={() => alert("버튼 클릭됨!")} />
 
-      {/* 투자 모달 */}
-      <ModalInvestment
-        isOpen={isInvestmentModalOpen}
-        onClose={handleInvestmentModalClose}
-        selectedCompanies={selectedCompanies}
-      />
+      <h1>비밀번호 모달 테스트</h1>
+      <button onClick={openPasswordModal}>Open Password Modal</button>
+      {isPasswordModalOpen && (
+        <ModalPassword onClose={closePasswordModal} />
+      )}
     </div>
   );
+
+
 };
 
 export default App;
+

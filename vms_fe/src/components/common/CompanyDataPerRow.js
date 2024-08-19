@@ -4,10 +4,11 @@ import styles from "./CompanyDataPerRow.module.css";
 //이미지
 import iconKebab from "../../assets/images/ic_kebab.svg"
 
-function CompanyDataPerRow({ type = "rank", companyData = {}, vmsData = {}, userData = {} }) {
+function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
   //단위 변환
   const convertToBillion = (number) => {
-    return number / 100000000
+    return parseFloat((number / 100000000).toFixed(2)); // 반올림
+    // return Math.floor((number / 100000000) * 100) / 100; // 버림
   }
 
   //텍스트 자르기 (사전 작성)
@@ -19,8 +20,9 @@ function CompanyDataPerRow({ type = "rank", companyData = {}, vmsData = {}, user
     }
   }
 
-  const renderRank = () => {
+  const typeRank = () => {
     const {
+      id,
       rank,
       name,
       img,
@@ -29,10 +31,10 @@ function CompanyDataPerRow({ type = "rank", companyData = {}, vmsData = {}, user
       total_investment,
       revenue,
       employees,
-    } = companyData;
+    } = dataObject;
 
     return (
-      <li className={styles.dataPerRowContainer}>
+      <li key={id} className={styles.dataPerRowContainer}>
         <section className={`${styles.diffSizeContainer} ${styles.rankSize}`}>
           <span className={styles.columnRank}>{`${rank}위`}</span>
           <article className={styles.companyInfoContainer}>
@@ -51,8 +53,9 @@ function CompanyDataPerRow({ type = "rank", companyData = {}, vmsData = {}, user
     );
   };
 
-  const renderNoRank = () => {
+  const typeNoRank = () => {
     const {
+      id,
       name,
       img,
       description,
@@ -60,10 +63,10 @@ function CompanyDataPerRow({ type = "rank", companyData = {}, vmsData = {}, user
       total_investment,
       revenue,
       employees,
-    } = companyData;
+    } = dataObject;
 
     return (
-      <li className={styles.dataPerRowContainer}>
+      <li key={id} className={styles.dataPerRowContainer}>
         <section className={`${styles.diffSizeContainer} ${styles.noRankSize}`}>
           <article className={styles.companyInfoContainer}>
             <img src={img} alt="기업 이미지" />
@@ -81,11 +84,20 @@ function CompanyDataPerRow({ type = "rank", companyData = {}, vmsData = {}, user
     );
   };
 
-  const renderInfoInvest = () => {
-    const { rank, name, img, description, category } = companyData;
-    const { total_investment_vms, total_investment_infact } = vmsData;
+  const typeInvest = () => {
+    const {
+      id,
+      rank,
+      name,
+      img,
+      description,
+      category,
+      total_investment_vms,
+      total_investment_infact,
+    } = dataObject;
+
     return (
-      <li className={styles.dataPerRowContainer}>
+      <li key={id} className={styles.dataPerRowContainer}>
         <section className={`${styles.diffSizeContainer} ${styles.investSize}`}>
           <span className={styles.columnRank}>{`${rank}위`}</span>
           <div className={styles.companyInfoContainer}>
@@ -103,11 +115,17 @@ function CompanyDataPerRow({ type = "rank", companyData = {}, vmsData = {}, user
     );
   };
 
-  const renderComment = () => {
-    const { userName, userRank, user_total_investment, user_comment } = userData;
+  const typeComment = () => {
+    const { 
+      id,
+      userName, 
+      userRank, 
+      user_total_investment, 
+      user_comment 
+    } = dataObject;
 
     return (
-      <li className={styles.dataPerRowContainer}>
+      <li key={id} className={styles.dataPerRowContainer}>
         <section className={`${styles.sameSizeContainer} ${styles.commentSizeForSame}`}>
           <span>{userName}</span>
           <span>{`${userRank}위`}</span>
@@ -123,14 +141,15 @@ function CompanyDataPerRow({ type = "rank", companyData = {}, vmsData = {}, user
     );
   };
 
+
   if (type === "rank") {
-    return renderRank();
+    return typeRank();
   } else if (type === "noRank") {
-    return renderNoRank();
+    return typeNoRank();
   } else if (type === "invest") {
-    return renderInfoInvest();
+    return typeInvest();
   } else if (type === "comment") {
-    return renderComment();
+    return typeComment();
   }
 }
 
