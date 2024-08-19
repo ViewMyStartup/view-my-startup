@@ -1,14 +1,14 @@
 import { PrismaClient } from "@prisma/client";
-import { mockupData } from "./seedData.js";
+import mockupData from "./seedData.js";
 
 const prisma = new PrismaClient();
 
 async function main() {
   // 기존 데이터 삭제
-  await prisma.article.deleteMany();
+  await prisma.company.deleteMany();
 
   // 초기 데이터 삽입
-  await prisma.article.createMany({
+  await prisma.company.createMany({
     data: mockupData,
     skipDuplicates: true,
   });
