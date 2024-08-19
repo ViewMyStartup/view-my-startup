@@ -3,6 +3,7 @@ import MediumBtn from "./common/MediumBtn.js";
 import styles from "./ModalPassword.module.css";
 import eyeOpenIcon from "../assets/images/ic_password_eye_open.svg";
 import eyeCloseIcon from "../assets/images/ic_password_eye_close.svg";
+import deleteIcon from  "../assets/images/ic_delete.svg"
 
 const ModalPassword = ({ onClose }) => {
   const [password, setPassword] = useState("");
@@ -42,7 +43,7 @@ const ModalPassword = ({ onClose }) => {
     <div className={styles.modalOverlay}>
       <div className={styles.modalContainer}>
         <button className={styles.closeButton} onClick={onClose}>
-          &times;
+          <img src={deleteIcon} alt="닫기" /> {/* 삭제 아이콘으로 변경 */}
         </button>
         <h2 className={styles.modalHeader}>삭제 권한 인증</h2>
         <form onSubmit={handleSubmit} className={styles.form}>
@@ -78,5 +79,4 @@ const ModalPassword = ({ onClose }) => {
 };
 
 export default ModalPassword;
-
 
