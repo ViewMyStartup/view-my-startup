@@ -13,6 +13,10 @@ import SearchBar from "./components/common/SearchBar.js";
 import CompanyCard from "./components/common/CompanyCard.js";
 import ModalSelectComparision from "components/ModalSelectComparision";
 import PageNav from "./components/PageNav.js";
+import DataRowSetRender from "components/DataRowSetRender";
+
+//테스트 페이지
+// import InvestInfoPage from "pages/InvestInfoPage";
 
 
 //테스트용 이미지
@@ -44,31 +48,6 @@ const App = () => {
     setModalOpen(false);
   };
 
-
-  // CompanyPerRow & HeaderColumns 컴포넌트 테스트용 데이터 데이터
-  const data = {
-    rank: 1,
-    name: "에듀넥스트",
-    img: Companyimg,
-    description:
-      "코드잇은 ‘온라인 코딩 교육 서비스’를 운영하는 EdTech 스타트업입니다. 코딩 교육에 대한 수...",
-    category: "에듀테크",
-    total_investment: 5000000,
-    revenue: 12000000,
-    employees: 50,
-  };
-
-  const vmsData = {
-    total_investment_vms: 500000000,
-    total_investment_infact: 120000000000,
-  };
-
-  const userData = {
-    userName: "정준호",
-    userRank: 1,
-    user_total_investment: 9999000000,
-    user_comment: "너무 어려워요",
-  };
 
   //SearchBar 테스트
   const [searchQuery, setSearchQuery] = useState("");
@@ -107,6 +86,20 @@ const App = () => {
     setStartups(updatedStartups);
   };
 
+  const dataObject = {
+    id: "1",
+    rank: "3",
+    name: "코딩마스터",
+    img: Companyimg,
+    description: "코딩마스터는 청소년들을 위한 코딩 교육 플랫폼을 운영하는 기업입니다.",
+    category: "에듀테크",
+    total_investment_vms: 100000000,
+    total_investment_infact: 9988776655
+  }
+
+  // 테스트용 데이터 세트
+  const dataList = [dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, ]
+
   return (
     <div>
       <h1>inputBar(유효성 검사 포함) test</h1>
@@ -118,15 +111,13 @@ const App = () => {
         onPageChange={handlePageChange}
         hasNext={currentPage < totalPages}
       />
-      <h1>CompanyPerRow & HeaderColumns 컴포넌트 테스트</h1>
-      <HeaderColumns />
-      <CompanyDataPerRow type="rank" companyData={data} />
-      <HeaderColumns type="noRank" />
-      <CompanyDataPerRow type="noRank" companyData={data} />
+      <h1>CompanyPerRow & HeaderColumns 컴포넌트 테스트 * 테스트 코드 수정</h1> 
       <HeaderColumns type="invest" />
-      <CompanyDataPerRow type="invest" companyData={data} vmsData={vmsData} />
-      <HeaderColumns type="comment" />
-      <CompanyDataPerRow type="comment" userData={userData} />
+      <CompanyDataPerRow type="invest" dataObject={dataObject} />
+      <HeaderColumns type="invest" />
+      <DataRowSetRender type="invest" dataList={dataList} />
+      
+
 
       <h1>InvestmentComment Component 테스트</h1>
       <InvestmentComment
@@ -156,7 +147,8 @@ const App = () => {
 
       <h1>PageNav Component 테스트</h1>
       <PageNav />
-      <PageNav />
+      {/* 하단 보더 확인을 위한 Nav 1개 더 추가 */}
+      <PageNav /> 
 
       <h1>모달 테스트입니다</h1>
       <button onClick={openModal}>Open Investment Modal</button>
@@ -166,6 +158,8 @@ const App = () => {
 
     </div>
   );
+
+
 };
 
 export default App;
