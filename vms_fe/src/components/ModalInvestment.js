@@ -1,7 +1,6 @@
 import React from "react";
 import style from "./ModalInvestment.module.css"; // CSS 모듈
 import deleteIcon from "assets/images/ic_delete.svg";
-import logo from "assets/images/company_logo_1.svg";
 import InputBar from "./common/InputBar";
 
 const ModalInvestment = ({ isOpen, onClose, selectedCompanies }) => {
