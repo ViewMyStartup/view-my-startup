@@ -35,3 +35,28 @@
   margin-top: 16px;
   margin-bottom: 40px;
 }
+@media (max-width: 744px) {
+  .companyTable {
+    overflow-x: auto;
+    padding-bottom: 12px;
+  }
+  .companyTable::-webkit-scrollbar {
+    height: 12px;
+  }
+
+  .companyTable::-webkit-scrollbar-track {
+    background: #212121;
+    border-radius: 10px;
+  }
+
+  .companyTable::-webkit-scrollbar-thumb {
+    min-width: 101px;
+    background-color: #131313;
+    border-radius: 10px;
+    border: 2px solid #212121;
+  }
+
+  .companyTable::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+  }
+}
