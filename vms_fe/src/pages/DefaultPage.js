@@ -17,7 +17,7 @@ function DefaultPage() {
   const companiesPerPage = 10;
 
   // 검색어 필터링
-  const filteredCompanies = mockupData.filter((company) =>
+  let filteredCompanies = mockupData.filter((company) =>
     company.name.includes(searchQuery)
   );
   // dropdown 정렬
