@@ -44,7 +44,7 @@ function CurrentStateInvest() {
         "기업 B의 소개입니다.기업 B의 소개입니다.기업 B의 소개입니다.",
       category: "카테고리 A",
       investmentVmsTotal: 800000000,
-      investmentInfactTotal: 50000000,
+      investmentInfactTotal: 5000000000,
     },
   ];
 
