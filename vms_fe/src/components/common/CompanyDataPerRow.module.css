@@ -5,7 +5,7 @@
   min-width: 697px;
   max-width: 1200px;
   height: 64px;
-  background-color: #2e2e2e;
+  background-color: #212121;
   border-radius: 4px;
 }
 
@@ -22,7 +22,9 @@
 .sameSizeContainer > span,
 .companyInfoContainer > span {
   font-size: 0.875rem;
-  color: #ffffff;
+  font-weight: 400;
+  line-height: 16.71px;
+  color: #d8d8d8;
 }
 
 .diffSizeContainer {
@@ -61,8 +63,12 @@
   min-width: 140px;
   max-width: 213px;
   gap: 12px;
+}
+
+.companyInfoContainer > span {
   font-size: 0.875rem;
-  padding-left: 24px;
+  font-weight: 500;
+  color: #ffffff;
 }
 
 .companyInfoContainer > img {
@@ -126,4 +132,16 @@
 
 .columnNone {
   width: 64px;
+}
+
+@media (max-width: 744px) {
+  .companyInfoContainer > span {
+    font-size: 0.8125rem;
+  }
+
+  .diffSizeContainer > span,
+  .sameSizeContainer > span,
+  .companyInfoContainer > span {
+    font-size: 0.8125rem;
+  }
 }

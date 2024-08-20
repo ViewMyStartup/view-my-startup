@@ -5,13 +5,14 @@
   min-width: 696px;
   max-width: 1200px;
   height: 39px;
-  background-color: #4B4B4B;
+  background-color:#2E2E2E;
   border-radius: 4px;
 }
 
 .diffSizeContainer > div,
 .sameSizeContainer > span{
   font-size: 0.875rem;
+  font-weight: 500;
   color: #FFFFFF;
 }
 
@@ -114,6 +115,7 @@
 
 .wrapText > span {
   color: #FFFFFF;
+  font-weight: 500;
   font-size: 0.875rem;
 }
 
@@ -123,5 +125,18 @@
   }
 }
 
+@media (max-width: 744px) {
+  .diffSizeContainer > div,
+  .sameSizeContainer > span{
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: #FFFFFF;
+  }
+
+  .wrapText > span {
+    color: #FFFFFF;
+    font-size: 0.8125rem;
+  }
+}
 
 
