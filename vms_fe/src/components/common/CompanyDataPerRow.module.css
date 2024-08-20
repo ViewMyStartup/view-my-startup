@@ -5,24 +5,24 @@
   min-width: 696px;
   max-width: 1200px;
   height: 64px;
-  background-color: #2E2E2E;
+  background-color: #2e2e2e;
   border-radius: 4px;
 }
 
 /* 가장 마지막 child가 아니면 bottom border 출력 */
 .dataPerRowContainer:not(:last-child) {
-  border-bottom: 1px solid #4B4B4B;
+  border-bottom: 1px solid #4b4b4b;
 }
 
 .dataPerRowContainer:hover {
-  background-color: #4B4B4B;
+  background-color: #4b4b4b;
 }
 
 .diffSizeContainer > span,
 .sameSizeContainer > span,
 .companyInfoContainer > span {
   font-size: 0.875rem;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .diffSizeContainer {
@@ -56,13 +56,13 @@
 .companyInfoContainer {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   width: 100%;
   min-width: 140px;
   max-width: 213px;
   gap: 12px;
   font-size: 0.875rem;
-
+  padding-left: 24px;
 }
 
 .companyInfoContainer > img {
@@ -72,7 +72,7 @@
   border-radius: 50%;
 }
 
-.sameSizeContainer{
+.sameSizeContainer {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -113,7 +113,6 @@
   padding: 0px 16px;
   white-space: normal;
   text-align: left;
-
 }
 
 .columnComment {
