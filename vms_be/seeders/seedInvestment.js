@@ -10,7 +10,7 @@ async function main() {
     skipDuplicates: true,
   });
 
-  console.log("가상투자자 데이터 시딩 작업 완료되었습니다.");
+  console.log("투자 데이터 시딩 작업 완료되었습니다.");
 }
 
 main()
