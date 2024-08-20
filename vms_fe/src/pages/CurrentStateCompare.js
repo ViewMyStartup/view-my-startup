@@ -79,7 +79,7 @@ function CurrentStateCompare() {
           />
         </header>
         <section>
-          <DataRowSetRender type="invest" dataList={dataList} />
+          <DataRowSetRender type="choose" dataList={dataList} />
         </section>
       </main>
       <footer className={styles.footerSet}>
