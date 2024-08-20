@@ -16,14 +16,6 @@ function DefaultPage() {
   const [sortOption, setSortOption] = useState("누적투자금액높은순");
   const companiesPerPage = 10;
 
-  const dropdownOptions = [
-    "누적투자금액높은순",
-    "누적투자금액낮은순",
-    "매출액높은순",
-    "매출액낮은순",
-    "고용인원많은순",
-    "고용인원적은순",
-  ];
   // 검색어 필터링
   const filteredCompanies = mockupData.filter((company) =>
     company.name.includes(searchQuery)
@@ -78,15 +70,24 @@ function DefaultPage() {
           onChange={handleSearchChange}
           onClear={handleClearSearch}
         />
-        <DropdownComponent
-          options={dropdownOptions}
-          initialLabel="정렬 기준"
-          onOptionSelect={handleSortChange}
-        />
+        <DropdownComponent onOptionSelect={handleSortChange} />
       </div>
       <HeaderColumns type="invest" />
-      <CompanyDataPerRow type="rank" />
-      <Pagination />
+      <ul className={styles.companyTable}>
+        {displayedCompanies.map((company) => (
+          <CompanyDataPerRow
+            key={company.name}
+            type="rank"
+            companyData={company}
+          />
+        ))}
+      </ul>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={Math.ceil(filteredCompanies.length / companiesPerPage)}
+        onPageChange={handlePageChange}
+        hasNext={currentPage < totalPages}
+      />
     </div>
   );
 }
