@@ -8,7 +8,7 @@ import HeaderColumns from "./components/common/HeaderColumns.js";
 import CompanyDataPerRow from "./components/common/CompanyDataPerRow.js";
 import InputBar from "./components/common/InputBar.js";
 import InvestmentComment from "./components/common/InvestmentComment.js";
-import DropdownComponent from "./components/common/DropdownComponent.js";
+import DropdownComponent from "./components/common/Dropdown.js";
 import SearchBar from "./components/common/SearchBar.js";
 import CompanyCard from "./components/common/CompanyCard.js";
 import ModalSelectComparision from "components/ModalSelectComparision";
