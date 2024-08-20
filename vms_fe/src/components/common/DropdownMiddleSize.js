@@ -13,6 +13,7 @@ function DropdownMidleSize({
     "고용 인원 적은순",
   ],
   initialLabel = options[0],
+  handleOptionChange
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(initialLabel);
@@ -22,6 +23,7 @@ function DropdownMidleSize({
   const handleOptionClick = (option) => {
     setSelectedOption(option);
     setIsOpen(false);
+    handleOptionChange(option);
   };
 
   return (
