@@ -7,8 +7,8 @@ import DropdownComponent from "components/common/DropdownComponent.js";
 import HeaderColumns from "components/common/HeaderColumns.js";
 import CompanyDataPerRow from "components/common/CompanyDataPerRow.js";
 import Pagination from "components/common/Pagination.js";
-import mockupData from "assets/mock/mockData";
-import usePageHandler from "hook/usePageHandler";
+import mockupData from "assets/mock/mockData.js";
+import usePageHandler from "hook/usePageHandler.js";
 
 function DefaultPage() {
   const { currentPage, totalPages, handlePageChange } = usePageHandler();
