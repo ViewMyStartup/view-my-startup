@@ -68,12 +68,14 @@ function DefaultPage() {
       <div className={styles.mainContainer}>
         <div className={styles.searchBarContainer}>
           <h2 className={styles.listTitle}>전체 스타트업 목록</h2>
-          <SearchBar
-            value={searchQuery}
-            onChange={handleSearchChange}
-            onClear={handleClearSearch}
-          />
-          <DropdownComponent onOptionSelect={handleSortChange} />
+          <div className={styles.searchBarRight}>
+            <SearchBar
+              value={searchQuery}
+              onChange={handleSearchChange}
+              onClear={handleClearSearch}
+            />
+            <DropdownComponent onOptionSelect={handleSortChange} />
+          </div>
         </div>
         <div className={styles.headerContainer}>
           <HeaderColumns type="rank" />
