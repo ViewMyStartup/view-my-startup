@@ -10,10 +10,11 @@ const DropdownComponent = ({
     "고용 인원 많은순",
     "고용 인원 적은순",
   ],
+  initialLabel = "누적 투자금액 높은순",
 }) => {
   return (
     <div className="dropdown-component">
-      <Dropdown initialLabel="누적 투자금액 높은순" options={options} />
+      <Dropdown initialLabel={initialLabel} options={options} />
     </div>
   );
 };
