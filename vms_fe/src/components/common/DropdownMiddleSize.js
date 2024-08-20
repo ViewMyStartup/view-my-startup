@@ -13,7 +13,7 @@ function DropdownMidleSize({
     "고용 인원 적은순",
   ],
   initialLabel = options[0],
-  handleOptionChange
+  handleOptionChange,
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(initialLabel);
@@ -30,7 +30,11 @@ function DropdownMidleSize({
     <div className={styles.dropdown}>
       <div className={styles.dropdownToggle} onClick={toggleDropdown}>
         <span className={styles.dropdownLabel}>{selectedOption}</span>
-        <img src={ToggleIcon} alt="Toggle Icon" />
+        <img
+          src={ToggleIcon}
+          alt="Toggle Icon"
+          className={styles.dropdownIcon}
+        />
       </div>
       {isOpen && (
         <ul className={styles.dropdownMenu}>
