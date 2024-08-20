@@ -32,3 +32,11 @@ p {
 .pagination {
   margin-top: 40px;
 }
+
+/* 현재 페이지에만 적용할 드롭다운 스타일 */
+.customDropdown {
+  color: #333;
+  width: 264px;
+  height: 48px;
+  border: 1px solid #ddd;
+}

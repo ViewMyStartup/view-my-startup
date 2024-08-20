@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import styles from "./Dropdown.module.css";  
+import styles from "./Dropdown.module.css";
 import ToggleIcon from "./../../assets/images/ic_toggle.svg";
-
 
 const Dropdown = ({ options, initialLabel }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,7 +26,9 @@ const Dropdown = ({ options, initialLabel }) => {
               key={index}
               className={`${styles.dropdownMenuItem} ${
                 index === 0 ? styles.dropdownMenuItemFirst : ""
-              } ${index === options.length - 1 ? styles.dropdownMenuItemLast : ""}`}
+              } ${
+                index === options.length - 1 ? styles.dropdownMenuItemLast : ""
+              }`}
               onClick={() => handleOptionClick(option)}
             >
               {option}
@@ -40,4 +41,3 @@ const Dropdown = ({ options, initialLabel }) => {
 };
 
 export default Dropdown;
-

@@ -1,22 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./CurrentStateInvest.module.css";
 import PageNav from "../components/PageNav";
 import Pagination from "../components/common/Pagination";
-import usePageHandler from "../hook/usePageHandler";
 import DropdownComponent from "../components/common/DropdownComponent";
 import DataRowSetRender from "../components/DataRowSetRender.js";
 import CompanyDataPerRow from "../components/common/CompanyDataPerRow.js";
-import HeaderColumns from "../components/common/HeaderColumns.js"; //순위등 메뉴바
+import HeaderColumns from "../components/common/HeaderColumns.js";
+import usePageHandler from "../hook/usePageHandler";
 
 function CurrentStateInvest() {
   const { currentPage, totalPages, handlePageChange } = usePageHandler();
 
-  // 페이지 변경 함수
-  const handlePageClick = (page) => {
-    handlePageChange(page);
-  };
+  const [selectedOption, setSelectedOption] = useState(
+    "View My Startup 투자 금액 높은순"
+  );
+  const [sortedData, setSortedData] = useState([]);
 
-  // 드롭다운 메뉴 변경
   const customOptions = [
     "View My Startup 투자 금액 높은순",
     "View My Startup 투자 금액 낮은순",
@@ -33,26 +32,72 @@ function CurrentStateInvest() {
       description:
         "기업 A의 소개입니다.기업 A의 소개입니다.기업 A의 소개입니다.",
       category: "카테고리 A",
-      total_investment: 5000000000,
-      revenue: 3000000000,
-      employees: 100,
+      investmentVmsTotal: 5000000000,
+      investmentInfactTotal: 3000000000,
+    },
+    {
+      id: 2,
+      rank: 2,
+      name: "기업 B",
+      img: "path/to/image.jpg",
+      description:
+        "기업 B의 소개입니다.기업 B의 소개입니다.기업 B의 소개입니다.",
+      category: "카테고리 A",
+      investmentVmsTotal: 800000000,
+      investmentInfactTotal: 50000000,
     },
   ];
 
+  // 정렬 옵션
+  useEffect(() => {
+    let sorted = [...mockData];
+    switch (selectedOption) {
+      case "View My Startup 투자 금액 높은순":
+        sorted.sort((a, b) => b.investmentVmsTotal - a.investmentVmsTotal);
+        break;
+      case "View My Startup 투자 금액 낮은순":
+        sorted.sort((a, b) => a.investmentVmsTotal - b.investmentVmsTotal);
+        break;
+      case "실제 누적 투자 금액 높은순":
+        sorted.sort(
+          (a, b) => b.investmentInfactTotal - a.investmentInfactTotal
+        );
+        break;
+      case "실제 누적 투자 금액 낮은순":
+        sorted.sort(
+          (a, b) => a.investmentInfactTotal - b.investmentInfactTotal
+        );
+        break;
+      default:
+        break;
+    }
+    setSortedData(sorted);
+  }, [selectedOption]);
+
+  const handleDropdownChange = (option) => {
+    setSelectedOption(option);
+  };
+
+  const handlePageClick = (page) => {
+    handlePageChange(page);
+  };
+
   return (
     <div>
-      <PageNav /> {/* 헤더 부분 */}
+      <PageNav />
       <div className={styles.currentStateInvest}>
         <div className={styles.investStateNav}>
           <p>투자 현황</p>
           <DropdownComponent
-            initialLabel="View My Startup 투자 금액 높은순" // 기본 드롭다운 라벨값
+            initialLabel={selectedOption}
             options={customOptions}
+            customClass={styles.customDropdown}
+            onChange={handleDropdownChange}
           />
         </div>
-        <HeaderColumns type="invest" /> {/* 투자부분 */}
+        <HeaderColumns type="invest" />
         <ul>
-          {mockData.map((data) => (
+          {sortedData.map((data) => (
             <CompanyDataPerRow key={data.id} type="invest" dataObject={data} />
           ))}
         </ul>
@@ -61,7 +106,7 @@ function CurrentStateInvest() {
             currentPage={currentPage}
             totalPages={totalPages}
             onPageChange={handlePageClick}
-            hasNext={currentPage < totalPages} // 다음 페이지 여부
+            hasNext={currentPage < totalPages}
           />
         </div>
       </div>
