@@ -1,7 +1,6 @@
 import React from "react";
 import Dropdown from "./Dropdown";
 
-
 const DropdownComponent = () => {
   const options = [
     "누적 투자금액 높은순",
@@ -20,4 +19,3 @@ const DropdownComponent = () => {
 };
 
 export default DropdownComponent;
-

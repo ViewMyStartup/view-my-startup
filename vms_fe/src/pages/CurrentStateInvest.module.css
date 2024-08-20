@@ -1,0 +1,34 @@
+/* CurrentStateInvest.module.css */
+
+body {
+  background: #131313;
+  margin: 0;
+  padding: 0;
+}
+
+/* 전체 컨테이너 스타일 */
+.currentStateInvest {
+  background: #131313;
+  padding: 20px;
+  max-width: 1200px; /* 최대 너비 설정 */
+  margin: 0 auto; /* 중앙 정렬 */
+}
+
+/* 투자 현황 메뉴 */
+.investStateNav {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 투자 메뉴 문구 */
+p {
+  font-size: 20px;
+  color: #ffffff;
+}
+
+/* 페이지네이션 */
+.pagiNation {
+  margin-top: 40px;
+}
