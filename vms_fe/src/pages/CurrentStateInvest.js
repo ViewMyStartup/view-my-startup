@@ -1,77 +1,53 @@
 import React from "react";
 import styles from "./CurrentStateInvest.module.css";
 
-
-// 컴포넌트
-import PageNav from "components/PageNav";
-import DataRowSetRender from "components/DataRowSetRender"
-import Pagination from "components/common/Pagination";
-
-// 커스텀 훅
-import usePageHandler from "hook/usePageHandler";
-
-//테스트 이미지
-import Companyimg from "../assets/images/mock_img/company_temp.svg";
-
-
+import PageNav from "../components/PageNav";
+import Pagination from "../components/common/Pagination";
+import usePageHandler from "../hook/usePageHandler";
+import Dropdown from "../components/common/Dropdown";
+import DataRowSetRender from "../components/DataRowSetRender.js";
+import CompanyDataPerRow from "../components/common/CompanyDataPerRow.js";
 
 function CurrentStateInvest() {
-  // CompanyPerRow & HeaderColumns 컴포넌트 테스트용 데이터 데이터
   const { currentPage, totalPages, handlePageChange } = usePageHandler();
 
-  const dataObject = {
-    id: "1",
-    rank: "3",
-    name: "코딩마스터",
-    img: Companyimg,
-    description: "코딩마스터는 청소년들을 위한 코딩 교육 플랫폼을 운영하는 기업입니다.",
-    category: "에듀테크",
-    total_investment: 12312959459,
-    revenue: 3245204304,
-    employees: 5230,
-    investmentVmsTotal: 200342345,
-    investmentInfactTotal: 342534123124,
-    myCompanyChooseCount: 124123,
-    CompareChoohseCount: 12315565,
-    userName: "정준호", 
-    userRank: 3, 
-    userTotalInvestment: 3423401234, 
-    userComment: "테스트입니다." 
-  }
+  // 페이지 변경 함수
+  const handlePageClick = (page) => {
+    handlePageChange(page);
+  };
 
-  // 테스트용 데이터 세트
-  const dataList = [dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject ]
-
-
+  // 드롭다운 메뉴 변경
+  const customOptions = [
+    "View My Startup 투자 금액 높은순",
+    "View My Startup 투자 금액 낮은순",
+    "실제 누적 투자 금액 높은순",
+    "실제 누적 투자 금액 낮은순",
+  ];
 
   return (
-    <div className={styles.bgSet}>
-      <nav className={styles.navSet}>
-        <PageNav />
-      </nav>
-      <main className={styles.mainContainer}>
-        <header className={styles.headerBox}>
-          <span className={styles.headerText}>투자 현황</span>
-        </header>
-        <section>
-          <DataRowSetRender
-            type="invest"
-            dataList={dataList}
-
+    <div>
+      <PageNav /> {/* 헤더 부분 */}
+      <div className={styles.currentStateInvest}>
+        <div className={styles.investStateNav}>
+          <p>투자 현황</p>
+          <Dropdown
+            initialLabel="View My Startup 투자 금액 높은순" // 기본 드롭다운 값
+            options={customOptions}
           />
-        </section>
-      </main>
-      <footer className={styles.footerSet}>
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={handlePageChange}
-          hasNext={currentPage < totalPages}
-        />
-      </footer>
+        </div>
+        <DataRowSetRender />
+        <CompanyDataPerRow />
+        <div className={styles.pagination}>
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageClick}
+            hasNext={currentPage < totalPages} // 다음 페이지 여부
+          />
+        </div>
+      </div>
     </div>
   );
-
 }
 
 export default CurrentStateInvest;

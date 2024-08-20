@@ -8,7 +8,6 @@ import HeaderColumns from "./components/common/HeaderColumns.js";
 import CompanyDataPerRow from "./components/common/CompanyDataPerRow.js";
 import InputBar from "./components/common/InputBar.js";
 import InvestmentComment from "./components/common/InvestmentComment.js";
-import DropdownComponent from "./components/common/DropdownComponent.js";
 import SearchBar from "./components/common/SearchBar.js";
 import CompanyCard from "./components/common/CompanyCard.js";
 import ModalSelectComparision from "components/ModalSelectComparision";
@@ -18,13 +17,19 @@ import DataRowSetRender from "components/DataRowSetRender";
 // 새로운 임포트 추가
 import CompanyListSelect from "./components/companyInfoList"; // companyInfoList.js 파일을 임포트
 
-//커스텀 훅
+// 수정된 임포트
+import DropdownMiddleSize from "./components/common/DropdownMiddleSize.js";
+
+// 커스텀 훅
 import usePageHandler from "hook/usePageHandler";
 
-//테스트용 이미지
+// 테스트용 이미지
 import Companyimg from "./assets/images/mock_img/company_temp.svg";
 import defaultLogo from "./assets/images/company_logo_1.svg";
 import ToggleIcon from "./assets/images/ic_toggle.svg";
+
+// MediumBtn 컴포넌트 임포트
+import MediumBtn from "./components/common/MediumBtn";
 
 const App = () => {
   // 커스텀 훅 적용
@@ -41,7 +46,7 @@ const App = () => {
     setModalOpen(false);
   };
 
-  //SearchBar 테스트
+  // SearchBar 테스트
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearchChange = (value) => {
@@ -52,7 +57,7 @@ const App = () => {
     setSearchQuery("");
   };
 
-  //CompanyCard 테스트
+  // CompanyCard 테스트
   const initialStartups = [
     {
       name: "코드잇",
@@ -96,7 +101,7 @@ const App = () => {
     userRank: 3, 
     userTotalInvestment: 3423401234, 
     userComment: "테스트입니다." 
-  }
+  };
 
   // 테스트용 데이터 세트
   const dataList = [
@@ -168,8 +173,17 @@ const App = () => {
       <h1>Company List Select 테스트</h1>
       <CompanyListSelect />
 
+      {/* MediumBtn 컴포넌트 테스트 추가 */}
+      <h1>MediumBtn 테스트</h1>
+      <MediumBtn text="MediumBtn" onClick={() => alert('MediumBtn 임')} />
+      
+      {/* DropdownMiddleSize 컴포넌트 테스트 추가 */}
+      <h1>DropdownMiddleSize 테스트</h1>
+      <DropdownMiddleSize />
+
     </div>
   );
 };
 
 export default App;
+
