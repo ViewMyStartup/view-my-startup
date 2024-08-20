@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 696px;
+  min-width: 697px;
   max-width: 1200px;
   height: 64px;
   background-color: #2E2E2E;
@@ -77,6 +77,10 @@
   justify-content: space-around;
   align-items: center;
   min-width: 228px;
+  width: 100%;
+}
+
+.sameSizeContainer > span {
   width: 100%;
 }
 

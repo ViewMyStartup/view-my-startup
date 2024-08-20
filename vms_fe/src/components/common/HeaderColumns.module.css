@@ -84,7 +84,13 @@
   align-items: center;
   width: 100%;
   min-width: 228px;
+}
 
+.commentSizeForSame > span,
+.investSizeForSame > span,
+.noRankSizeForSame > span,
+.rankSizeForSame > span {
+  width: 100%;
 }
 
 .commentSizeForSame {

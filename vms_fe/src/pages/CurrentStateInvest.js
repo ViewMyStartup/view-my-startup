@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./CurrentStateInvest.module.css"; // 스타일 모듈을 가져옵니다.
+import styles from "./CurrentStateInvest.module.css";
 import PageNav from "../components/PageNav";
 import Pagination from "../components/common/Pagination";
 import usePageHandler from "../hook/usePageHandler";
@@ -36,7 +36,7 @@ function CurrentStateInvest() {
         </div>
         <DataRowSetRender />
         <CompanyDataPerRow />
-        <div className={styles.pagiNation}>
+        <div className={styles.pagination}>
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}
