@@ -76,7 +76,7 @@ function DefaultPage() {
           <DropdownComponent onOptionSelect={handleSortChange} />
         </div>
         <div className={styles.headerContainer}>
-          <HeaderColumns type="invest" />
+          <HeaderColumns type="rank" />
         </div>
         <ul className={styles.companyTable}>
           {displayedCompanies.map((company) => (
