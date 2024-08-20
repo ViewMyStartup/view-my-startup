@@ -2,10 +2,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 744px;
+  min-width: 697px;
   max-width: 1200px;
   height: 64px;
-  background-color: #2E2E2E;
+  background-color: #212121;
   border-radius: 4px;
 }
 
@@ -22,7 +22,9 @@
 .sameSizeContainer > span,
 .companyInfoContainer > span {
   font-size: 0.875rem;
-  color: #FFFFFF;
+  font-weight: 400;
+  line-height: 16.71px;
+  color: #D8D8D8;
 }
 
 .diffSizeContainer {
@@ -61,8 +63,12 @@
   min-width: 140px;
   max-width: 213px;
   gap: 12px;
-  font-size: 0.875rem;
+}
 
+.companyInfoContainer > span {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #FFFFFF;
 }
 
 .companyInfoContainer > img {
@@ -76,7 +82,11 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  min-width: 366px;
+  min-width: 228px;
+  width: 100%;
+}
+
+.sameSizeContainer > span {
   width: 100%;
 }
 
@@ -86,7 +96,7 @@
 }
 
 .ivestSizeForSame {
-  min-width: 232px;
+  min-width: 228px;
   max-width: 460px;
 }
 
@@ -123,4 +133,18 @@
 
 .columnNone {
   width: 64px;
+}
+
+
+@media (max-width: 744px) {
+  .companyInfoContainer > span {
+    font-size: 0.8125rem;
+  }
+
+  .diffSizeContainer > span,
+  .sameSizeContainer > span,
+  .companyInfoContainer > span {
+    font-size: 0.8125rem;
+  }
+
 }

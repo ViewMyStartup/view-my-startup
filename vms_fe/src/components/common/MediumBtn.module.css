@@ -1,7 +1,7 @@
 .buttonWrapper {
   display: flex;
-  justify-content: center; /* 가로 방향으로 중앙 정렬 */
-  width: 100%; /* 부모 요소의 가로 너비를 채움 */
+  justify-content: center;
+  width: 100%; 
 }
 
 .mediumBtn {
@@ -9,14 +9,14 @@
   color: var(--gray-200);
   border-radius: 50px;
   border: none;
-  width: 194px; /* 고정 너비 */
-  height: 48px; /* 고정 높이 */
+  width: 194px;
+  height: 48px;
   font-weight: 600;
-  font-size: 16px; /* 기본 폰트 크기 */
-  padding: 0 24px; /* 수평 패딩 */
+  font-size: 16px;
+  padding: 0 24px;
   display: flex;
-  justify-content: center; /* 텍스트 가로 중앙 정렬 */
-  align-items: center; /* 텍스트 세로 중앙 정렬 */
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
 }
 
@@ -25,13 +25,17 @@
   color: var(--white);
 }
 
-@media (max-width: 743px) {
-  .mediumBtn {
-    width: 135px; /* 모바일 버전 고정 너비 */
-    height: 44px; /* 모바일 버전 고정 높이 */
-    font-size: 14px; /* 모바일 버전 폰트 크기 */
-  }
+.mediumBtn.disabledBtn {
+  background-color: #2E2E2E !important;
+  color: #747474 !important;
+  cursor: not-allowed !important; 
 }
 
-
+@media (max-width: 743px) {
+  .mediumBtn {
+    width: 135px;
+    height: 44px;
+    font-size: 14px;
+  }
+}
 
