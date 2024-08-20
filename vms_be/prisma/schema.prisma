@@ -30,10 +30,12 @@ model Investment {
   id                Int       @id @default(autoincrement())
   companyId         Int
   investorName      String
-  investmentAmount Float
+  investmentAmount  Float
   investmentComment String
   password          String
   company           Company   @relation("CompanyInvestments", fields: [companyId], references: [id])
+
+  @@index([companyId])
 }
 
 model CompanySelection {
@@ -41,4 +43,6 @@ model CompanySelection {
   companyId      Int
   selectionCount Int
   company        Company @relation("CompanySelections", fields: [companyId], references: [id])
+
+  @@index([companyId])
 }
