@@ -1,8 +1,7 @@
 import React from "react";
 import Dropdown from "./Dropdown";
 
-
-const DropdownComponent = () => {
+const DropdownComponent = ({ onOptionSelect }) => {
   const options = [
     "누적 투자금액 높은순",
     "누적 투자금액 낮은순",
@@ -14,10 +13,13 @@ const DropdownComponent = () => {
 
   return (
     <div className="dropdown-component">
-      <Dropdown initialLabel="누적 투자금액 높은순" options={options} />
+      <Dropdown
+        initialLabel="누적 투자금액 높은순"
+        options={options}
+        onOptionSelect={onOptionSelect}
+      />
     </div>
   );
 };
 
 export default DropdownComponent;
-

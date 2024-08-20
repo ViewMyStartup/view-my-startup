@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./Dropdown.module.css";
 import ToggleIcon from "./../../assets/images/ic_toggle.svg";
 
-const Dropdown = ({ options, initialLabel }) => {
+const Dropdown = ({ options, initialLabel, onOptionSelect }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(initialLabel);
 
@@ -11,6 +11,7 @@ const Dropdown = ({ options, initialLabel }) => {
   const handleOptionClick = (option) => {
     setSelectedOption(option);
     setIsOpen(false);
+    onOptionSelect(option); // 선택된 옵션을 부모 컴포넌트로 전달
   };
 
   return (
