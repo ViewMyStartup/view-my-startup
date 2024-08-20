@@ -41,7 +41,7 @@ p {
     white-space: nowrap; /* 자식 요소들이 한 줄에 표시되도록 설정 */
     background: #212121;
     border: #212121;
-    padding: 10px 0;
+    padding: 0;
   }
 
   /* 스크롤바 전체 */
