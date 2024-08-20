@@ -1,17 +1,30 @@
 .pageContainer {
+  width: 100%;
+  background-color: var(--black-400);
+  color: var(--white);
+}
+.mainContainer {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--black-400);
-  color: var(--white);
   padding-bottom: 133px;
 }
 .searchBarContainer {
+  width: 100%;
+  max-width: 1200px;
   display: flex;
+  justify-content: space-between;
   margin-top: 40px;
   margin-bottom: 16px;
 }
+.headerContainer {
+  width: 100%;
+  max-width: 1200px;
+}
 .companyTable {
+  width: 100%;
+  max-width: 1200px;
   margin-top: 16px;
   margin-bottom: 40px;
 }

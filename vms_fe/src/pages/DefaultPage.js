@@ -65,31 +65,35 @@ function DefaultPage() {
   return (
     <div className={styles.pageContainer}>
       <PageNav />
-      <div className={styles.searchBarContainer}>
-        <h2 className={styles.listTitle}>전체 스타트업 목록</h2>
-        <SearchBar
-          value={searchQuery}
-          onChange={handleSearchChange}
-          onClear={handleClearSearch}
-        />
-        <DropdownComponent onOptionSelect={handleSortChange} />
-      </div>
-      <HeaderColumns type="invest" />
-      <ul className={styles.companyTable}>
-        {displayedCompanies.map((company) => (
-          <CompanyDataPerRow
-            key={company.name}
-            type="rank"
-            dataObject={company}
+      <div className={styles.mainContainer}>
+        <div className={styles.searchBarContainer}>
+          <h2 className={styles.listTitle}>전체 스타트업 목록</h2>
+          <SearchBar
+            value={searchQuery}
+            onChange={handleSearchChange}
+            onClear={handleClearSearch}
           />
-        ))}
-      </ul>
-      <Pagination
-        currentPage={currentPage}
-        totalPages={Math.ceil(filteredCompanies.length / companiesPerPage)}
-        onPageChange={handlePageChange}
-        hasNext={currentPage < totalPages}
-      />
+          <DropdownComponent onOptionSelect={handleSortChange} />
+        </div>
+        <div className={styles.headerContainer}>
+          <HeaderColumns type="invest" />
+        </div>
+        <ul className={styles.companyTable}>
+          {displayedCompanies.map((company) => (
+            <CompanyDataPerRow
+              key={company.name}
+              type="rank"
+              dataObject={company}
+            />
+          ))}
+        </ul>
+        <Pagination
+          currentPage={currentPage}
+          totalPages={Math.ceil(filteredCompanies.length / companiesPerPage)}
+          onPageChange={handlePageChange}
+          hasNext={currentPage < totalPages}
+        />
+      </div>
     </div>
   );
 }
