@@ -1,0 +1,62 @@
+.pageContainer {
+  background-color: #131313;
+  height: 100vh;
+}
+
+.content {
+  display: flex;
+  align-items: flex-start;
+  padding-top: 90px; /* 로고로부터의 위치 */
+}
+
+/* 공통 스타일 */
+.heading {
+  color: #ffffff;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 700;
+  text-align: left;
+}
+
+/* 데스크탑 버전 */
+@media (min-width: 1200px) {
+  .content {
+    margin-left: calc(
+      50% - 600px + 24px
+    ); /* outlineContain에서 중앙 정렬 후, 로고의 여백 24px 적용 */
+  }
+
+  .heading {
+    font-size: 20px;
+    line-height: 23.87px;
+  }
+}
+
+/* 태블릿 버전 */
+@media (max-width: 1199px) and (min-width: 744px) {
+  .content {
+    margin-left: 24px; /* 태블릿에서 로고와 동일한 시작 위치 */
+  }
+
+  .heading {
+    font-size: 20px;
+    line-height: 23.87px;
+  }
+
+  .content {
+    padding-top: 60px; /* 로고로부터의 위치 */
+  }
+}
+
+/* 모바일 버전 */
+@media (max-width: 743px) {
+  .content {
+    margin-left: 16px; /* 모바일에서 로고와 동일한 시작 위치 */
+    padding-top: 60px; /* 로고로부터의 위치 */
+  }
+
+  .heading {
+    font-size: 16px;
+    line-height: 19.09px;
+  }
+}
+
