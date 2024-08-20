@@ -40,10 +40,12 @@ function DefaultPage() {
     }
   });
 
-  const displayedCompanies = filteredCompanies.slice(
-    (currentPage - 1) * companiesPerPage,
-    currentPage * companiesPerPage
-  );
+  const displayedCompanies = filteredCompanies
+    .slice((currentPage - 1) * companiesPerPage, currentPage * companiesPerPage)
+    .map((company, index) => ({
+      ...company,
+      rank: (currentPage - 1) * companiesPerPage + index + 1, // 순위 부여
+    }));
 
   const handleSearchChange = (value) => {
     setSearchQuery(value);
