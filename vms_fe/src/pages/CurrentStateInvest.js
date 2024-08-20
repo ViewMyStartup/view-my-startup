@@ -6,6 +6,7 @@ import styles from "./CurrentStateInvest.module.css";
 import PageNav from "components/PageNav";
 import DataRowSetRender from "components/DataRowSetRender"
 import Pagination from "components/common/Pagination";
+import DropdownComponent from "components/common/DropdownComponent";
 
 // 커스텀 훅
 import usePageHandler from "hook/usePageHandler";
@@ -43,9 +44,14 @@ function CurrentStateInvest() {
   const dataList = [dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject ]
 
 
+  const options = [
+    "아무",
+    "옵션"
+  ]
 
   return (
     <div className={styles.bgSet}>
+      <DropdownComponent options={options}/>
       <nav className={styles.navSet}>
         <PageNav />
       </nav>
