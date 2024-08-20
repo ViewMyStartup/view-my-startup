@@ -13,7 +13,7 @@ import usePageHandler from "hook/usePageHandler.js";
 function DefaultPage() {
   const { currentPage, totalPages, handlePageChange } = usePageHandler();
   const [searchQuery, setSearchQuery] = useState("");
-  const [sortOption, setSortOption] = useState("누적투자금액높은순");
+  const [sortOption, setSortOption] = useState("누적 투자금액 높은순");
   const companiesPerPage = 10;
 
   // 검색어 필터링
@@ -23,17 +23,17 @@ function DefaultPage() {
   // dropdown 정렬
   filteredCompanies = filteredCompanies.sort((a, b) => {
     switch (sortOption) {
-      case "누적투자금액높은순":
+      case "누적 투자금액 높은순":
         return b.total_investment - a.total_investment;
-      case "누적투자금액낮은순":
+      case "누적 투자금액 낮은순":
         return a.total_investment - b.total_investment;
-      case "매출액높은순":
+      case "매출액 높은순":
         return b.revenue - a.revenue;
-      case "매출액낮은순":
+      case "매출액 낮은순":
         return a.revenue - b.revenue;
-      case "고용인원많은순":
+      case "고용 인원 많은순":
         return b.employees - a.employees;
-      case "고용인원적은순":
+      case "고용 인원 적은순":
         return a.employees - b.employees;
       default:
         return 0;
