@@ -36,9 +36,9 @@ function PageNav() {
     // 이미지 클릭 시 홈으로 돌아가게 하는 Link 사전 추가
     <nav className={styles.outlineContain}>
       <section className={styles.pageNavBox}>
-        {/* <Link to="/"> */}
-        <img src={logo} alt="logo" />
-        {/* </Link> */}
+        <Link to="/">
+          <img src={logo} alt="logo" />
+        </Link>
         <BoardList />
       </section>
     </nav>
