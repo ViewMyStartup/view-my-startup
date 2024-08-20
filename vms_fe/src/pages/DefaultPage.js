@@ -13,11 +13,40 @@ import usePageHandler from "hook/usePageHandler";
 function DefaultPage() {
   const { currentPage, totalPages, handlePageChange } = usePageHandler();
   const [searchQuery, setSearchQuery] = useState("");
+  const [sortOption, setSortOption] = useState("누적투자금액높은순");
   const companiesPerPage = 10;
 
+  const dropdownOptions = [
+    "누적투자금액높은순",
+    "누적투자금액낮은순",
+    "매출액높은순",
+    "매출액낮은순",
+    "고용인원많은순",
+    "고용인원적은순",
+  ];
+  // 검색어 필터링
   const filteredCompanies = mockupData.filter((company) =>
     company.name.includes(searchQuery)
   );
+  // dropdown 정렬
+  filteredCompanies = filteredCompanies.sort((a, b) => {
+    switch (sortOption) {
+      case "누적투자금액높은순":
+        return b.total_investment - a.total_investment;
+      case "누적투자금액낮은순":
+        return a.total_investment - b.total_investment;
+      case "매출액높은순":
+        return b.revenue - a.revenue;
+      case "매출액낮은순":
+        return a.revenue - b.revenue;
+      case "고용인원많은순":
+        return b.employees - a.employees;
+      case "고용인원적은순":
+        return a.employees - b.employees;
+      default:
+        return 0;
+    }
+  });
 
   const displayedCompanies = filteredCompanies.slice(
     (currentPage - 1) * companiesPerPage,
@@ -34,6 +63,11 @@ function DefaultPage() {
     handlePageChange(1); // 검색어 초기화 시 페이지를 첫 페이지로 리셋
   };
 
+  const handleSortChange = (option) => {
+    setSortOption(option);
+    handlePageChange(1);
+  };
+
   return (
     <div className={styles.pageContainer}>
       <PageNav />
@@ -44,7 +78,11 @@ function DefaultPage() {
           onChange={handleSearchChange}
           onClear={handleClearSearch}
         />
-        <DropdownComponent />
+        <DropdownComponent
+          options={dropdownOptions}
+          initialLabel="정렬 기준"
+          onOptionSelect={handleSortChange}
+        />
       </div>
       <HeaderColumns type="invest" />
       <CompanyDataPerRow type="rank" />
