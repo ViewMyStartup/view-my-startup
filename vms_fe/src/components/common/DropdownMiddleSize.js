@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import styles from "./Dropdown.module.css";
+import styles from "./DropdownMiddleSize.module.css";
 import ToggleIcon from "./../../assets/images/ic_toggle.svg";
 
 // 옵션 기본값 설정, 초기 노출 값은 options 첫번째 값으로 설정
-const Dropdown = ({
+function DropdownMidleSize({
   options = [
     "누적 투자금액 높은순",
     "누적 투자금액 낮은순",
@@ -13,8 +13,7 @@ const Dropdown = ({
     "고용 인원 적은순",
   ],
   initialLabel = options[0],
-  onOptionSelect,
-}) => {
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(initialLabel);
 
@@ -23,7 +22,6 @@ const Dropdown = ({
   const handleOptionClick = (option) => {
     setSelectedOption(option);
     setIsOpen(false);
-    onOptionSelect(option); // 선택된 옵션을 부모 컴포넌트로 전달
   };
 
   return (
@@ -37,11 +35,7 @@ const Dropdown = ({
           {options.map((option, index) => (
             <li
               key={index}
-              className={`${styles.dropdownMenuItem} ${
-                index === 0 ? styles.dropdownMenuItemFirst : ""
-              } ${
-                index === options.length - 1 ? styles.dropdownMenuItemLast : ""
-              }`}
+              className={styles.dropdownMenuItem}
               onClick={() => handleOptionClick(option)}
             >
               {option}
@@ -51,6 +45,6 @@ const Dropdown = ({
       )}
     </div>
   );
-};
+}
 
-export default Dropdown;
+export default DropdownMidleSize;

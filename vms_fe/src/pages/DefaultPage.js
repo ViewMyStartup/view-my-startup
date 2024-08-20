@@ -3,7 +3,7 @@ import styles from "./DefaultPage.module.css";
 
 import PageNav from "components/PageNav.js";
 import SearchBar from "components/common/SearchBar.js";
-import DropdownComponent from "components/common/DropdownComponent.js";
+import Dropdown from "components/common/Dropdown.js";
 import HeaderColumns from "components/common/HeaderColumns.js";
 import CompanyDataPerRow from "components/common/CompanyDataPerRow.js";
 import Pagination from "components/common/Pagination.js";
@@ -74,7 +74,7 @@ function DefaultPage() {
               onChange={handleSearchChange}
               onClear={handleClearSearch}
             />
-            <DropdownComponent onOptionSelect={handleSortChange} />
+            <Dropdown onOptionSelect={handleSortChange} />
           </div>
         </div>
         <div className={styles.headerContainer}>
