@@ -7,6 +7,7 @@ import DropdownMiddleSize from "../components/common/DropdownMiddleSize";
 import usePageHandler from "../hook/usePageHandler";
 import CompanyDataPerRow from "../components/common/CompanyDataPerRow";
 import HeaderColumns from "../components/common/HeaderColumns";
+import mockData from "../assets/mock/mockData.js";
 
 function CurrentStateInvest() {
   const { currentPage, totalPages, handlePageChange } = usePageHandler();
@@ -21,31 +22,6 @@ function CurrentStateInvest() {
     "View My Startup 투자 금액 낮은순",
     "실제 누적 투자 금액 높은순",
     "실제 누적 투자 금액 낮은순",
-  ];
-
-  const mockData = [
-    {
-      id: 1,
-      rank: 1,
-      name: "기업 A",
-      img: "path/to/image.jpg",
-      description:
-        "기업 A의 소개입니다.기업 A의 소개입니다.기업 A의 소개입니다.",
-      category: "카테고리 A",
-      investmentVmsTotal: 5000000000,
-      investmentInfactTotal: 3000000000,
-    },
-    {
-      id: 2,
-      rank: 2,
-      name: "기업 B",
-      img: "path/to/image.jpg",
-      description:
-        "기업 B의 소개입니다.기업 B의 소개입니다.기업 B의 소개입니다.",
-      category: "카테고리 A",
-      investmentVmsTotal: 800000000,
-      investmentInfactTotal: 5000000000,
-    },
   ];
 
   useEffect(() => {
@@ -97,13 +73,15 @@ function CurrentStateInvest() {
           <HeaderColumns type="invest" />
           <div className={styles.scrollableContainer}>
             <ul className={styles.scrollableList}>
-              {sortedData.map((data) => (
-                <CompanyDataPerRow
-                  key={data.id}
-                  type="invest"
-                  dataObject={data}
-                />
-              ))}
+              {sortedData
+                .slice((currentPage - 1) * 10, currentPage * 10)
+                .map((data) => (
+                  <CompanyDataPerRow
+                    key={data.id}
+                    type="invest"
+                    dataObject={data}
+                  />
+                ))}
             </ul>
           </div>
         </div>
