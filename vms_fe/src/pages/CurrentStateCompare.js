@@ -6,6 +6,7 @@ import styles from "./CurrentStateCompare.module.css";
 import Pagination from "components/common/Pagination";
 
 import DataRowSetRender from "components/DataRowSetRender";
+import DropdownComponent from "components/common/DropdownComponent";
 
 // 커스텀 훅
 import usePageHandler from "hook/usePageHandler";
@@ -57,6 +58,7 @@ function CurrentStateCompare() {
       </nav>
       <main className={styles.mainContainer}>
         <div className={styles.headerText}>투자 현황</div>
+        <DropdownComponent />
         <DataRowSetRender type="choose" dataList={dataList}/>
       </main>
       <footer className={styles.footerSet}>
