@@ -52,14 +52,13 @@ function CurrentStateCompare() {
 
   return (
     <div className={styles.bgSet}>
-      <Dropdown options={options}/>
-      <DropdownMiddleSize options={options}/>
       <nav className={styles.navSet}>
         <PageNav />
       </nav>
       <main className={styles.mainContainer}>
         <header className={styles.headerBox}>
           <span className={styles.headerText}>투자 현황</span>
+          <DropdownMiddleSize options={options}/>
         </header>
         <section>
           <DataRowSetRender

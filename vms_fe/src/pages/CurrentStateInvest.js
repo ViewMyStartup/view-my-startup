@@ -4,7 +4,7 @@ import styles from "./CurrentStateInvest.module.css";
 import PageNav from "../components/PageNav";
 import Pagination from "../components/common/Pagination";
 import usePageHandler from "../hook/usePageHandler";
-import DropdownComponent from "../components/common/DropdownComponent";
+import Dropdown from "../components/common/Dropdown";
 import DataRowSetRender from "../components/DataRowSetRender.js";
 import CompanyDataPerRow from "../components/common/CompanyDataPerRow.js";
 
@@ -30,7 +30,7 @@ function CurrentStateInvest() {
       <div className={styles.currentStateInvest}>
         <div className={styles.investStateNav}>
           <p>투자 현황</p>
-          <DropdownComponent
+          <Dropdown
             initialLabel="View My Startup 투자 금액 높은순" // 기본 드롭다운 값
             options={customOptions}
           />

@@ -77,12 +77,11 @@
 /* 모바일 버전 (화면 크기 743px ~ 375px) 스타일링 */
 @media (min-width: 375px) and (max-width: 743px) {
   .dropdown {
-    width: 146px;
-    height: 40px;
+    width: 217px;
   }
 
   .dropdownToggle {
-    padding: 8px;
+    padding: 8px 12px;
   }
 
   .dropdownLabel {
@@ -96,11 +95,12 @@
   }
 
   .dropdownMenu {
-    width: 146px;
-    height: 228px;
+    width: 217px;
   }
 
+
   .dropdownMenuItem {
+
     height: 38px;
     font-size: 12px;
   }
