@@ -5,8 +5,16 @@
 
 .content {
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
-  padding-top: 90px; /* 로고로부터의 위치 */
+  padding-top: 90px; /* 글자 위치 */
+}
+
+.headingWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; /* 전체 너비를 차지하도록 설정 */
 }
 
 /* 공통 스타일 */
@@ -17,17 +25,105 @@
   text-align: left;
 }
 
+.resetBtnWrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.icRestart {
+  width: 16px;
+  height: 16px;
+}
+
+.addMyCompany {
+  margin-top: 30px; /* 글자 아래 30px */
+  border: 1px dotted #212121; /* 테두리를 점선(dotted)으로 변경 */
+  box-sizing: border-box; /* 박스의 border를 포함한 크기 계산 */
+  position: relative;
+}
+
+.innerBox {
+  background-color: #212121;
+  margin: 16px; /* 모든 방향에서 16px 간격 */
+  border-radius: 4px;
+  height: calc(100% - 32px); /* 상하 margin을 뺀 높이 */
+  width: calc(100% - 32px); /* 좌우 margin을 뺀 너비 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.addButtonWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.addButton {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icCircle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  position: relative;
+}
+
+.icPlus {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.addText {
+  font-family: "Pretendard", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21.48px;
+  color: #ffffff;
+  margin-top: 20px; /* 버튼 아래 20px */
+}
+
+.btnWrapper {
+  margin-top: 30px; /* add 박스 밑으로 30px */
+  display: flex;
+  justify-content: center; /* 가로 방향 중앙 정렬 */
+  width: 100%; /* 부모 요소의 가로 너비를 채워, 버튼이 중앙에 오도록 함 */
+}
+
+/* 비활성화된 상태의 버튼 스타일 */
+.disabledBtn {
+  background-color: #2E2E2E !important; /* 비활성화된 상태의 배경색 */
+  color: #747474 !important; /* 비활성화된 상태의 텍스트 색상 */
+  cursor: not-allowed !important; /* 비활성화된 상태의 커서 */
+}
+
 /* 데스크탑 버전 */
 @media (min-width: 1200px) {
   .content {
-    margin-left: calc(
-      50% - 600px + 24px
-    ); /* outlineContain에서 중앙 정렬 후, 로고의 여백 24px 적용 */
+    margin-left: calc(50% - 600px + 24px); /* 로고의 시작점과 동일하게 배치 */
+  }
+
+  .headingWrapper {
+    padding-right: calc(50% - 600px + 24px); /* 초기화 버튼을 addMyCompany 끝과 동일하게 맞춤 */
   }
 
   .heading {
     font-size: 20px;
     line-height: 23.87px;
+  }
+
+  .addMyCompany {
+    width: calc(100% - 2 * (50% - 600px + 24px - 2px)); /* 미세한 조정을 통해 양쪽 여백을 동일하게 설정 */
+    height: 300px;
   }
 }
 
@@ -37,13 +133,27 @@
     margin-left: 24px; /* 태블릿에서 로고와 동일한 시작 위치 */
   }
 
+  .headingWrapper {
+    padding-right: 24px; /* 초기화 버튼을 addMyCompany 끝과 동일하게 맞춤 */
+  }
+
   .heading {
     font-size: 20px;
     line-height: 23.87px;
   }
 
+  .addMyCompany {
+    width: calc(100% - 2 * (24px - 2px)); /* 미세한 조정을 통해 양쪽 여백을 동일하게 설정 */
+    height: 240px;
+  }
+
   .content {
     padding-top: 60px; /* 로고로부터의 위치 */
+  }
+
+  .innerBox {
+    height: calc(100% - 32px); /* 상하 margin을 뺀 높이 */
+    width: calc(100% - 32px); /* 좌우 margin을 뺀 너비 */
   }
 }
 
@@ -51,12 +161,26 @@
 @media (max-width: 743px) {
   .content {
     margin-left: 16px; /* 모바일에서 로고와 동일한 시작 위치 */
-    padding-top: 60px; /* 로고로부터의 위치 */
+    padding-top: 60px; /* 글자 위치 */
+  }
+
+  .headingWrapper {
+    padding-right: 16px; /* 초기화 버튼을 addMyCompany 끝과 동일하게 맞춤 */
   }
 
   .heading {
     font-size: 16px;
     line-height: 19.09px;
+  }
+
+  .addMyCompany {
+    width: calc(100% - 2 * (16px - 2px)); /* 미세한 조정을 통해 양쪽 여백을 동일하게 설정 */
+    height: 180px;
+  }
+
+  .innerBox {
+    height: calc(100% - 32px); /* 상하 margin을 뺀 높이 */
+    width: calc(100% - 32px); /* 좌우 margin을 뺀 너비 */
   }
 }
 
