@@ -7,16 +7,16 @@ import iconKebab from "../../assets/images/ic_kebab.svg";
 function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
   //단위 변환
   const convertToBillion = (number) => {
+    // **추가된 부분 : 숫자가 아니거나 undefined일 때 0을 반환
+    if (!number || isNaN(number)) {
+      return 0;
+    }
     return parseFloat((number / 100000000).toFixed(2)); // 반올림
     // return Math.floor((number / 100000000) * 100) / 100; // 버림
   };
 
   //텍스트 자르기 (사전 작성)
   const truncateText = (text, maxLength) => {
-    // text가 문자열인지 확인하는 조건 추가(text가 undefined일 때 기본값을 제공)
-    if (typeof text !== "string") {
-      return "";
-    }
     if (text.length > maxLength) {
       return text.substring(0, maxLength) + "...";
     } else {
@@ -53,7 +53,9 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
             {truncateText(description, 58)}
           </span>
         </section>
-        <section className={`${styles.sameSizeContainer} ${styles.rankSizeForSame}`}>
+        <section
+          className={`${styles.sameSizeContainer} ${styles.rankSizeForSame}`}
+        >
           <span>{category}</span>
           <span>{`${convertToBillion(total_investment)}억 원`}</span>
           <span>{`${convertToBillion(revenue)}억 원`}</span>
