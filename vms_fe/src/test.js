@@ -2,7 +2,7 @@ import "./App.css";
 import "./styles/reset.css";
 import React, { useState } from "react";
 
-// 컴포넌트
+// 기존 임포트
 import Pagination from "./components/common/Pagination.js";
 import HeaderColumns from "./components/common/HeaderColumns.js";
 import CompanyDataPerRow from "./components/common/CompanyDataPerRow.js";
@@ -15,15 +15,16 @@ import ModalSelectComparision from "components/ModalSelectComparision";
 import PageNav from "./components/PageNav.js";
 import DataRowSetRender from "components/DataRowSetRender";
 
+// 새로운 임포트 추가
+import CompanyListSelect from "./components/companyInfoList"; // companyInfoList.js 파일을 임포트
+
 //커스텀 훅
 import usePageHandler from "hook/usePageHandler";
-
 
 //테스트용 이미지
 import Companyimg from "./assets/images/mock_img/company_temp.svg";
 import defaultLogo from "./assets/images/company_logo_1.svg";
 import ToggleIcon from "./assets/images/ic_toggle.svg";
-
 
 const App = () => {
   // 커스텀 훅 적용
@@ -39,7 +40,6 @@ const App = () => {
   const closeModal = () => {
     setModalOpen(false);
   };
-
 
   //SearchBar 테스트
   const [searchQuery, setSearchQuery] = useState("");
@@ -99,7 +99,18 @@ const App = () => {
   }
 
   // 테스트용 데이터 세트
-  const dataList = [dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject ]
+  const dataList = [
+    dataObject,
+    dataObject,
+    dataObject,
+    dataObject,
+    dataObject,
+    dataObject,
+    dataObject,
+    dataObject,
+    dataObject,
+    dataObject,
+  ];
 
   return (
     <div>
@@ -118,7 +129,6 @@ const App = () => {
       <DataRowSetRender type="comment" dataList={dataList} />
       <DataRowSetRender type="invest" dataList={dataList} />
       <DataRowSetRender type="choose" dataList={dataList} />
-      
 
 
       <h1>InvestmentComment Component 테스트</h1>
@@ -127,7 +137,6 @@ const App = () => {
         placeholderText="비밀번호를 입력해 주세요"
         errorMessage="비밀번호를 입력해야 합니다."
       />
-
 
       <h1>검색창 테스트</h1>
       <SearchBar
@@ -149,18 +158,18 @@ const App = () => {
       <h1>PageNav Component 테스트</h1>
       <PageNav />
       {/* 하단 보더 확인을 위한 Nav 1개 더 추가 */}
-      <PageNav /> 
+      <PageNav />
 
       <h1>모달 테스트입니다</h1>
       <button onClick={openModal}>Open Investment Modal</button>
       <ModalSelectComparision isOpen={isModalOpen} onClose={closeModal} />
 
-
+      {/* companyInfoList.js와 companyItem.js 테스트 추가 */}
+      <h1>Company List Select 테스트</h1>
+      <CompanyListSelect />
 
     </div>
   );
-
-
 };
 
 export default App;
