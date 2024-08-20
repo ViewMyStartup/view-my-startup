@@ -78,7 +78,7 @@ function DefaultPage() {
           <CompanyDataPerRow
             key={company.name}
             type="rank"
-            companyData={company}
+            dataObject={company}
           />
         ))}
       </ul>
