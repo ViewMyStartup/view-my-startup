@@ -35,33 +35,32 @@ p {
 
 /* 모바일 화면에서 스크롤바 추가 */
 @media (max-width: 743px) {
-  /* 좌우 스크롤바 */
   .scrollableWrapper {
-    overflow-x: auto;
-    white-space: nowrap;
+    overflow-x: auto; /* 수평 스크롤바 활성화 */
+    white-space: nowrap; /* 자식 요소들이 한 줄에 표시되도록 설정 */
     background: #212121;
     border: #212121;
     padding: 10px 0;
   }
 
   /* 스크롤바 전체 */
-  .scrollableContainer::-webkit-scrollbar {
-    width: 8px;
+  .scrollableWrapper::-webkit-scrollbar {
+    height: 8px; /* 수평 스크롤바의 높이 */
   }
 
   /* 스크롤바의 배경 */
-  .scrollableContainer::-webkit-scrollbar-track {
+  .scrollableWrapper::-webkit-scrollbar-track {
     background: #131313;
   }
 
   /* 스크롤바의 핸들바 */
-  .scrollableContainer::-webkit-scrollbar-thumb {
+  .scrollableWrapper::-webkit-scrollbar-thumb {
     background: #212121;
     border-radius: 8px;
   }
 
   /* 핸들에 마우스를 올렸을 때 */
-  .scrollableContainer::-webkit-scrollbar-thumb:hover {
+  .scrollableWrapper::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
 }
