@@ -22,9 +22,11 @@
 .logo {
   width: 80px;
   height: 80px;
-  border-radius: 50%;
+  border-radius: 50%; /* 이 부분이 이미지가 원형으로 나타나도록 설정 */
+  object-fit: cover; /* 이미지가 원 안에 잘 맞게 조정 */
   margin-top: 32px;
 }
+
 
 .companyName {
   color: var(--white);
@@ -54,12 +56,11 @@
     width: 65px;
     height: 65px;
   }
-
+  
   .companyName {
     font-size: 14px;
     font-weight: 500;
   }
-  
   .companyCategory {
     font-size: 12px;
     font-weight: 500;

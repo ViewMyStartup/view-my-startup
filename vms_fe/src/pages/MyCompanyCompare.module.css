@@ -66,6 +66,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+}
+
+.companyCardWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.removeText {
+  position: absolute;
+  top: 15px;        /* 상단에서 15px 아래 */
+  right: 15px;      /* 오른쪽에서 15px 왼쪽 */
+  font-size: 16px;
+  font-weight: 400;
+  color: #d8d8d8;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .addButtonWrapper {
@@ -177,30 +195,5 @@
 
   .headingWrapper {
     width: calc(100% - 2 * 16px);
-  }
-}
-
-/* ModalSelectComparision 컴포넌트의 위치 설정 */
-
-/* 기본값 (데스크탑) */
-.modalSelectComparision {
-  position: fixed;
-  top: 408px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
-}
-
-/* 태블릿 버전 */
-@media (max-width: 1199px) {
-  .modalSelectComparision {
-    top: 402px;
-  }
-}
-
-/* 모바일 버전 */
-@media (max-width: 743px) {
-  .modalSelectComparision {
-    top: 268px;
   }
 }
