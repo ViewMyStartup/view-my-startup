@@ -80,6 +80,10 @@
   width: 100%;
 }
 
+.sameSizeContainer > span {
+  width: 100%;
+}
+
 .commentSizeForSame {
   min-width: 252px;
   max-width: 252px;
