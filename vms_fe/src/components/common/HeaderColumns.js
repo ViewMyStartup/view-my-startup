@@ -10,7 +10,7 @@ function HeaderColumns({ type = "rank" }) {
           <div className={styles.columnCompanyName}>기업 명</div>
           <div className={styles.columnCompanyDescription}>기업 소개</div>
         </section>
-        <section className={styles.sameSizeContainer}>
+        <section className={`${styles.sameSizeContainer} ${styles.rankSizeForSame}`}>
           <span>카테고리</span>
           <span>누적투자 금액</span>
           <span>매출액</span>
@@ -27,7 +27,7 @@ function HeaderColumns({ type = "rank" }) {
           <div className={styles.columnCompanyName}>기업 명</div>
           <div className={styles.columnCompanyDescription}>기업 소개</div>
         </section>
-        <section className={styles.sameSizeContainer}>
+        <section className={`${styles.sameSizeContainer} ${styles.noRankSizeForSame}`}>
           <span>카테고리</span>
           <span>누적투자 금액</span>
           <span>매출액</span>
