@@ -6,7 +6,7 @@ import SearchBar from "components/common/SearchBar";
 import SelectBtn from "./common/SelectBtn";
 import deleteIcon from "assets/images/ic_delete.svg";
 
-const ModalSelectComparision = ({ isOpen, onClose }) => {
+const ModalSelectComparision = ({ isOpen, onClose, title }) => {
   // 검색어 상태 (검색창의 입력 값을 관리)
   const [searchTerm, setSearchTerm] = useState("");
   // 선택된 기업 목록 (사용자가 선택한 기업을 저장)
@@ -82,7 +82,7 @@ const ModalSelectComparision = ({ isOpen, onClose }) => {
     return filteredCompanies.slice(startIndex, startIndex + itemsPerPage);
   }, [filteredCompanies, currentPage, itemsPerPage]);
 
-  // 모달 닫기 핸들러 (모달을 닫을 때 현재 선택된 기업 목록을 부모 컴포넌트로 전달합니다, 사용시 추가 수정사항 필요해보일경우 말씀주세요)
+  // 모달 닫기 핸들러 (모달을 닫을 때 현재 선택된 기업 목록을 부모 컴포넌트로 전달합니다)
   const handleClose = () => {
     onClose(selectedCompanies);
   };
@@ -95,7 +95,7 @@ const ModalSelectComparision = ({ isOpen, onClose }) => {
       <div className={style.modalContainer}>
         <div className={style.modalContent}>
           <div className={style.modalHeadText}>
-            비교할 기업 선택하기
+            {title} {/* title을 prop으로 전달받아 그 값을 모달의 제목으로 사용 */}
             <img
               src={deleteIcon}
               className={style.deleteLogo}
