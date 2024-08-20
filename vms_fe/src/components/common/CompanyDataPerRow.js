@@ -47,7 +47,7 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
           </article>
           <span className={styles.columnCompanyDescription}>{truncateText(description, 58)}</span>
         </section>
-        <section className={styles.sameSizeContainer}>
+        <section className={`${styles.sameSizeContainer} ${styles.rankSizeForSame}`}>
           <span>{category}</span>
           <span>{`${convertToBillion(total_investment)}억 원`}</span>
           <span>{`${convertToBillion(revenue)}억 원`}</span>
