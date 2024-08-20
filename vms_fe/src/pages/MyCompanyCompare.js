@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./MyCompanyCompare.module.css";
 import PageNav from "components/PageNav";
 import MediumBtn from "components/common/MediumBtn.js";
 import icCircle from "../assets/images/ic_circle.svg";
 import icPlus from "../assets/images/ic_plus.svg";
 import icRestart from "../assets/images/ic_restart.svg";
+import ModalSelectComparision from "../components/ModalSelectComparision"; 
 
 function MyCompanyCompare() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = (selectedCompanies) => {
+    console.log("Selected companies:", selectedCompanies);
+    setIsModalOpen(false);
+  };
+
   return (
     <div className={styles.pageContainer}>
       <PageNav />
@@ -17,18 +29,22 @@ function MyCompanyCompare() {
             <MediumBtn
               text={
                 <>
-                  <img src={icRestart} alt="restart" className={styles.icRestart} />
+                  <img
+                    src={icRestart}
+                    alt="restart"
+                    className={styles.icRestart}
+                  />
                   &nbsp;전체 초기화
                 </>
               }
-              disabled={true}  // 초기화 버튼 비활성화
+              disabled={true}
             />
           </div>
         </div>
         <div className={styles.addMyCompany}>
           <div className={styles.innerBox}>
             <div className={styles.addButtonWrapper}>
-              <div className={styles.addButton}>
+              <div className={styles.addButton} onClick={openModal}>
                 <img src={icCircle} alt="circle" className={styles.icCircle} />
                 <img src={icPlus} alt="plus" className={styles.icPlus} />
               </div>
@@ -36,10 +52,16 @@ function MyCompanyCompare() {
             </div>
           </div>
           <div className={styles.btnWrapper}>
-            <MediumBtn text="기업 비교하기" disabled={true} /> {/* 버튼 비활성화 및 텍스트 변경 */}
+            <MediumBtn text="기업 비교하기" disabled={true} />
           </div>
         </div>
       </div>
+      <ModalSelectComparision
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        title="나의 기업 선택하기"  // 모달의 고정된 제목
+        text="최근 선택된 기업"  // 동적으로 변경되는 텍스트
+      />
     </div>
   );
 }
