@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styles from "./CurrentStateInvest.module.css";
+
 import PageNav from "../components/PageNav";
 import Pagination from "../components/common/Pagination";
-import DropdownComponent from "../components/common/DropdownComponent";
-import DataRowSetRender from "../components/DataRowSetRender.js";
-import CompanyDataPerRow from "../components/common/CompanyDataPerRow.js";
-import HeaderColumns from "../components/common/HeaderColumns.js";
+import DropdownMiddleSize from "../components/common/DropdownMiddleSize";
 import usePageHandler from "../hook/usePageHandler";
+import CompanyDataPerRow from "../components/common/CompanyDataPerRow";
+import HeaderColumns from "../components/common/HeaderColumns";
 
 function CurrentStateInvest() {
   const { currentPage, totalPages, handlePageChange } = usePageHandler();
@@ -88,11 +88,10 @@ function CurrentStateInvest() {
       <div className={styles.currentStateInvest}>
         <div className={styles.investStateNav}>
           <p>투자 현황</p>
-          <DropdownComponent
-            initialLabel={selectedOption}
+          <DropdownMiddleSize
+            initialLabel={selectedOption} // 기본 드롭다운 값
             options={customOptions}
-            customClass={styles.customDropdown}
-            onChange={handleDropdownChange}
+            handleOptionChange={handleDropdownChange} // 선택된 옵션 변경 핸들러
           />
         </div>
         <HeaderColumns type="invest" />

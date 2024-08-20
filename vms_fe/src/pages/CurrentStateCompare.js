@@ -1,12 +1,13 @@
 import React from "react";
+import styles from "./CurrentStateCompare.module.css";
+
 
 // 컴포넌트
 import PageNav from "components/PageNav";
-import styles from "./CurrentStateCompare.module.css";
+import DataRowSetRender from "components/DataRowSetRender"
 import Pagination from "components/common/Pagination";
-
-import DataRowSetRender from "components/DataRowSetRender";
-import DropdownComponent from "components/common/DropdownComponent";
+import Dropdown from "components/common/Dropdown";
+import DropdownMiddleSize from "components/common/DropdownMiddleSize";
 
 // 커스텀 훅
 import usePageHandler from "hook/usePageHandler";
@@ -15,8 +16,9 @@ import usePageHandler from "hook/usePageHandler";
 import Companyimg from "../assets/images/mock_img/company_temp.svg";
 
 function CurrentStateCompare() {
-  const { currentPage, totalPages, handlePageChange } = usePageHandler();
   // CompanyPerRow & HeaderColumns 컴포넌트 테스트용 데이터 데이터
+  const { currentPage, totalPages, handlePageChange } = usePageHandler();
+
   const dataObject = {
     id: "1",
     rank: "3",
@@ -38,18 +40,15 @@ function CurrentStateCompare() {
   }
 
   // 테스트용 데이터 세트
-  const dataList = [
-    dataObject,
-    dataObject,
-    dataObject,
-    dataObject,
-    dataObject,
-    dataObject,
-    dataObject,
-    dataObject,
-    dataObject,
-    dataObject,
-  ];
+  const dataList = [dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject, dataObject ]
+
+
+  const options = [
+    "나의 기업 선택 횟수 높은순",
+    "나의 기업 선택 횟수 낮은순",
+    "실제 누적 투자 금액 높은순",
+    "실제 누적 투자 금액 낮은순"
+  ]
 
   return (
     <div className={styles.bgSet}>
@@ -57,9 +56,17 @@ function CurrentStateCompare() {
         <PageNav />
       </nav>
       <main className={styles.mainContainer}>
-        <div className={styles.headerText}>투자 현황</div>
-        <DropdownComponent />
-        <DataRowSetRender type="choose" dataList={dataList}/>
+        <header className={styles.headerBox}>
+          <span className={styles.headerText}>투자 현황</span>
+          <DropdownMiddleSize options={options}/>
+        </header>
+        <section>
+          <DataRowSetRender
+            type="invest"
+            dataList={dataList}
+
+          />
+        </section>
       </main>
       <footer className={styles.footerSet}>
         <Pagination
