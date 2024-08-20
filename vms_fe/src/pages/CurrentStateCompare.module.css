@@ -25,7 +25,6 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 0px 24px; 
   gap: 28px;
 }
 
@@ -45,9 +44,5 @@
 @media (max-width: 744px) {
   .mainContainer {
     padding: 24px 16px;
-  }
-
-  .headerBox {
-    padding: 0px 16px;
   }
 }
