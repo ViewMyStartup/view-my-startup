@@ -1,6 +1,6 @@
 .pageContainer {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-color: var(--black-400);
   color: var(--white);
 }
