@@ -1,12 +1,13 @@
 import React from "react";
+import styles from "./CurrentStateCompare.module.css";
 
 
 // 컴포넌트
 import PageNav from "components/PageNav";
 import DataRowSetRender from "components/DataRowSetRender"
 import Pagination from "components/common/Pagination";
+import Dropdown from "components/common/Dropdown";
 import DropdownMiddleSize from "components/common/DropdownMiddleSize";
->>>>>>> featur/page-CurrentStateCompare-정준호
 
 // 커스텀 훅
 import usePageHandler from "hook/usePageHandler";
@@ -51,6 +52,7 @@ function CurrentStateCompare() {
 
   return (
     <div className={styles.bgSet}>
+      <Dropdown options={options}/>
       <DropdownMiddleSize options={options}/>
       <nav className={styles.navSet}>
         <PageNav />
