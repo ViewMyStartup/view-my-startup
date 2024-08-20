@@ -1,10 +1,13 @@
+/* 드롭다운 컨테이너 */
 .dropdown {
   position: relative;
   display: inline-block;
-  width: 264px;
+  width: 100%;
+  max-width: 264px;
   height: 40px;
 }
 
+/* 드롭다운 토글 버튼 */
 .dropdownToggle {
   display: flex;
   justify-content: space-between;
@@ -16,32 +19,39 @@
   border-radius: 10px;
   cursor: pointer;
   border: 1px solid #747474;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
+/* 드롭다운 라벨 */
 .dropdownLabel {
   font-weight: 400;
   font-size: 14px;
-  color: #D8D8D8;
+  color: #d8d8d8;
   text-align: left;
   margin-right: 10px;
+  white-space: nowrap; /* 텍스트 줄 바꿈 방지 */
 }
 
+/* 드롭다운 아이콘 */
 .dropdownIcon {
   width: 22px;
   height: 22px;
   margin-left: auto;
-  transform: translateX(-20px);
 }
 
+/* 드롭다운 메뉴 */
 .dropdownMenu {
   position: absolute;
   margin-top: 8px;
-  width: 264px;
+  width: 100%;
+  max-width: 264px;
   background-color: #131313;
   border-radius: 10px;
-  border: 1px solid #747474; /* 테두리 효과 추가 */
+  border: 1px solid #747474;
 }
 
+/* 드롭다운 메뉴 아이템 */
 .dropdownMenu li:not(:last-child) {
   border-bottom: 1px solid #747474;
 }
@@ -60,13 +70,12 @@
   background-color: #333333;
 }
 
-
 .dropdownMenuItem {
   height: 40px;
   padding: 0 10px;
   font-weight: 400;
   font-size: 14px;
-  color: #D8D8D8;
+  color: #d8d8d8;
   text-align: center;
   cursor: pointer;
   display: flex;
@@ -74,10 +83,11 @@
   justify-content: center;
 }
 
-/* 모바일 버전 (화면 크기 743px ~ 375px) 스타일링 */
+/* 모바일 버전 (화면 크기 743px ~ 375px) */
 @media (min-width: 375px) and (max-width: 743px) {
   .dropdown {
-    width: 217px;
+    width: 100%;
+    max-width: 217px;
   }
 
   .dropdownToggle {
@@ -95,14 +105,12 @@
   }
 
   .dropdownMenu {
-    width: 217px;
+    width: 100%;
+    max-width: 217px;
   }
 
-
   .dropdownMenuItem {
-
     height: 38px;
     font-size: 12px;
   }
 }
-

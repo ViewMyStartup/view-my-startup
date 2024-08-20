@@ -48,7 +48,6 @@ function CurrentStateInvest() {
     },
   ];
 
-  // 정렬 옵션
   useEffect(() => {
     let sorted = [...mockData];
     switch (selectedOption) {
@@ -89,17 +88,25 @@ function CurrentStateInvest() {
         <div className={styles.investStateNav}>
           <p>투자 현황</p>
           <DropdownMiddleSize
-            initialLabel={selectedOption} // 기본 드롭다운 값
+            initialLabel={selectedOption}
             options={customOptions}
-            handleOptionChange={handleDropdownChange} // 선택된 옵션 변경 핸들러
+            handleOptionChange={handleDropdownChange}
           />
         </div>
-        <HeaderColumns type="invest" />
-        <ul>
-          {sortedData.map((data) => (
-            <CompanyDataPerRow key={data.id} type="invest" dataObject={data} />
-          ))}
-        </ul>
+        <div className={styles.scrollableWrapper}>
+          <HeaderColumns type="invest" />
+          <div className={styles.scrollableContainer}>
+            <ul className={styles.scrollableList}>
+              {sortedData.map((data) => (
+                <CompanyDataPerRow
+                  key={data.id}
+                  type="invest"
+                  dataObject={data}
+                />
+              ))}
+            </ul>
+          </div>
+        </div>
         <div className={styles.pagination}>
           <Pagination
             currentPage={currentPage}

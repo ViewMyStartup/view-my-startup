@@ -30,7 +30,11 @@ function DropdownMidleSize({
     <div className={styles.dropdown}>
       <div className={styles.dropdownToggle} onClick={toggleDropdown}>
         <span className={styles.dropdownLabel}>{selectedOption}</span>
-        <img src={ToggleIcon} alt="Toggle Icon" />
+        <img
+          src={ToggleIcon}
+          alt="Toggle Icon"
+          className={styles.dropdownIcon}
+        />
       </div>
       {isOpen && (
         <ul className={styles.dropdownMenu}>
