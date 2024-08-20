@@ -17,6 +17,7 @@ function CurrentStateInvest() {
   );
   const [sortedData, setSortedData] = useState([]);
 
+  // 투자현황 페이지에서 사용될 드롭다운 옵션 수정
   const customOptions = [
     "View My Startup 투자 금액 높은순",
     "View My Startup 투자 금액 낮은순",
@@ -24,6 +25,7 @@ function CurrentStateInvest() {
     "실제 누적 투자 금액 낮은순",
   ];
 
+  // 드롭다운 정렬
   useEffect(() => {
     let sorted = [...mockData];
     switch (selectedOption) {
@@ -49,10 +51,12 @@ function CurrentStateInvest() {
     setSortedData(sorted);
   }, [selectedOption]);
 
+  // 드롭다운 옵션 변경 핸들러
   const handleDropdownChange = (option) => {
     setSelectedOption(option);
   };
 
+  // 페이지 변경 핸들러
   const handlePageClick = (page) => {
     handlePageChange(page);
   };
