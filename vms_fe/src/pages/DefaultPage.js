@@ -77,18 +77,18 @@ function DefaultPage() {
             <Dropdown onOptionSelect={handleSortChange} />
           </div>
         </div>
-        <div className={styles.headerContainer}>
+        <div className={styles.listContainer}>
           <HeaderColumns type="rank" />
+          <ul className={styles.companyTable}>
+            {displayedCompanies.map((company) => (
+              <CompanyDataPerRow
+                key={company.name}
+                type="rank"
+                dataObject={company}
+              />
+            ))}
+          </ul>
         </div>
-        <ul className={styles.companyTable}>
-          {displayedCompanies.map((company) => (
-            <CompanyDataPerRow
-              key={company.name}
-              type="rank"
-              dataObject={company}
-            />
-          ))}
-        </ul>
         <Pagination
           currentPage={currentPage}
           totalPages={Math.ceil(filteredCompanies.length / companiesPerPage)}

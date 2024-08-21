@@ -19,44 +19,45 @@
   justify-content: space-between;
   margin-top: 40px;
   margin-bottom: 16px;
+  padding: 0 24px;
 }
 .searchBarRight {
   display: flex;
   align-items: center;
   gap: 16px;
 }
-.headerContainer {
+.listContainer {
   width: 100%;
   max-width: 1200px;
+  padding: 0 24px;
 }
 .companyTable {
   width: 100%;
-  max-width: 1200px;
   margin-top: 16px;
   margin-bottom: 40px;
 }
 @media (max-width: 744px) {
-  .companyTable {
+  .listContainer {
     overflow-x: auto;
     padding-bottom: 12px;
   }
-  .companyTable::-webkit-scrollbar {
+  .listContainer::-webkit-scrollbar {
     height: 12px;
   }
 
-  .companyTable::-webkit-scrollbar-track {
+  .listContainer::-webkit-scrollbar-track {
     background: #212121;
     border-radius: 10px;
   }
 
-  .companyTable::-webkit-scrollbar-thumb {
+  .listContainer::-webkit-scrollbar-thumb {
     min-width: 101px;
     background-color: #131313;
     border-radius: 10px;
     border: 2px solid #212121;
   }
 
-  .companyTable::-webkit-scrollbar-thumb:hover {
+  .listContainer::-webkit-scrollbar-thumb:hover {
     background-color: #555;
   }
 }
