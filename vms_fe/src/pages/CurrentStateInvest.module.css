@@ -40,3 +40,9 @@ p {
   margin-top: 40px;
   padding-bottom: 133px;
 }
+
+@media (max-width: 744px) {
+  .investCompanyList .currentStateInvest {
+    padding: 24px 16px;
+  }
+}

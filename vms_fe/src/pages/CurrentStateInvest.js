@@ -86,7 +86,7 @@ function CurrentStateInvest() {
     "실제 누적 투자 금액 낮은순",
   ];
 
-  // 옵션 별 정렬
+  // 옵션 별 정렬 ( 백엔드에서 구현시, 삭제예정 )
   useEffect(() => {
     let sorted = [...mockData];
     switch (selectedOption) {
