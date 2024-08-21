@@ -58,12 +58,11 @@
 .companyInfoContainer {
   display: flex;
   align-items: center;
-  justify-content: start;
   width: 100%;
   min-width: 140px;
   max-width: 213px;
   gap: 12px;
-  padding-left: 24px; /**/
+  padding: 0 24px;
 }
 
 .companyInfoContainer > span {
