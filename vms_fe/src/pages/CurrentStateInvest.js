@@ -78,6 +78,7 @@ function CurrentStateInvest() {
     },
   ];
 
+  // 투자 현황 페이지에서 사용될 옵션 설정
   const customOptions = [
     "View My Startup 투자 금액 높은순",
     "View My Startup 투자 금액 낮은순",
@@ -85,6 +86,7 @@ function CurrentStateInvest() {
     "실제 누적 투자 금액 낮은순",
   ];
 
+  // 옵션 별 정렬
   useEffect(() => {
     let sorted = [...mockData];
     switch (selectedOption) {
@@ -108,13 +110,15 @@ function CurrentStateInvest() {
         break;
     }
     setSortedData(sorted);
-    setCurrentPage(1);
+    setCurrentPage(1); // 옵션 바뀌는 경우, 첫 페이지로 돌아감
   }, [selectedOption]);
 
+  // 옵션 변경 핸들러
   const handleDropdownChange = (option) => {
     setSelectedOption(option);
   };
 
+  // 페이지 변경 핸들러
   const handlePageClick = (page) => {
     handlePageChange(page);
   };
