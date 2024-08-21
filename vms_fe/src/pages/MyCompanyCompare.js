@@ -6,19 +6,30 @@ import icCircle from "../assets/images/ic_circle.svg";
 import icPlus from "../assets/images/ic_plus.svg";
 import icRestart from "../assets/images/ic_restart.svg";
 import ModalSelectComparision from "../components/ModalSelectComparision"; 
-import CompanyCard from "../components/common/CompanyCard"; // CompanyCard 가져오기
+import CompanyCard from "../components/common/CompanyCard";
 
 function MyCompanyCompare() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedCompanies, setSelectedCompanies] = useState([]); // 선택된 회사들 상태
+  const [isAdditionalModalOpen, setIsAdditionalModalOpen] = useState(false);
+  const [selectedCompanies, setSelectedCompanies] = useState([]);
+  const [additionalCompanies, setAdditionalCompanies] = useState([]);
 
   const openModal = () => {
     setIsModalOpen(true);
   };
 
+  const openAdditionalModal = () => {
+    setIsAdditionalModalOpen(true);
+  };
+
   const closeModal = (companies) => {
-    setSelectedCompanies(companies); // 선택된 회사들 업데이트
+    setSelectedCompanies(companies);
     setIsModalOpen(false);
+  };
+
+  const closeAdditionalModal = (companies) => {
+    setAdditionalCompanies(companies);
+    setIsAdditionalModalOpen(false);
   };
 
   const removeCompany = (index) => {
@@ -45,11 +56,12 @@ function MyCompanyCompare() {
                   &nbsp;전체 초기화
                 </>
               }
-              disabled={selectedCompanies.length === 0} // 선택된 회사가 있을 때만 활성화
-              onClick={() => setSelectedCompanies([])} // 전체 초기화
+              disabled={selectedCompanies.length === 0}
+              onClick={() => setSelectedCompanies([])}
             />
           </div>
         </div>
+
         <div className={styles.addMyCompany}>
           <div className={styles.innerBox}>
             {selectedCompanies.length > 0 ? (
@@ -59,8 +71,8 @@ function MyCompanyCompare() {
                     name={company.name}
                     category={company.category}
                     logoSrc={company.logoSrc}
-                    showDeleteButton={false} // 삭제 아이콘 숨기기
-                    showBackground={false} // 배경색 없음
+                    showDeleteButton={false}
+                    showBackground={false}
                   />
                   <p
                     className={styles.removeText}
@@ -80,16 +92,54 @@ function MyCompanyCompare() {
               </div>
             )}
           </div>
-          <div className={styles.btnWrapper}>
-            <MediumBtn text="기업 비교하기" disabled={selectedCompanies.length === 0} />
-          </div>
+        </div>
+
+        {selectedCompanies.length > 0 && (
+          <>
+            <div className={styles.subheadingWrapper}>
+              <h2 className={styles.subheading}>어떤 기업이 궁금하세요?</h2>
+              <p className={styles.maxCompaniesText}>(최대 5개)</p>
+              <div className={styles.addCompanyBtnWrapper}>
+                <MediumBtn
+                  text="기업 추가하기"
+                  className={styles.addCompanyBtn}
+                  onClick={openAdditionalModal}
+                />
+              </div>
+            </div>
+
+            <div className={styles.infoBox}>
+              <div className={styles.noCompaniesInfo}>
+                아직 추가한 기업이 없어요,<br />
+                버튼을 눌러 기업을 추가해보세요!
+              </div>
+            </div>
+          </>
+        )}
+
+        <div className={styles.btnWrapper}>
+          <MediumBtn
+            text="기업 비교하기"
+            className={selectedCompanies.length === 0 ? styles.disabledBtn : ""}
+            disabled={selectedCompanies.length === 0}
+          />
         </div>
       </div>
+
+      {/* 나의 기업 선택하기 모달 */}
       <ModalSelectComparision
         isOpen={isModalOpen}
         onClose={closeModal}
-        title="나의 기업 선택하기"  // 모달의 고정된 제목
-        text="최근 선택된 기업"  // 동적으로 변경되는 텍스트
+        title="나의 기업 선택하기"
+        text="최근 선택된 기업"
+      />
+
+      {/* 비교할 기업 선택하기 모달 */}
+      <ModalSelectComparision
+        isOpen={isAdditionalModalOpen}
+        onClose={closeAdditionalModal}
+        title="비교할 기업 선택하기"
+        text="선택한 기업"
       />
     </div>
   );
