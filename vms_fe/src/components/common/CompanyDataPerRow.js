@@ -7,10 +7,6 @@ import iconKebab from "../../assets/images/ic_kebab.svg";
 function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
   //단위 변환
   const convertToBillion = (number) => {
-    // **추가된 부분 : 숫자가 아니거나 undefined일 때 0을 반환
-    if (!number || isNaN(number)) {
-      return 0;
-    }
     return parseFloat((number / 100000000).toFixed(2)); // 반올림
     // return Math.floor((number / 100000000) * 100) / 100; // 버림
   };
