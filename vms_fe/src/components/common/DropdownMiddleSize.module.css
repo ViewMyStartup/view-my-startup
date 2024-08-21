@@ -21,6 +21,7 @@
   border: 1px solid #747474;
   overflow: hidden;
   box-sizing: border-box;
+  transition: background-color 0.4s ease;
 }
 
 /* 드롭다운 라벨 */
@@ -30,17 +31,20 @@
   color: #d8d8d8;
   text-align: left;
   margin-right: 10px;
-  white-space: nowrap; /* 텍스트 줄 바꿈 방지 */
+  white-space: nowrap;
 }
 
-/* 드롭다운 아이콘 */
 .dropdownIcon {
   width: 22px;
   height: 22px;
   margin-left: auto;
+  transition: transform 0.4s ease;
 }
 
-/* 드롭다운 메뉴 */
+.dropdownToggle.open .dropdownIcon {
+  transform: rotate(180deg);
+}
+
 .dropdownMenu {
   position: absolute;
   margin-top: 8px;
@@ -49,6 +53,15 @@
   background-color: #131313;
   border-radius: 10px;
   border: 1px solid #747474;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s ease-out, opacity 0.4s ease-out;
+}
+
+.dropdownMenuOpen {
+  max-height: 500px;
+  opacity: 1;
 }
 
 /* 드롭다운 메뉴 아이템 */

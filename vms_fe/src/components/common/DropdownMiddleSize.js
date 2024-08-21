@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styles from "./DropdownMiddleSize.module.css";
 import ToggleIcon from "./../../assets/images/ic_toggle.svg";
 
-// 옵션 기본값 설정, 초기 노출 값은 options 첫번째 값으로 설정
 function DropdownMidleSize({
   options = [
     "누적 투자금액 높은순",
@@ -28,7 +27,10 @@ function DropdownMidleSize({
 
   return (
     <div className={styles.dropdown}>
-      <div className={styles.dropdownToggle} onClick={toggleDropdown}>
+      <div
+        className={`${styles.dropdownToggle} ${isOpen ? styles.open : ""}`}
+        onClick={toggleDropdown}
+      >
         <span className={styles.dropdownLabel}>{selectedOption}</span>
         <img
           src={ToggleIcon}
@@ -36,19 +38,21 @@ function DropdownMidleSize({
           className={styles.dropdownIcon}
         />
       </div>
-      {isOpen && (
-        <ul className={styles.dropdownMenu}>
-          {options.map((option, index) => (
-            <li
-              key={index}
-              className={styles.dropdownMenuItem}
-              onClick={() => handleOptionClick(option)}
-            >
-              {option}
-            </li>
-          ))}
-        </ul>
-      )}
+      <ul
+        className={`${styles.dropdownMenu} ${
+          isOpen ? styles.dropdownMenuOpen : ""
+        }`}
+      >
+        {options.map((option, index) => (
+          <li
+            key={index}
+            className={styles.dropdownMenuItem}
+            onClick={() => handleOptionClick(option)}
+          >
+            {option}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

@@ -33,7 +33,7 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
       id,
       rank,
       name,
-      img,
+      logoUrl, // img -> logoUrl
       description,
       category,
       total_investment,
@@ -44,9 +44,9 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
     return (
       <li key={id} className={styles.dataPerRowContainer}>
         <section className={`${styles.diffSizeContainer} ${styles.rankSize}`}>
-          <span className={styles.columnRank}>{`${rank}위`}</span>
+          <span className={styles.columnRank}>{`${dataObject.rank}위`}</span>
           <article className={styles.companyInfoContainer}>
-            <img src={img} alt="기업 이미지" />
+            <img src={logoUrl} alt="기업 이미지" />
             <span>{name}</span>
           </article>
           <span className={styles.columnCompanyDescription}>

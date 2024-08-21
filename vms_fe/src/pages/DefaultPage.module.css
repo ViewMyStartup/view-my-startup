@@ -1,0 +1,89 @@
+.pageContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--black-400);
+  color: var(--white);
+}
+.nav {
+  width: 100%;
+}
+.mainContainer {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 24px;
+  padding-bottom: 133px;
+}
+.searchBarContainer {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 40px;
+  margin-bottom: 16px;
+}
+.listTitle {
+  font-size: 20px;
+  font-weight: 700;
+}
+.searchBarRight {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.listContainer {
+  width: 100%;
+  max-width: 1200px;
+}
+.companyTable {
+  width: 100%;
+  margin-top: 16px;
+  margin-bottom: 40px;
+}
+@media (max-width: 744px) {
+  .searchBarContainer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .listTitle {
+    font-size: 16px;
+    padding-bottom: 16px;
+  }
+  .searchBarRight {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .companyTable {
+    margin-bottom: 0;
+  }
+  .listContainer {
+    overflow-x: auto;
+    padding-bottom: 12px;
+    margin-bottom: 24px;
+  }
+  .listContainer::-webkit-scrollbar {
+    height: 12px;
+  }
+
+  .listContainer::-webkit-scrollbar-track {
+    background: #212121;
+    border-radius: 10px;
+  }
+
+  .listContainer::-webkit-scrollbar-thumb {
+    min-width: 101px;
+    background-color: #131313;
+    border-radius: 10px;
+    border: 2px solid #212121;
+  }
+
+  .listContainer::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+  }
+}

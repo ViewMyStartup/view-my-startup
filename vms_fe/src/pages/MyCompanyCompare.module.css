@@ -1,0 +1,278 @@
+.pageContainer {
+  background-color: #131313;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 90px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 1156px;
+  flex-grow: 1;
+}
+
+.headingWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: calc(100% - 48px);
+}
+
+.heading {
+  color: #ffffff;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 700;
+  text-align: left;
+  font-size: 20px;
+}
+
+.resetBtnWrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.subheadingWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 45px;
+  width: calc(100% - 48px);
+  max-width: 1156px;
+}
+
+.subheading {
+  color: #ffffff;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 700;
+  text-align: left;
+  font-size: 20px;
+  margin-right: 13px;
+}
+
+.maxCompaniesText {
+  font-family: "Pretendard", sans-serif;
+  font-weight: 400;
+  color: #ffffff;
+  line-height: 19.09px;
+  margin-left: 0;
+}
+
+.addCompanyBtnWrapper {
+  margin-left: auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.addCompanyBtn {
+  width: calc(149px - 20px) !important;
+  height: 40px;
+  font-size: 16px;
+}
+
+.addMyCompany {
+  margin-top: 30px;
+  width: calc(100% - 48px);
+  background-color: #212121;
+  border-radius: 4px;
+  height: 300px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.innerBox {
+  background-color: #212121;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 15px;
+  position: relative;
+}
+
+.companyCardWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.removeText {
+  position: absolute;
+  top: -30px;
+  right: 30px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #d8d8d8;
+  text-decoration: underline;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* 태블릿용 스타일 */
+@media (min-width: 744px) and (max-width: 1199px) {
+  .removeText {
+    top: -30px;
+    right: 30px;
+  }
+}
+
+@media (max-width: 743px) {
+  .innerBox {
+    height: 270px;
+  }
+
+  .infoBox {
+    display: flex;
+    height: 380px;
+    align-items: flex-start; 
+    top: -30px;
+  }
+
+  .removeText {
+    top: -40px;
+    right: 20px;
+    transform: translate(0, 0);
+  }
+
+  .companyCardWrapper {
+    flex: 1 1 auto;
+  }
+
+  .companyCardWrapper .companyCard {
+    width: auto;
+    height: auto;
+  }
+}
+
+.addButtonWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.addButton {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icCircle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  position: relative;
+}
+
+.icPlus {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.addText {
+  font-family: "Pretendard", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21.48px;
+  color: #ffffff;
+  margin-top: 20px;
+}
+
+.infoBox {
+  margin-top: 30px;
+  background-color: #212121;
+  width: calc(100% - 48px);
+  border-radius: 4px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 743px) {
+  .infoBox {
+    height: 330px;
+  }
+
+  .innerBox {
+    height: 270px;
+  }
+
+  .infoBox .innerBox {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  .companyCardWrapper {
+    width: calc(33.333% - 10px);
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .companyCardWrapper:nth-child(3n) {
+    margin-right: 0;
+  }
+
+  .companyCardWrapper:nth-child(3n+1) {
+    margin-left: 0;
+  }
+
+  .companyCardWrapper .companyCard {
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+  }
+}
+
+.noCompaniesInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16.71px;
+  color: #747474;
+  height: 100%;
+  width: 100%;
+}
+
+.btnWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 194px;
+  height: 48px;
+  margin: 30px auto;
+}
+
+.disabledBtn {
+  background-color: #2E2E2E !important;
+  color: #747474 !important;
+  cursor: not-allowed !important;
+}
+
