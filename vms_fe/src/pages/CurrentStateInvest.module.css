@@ -32,6 +32,7 @@ p {
 /* 페이지네이션 */
 .pagination {
   margin-top: 40px;
+  padding-bottom: 133px;
 }
 
 /* 모바일 화면에서 스크롤바 추가 */
