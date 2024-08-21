@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import styles from "./DefaultPage.module.css";
 
 import PageNav from "components/PageNav.js";
@@ -83,11 +84,11 @@ function DefaultPage() {
           <HeaderColumns type="rank" />
           <ul className={styles.companyTable}>
             {displayedCompanies.map((company) => (
-              <CompanyDataPerRow
-                key={company.name}
-                type="rank"
-                dataObject={company}
-              />
+              <li key={company.name}>
+                <Link to={`/id/${company.name}`}>
+                  <CompanyDataPerRow type="rank" dataObject={company} />
+                </Link>
+              </li>
             ))}
           </ul>
         </div>
