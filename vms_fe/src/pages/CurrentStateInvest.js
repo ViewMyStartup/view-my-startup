@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import styles from "./CurrentStateInvest.module.css";
-
 import PageNav from "../components/PageNav";
 import Pagination from "../components/common/Pagination";
 import DropdownMiddleSize from "../components/common/DropdownMiddleSize";
 import usePageHandler from "../hook/usePageHandler";
 import CompanyDataPerRow from "../components/common/CompanyDataPerRow";
 import HeaderColumns from "../components/common/HeaderColumns";
-import mockData from "../assets/mock/mockData.js";
+//import mockData from "../assets/mock/mockData.js";
+import logo1 from "../assets/images/company_logo_1.svg";
+import logo2 from "../assets/images/company_logo_2.svg";
 
 function CurrentStateInvest() {
   const { currentPage, totalPages, handlePageChange } = usePageHandler();
@@ -16,6 +17,60 @@ function CurrentStateInvest() {
     "View My Startup 투자 금액 높은순"
   );
   const [sortedData, setSortedData] = useState([]);
+
+  // test를 위한 데이터
+  const mockData = [
+    {
+      id: 1,
+      name: "에듀넥스트",
+      description:
+        "에듀넥스트는 인공지능을 활용한 맞춤형 학습 플랫폼을 제공하는 스타트업입니다.",
+      category: "에듀테크",
+      investmentVmsTotal: 5000000, // 가상의 투자 금액
+      investmentInfactTotal: 4500000, // 가상의 실제 누적 투자 금액
+      img: logo1, // logoUrl
+    },
+    {
+      id: 2,
+      name: "코딩마스터",
+      description:
+        "코딩마스터는 청소년들을 위한 코딩 교육 플랫폼을 운영하는 기업입니다.",
+      category: "에듀테크",
+      investmentVmsTotal: 3000000, // 가상의 투자 금액
+      investmentInfactTotal: 2500000, // 가상의 실제 누적 투자 금액
+      img: logo2,
+    },
+    {
+      id: 3,
+      name: "러닝큐브",
+      description:
+        "러닝큐브는 게이미피케이션을 적용한 온라인 학습 플랫폼을 제공합니다.",
+      category: "에듀테크",
+      investmentVmsTotal: 4000000, // 가상의 투자 금액
+      investmentInfactTotal: 3200000, // 가상의 실제 누적 투자 금액
+      img: logo1,
+    },
+    {
+      id: 4,
+      name: "스터디온",
+      description:
+        "스터디온은 실시간 온라인 튜터링 서비스를 제공하는 스타트업입니다.",
+      category: "에듀테크",
+      investmentVmsTotal: 2000000, // 가상의 투자 금액
+      investmentInfactTotal: 6000000, // 가상의 실제 누적 투자 금액
+      img: logo2,
+    },
+    {
+      id: 5,
+      name: "에듀브릭",
+      description:
+        "에듀브릭은 블록체인 기반 학습 인증 플랫폼을 운영하는 기업입니다.",
+      category: "블록체인",
+      investmentVmsTotal: 3500000, // 가상의 투자 금액
+      investmentInfactTotal: 4600000, // 가상의 실제 누적 투자 금액
+      img: logo1,
+    },
+  ];
 
   // 투자현황 페이지에서 사용될 드롭다운 옵션 수정
   const customOptions = [
