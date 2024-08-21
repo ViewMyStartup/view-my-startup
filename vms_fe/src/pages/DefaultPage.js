@@ -64,7 +64,9 @@ function DefaultPage() {
 
   return (
     <div className={styles.pageContainer}>
-      <PageNav />
+      <div className={styles.nav}>
+        <PageNav />
+      </div>
       <div className={styles.mainContainer}>
         <div className={styles.searchBarContainer}>
           <h2 className={styles.listTitle}>전체 스타트업 목록</h2>
