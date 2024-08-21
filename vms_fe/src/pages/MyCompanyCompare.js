@@ -32,10 +32,14 @@ function MyCompanyCompare() {
     setIsAdditionalModalOpen(false);
   };
 
-  const removeCompany = (index) => {
-    const newCompanies = [...selectedCompanies];
+  const removeCompany = (index, isAdditional) => {
+    const newCompanies = isAdditional ? [...additionalCompanies] : [...selectedCompanies];
     newCompanies.splice(index, 1);
-    setSelectedCompanies(newCompanies);
+    if (isAdditional) {
+      setAdditionalCompanies(newCompanies);
+    } else {
+      setSelectedCompanies(newCompanies);
+    }
   };
 
   return (
@@ -76,7 +80,7 @@ function MyCompanyCompare() {
                   />
                   <p
                     className={styles.removeText}
-                    onClick={() => removeCompany(index)}
+                    onClick={() => removeCompany(index, false)}
                   >
                     선택 취소
                   </p>
@@ -109,9 +113,26 @@ function MyCompanyCompare() {
             </div>
 
             <div className={styles.infoBox}>
-              <div className={styles.noCompaniesInfo}>
-                아직 추가한 기업이 없어요,<br />
-                버튼을 눌러 기업을 추가해보세요!
+              <div className={styles.innerBox}>
+                {additionalCompanies.length > 0 ? (
+                  additionalCompanies.map((company, index) => (
+                    <div key={index} className={styles.companyCardWrapper}>
+                      <CompanyCard
+                        name={company.name}
+                        category={company.category}
+                        logoSrc={company.logoSrc}
+                        showDeleteButton={true}
+                        showBackground={true}
+                        onDelete={() => removeCompany(index, true)}
+                      />
+                    </div>
+                  ))
+                ) : (
+                  <div className={styles.noCompaniesInfo}>
+                    아직 추가한 기업이 없어요,<br />
+                    버튼을 눌러 기업을 추가해보세요!
+                  </div>
+                )}
               </div>
             </div>
           </>

@@ -1,6 +1,6 @@
 .pageContainer {
   background-color: #131313;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -62,48 +62,20 @@
   font-weight: 400;
   color: #ffffff;
   line-height: 19.09px;
-  margin-left: 0; 
+  margin-left: 0;
 }
 
 .addCompanyBtnWrapper {
-  margin-left: auto; /* 오른쪽 끝으로 버튼을 밀어내기 위해 auto 설정 */
+  margin-left: auto;
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
 
 .addCompanyBtn {
-  width: calc(149px - 20px) !important; /* 전체 초기화 버튼보다 20px 작은 너비 */
+  width: calc(149px - 20px) !important;
   height: 40px;
   font-size: 16px;
-}
-
-@media (max-width: 1199px) {
-  .maxCompaniesText {
-    font-size: 16px;
-  }
-
-  .addCompanyBtn {
-    width: calc(149px - 20px);
-  }
-}
-
-@media (max-width: 743px) {
-  .subheadingWrapper {
-    margin-top: 45px;
-  }
-  
-  .maxCompaniesText {
-    font-size: 12px;
-    line-height: 14.32px;
-  }
-
-  .addCompanyBtn,
-  .resetBtnWrapper button {
-    width: calc(149px - 40px);
-    font-size: 12px;
-    height: 32px;
-  }
 }
 
 .addMyCompany {
@@ -126,6 +98,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: row;
+  gap: 15px;
   position: relative;
 }
 
@@ -133,17 +107,56 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  width: 100%;
 }
 
 .removeText {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: -30px;
+  right: 30px;
   font-size: 16px;
   font-weight: 400;
   color: #d8d8d8;
   text-decoration: underline;
   cursor: pointer;
+  z-index: 10;
+}
+
+/* 태블릿용 스타일 */
+@media (min-width: 744px) and (max-width: 1199px) {
+  .removeText {
+    top: -30px;
+    right: 30px;
+  }
+}
+
+@media (max-width: 743px) {
+  .innerBox {
+    height: 270px;
+  }
+
+  .infoBox {
+    display: flex;
+    height: 380px;
+    align-items: flex-start; 
+    top: -30px;
+  }
+
+  .removeText {
+    top: -40px;
+    right: 20px;
+    transform: translate(0, 0);
+  }
+
+  .companyCardWrapper {
+    flex: 1 1 auto;
+  }
+
+  .companyCardWrapper .companyCard {
+    width: auto;
+    height: auto;
+  }
 }
 
 .addButtonWrapper {
@@ -191,6 +204,46 @@
   width: calc(100% - 48px);
   border-radius: 4px;
   height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 743px) {
+  .infoBox {
+    height: 330px;
+  }
+
+  .innerBox {
+    height: 270px;
+  }
+
+  .infoBox .innerBox {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  .companyCardWrapper {
+    width: calc(33.333% - 10px);
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .companyCardWrapper:nth-child(3n) {
+    margin-right: 0;
+  }
+
+  .companyCardWrapper:nth-child(3n+1) {
+    margin-left: 0;
+  }
+
+  .companyCardWrapper .companyCard {
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+  }
 }
 
 .noCompaniesInfo {
