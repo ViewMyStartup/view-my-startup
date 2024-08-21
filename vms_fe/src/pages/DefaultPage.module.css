@@ -36,6 +36,14 @@
   margin-bottom: 40px;
 }
 @media (max-width: 744px) {
+  .searchBarContainer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .searchBarRight {
+    width: 100%;
+    justify-content: space-between;
+  }
   .companyTable {
     margin-bottom: 0;
   }
