@@ -163,7 +163,7 @@ function CompanyInvestDetail() {
           </p>
           {closestMatch ? (
             <>
-              <p>
+              <p className={styles.closestMatchText}>
                 혹시 찾으신 회사가{" "}
                 <Link
                   to={`/id/${closestMatch.name}`}
