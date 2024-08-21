@@ -132,7 +132,7 @@
 .InvestmentButtonTitle {
   font-size: 20px;
   font-weight: 700;
-  color: var(--white)
+  color: var(--white);
 }
 
 .InvestmentButton {
@@ -211,7 +211,7 @@
 }
 
 .notFoundHomeButton:hover {
-  background-color: var(--blue-blue)
+  background-color: var(--blue-blue);
 }
 
 @media (max-width: 1200px) {
@@ -283,7 +283,7 @@
   .InvestmentButtonTitle {
     font-size: 16px;
     font-weight: 700;
-    color: var(--white)
+    color: var(--white);
   }
 
   .InvestmentButton {
@@ -308,4 +308,4 @@
   }
 }
 
-@import "../styles/reset.css"
+@import "../styles/reset.css";
