@@ -16,6 +16,7 @@
   border-radius: 10px;
   cursor: pointer;
   border: 1px solid #747474;
+  transition: background-color 0.4s ease;
 }
 
 .dropdownLabel {
@@ -30,7 +31,11 @@
   width: 22px;
   height: 22px;
   margin-left: auto;
-  transform: translateX(-20px);
+  transition: transform 0.4s ease;
+}
+
+.dropdownToggle.open .dropdownIcon {
+  transform: rotate(180deg);
 }
 
 .dropdownMenu {
@@ -39,7 +44,16 @@
   width: 168px;
   background-color: #131313;
   border-radius: 10px;
-  border: 1px solid #747474; /* 테두리 효과 추가 */
+  border: 1px solid #747474;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s ease-out, opacity 0.4s ease-out;
+}
+
+.dropdownMenuOpen {
+  max-height: 300px;
+  opacity: 1;
 }
 
 .dropdownMenu li:not(:last-child) {
