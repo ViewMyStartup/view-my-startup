@@ -4,9 +4,9 @@ import PageNav from "../components/PageNav";
 import Pagination from "../components/common/Pagination";
 import DropdownMiddleSize from "../components/common/DropdownMiddleSize";
 import usePageHandler from "../hook/usePageHandler";
-import CompanyDataPerRow from "../components/common/CompanyDataPerRow";
-import HeaderColumns from "../components/common/HeaderColumns";
-//import mockData from "../assets/mock/mockData.js";
+import DataRowSetRender from "../components/DataRowSetRender";
+
+// Mock data import
 import logo1 from "../assets/images/company_logo_1.svg";
 import logo2 from "../assets/images/company_logo_2.svg";
 
@@ -19,10 +19,11 @@ function CurrentStateInvest() {
   );
   const [sortedData, setSortedData] = useState([]);
 
-  // test를 위한 데이터
+  // 테스트를 위한 데이터
   const mockData = [
     {
       id: 1,
+      rank: 1,
       name: "에듀넥스트",
       description:
         "에듀넥스트는 인공지능을 활용한 맞춤형 학습 플랫폼을 제공하는 스타트업입니다.",
@@ -33,6 +34,7 @@ function CurrentStateInvest() {
     },
     {
       id: 2,
+      rank: 2,
       name: "코딩마스터",
       description:
         "코딩마스터는 청소년들을 위한 코딩 교육 플랫폼을 운영하는 기업입니다.",
@@ -43,6 +45,7 @@ function CurrentStateInvest() {
     },
     {
       id: 3,
+      rank: 3,
       name: "러닝큐브",
       description:
         "러닝큐브는 게이미피케이션을 적용한 온라인 학습 플랫폼을 제공합니다.",
@@ -53,6 +56,7 @@ function CurrentStateInvest() {
     },
     {
       id: 4,
+      rank: 4,
       name: "스터디온",
       description:
         "스터디온은 실시간 온라인 튜터링 서비스를 제공하는 스타트업입니다.",
@@ -63,6 +67,7 @@ function CurrentStateInvest() {
     },
     {
       id: 5,
+      rank: 5,
       name: "에듀브릭",
       description:
         "에듀브릭은 블록체인 기반 학습 인증 플랫폼을 운영하는 기업입니다.",
@@ -73,7 +78,6 @@ function CurrentStateInvest() {
     },
   ];
 
-  // 투자현황 페이지에서 사용될 드롭다운 옵션 수정
   const customOptions = [
     "View My Startup 투자 금액 높은순",
     "View My Startup 투자 금액 낮은순",
@@ -81,7 +85,6 @@ function CurrentStateInvest() {
     "실제 누적 투자 금액 낮은순",
   ];
 
-  // 드롭다운 정렬
   useEffect(() => {
     let sorted = [...mockData];
     switch (selectedOption) {
@@ -105,15 +108,13 @@ function CurrentStateInvest() {
         break;
     }
     setSortedData(sorted);
-    setCurrentPage(1); // 옵션 변경 시 페이지를 1로 설정( 1번쨰 페이지로 돌아감 )
+    setCurrentPage(1);
   }, [selectedOption]);
 
-  // 드롭다운 옵션 변경 핸들러
   const handleDropdownChange = (option) => {
     setSelectedOption(option);
   };
 
-  // 페이지 변경 핸들러
   const handlePageClick = (page) => {
     handlePageChange(page);
   };
@@ -130,21 +131,14 @@ function CurrentStateInvest() {
             handleOptionChange={handleDropdownChange}
           />
         </div>
-        <div className={styles.scrollableWrapper}>
-          <HeaderColumns type="invest" />
-          <div className={styles.scrollableContainer}>
-            <ul className={styles.scrollableList}>
-              {sortedData
-                .slice((currentPage - 1) * 10, currentPage * 10)
-                .map((data) => (
-                  <CompanyDataPerRow
-                    key={data.id}
-                    type="invest"
-                    dataObject={data}
-                  />
-                ))}
-            </ul>
-          </div>
+        <div className={styles.investCompanyList}>
+          <DataRowSetRender
+            type="invest"
+            dataList={sortedData.slice(
+              (currentPage - 1) * 10,
+              currentPage * 10
+            )}
+          />
         </div>
         <div className={styles.pagination}>
           <Pagination

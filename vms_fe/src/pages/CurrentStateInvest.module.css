@@ -10,59 +10,33 @@ body {
 .currentStateInvest {
   background: #131313;
   padding: 20px;
-  max-width: 1200px; /* 최대 너비 설정 */
-  margin: 0 auto; /* 중앙 정렬 */
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* 투자 현황 메뉴 */
+/* 투자 현황, 드롭다운 메뉴 */
 .investStateNav {
-  padding: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 20px 0;
+  width: 100%;
 }
 
-/* 투자 메뉴 문구 */
+/* 투자 현황 문구 */
 p {
   font-size: 20px;
   font-weight: 700;
   color: #ffffff;
 }
 
+.investCompanyList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
 /* 페이지네이션 */
 .pagination {
   margin-top: 40px;
   padding-bottom: 133px;
-}
-
-/* 모바일 화면에서 스크롤바 추가 */
-@media (max-width: 743px) {
-  .scrollableWrapper {
-    overflow-x: auto; /* 수평 스크롤바 활성화 */
-    white-space: nowrap; /* 자식 요소들이 한 줄에 표시되도록 설정 */
-    background: #212121;
-    border: #212121;
-    padding: 0;
-  }
-
-  /* 스크롤바 전체 */
-  .scrollableWrapper::-webkit-scrollbar {
-    height: 8px; /* 수평 스크롤바의 높이 */
-  }
-
-  /* 스크롤바의 배경 */
-  .scrollableWrapper::-webkit-scrollbar-track {
-    background: #131313;
-  }
-
-  /* 스크롤바의 핸들바 */
-  .scrollableWrapper::-webkit-scrollbar-thumb {
-    background: #212121;
-    border-radius: 8px;
-  }
-
-  /* 핸들에 마우스를 올렸을 때 */
-  .scrollableWrapper::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
 }
