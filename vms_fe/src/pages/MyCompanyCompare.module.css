@@ -1,15 +1,21 @@
 .pageContainer {
   background-color: #131313;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .content {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   padding-top: 90px;
-  margin-left: calc(50% - 600px + 24px);
+  margin-left: auto;
   margin-right: auto;
+  width: 100%;
+  max-width: 1156px;
+  flex-grow: 1;
 }
 
 .headingWrapper {
@@ -17,7 +23,6 @@
   justify-content: space-between;
   align-items: center;
   width: calc(100% - 48px);
-  max-width: 1156px;
 }
 
 .heading {
@@ -28,41 +33,96 @@
   font-size: 20px;
 }
 
-/* "전체 초기화" 버튼 크기 조정 */
 .resetBtnWrapper {
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
 
-.resetBtnWrapper button {
-  width: 149px;
+.subheadingWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 45px;
+  width: calc(100% - 48px);
+  max-width: 1156px;
+}
+
+.subheading {
+  color: #ffffff;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 700;
+  text-align: left;
+  font-size: 20px;
+  margin-right: 13px;
+}
+
+.maxCompaniesText {
+  font-family: "Pretendard", sans-serif;
+  font-weight: 400;
+  color: #ffffff;
+  line-height: 19.09px;
+  margin-left: 0; 
+}
+
+.addCompanyBtnWrapper {
+  margin-left: auto; /* 오른쪽 끝으로 버튼을 밀어내기 위해 auto 설정 */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.addCompanyBtn {
+  width: calc(149px - 20px) !important; /* 전체 초기화 버튼보다 20px 작은 너비 */
   height: 40px;
   font-size: 16px;
 }
 
-.icRestart {
-  width: 18px;
-  height: 18px;
+@media (max-width: 1199px) {
+  .maxCompaniesText {
+    font-size: 16px;
+  }
+
+  .addCompanyBtn {
+    width: calc(149px - 20px);
+  }
+}
+
+@media (max-width: 743px) {
+  .subheadingWrapper {
+    margin-top: 45px;
+  }
+  
+  .maxCompaniesText {
+    font-size: 12px;
+    line-height: 14.32px;
+  }
+
+  .addCompanyBtn,
+  .resetBtnWrapper button {
+    width: calc(149px - 40px);
+    font-size: 12px;
+    height: 32px;
+  }
 }
 
 .addMyCompany {
   margin-top: 30px;
-  border: 1px dotted #212121;
-  box-sizing: border-box;
   width: calc(100% - 48px);
-  max-width: 1156px;
-  margin-left: 0;
-  margin-right: auto;
+  background-color: #212121;
+  border-radius: 4px;
   height: 300px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
 .innerBox {
   background-color: #212121;
-  margin: 16px;
-  border-radius: 4px;
-  height: calc(100% - 32px);
-  width: calc(100% - 32px);
+  height: 100%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -77,8 +137,8 @@
 
 .removeText {
   position: absolute;
-  top: 15px;        /* 상단에서 15px 아래 */
-  right: 15px;      /* 오른쪽에서 15px 왼쪽 */
+  top: 20px;
+  right: 20px;
   font-size: 16px;
   font-weight: 400;
   color: #d8d8d8;
@@ -125,75 +185,41 @@
   margin-top: 20px;
 }
 
-.btnWrapper {
+.infoBox {
   margin-top: 30px;
+  background-color: #212121;
+  width: calc(100% - 48px);
+  border-radius: 4px;
+  height: 300px;
+}
+
+.noCompaniesInfo {
   display: flex;
   justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16.71px;
+  color: #747474;
+  height: 100%;
   width: 100%;
 }
 
-.btnWrapper button {
+.btnWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   max-width: 194px;
   height: 48px;
+  margin: 30px auto;
 }
 
-/* 비활성화된 상태의 버튼 스타일 */
 .disabledBtn {
   background-color: #2E2E2E !important;
   color: #747474 !important;
   cursor: not-allowed !important;
 }
 
-/* 태블릿 및 모바일 버전 */
-@media (max-width: 1199px) {
-  .content {
-    margin-left: 24px;
-  }
-
-  .heading {
-    font-size: 20px;
-  }
-
-  .resetBtnWrapper button {
-    width: 149px;
-    height: 40px;
-    font-size: 16px;
-  }
-
-  .addMyCompany {
-    width: calc(100% - 2 * 24px);
-    height: 240px;
-  }
-
-  .headingWrapper {
-    width: calc(100% - 48px);
-  }
-}
-
-/* 모바일 버전 */
-@media (max-width: 743px) {
-  .content {
-    margin-left: 16px;
-    padding-top: 60px;
-  }
-
-  .heading {
-    font-size: 16px;
-  }
-
-  .resetBtnWrapper button {
-    width: 116px;
-    height: 32px;
-    font-size: 14px;
-  }
-
-  .addMyCompany {
-    width: calc(100% - 2 * 16px);
-    height: 180px;
-  }
-
-  .headingWrapper {
-    width: calc(100% - 2 * 16px);
-  }
-}
