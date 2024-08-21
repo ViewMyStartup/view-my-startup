@@ -37,7 +37,11 @@ const Dropdown = ({
           {options.map((option, index) => (
             <li
               key={index}
-              className={styles.dropdownMenuItem}
+              className={`${styles.dropdownMenuItem} ${
+                index === 0 ? styles.dropdownMenuItemFirst : ""
+              } ${
+                index === options.length - 1 ? styles.dropdownMenuItemLast : ""
+              }`}
               onClick={() => handleOptionClick(option)}
             >
               {option}
