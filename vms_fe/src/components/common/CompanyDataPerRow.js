@@ -13,6 +13,10 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
 
   //텍스트 자르기 (사전 작성)
   const truncateText = (text, maxLength) => {
+    // text가 문자열인지 확인하는 조건 추가(text가 undefined일 때 기본값을 제공)
+    if (typeof text !== "string") {
+      return "";
+    }
     if (text.length > maxLength) {
       return text.substring(0, maxLength) + "...";
     } else {
