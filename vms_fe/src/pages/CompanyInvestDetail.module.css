@@ -148,6 +148,12 @@
   cursor: pointer;
 }
 
+.closestMatchText {
+  color: var(--gray-200);
+  font-size: 14px;
+  font-weight: 700;
+}
+
 .closestMatchLink {
   color: var(--brand-orange);
   font-weight: 700;
@@ -181,13 +187,14 @@
 }
 
 .notFoundMessage {
+  color: var(--gray-200);
   font-size: 24px;
   margin: 20px 0;
 }
 
 .notFoundSubmessage {
   font-size: 16px;
-  color: var(--gray-200);
+  color: var(--gray-300);
   margin-bottom: 30px;
 }
 
