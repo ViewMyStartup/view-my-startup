@@ -11,7 +11,8 @@ import logo1 from "../assets/images/company_logo_1.svg";
 import logo2 from "../assets/images/company_logo_2.svg";
 
 function CurrentStateInvest() {
-  const { currentPage, totalPages, handlePageChange } = usePageHandler();
+  const { currentPage, totalPages, handlePageChange, setCurrentPage } =
+    usePageHandler();
 
   const [selectedOption, setSelectedOption] = useState(
     "View My Startup 투자 금액 높은순"
@@ -104,6 +105,7 @@ function CurrentStateInvest() {
         break;
     }
     setSortedData(sorted);
+    setCurrentPage(1); // 옵션 변경 시 페이지를 1로 설정( 1번쨰 페이지로 돌아감 )
   }, [selectedOption]);
 
   // 드롭다운 옵션 변경 핸들러
