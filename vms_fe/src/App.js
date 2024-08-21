@@ -13,21 +13,20 @@ import CurrentStateCompare from "pages/CurrentStateCompare";
 //기존 테스트 페이지
 import Test from "./test";
 
-function App () {
+function App() {
   return (
     <BrowserRouter>
-        <Routes>
-          <Route path="*" element={<Navigate to="/" />} />
-          <Route exact path="/" element={<DefaultPage />} />
-          <Route path="/mycompany" element={<MyCompanyCompare />} />
-          <Route path="/compare" element={<CurrentStateCompare />} />
-          <Route path="/investinfo" element={<CurrentStateInvest />} />
-          <Route path="/id:" element={<CompanyInvestDetail />} />
-          <Route path="/test" element={<Test />} /> 
-        </Routes>
+      <Routes>
+        <Route path="*" element={<Navigate to="/" />} />
+        <Route exact path="/" element={<DefaultPage />} />
+        <Route path="/mycompany" element={<MyCompanyCompare />} />
+        <Route path="/compare" element={<CurrentStateCompare />} />
+        <Route path="/investinfo" element={<CurrentStateInvest />} />
+        <Route path="/id/:name" element={<CompanyInvestDetail />} />
+        <Route path="/test" element={<Test />} />
+      </Routes>
     </BrowserRouter>
   );
 }
 
 export default App;
-

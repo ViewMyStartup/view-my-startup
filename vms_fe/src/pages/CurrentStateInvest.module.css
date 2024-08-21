@@ -1,0 +1,48 @@
+/* CurrentStateInvest.module.css */
+
+body {
+  background: #131313;
+  margin: 0;
+  padding: 0;
+}
+
+/* 전체 컨테이너 스타일 */
+.currentStateInvest {
+  background: #131313;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 투자 현황, 드롭다운 메뉴 */
+.investStateNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  width: 100%;
+}
+
+/* 투자 현황 문구 */
+p {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.investCompanyList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+/* 페이지네이션 */
+.pagination {
+  margin-top: 40px;
+  padding-bottom: 133px;
+}
+
+@media (max-width: 744px) {
+  .investCompanyList .currentStateInvest {
+    padding: 24px 16px;
+  }
+}
