@@ -42,6 +42,7 @@
   .listContainer {
     overflow-x: auto;
     padding-bottom: 12px;
+    margin-bottom: 24px;
   }
   .listContainer::-webkit-scrollbar {
     height: 12px;
