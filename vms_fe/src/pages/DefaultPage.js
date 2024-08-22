@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import styles from "./DefaultPage.module.css";
 
 import PageNav from "components/PageNav.js";
