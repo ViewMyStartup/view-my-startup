@@ -40,10 +40,6 @@
 .listContainer {
   width: 100%;
   max-width: 1200px;
-}
-.companyTable {
-  width: 100%;
-  margin-top: 16px;
   margin-bottom: 40px;
 }
 @media (max-width: 744px) {
@@ -59,31 +55,9 @@
     width: 100%;
     justify-content: space-between;
   }
-  .companyTable {
-    margin-bottom: 0;
-  }
   .listContainer {
     overflow-x: auto;
     padding-bottom: 12px;
-    margin-bottom: 24px;
-  }
-  .listContainer::-webkit-scrollbar {
-    height: 12px;
-  }
-
-  .listContainer::-webkit-scrollbar-track {
-    background: #212121;
-    border-radius: 10px;
-  }
-
-  .listContainer::-webkit-scrollbar-thumb {
-    min-width: 101px;
-    background-color: #131313;
-    border-radius: 10px;
-    border: 2px solid #212121;
-  }
-
-  .listContainer::-webkit-scrollbar-thumb:hover {
-    background-color: #555;
+    margin-bottom: 0;
   }
 }
