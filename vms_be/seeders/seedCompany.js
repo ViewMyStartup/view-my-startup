@@ -4,6 +4,13 @@ import companyData from "./CompanyData.js";
 const prisma = new PrismaClient();
 
 async function main() {
+  // 연관된 데이터를 먼저 삭제
+  await prisma.investment.deleteMany({});
+  console.log("Investment 데이터 삭제 완료되었습니다.");
+
+  await prisma.companySelection.deleteMany({});
+  console.log("CompanySelection 데이터 삭제 완료되었습니다.");
+
   // 기존 데이터 삭제
   await prisma.company.deleteMany();
 
