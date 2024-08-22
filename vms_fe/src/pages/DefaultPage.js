@@ -5,8 +5,7 @@ import styles from "./DefaultPage.module.css";
 import PageNav from "components/PageNav.js";
 import SearchBar from "components/common/SearchBar.js";
 import Dropdown from "components/common/Dropdown.js";
-import HeaderColumns from "components/common/HeaderColumns.js";
-import CompanyDataPerRow from "components/common/CompanyDataPerRow.js";
+import DataRowSetRender from "components/DataRowSetRender.js";
 import Pagination from "components/common/Pagination.js";
 import mockupData from "assets/mock/mockData.js";
 import usePageHandler from "hook/usePageHandler.js";
@@ -81,14 +80,7 @@ function DefaultPage() {
           </div>
         </div>
         <div className={styles.listContainer}>
-          <HeaderColumns type="rank" />
-          <ul className={styles.companyTable}>
-            {displayedCompanies.map((company) => (
-              <Link key={company.name} to={`/id/${company.name}`}>
-                <CompanyDataPerRow type="rank" dataObject={company} />
-              </Link>
-            ))}
-          </ul>
+          <DataRowSetRender type="rank" dataList={displayedCompanies} />
         </div>
         <Pagination
           currentPage={currentPage}
