@@ -16,6 +16,13 @@ router.get("/:companyId", async (req, res) => {
       investments: true, // Investment 모델의 가상 투자정보 포함!
     },
   });
+
+  // 해당 ID의 회사가 데이터베이스에 존재하지 않는 경우
+  if (!company) {
+    return res
+      .status(404)
+      .json({ error: "찾으시는 기업이 존재하지 않습니다." });
+  }
 });
 
 export default router;
