@@ -23,6 +23,19 @@ router.get("/:companyId", async (req, res) => {
       .status(404)
       .json({ error: "찾으시는 기업이 존재하지 않습니다." });
   }
+
+  // 투자 정보를 포함한 회사 정보 응답 형식
+  res.json({
+    id: company.id,
+    name: company.name,
+    logoUrl: company.logoUrl,
+    description: company.description,
+    category: company.category,
+    totalInvestment: company.totalInvestment,
+    revenue: company.revenue,
+    employees: company.employees,
+    investments: company.investments,
+  });
 });
 
 export default router;
