@@ -1,6 +1,6 @@
 const investmentData = [
   {
-    companyId: 5,
+    companyId: 31,
     investorName: "차은우",
     investmentAmount: 1000000,
     investmentComment: "AI 기술에 대한 신뢰를 가지고 있습니다.",
