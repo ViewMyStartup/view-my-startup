@@ -1,0 +1,148 @@
+.dataPerRowContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 697px;
+  max-width: 1200px;
+  height: 64px;
+  background-color: #212121;
+  border-radius: 4px;
+}
+
+/* 가장 마지막 child가 아니면 bottom border 출력 */
+.dataPerRowContainer:not(:last-child) {
+  border-bottom: 1px solid #4b4b4b;
+}
+
+.dataPerRowContainer:hover {
+  background-color: #4b4b4b;
+}
+
+.diffSizeContainer > span,
+.sameSizeContainer > span,
+.companyInfoContainer > span {
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 16.71px;
+  color: #d8d8d8;
+}
+
+.diffSizeContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+}
+
+.rankSize {
+  min-width: 380px;
+  max-width: 585px;
+}
+
+.noRankSize {
+  min-width: 330px;
+  max-width: 517px;
+}
+
+.investSize {
+  min-width: 464px;
+  max-width: 738px;
+}
+
+.commentSize {
+  min-width: 445px;
+  max-width: 948px;
+}
+
+.companyInfoContainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-width: 140px;
+  max-width: 213px;
+  gap: 12px;
+  padding: 0 24px;
+}
+
+.companyInfoContainer > span {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.companyInfoContainer > img {
+  aspect-ratio: 1;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.sameSizeContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-width: 228px;
+  width: 100%;
+}
+
+.sameSizeContainer > span {
+  width: 100%;
+}
+
+.commentSizeForSame {
+  min-width: 252px;
+  max-width: 252px;
+}
+
+.ivestSizeForSame {
+  min-width: 228px;
+  max-width: 460px;
+}
+
+.columnRank {
+  min-width: 60px;
+  max-width: 68px;
+  width: 100%;
+}
+
+.columnCategory {
+  min-width: 84px;
+  max-width: 153px;
+  width: 100%;
+}
+
+.columnCompanyDescription {
+  width: 100%;
+  min-width: 180px;
+  max-width: 304px;
+  padding: 0px 16px;
+  white-space: normal;
+  text-align: left;
+}
+
+.columnComment {
+  min-width: 381px;
+  max-width: 884px;
+  padding: 0px 16px;
+  white-space: normal;
+  text-align: left;
+  width: 100%;
+}
+
+.columnNone {
+  width: 64px;
+}
+
+@media (max-width: 744px) {
+  .companyInfoContainer > span {
+    font-size: 0.8125rem;
+  }
+
+  .diffSizeContainer > span,
+  .sameSizeContainer > span,
+  .companyInfoContainer > span {
+    font-size: 0.8125rem;
+  }
+}
+
