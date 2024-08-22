@@ -36,9 +36,7 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
             <img src={logoUrl} alt="기업 이미지" />
             <span>{name}</span>
           </article>
-          <span className={styles.columnCompanyDescription}>
-            {description}
-          </span>
+          <span className={styles.columnCompanyDescription}>{description}</span>
         </section>
         <section
           className={`${styles.sameSizeContainer} ${styles.rankSizeForSame}`}
@@ -71,9 +69,7 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
             <img src={img} alt="기업 이미지" />
             <span>{name}</span>
           </article>
-          <span className={styles.columnCompanyDescription}>
-            {description}
-          </span>
+          <span className={styles.columnCompanyDescription}>{description}</span>
         </section>
         <section className={styles.sameSizeContainer}>
           <span>{category}</span>
@@ -90,7 +86,7 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
       id,
       rank,
       name,
-      img,
+      logoUrl, // img를 logoUrl로 수정
       description,
       category,
       investmentVmsTotal,
@@ -102,12 +98,10 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
         <section className={`${styles.diffSizeContainer} ${styles.investSize}`}>
           <span className={styles.columnRank}>{`${rank}위`}</span>
           <div className={styles.companyInfoContainer}>
-            <img src={img} alt="기업 이미지" />
+            <img src={logoUrl} alt="기업 이미지" />
             <span>{name}</span>
           </div>
-          <span className={styles.columnCompanyDescription}>
-            {description}
-          </span>
+          <span className={styles.columnCompanyDescription}>{description}</span>
           <span className={styles.columnCategory}>{category}</span>
         </section>
         <section
@@ -165,9 +159,7 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
             <img src={img} alt="기업 이미지" />
             <span>{name}</span>
           </div>
-          <span className={styles.columnCompanyDescription}>
-            {description}
-          </span>
+          <span className={styles.columnCompanyDescription}>{description}</span>
           <span className={styles.columnCategory}>{category}</span>
         </section>
         <section
