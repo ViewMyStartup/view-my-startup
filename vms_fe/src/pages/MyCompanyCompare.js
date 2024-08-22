@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./MyCompanyCompare.module.css";
 import PageNav from "components/PageNav";
 import MediumBtn from "components/common/MediumBtn";
 import DropdownMiddleSize from "components/common/DropdownMiddleSize";
 import DataRowSetRenderNoRank from "../components/DataRowSetRenderNoRank";
+import DataRowSetRender from "../components/DataRowSetRender";
 import icCircle from "../assets/images/ic_circle.svg";
 import icPlus from "../assets/images/ic_plus.svg";
 import icRestart from "../assets/images/ic_restart.svg";
@@ -17,6 +18,7 @@ function MyCompanyCompare() {
   const [additionalCompanies, setAdditionalCompanies] = useState([]);
   const [isComparisonVisible, setIsComparisonVisible] = useState(false);
   const [sortingOption, setSortingOption] = useState("매출액 높은순");
+  const [sortedCompanies, setSortedCompanies] = useState([]);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -29,11 +31,13 @@ function MyCompanyCompare() {
   const closeModal = (companies) => {
     setSelectedCompanies(companies);
     setIsModalOpen(false);
+    sortCompanies(companies.concat(additionalCompanies), sortingOption);
   };
 
   const closeAdditionalModal = (companies) => {
     setAdditionalCompanies(companies);
     setIsAdditionalModalOpen(false);
+    sortCompanies(selectedCompanies.concat(companies), sortingOption);
   };
 
   const removeCompany = (index, isAdditional) => {
@@ -46,14 +50,51 @@ function MyCompanyCompare() {
     } else {
       setSelectedCompanies(newCompanies);
     }
+    sortCompanies(selectedCompanies.concat(additionalCompanies), sortingOption);
   };
 
   const handleSortingChange = (option) => {
     setSortingOption(option);
+    sortCompanies(selectedCompanies.concat(additionalCompanies), option);
+  };
+
+  const sortCompanies = (companies, option) => {
+    const sortedList = [...companies];
+
+    switch (option) {
+      case "누적 투자금액 높은순":
+        sortedList.sort((a, b) => b.total_investment - a.total_investment);
+        break;
+      case "누적 투자금액 낮은순":
+        sortedList.sort((a, b) => a.total_investment - b.total_investment);
+        break;
+      case "매출액 높은순":
+        sortedList.sort((a, b) => b.revenue - a.revenue);
+        break;
+      case "매출액 낮은순":
+        sortedList.sort((a, b) => a.revenue - b.revenue);
+        break;
+      case "고용 인원 많은순":
+        sortedList.sort((a, b) => b.employees - a.employees);
+        break;
+      case "고용 인원 적은순":
+        sortedList.sort((a, b) => a.employees - b.employees);
+        break;
+      default:
+        break;
+    }
+
+    const rankedList = sortedList.map((company, index) => ({
+      ...company,
+      rank: index + 1,
+    }));
+
+    setSortedCompanies(rankedList);
   };
 
   const handleComparisonClick = () => {
     setIsComparisonVisible(true);
+    sortCompanies(selectedCompanies.concat(additionalCompanies), sortingOption);
   };
 
   return (
@@ -139,8 +180,8 @@ function MyCompanyCompare() {
               </div>
               <div className={styles.dataRowWrapper}>
                 <DataRowSetRenderNoRank
-                  type="noRank" // 다시 noRank 타입으로 전달
-                  dataList={selectedCompanies.concat(additionalCompanies)}
+                  type="noRank"
+                  dataList={sortedCompanies}
                 />
               </div>
             </div>
@@ -164,9 +205,9 @@ function MyCompanyCompare() {
                 />
               </div>
               <div className={styles.dataRowWrapper}>
-                <DataRowSetRenderNoRank
-                  type="rank" // rank 타입으로 전달
-                  dataList={selectedCompanies.concat(additionalCompanies)}
+                <DataRowSetRender
+                  type="rank"
+                  dataList={sortedCompanies}
                 />
               </div>
             </div>
