@@ -84,11 +84,9 @@ function DefaultPage() {
           <HeaderColumns type="rank" />
           <ul className={styles.companyTable}>
             {displayedCompanies.map((company) => (
-              <li key={company.name}>
-                <Link to={`/id/${company.name}`}>
-                  <CompanyDataPerRow type="rank" dataObject={company} />
-                </Link>
-              </li>
+              <Link key={company.name} to={`/id/${company.name}`}>
+                <CompanyDataPerRow type="rank" dataObject={company} />
+              </Link>
             ))}
           </ul>
         </div>
