@@ -72,7 +72,7 @@ function CurrentStateCompare() {
       </nav>
       <main className={styles.mainContainer}>
         <header className={styles.headerBox}>
-          <span className={styles.headerText}>투자 현황</span>
+          <span className={styles.headerText}>비교 현황</span>
           <DropdownMiddleSize
             options={options}
             handleOptionChange={handleOptionChange}
