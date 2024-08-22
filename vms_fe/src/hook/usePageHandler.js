@@ -10,7 +10,7 @@ function usePageHandler() {
     }
   };
 
-  return { currentPage, totalPages, handlePageChange };
+  return { currentPage, totalPages, handlePageChange, setCurrentPage };
 }
 
 export default usePageHandler;

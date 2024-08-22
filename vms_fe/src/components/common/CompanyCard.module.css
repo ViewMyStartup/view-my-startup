@@ -1,24 +1,46 @@
+.companyCardWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  margin: 0 !important; 
+  padding: 0 !important; 
+  box-sizing: border-box;
+}
+
 .companyCard {
-  width: 126px;
-  height: 187px;
-  background-color: var(--gray-400);
+  width: 126px;  /* 데스크탑 및 태블릿 버전 카드 너비 */
+  height: 187px; /* 데스크탑 및 태블릿 버전 카드 높이 */
+  margin: 0;
+  padding: 0; 
   border-radius: 8px;
+  box-sizing: border-box; /* padding과 border를 포함한 크기 계산 */
+  background-color: var(--gray-400); 
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
 }
+
+.noBackground {
+  background-color: transparent; /* 배경색을 투명으로 설정 */
+}
+
 .deleteButton {
   position: absolute;
   top: 8px;
   right: 8px;
 }
+
 .logo {
   width: 80px;
   height: 80px;
-  border-radius: 50%;
+  border-radius: 50%; /* 로고 이미지가 원형으로 나타나도록 설정 */
+  object-fit: cover; /* 이미지가 원 안에 잘 맞게 조정 */
   margin-top: 32px;
 }
+
 .companyName {
   color: var(--white);
   margin-top: 10px;
@@ -26,29 +48,34 @@
   font-size: 16px;
   font-weight: 500;
 }
+
 .companyCategory {
   color: var(--gray-200);
   margin-top: 4px;
   font-size: 14px;
   font-weight: 500;
 }
-@media (max-width: 1199px) {
-}
+
 @media (max-width: 743px) {
   .companyCard {
-    width: 104px;
-    height: 163px;
+    width: 104px;  /* 모바일 버전 카드 너비 */
+    height: 163px; /* 모바일 버전 카드 높이 */
+    border-radius: 8px; 
   }
+  
   .logo {
     width: 65px;
     height: 65px;
   }
+  
   .companyName {
     font-size: 14px;
     font-weight: 500;
   }
+  
   .companyCategory {
     font-size: 12px;
     font-weight: 500;
   }
 }
+

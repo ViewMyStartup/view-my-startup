@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./InputBar.module.css";
-import eyeIcon from "assets/images/ic_password_eye_open.svg";
+import eyeOpenIcon from "assets/images/ic_password_eye_open.svg";
 import eyeSlashIcon from "assets/images/ic_password_eye_close.svg";
 
 const InputBar = ({ onClose }) => {
@@ -128,7 +128,7 @@ const InputBar = ({ onClose }) => {
               className={`${styles.input} ${styles.passwordInput}`}
             />
             <img
-              src={showPassword ? eyeSlashIcon : eyeIcon} // 가시성에 따른 아이콘 변경
+              src={showPassword ? eyeSlashIcon : eyeOpenIcon} // 가시성에 따른 아이콘 변경
               alt="비밀번호 가시성 토글"
               onClick={togglePasswordVisibility}
               className={styles.passwordToggleIcon}
@@ -154,7 +154,7 @@ const InputBar = ({ onClose }) => {
               className={`${styles.input} ${styles.passwordInput}`}
             />
             <img
-              src={showPassword ? eyeSlashIcon : eyeIcon} // 가시성에 따른 아이콘 변경
+              src={showPassword ? eyeSlashIcon : eyeOpenIcon} // 가시성에 따른 아이콘 변경
               alt="비밀번호 가시성 토글"
               onClick={togglePasswordVisibility}
               className={styles.ConfirmPasswordToggleIcon}

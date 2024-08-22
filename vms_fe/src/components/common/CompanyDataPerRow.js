@@ -1,27 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import styles from "./CompanyDataPerRow.module.css";
+import ModalPassword from "../ModalPassword";
 
 //이미지
 import iconKebab from "../../assets/images/ic_kebab.svg";
 
 function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
-  //단위 변환
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+
+  // 모달 상태
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // 드롭다운 토글 함수
+  const toggleDropdown = () => {
+    setDropdownVisible(!dropdownVisible);
+  };
+
+  // 모달 열기 함수
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+    setDropdownVisible(false); // 모달 열릴 때 드롭다운 닫기
+  };
+
+  // 모달 닫기 함수
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   const convertToBillion = (number) => {
     return parseFloat((number / 100000000).toFixed(2)); // 반올림
     // return Math.floor((number / 100000000) * 100) / 100; // 버림
-  };
-
-  //텍스트 자르기 (사전 작성)
-  const truncateText = (text, maxLength) => {
-    // text가 문자열인지 확인하는 조건 추가(text가 undefined일 때 기본값을 제공)
-    if (typeof text !== "string") {
-      return "";
-    }
-    if (text.length > maxLength) {
-      return text.substring(0, maxLength) + "...";
-    } else {
-      return text;
-    }
   };
 
   function formatNumberWithCommas(number) {
@@ -33,7 +42,7 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
       id,
       rank,
       name,
-      img,
+      logoUrl, // img -> logoUrl
       description,
       category,
       total_investment,
@@ -43,22 +52,26 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
 
     return (
       <li key={id} className={styles.dataPerRowContainer}>
-        <section className={`${styles.diffSizeContainer} ${styles.rankSize}`}>
-          <span className={styles.columnRank}>{`${rank}위`}</span>
-          <article className={styles.companyInfoContainer}>
-            <img src={img} alt="기업 이미지" />
-            <span>{name}</span>
-          </article>
-          <span className={styles.columnCompanyDescription}>
-            {truncateText(description, 58)}
-          </span>
-        </section>
-        <section className={`${styles.sameSizeContainer} ${styles.rankSizeForSame}`}>
-          <span>{category}</span>
-          <span>{`${convertToBillion(total_investment)}억 원`}</span>
-          <span>{`${convertToBillion(revenue)}억 원`}</span>
-          <span>{`${employees}명`}</span>
-        </section>
+        <Link to={`/id/${name}`}>
+          <section className={`${styles.diffSizeContainer} ${styles.rankSize}`}>
+            <span className={styles.columnRank}>{`${dataObject.rank}위`}</span>
+            <article className={styles.companyInfoContainer}>
+              <img src={logoUrl} alt="기업 이미지" />
+              <span>{name}</span>
+            </article>
+            <span className={styles.columnCompanyDescription}>
+              {description}
+            </span>
+          </section>
+          <section
+            className={`${styles.sameSizeContainer} ${styles.rankSizeForSame}`}
+          >
+            <span>{category}</span>
+            <span>{`${convertToBillion(total_investment)}억 원`}</span>
+            <span>{`${convertToBillion(revenue)}억 원`}</span>
+            <span>{`${employees}명`}</span>
+          </section>
+        </Link>
       </li>
     );
   };
@@ -82,9 +95,7 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
             <img src={img} alt="기업 이미지" />
             <span>{name}</span>
           </article>
-          <span className={styles.columnCompanyDescription}>
-            {truncateText(description, 58)}
-          </span>
+          <span className={styles.columnCompanyDescription}>{description}</span>
         </section>
         <section className={styles.sameSizeContainer}>
           <span>{category}</span>
@@ -101,7 +112,7 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
       id,
       rank,
       name,
-      img,
+      logoUrl, // img를 logoUrl로 수정함
       description,
       category,
       investmentVmsTotal,
@@ -113,12 +124,10 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
         <section className={`${styles.diffSizeContainer} ${styles.investSize}`}>
           <span className={styles.columnRank}>{`${rank}위`}</span>
           <div className={styles.companyInfoContainer}>
-            <img src={img} alt="기업 이미지" />
+            <img src={logoUrl} alt="기업 이미지" />
             <span>{name}</span>
           </div>
-          <span className={styles.columnCompanyDescription}>
-            {truncateText(description, 58)}
-          </span>
+          <span className={styles.columnCompanyDescription}>{description}</span>
           <span className={styles.columnCategory}>{category}</span>
         </section>
         <section
@@ -148,10 +157,36 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
           className={`${styles.diffSizeContainer} ${styles.commentSize}`}
         >
           <span className={styles.columnComment}>{userComment}</span>
-          <div className={styles.columnNone}>
-            <img src={iconKebab} alt="kebab" />
+          <div className={styles.dropdownContainer}>
+            <img
+              src={iconKebab}
+              alt="kebab"
+              onClick={toggleDropdown}
+              className={styles.kebabIcon}
+            />
+            {dropdownVisible && (
+              <div className={styles.dropdownMenu}>
+                <button
+                  onClick={() =>
+                    alert("수정하기 클릭, 추가 로직 필요시 추가예정")
+                  }
+                >
+                  수정하기
+                </button>
+                <button onClick={handleOpenModal}>삭제하기</button>
+              </div>
+            )}
           </div>
         </section>
+
+        {isModalOpen && (
+          <ModalPassword
+            onClose={handleCloseModal}
+            onDelete={() => {
+              handleCloseModal();
+            }}
+          />
+        )}
       </li>
     );
   };
@@ -176,9 +211,7 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
             <img src={img} alt="기업 이미지" />
             <span>{name}</span>
           </div>
-          <span className={styles.columnCompanyDescription}>
-            {truncateText(description, 58)}
-          </span>
+          <span className={styles.columnCompanyDescription}>{description}</span>
           <span className={styles.columnCategory}>{category}</span>
         </section>
         <section

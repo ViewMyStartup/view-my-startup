@@ -7,7 +7,7 @@ import HeaderColumns from "./common/HeaderColumns";
 
 function DataRowSetRender({ type = "rank", dataList = [] }) {
   return (
-    <div className={styles.dataRowSet}> 
+    <div className={styles.dataRowSet}>
       <HeaderColumns type={type} />
       <ul>
         {dataList.map((data) => (
@@ -15,7 +15,6 @@ function DataRowSetRender({ type = "rank", dataList = [] }) {
         ))}
       </ul>
     </div>
-
   );
 }
 

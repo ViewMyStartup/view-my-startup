@@ -41,8 +41,20 @@
   height: 100%;
 }
 
+@media (max-width: 1024px) {
+  .mainContainer {
+    padding: 30px 20px;
+  }
+}
+
 @media (max-width: 744px) {
   .mainContainer {
-    padding: 24px 16px;
+    padding: 22px 16px;
+  }
+}
+
+@media (max-width: 425px) {
+  .headerText{
+    font-size: 1rem;
   }
 }

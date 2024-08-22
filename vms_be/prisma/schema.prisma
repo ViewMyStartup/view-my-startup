@@ -14,26 +14,26 @@ datasource db {
 }
 
 model Company {
-  id               Int               @id @default(autoincrement())
-  name             String            @unique
-  logoUrl          String
-  description      String
-  category         String
-  totalInvestment  Float
-  revenue          Float
-  employees        Int
-  investments      Investment[]      @relation("CompanyInvestments")
-  selections       CompanySelection[] @relation("CompanySelections")
+  id              Int                @id @default(autoincrement())
+  name            String             @unique
+  logoUrl         String
+  description     String
+  category        String
+  totalInvestment Float
+  revenue         Float
+  employees       Int
+  investments     Investment[]       @relation("CompanyInvestments")
+  selections      CompanySelection[] @relation("CompanySelections")
 }
 
 model Investment {
-  id                Int       @id @default(autoincrement())
+  id                Int     @id @default(autoincrement())
   companyId         Int
   investorName      String
   investmentAmount  Float
   investmentComment String
   password          String
-  company           Company   @relation("CompanyInvestments", fields: [companyId], references: [id])
+  company           Company @relation("CompanyInvestments", fields: [companyId], references: [id])
 
   @@index([companyId])
 }
