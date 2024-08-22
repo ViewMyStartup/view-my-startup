@@ -9,7 +9,7 @@ const companyData = [
     total_investment: 150000000,
     revenue: 250000000,
     employees: 50,
-    logoUrl: "/images/logo11.svg/",
+    logoUrl: "/images/logo1.svg/",
   },
   {
     name: "코딩마스터",
