@@ -3,6 +3,7 @@ dotenv.config(); // 환경 변수 설정
 
 import express from "express";
 import cors from "cors";
+
 //import companyRoutes from "./src/routes/companyRoutes.js";
 
 const app = express();
