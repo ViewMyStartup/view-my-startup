@@ -18,9 +18,9 @@
   background-color: #4b4b4b;
 }
 
-.diffSizeContainer > span,
-.sameSizeContainer > span,
-.companyInfoContainer > span {
+.diffSizeContainer>span,
+.sameSizeContainer>span,
+.companyInfoContainer>span {
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 16.71px;
@@ -65,13 +65,13 @@
   padding: 0 24px;
 }
 
-.companyInfoContainer > span {
+.companyInfoContainer>span {
   font-size: 0.875rem;
   font-weight: 500;
   color: #ffffff;
 }
 
-.companyInfoContainer > img {
+.companyInfoContainer>img {
   aspect-ratio: 1;
   width: 32px;
   height: 32px;
@@ -86,7 +86,7 @@
   width: 100%;
 }
 
-.sameSizeContainer > span {
+.sameSizeContainer>span {
   width: 100%;
 }
 
@@ -134,14 +134,68 @@
   width: 64px;
 }
 
+.dropdownContainer {
+  position: relative;
+}
+
+.kebabIcon {
+  cursor: pointer;
+  margin-right: 13px;
+}
+
+.dropdownContainer {
+  position: relative;
+}
+
+.kebabIcon {
+  cursor: pointer;
+}
+
+.dropdownMenu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 5px);
+  right: calc(40%);
+  background-color: var(--black-400);
+  border: 1px solid var(--gray-200);
+  border-radius: 10px;
+  z-index: 1000;
+  width: 144px;
+  overflow: hidden;
+  /* 드롭다운 메뉴의 너비 조정 */
+}
+
+.dropdownMenu button {
+  display: block;
+  width: 100%;
+  height: 40px;
+  background: none;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  border-bottom: 1px solid var(--gray-200);
+  color: var(--gray-100);
+  /* 버튼 사이에 구분선 추가 */
+
+}
+
+.dropdownMenu button:last-child {
+  border-bottom: none;
+  /* 마지막 버튼의 구분선 제거 */
+}
+
+.dropdownMenu button:hover {
+  background-color: var(--gray-300);
+}
+
 @media (max-width: 744px) {
-  .companyInfoContainer > span {
+  .companyInfoContainer>span {
     font-size: 0.8125rem;
   }
 
-  .diffSizeContainer > span,
-  .sameSizeContainer > span,
-  .companyInfoContainer > span {
+  .diffSizeContainer>span,
+  .sameSizeContainer>span,
+  .companyInfoContainer>span {
     font-size: 0.8125rem;
   }
 }
