@@ -62,10 +62,10 @@ const mockupData = [
       "‘배움의 기쁨을 세상 모두에게.’\n\n" +
       "이것이 코드잇의 비전입니다. 현재는 최고의 코딩 교육 서비스를 국내에서 제공하고 있지만, 이보다 더 큰 그림을 그리고 있습니다. 2021년 상반기부터 영어권 시장 진출을 시작했고, 코딩과 인접한 분야부터 스펙트럼을 넓혀 나갈 계획입니다.",
     category: "에듀테크",
-    total_investment: 1400000000,
-    revenue: 250000000,
+    total_investment: 4000000000,
+    revenue: 5500000000,
     employees: 40,
-    logoUrl: "logo1",
+    logoUrl: logo1,
   },
   {
     name: "헬스체크",
