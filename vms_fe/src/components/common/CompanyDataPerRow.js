@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import styles from "./CompanyDataPerRow.module.css";
 import ModalPassword from "../ModalPassword";
 
@@ -51,22 +52,26 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
 
     return (
       <li key={id} className={styles.dataPerRowContainer}>
-        <section className={`${styles.diffSizeContainer} ${styles.rankSize}`}>
-          <span className={styles.columnRank}>{`${dataObject.rank}위`}</span>
-          <article className={styles.companyInfoContainer}>
-            <img src={logoUrl} alt="기업 이미지" />
-            <span>{name}</span>
-          </article>
-          <span className={styles.columnCompanyDescription}>{description}</span>
-        </section>
-        <section
-          className={`${styles.sameSizeContainer} ${styles.rankSizeForSame}`}
-        >
-          <span>{category}</span>
-          <span>{`${convertToBillion(total_investment)}억 원`}</span>
-          <span>{`${convertToBillion(revenue)}억 원`}</span>
-          <span>{`${employees}명`}</span>
-        </section>
+        <Link to={`/id/${name}`}>
+          <section className={`${styles.diffSizeContainer} ${styles.rankSize}`}>
+            <span className={styles.columnRank}>{`${dataObject.rank}위`}</span>
+            <article className={styles.companyInfoContainer}>
+              <img src={logoUrl} alt="기업 이미지" />
+              <span>{name}</span>
+            </article>
+            <span className={styles.columnCompanyDescription}>
+              {description}
+            </span>
+          </section>
+          <section
+            className={`${styles.sameSizeContainer} ${styles.rankSizeForSame}`}
+          >
+            <span>{category}</span>
+            <span>{`${convertToBillion(total_investment)}억 원`}</span>
+            <span>{`${convertToBillion(revenue)}억 원`}</span>
+            <span>{`${employees}명`}</span>
+          </section>
+        </Link>
       </li>
     );
   };
