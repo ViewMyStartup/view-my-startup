@@ -13,7 +13,7 @@
   border-radius: 10px;
   text-indent: 44px; /* 초기에는 검색 아이콘 때문에 글자가 이 위치에서 시작 */
   text-align: start;
-  padding-right: 48px; 
+  padding-right: 48px;
   transition: text-indent 0.3s ease; /* 텍스트 위치가 이동 */
 }
 
@@ -50,5 +50,12 @@
     min-width: 189px;
     height: 40px;
   }
-}
 
+  .searchInput {
+    padding-right: 0;
+  }
+
+  input::placeholder {
+    font-size: 13px;
+  }
+}
