@@ -8,6 +8,9 @@
   height: 99%;
   background-color: #212121;
   border-radius: 4px;
+  &:hover {
+    background-color: #4b4b4b;
+  }
 }
 
 .dataPerRowContainer {
