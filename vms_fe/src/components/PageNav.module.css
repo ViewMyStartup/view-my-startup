@@ -1,6 +1,5 @@
 .outlineContain {
-  /* background-color: inherit; */
-  background-color: #131313; /* 테스트용 */
+  background-color: inherit;
   height: 60px;
   display: flex;
   justify-content: center;
@@ -68,6 +67,11 @@
 }
 
 @media (max-width: 425px) {
+  .pageNavBox {
+    gap: 0px 16.5px;
+    padding: 0px 16px;
+  }
+
   .pageNavBox > a > img {
     width: 63.5px;
     height: 100%;
