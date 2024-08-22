@@ -86,7 +86,7 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
       id,
       rank,
       name,
-      logoUrl, // img를 logoUrl로 수정
+      logoUrl, // img를 logoUrl로 수정함
       description,
       category,
       investmentVmsTotal,
