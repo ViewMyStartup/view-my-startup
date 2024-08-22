@@ -48,7 +48,6 @@
   .pageNavBox {
     gap: 0px 24px;
   }
-  
 }
 
 @media (max-width: 744px) {
@@ -63,9 +62,16 @@
     font-size: 0.8125rem;
     font-weight: 700;
   }
-  .pageNavBox > img {
+  .pageNavBox > a > img {
+    width: 85px;
+    height: 100%;
+  }
+}
+
+@media (max-width: 425px) {
+  .pageNavBox > a > img {
     width: 63.5px;
     height: 100%;
   }
-
 }
+

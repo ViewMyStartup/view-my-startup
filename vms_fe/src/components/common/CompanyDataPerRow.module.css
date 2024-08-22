@@ -116,9 +116,18 @@
   width: 100%;
   min-width: 180px;
   max-width: 304px;
+  height: 34px;
   padding: 0px 16px;
+  line-height: 16.71px;
   white-space: normal;
+  text-wrap: wrap;
   text-align: left;
+  display: -webkit-box;    
+  -webkit-line-clamp: 2;     
+  -webkit-box-orient: vertical; 
+  line-clamp: 2;  
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .columnComment {

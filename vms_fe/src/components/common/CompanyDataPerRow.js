@@ -32,19 +32,6 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
     // return Math.floor((number / 100000000) * 100) / 100; // 버림
   };
 
-  //텍스트 자르기 (사전 작성)
-  const truncateText = (text, maxLength) => {
-    // text가 문자열인지 확인하는 조건 추가(text가 undefined일 때 기본값을 제공)
-    if (typeof text !== "string") {
-      return "";
-    }
-    if (text.length > maxLength) {
-      return text.substring(0, maxLength) + "...";
-    } else {
-      return text;
-    }
-  };
-
   function formatNumberWithCommas(number) {
     return number.toLocaleString();
   }
@@ -70,9 +57,7 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
             <img src={logoUrl} alt="기업 이미지" />
             <span>{name}</span>
           </article>
-          <span className={styles.columnCompanyDescription}>
-            {truncateText(description, 58)}
-          </span>
+          <span className={styles.columnCompanyDescription}>{description}</span>
         </section>
         <section
           className={`${styles.sameSizeContainer} ${styles.rankSizeForSame}`}
@@ -105,9 +90,7 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
             <img src={img} alt="기업 이미지" />
             <span>{name}</span>
           </article>
-          <span className={styles.columnCompanyDescription}>
-            {truncateText(description, 58)}
-          </span>
+          <span className={styles.columnCompanyDescription}>{description}</span>
         </section>
         <section className={styles.sameSizeContainer}>
           <span>{category}</span>
@@ -124,7 +107,7 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
       id,
       rank,
       name,
-      img,
+      logoUrl, // img를 logoUrl로 수정함
       description,
       category,
       investmentVmsTotal,
@@ -136,12 +119,10 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
         <section className={`${styles.diffSizeContainer} ${styles.investSize}`}>
           <span className={styles.columnRank}>{`${rank}위`}</span>
           <div className={styles.companyInfoContainer}>
-            <img src={img} alt="기업 이미지" />
+            <img src={logoUrl} alt="기업 이미지" />
             <span>{name}</span>
           </div>
-          <span className={styles.columnCompanyDescription}>
-            {truncateText(description, 58)}
-          </span>
+          <span className={styles.columnCompanyDescription}>{description}</span>
           <span className={styles.columnCategory}>{category}</span>
         </section>
         <section
@@ -225,9 +206,7 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
             <img src={img} alt="기업 이미지" />
             <span>{name}</span>
           </div>
-          <span className={styles.columnCompanyDescription}>
-            {truncateText(description, 58)}
-          </span>
+          <span className={styles.columnCompanyDescription}>{description}</span>
           <span className={styles.columnCategory}>{category}</span>
         </section>
         <section

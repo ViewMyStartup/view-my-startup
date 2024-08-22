@@ -30,7 +30,7 @@ function CurrentStateInvest() {
       category: "에듀테크",
       investmentVmsTotal: 5000000, // 가상의 투자 금액
       investmentInfactTotal: 4500000, // 가상의 실제 누적 투자 금액
-      img: logo1, // logoUrl
+      logoUrl: logo1, // logoUrl
     },
     {
       id: 2,
@@ -41,7 +41,7 @@ function CurrentStateInvest() {
       category: "에듀테크",
       investmentVmsTotal: 3000000, // 가상의 투자 금액
       investmentInfactTotal: 2500000, // 가상의 실제 누적 투자 금액
-      img: logo2,
+      logoUrl: logo2,
     },
     {
       id: 3,
@@ -52,7 +52,7 @@ function CurrentStateInvest() {
       category: "에듀테크",
       investmentVmsTotal: 4000000, // 가상의 투자 금액
       investmentInfactTotal: 3200000, // 가상의 실제 누적 투자 금액
-      img: logo1,
+      logoUrl: logo1,
     },
     {
       id: 4,
@@ -63,7 +63,7 @@ function CurrentStateInvest() {
       category: "에듀테크",
       investmentVmsTotal: 2000000, // 가상의 투자 금액
       investmentInfactTotal: 6000000, // 가상의 실제 누적 투자 금액
-      img: logo2,
+      logoUrl: logo2,
     },
     {
       id: 5,
@@ -74,7 +74,7 @@ function CurrentStateInvest() {
       category: "블록체인",
       investmentVmsTotal: 3500000, // 가상의 투자 금액
       investmentInfactTotal: 4600000, // 가상의 실제 누적 투자 금액
-      img: logo1,
+      logoUrl: logo1,
     },
   ];
 

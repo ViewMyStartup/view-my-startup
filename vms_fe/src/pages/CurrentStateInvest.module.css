@@ -1,14 +1,12 @@
-/* CurrentStateInvest.module.css */
-
 body {
-  background: #131313;
+  background: var(--black-400);
   margin: 0;
   padding: 0;
 }
 
 /* 전체 컨테이너 스타일 */
 .currentStateInvest {
-  background: #131313;
+  background: var(--black-400);
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
@@ -27,7 +25,7 @@ body {
 p {
   font-size: 20px;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--white);
 }
 
 .investCompanyList {
