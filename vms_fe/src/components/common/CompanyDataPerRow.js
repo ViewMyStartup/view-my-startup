@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./CompanyDataPerRow.module.css";
+import ModalPassword from "../ModalPassword";
 
 //이미지
 import iconKebab from "../../assets/images/ic_kebab.svg";
 
 function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
-  //단위 변환
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+
+  // 모달 상태
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // 드롭다운 토글 함수
+  const toggleDropdown = () => {
+    setDropdownVisible(!dropdownVisible);
+  };
+
+  // 모달 열기 함수
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+    setDropdownVisible(false); // 모달 열릴 때 드롭다운 닫기
+  };
+
+  // 모달 닫기 함수
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   const convertToBillion = (number) => {
     return parseFloat((number / 100000000).toFixed(2)); // 반올림
     // return Math.floor((number / 100000000) * 100) / 100; // 버림
@@ -131,10 +152,36 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
           className={`${styles.diffSizeContainer} ${styles.commentSize}`}
         >
           <span className={styles.columnComment}>{userComment}</span>
-          <div className={styles.columnNone}>
-            <img src={iconKebab} alt="kebab" />
+          <div className={styles.dropdownContainer}>
+            <img
+              src={iconKebab}
+              alt="kebab"
+              onClick={toggleDropdown}
+              className={styles.kebabIcon}
+            />
+            {dropdownVisible && (
+              <div className={styles.dropdownMenu}>
+                <button
+                  onClick={() =>
+                    alert("수정하기 클릭, 추가 로직 필요시 추가예정")
+                  }
+                >
+                  수정하기
+                </button>
+                <button onClick={handleOpenModal}>삭제하기</button>
+              </div>
+            )}
           </div>
         </section>
+
+        {isModalOpen && (
+          <ModalPassword
+            onClose={handleCloseModal}
+            onDelete={() => {
+              handleCloseModal();
+            }}
+          />
+        )}
       </li>
     );
   };
