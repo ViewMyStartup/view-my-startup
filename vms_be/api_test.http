@@ -201,3 +201,37 @@ Content-Type: application/json
 GET https://view-my-startup.onrender.com/api/companies/invalid_id
 Content-Type: application/json
 
+---
+
+### 기업 비교 API 테스트 - 종민님
+
+#### 배포된 서버에서 기업 비교 테스트
+POST https://view-my-startup.onrender.com/api/companies/compare
+Content-Type: application/json
+
+{
+  "companyIds": [11, 12, 13],
+  "sortBy": "revenue",
+  "order": "desc"
+}
+
+#### 배포된 서버에서 비어있는 기업 목록 비교 테스트
+POST https://view-my-startup.onrender.com/api/companies/compare
+Content-Type: application/json
+
+{
+  "companyIds": [],
+  "sortBy": "revenue",
+  "order": "desc"
+}
+
+#### 배포된 서버에서 잘못된 기업 ID 비교 테스트 (비정상적인 데이터)
+POST https://view-my-startup.onrender.com/api/companies/compare
+Content-Type: application/json
+
+{
+  "companyIds": ["invalid_id"],
+  "sortBy": "revenue",
+  "order": "desc"
+}
+
