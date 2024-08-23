@@ -4,19 +4,19 @@
   justify-content: center;
   position: relative;
   width: 100%;
-  margin: 0 !important; 
-  padding: 0 !important; 
+  margin: 0 !important;
+  padding: 0 !important;
   box-sizing: border-box;
 }
 
 .companyCard {
-  width: 126px;  /* 데스크탑 및 태블릿 버전 카드 너비 */
+  width: 126px; /* 데스크탑 및 태블릿 버전 카드 너비 */
   height: 187px; /* 데스크탑 및 태블릿 버전 카드 높이 */
   margin: 0;
-  padding: 0; 
+  padding: 0;
   border-radius: 8px;
   box-sizing: border-box; /* padding과 border를 포함한 크기 계산 */
-  background-color: var(--gray-400); 
+  background-color: var(--gray-400);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,6 +31,9 @@
   position: absolute;
   top: 8px;
   right: 8px;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .logo {
@@ -58,24 +61,23 @@
 
 @media (max-width: 743px) {
   .companyCard {
-    width: 104px;  /* 모바일 버전 카드 너비 */
+    width: 104px; /* 모바일 버전 카드 너비 */
     height: 163px; /* 모바일 버전 카드 높이 */
-    border-radius: 8px; 
+    border-radius: 8px;
   }
-  
+
   .logo {
     width: 65px;
     height: 65px;
   }
-  
+
   .companyName {
     font-size: 14px;
     font-weight: 500;
   }
-  
+
   .companyCategory {
     font-size: 12px;
     font-weight: 500;
   }
 }
-

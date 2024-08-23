@@ -5,7 +5,47 @@ import asyncHandler from "../middlewares/asyncHandler.js";
 const prisma = new PrismaClient();
 const router = express.Router();
 
-// 기업 관련 API 작성
+// 기업 리스트 조회 API
+router.get("/", async (req, res) => {
+  const { page = 1, limit = 10, search = '', sort_by = 'name', order = 'asc' } = req.query;
+
+  try {
+    // 검색 기능: 이름 또는 카테고리를 기준으로 검색
+    const filter = search ? {
+      OR: [
+        { name: { contains: search, mode: 'insensitive' } },
+        { category: { contains: search, mode: 'insensitive' } }
+      ]
+    } : {};
+
+    // 정렬 기능: 기본값은 이름 오름차순
+    const orderBy = {};
+    orderBy[sort_by] = order;
+
+    // 페이지네이션 및 검색, 정렬 적용된 기업 리스트 조회
+    const companies = await prisma.company.findMany({
+      where: filter,
+      orderBy: orderBy,
+      skip: (parseInt(page) - 1) * parseInt(limit),
+      take: parseInt(limit),
+    });
+
+    // 전체 기업 수 조회 (페이지네이션을 위한 전체 항목 수)
+    const total = await prisma.company.count({ where: filter });
+
+    // 응답 데이터
+    res.json({
+      page: parseInt(page),
+      limit: parseInt(limit),
+      total: total,
+      companies: companies,
+    });
+  } catch (error) {
+    // 서버 오류 발생 시
+    res.status(500).json({ error: "기업 리스트를 가져오는 중 오류가 발생했습니다." });
+  }
+});
+
 
 // 기업 상세 조회 API
 router.get("/:companyId", async (req, res) => {
