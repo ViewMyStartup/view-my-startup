@@ -117,3 +117,43 @@ Content-Type: application/json
   "password": "password123"
 }
 
+---
+
+### 가상 투자 수정 및 삭제 API 테스트 - 준호님
+
+#### 로컬 서버에서 가상 투자 수정 테스트
+PUT http://localhost:8000/api/investments/1
+Content-Type: application/json
+
+{
+  "investmentAmount": 2500000,
+  "investmentComment": "더 많은 투자를 하기로 결정했습니다.",
+  "password": "password123"
+}
+
+#### 로컬 서버에서 잘못된 비밀번호로 수정 시도
+PUT http://localhost:8000/api/investments/1
+Content-Type: application/json
+
+{
+  "investmentAmount": 2500000,
+  "investmentComment": "더 많은 투자를 하기로 결정했습니다.",
+  "password": "wrong_password"
+}
+
+#### 로컬 서버에서 가상 투자 삭제 테스트
+DELETE http://localhost:8000/api/investments/1
+Content-Type: application/json
+
+{
+  "password": "password123"
+}
+
+#### 로컬 서버에서 존재하지 않는 투자 항목 삭제 시도
+DELETE http://localhost:8000/api/investments/9999
+Content-Type: application/json
+
+{
+  "password": "password123"
+}
+
