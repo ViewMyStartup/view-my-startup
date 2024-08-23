@@ -32,6 +32,18 @@ router.get("/", async (req, res) => {
     // 전체 기업 수 조회 (페이지네이션을 위한 전체 항목 수)
     const total = await prisma.company.count({ where: filter });
 
+    // 응답 데이터
+    res.json({
+      page: parseInt(page),
+      limit: parseInt(limit),
+      total: total,
+      companies: companies,
+    });
+  } catch (error) {
+    // 서버 오류 발생 시
+    res.status(500).json({ error: "기업 리스트를 가져오는 중 오류가 발생했습니다." });
+  }
+});
 
 // 기업 상세 조회 API
 router.get("/:companyId", async (req, res) => {
