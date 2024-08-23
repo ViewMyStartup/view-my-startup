@@ -60,7 +60,7 @@ router.post(
       ) {
         return res
           .status(400)
-          .json({ error: "기업 ID는 최대 5개 제공되어야 합니다." });
+          .json({ error: "기업 ID는 1개이상 5개이하 제공되어야 합니다." });
       }
 
       const companies = await prisma.company.findMany({
