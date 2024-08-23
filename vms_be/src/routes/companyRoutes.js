@@ -7,16 +7,24 @@ const router = express.Router();
 
 // 기업 리스트 조회 API
 router.get("/", async (req, res) => {
-  const { page = 1, limit = 10, search = '', sort_by = 'name', order = 'asc' } = req.query;
+  const {
+    page = 1,
+    limit = 10,
+    search = "",
+    sort_by = "name",
+    order = "asc",
+  } = req.query;
 
   try {
     // 검색 기능: 이름 또는 카테고리를 기준으로 검색
-    const filter = search ? {
-      OR: [
-        { name: { contains: search, mode: 'insensitive' } },
-        { category: { contains: search, mode: 'insensitive' } }
-      ]
-    } : {};
+    const filter = search
+      ? {
+          OR: [
+            { name: { contains: search, mode: "insensitive" } },
+            { category: { contains: search, mode: "insensitive" } },
+          ],
+        }
+      : {};
 
     // 정렬 기능: 기본값은 이름 오름차순
     const orderBy = {};
@@ -42,10 +50,11 @@ router.get("/", async (req, res) => {
     });
   } catch (error) {
     // 서버 오류 발생 시
-    res.status(500).json({ error: "기업 리스트를 가져오는 중 오류가 발생했습니다." });
+    res
+      .status(500)
+      .json({ error: "기업 리스트를 가져오는 중 오류가 발생했습니다." });
   }
 });
-
 
 // 기업 상세 조회 API
 router.get("/:companyId", async (req, res) => {
@@ -91,7 +100,12 @@ router.post(
   "/compare",
   asyncHandler(async (req, res) => {
     try {
-      const { companyIds, sortBy, order = "desc" } = req.body;
+      const {
+        companyIds,
+        sortBy,
+        order = "desc",
+        includeRank = false,
+      } = req.body;
 
       if (
         !Array.isArray(companyIds) ||
@@ -148,6 +162,18 @@ router.post(
           return res.status(400).json({
             error: "정렬 기준이 유효하지 않습니다.",
           });
+      }
+
+      let response;
+      if (includeRank) {
+        // 순위를 포함하는 경우
+        response = sortedCompanies.map((company, index) => ({
+          ...company,
+          rank: index + 1,
+        }));
+      } else {
+        // 순위를 포함하지 않는 경우
+        response = sortedCompanies;
       }
 
       res.json({ companies: sortedCompanies });
