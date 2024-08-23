@@ -78,6 +78,39 @@ Content-Type: application/json
   "order": "desc"
 }
 
+#### 순위를 포함하여 기업 비교 테스트
+POST http://localhost:8000/api/companies/compare
+Content-Type: application/json
+
+{
+  "companyIds": [11, 12, 13],
+  "sortBy": "revenue",
+  "order": "desc",
+  "includeRank": true
+}
+
+#### 순위를 포함하지 않고 기업 비교 테스트
+POST http://localhost:8000/api/companies/compare
+Content-Type: application/json
+
+{
+  "companyIds": [11, 12, 13],
+  "sortBy": "revenue",
+  "order": "desc",
+  "includeRank": false
+}
+
+#### 6개의 기업 ID를 제공하여 오류 테스트
+POST http://localhost:8000/api/companies/compare
+Content-Type: application/json
+
+{
+  "companyIds": [11, 12, 13, 14, 15, 16],
+  "sortBy": "revenue",
+  "order": "desc",
+  "includeRank": true
+}
+
 ---
 
 ### 가상 투자 생성 API 테스트 - 현우님
