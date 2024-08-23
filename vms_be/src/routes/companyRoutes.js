@@ -21,6 +21,17 @@ router.get("/", async (req, res) => {
     const orderBy = {};
     orderBy[sort_by] = order;
 
+    // 페이지네이션 및 검색, 정렬 적용된 기업 리스트 조회
+    const companies = await prisma.company.findMany({
+      where: filter,
+      orderBy: orderBy,
+      skip: (parseInt(page) - 1) * parseInt(limit),
+      take: parseInt(limit),
+    });
+
+    // 전체 기업 수 조회 (페이지네이션을 위한 전체 항목 수)
+    const total = await prisma.company.count({ where: filter });
+
 
 // 기업 상세 조회 API
 router.get("/:companyId", async (req, res) => {
