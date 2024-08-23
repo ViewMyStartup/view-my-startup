@@ -110,11 +110,11 @@ router.post(
       if (
         !Array.isArray(companyIds) ||
         companyIds.length === 0 ||
-        companyIds.length > 5
+        companyIds.length > 6
       ) {
         return res
           .status(400)
-          .json({ error: "기업 ID는 1개이상 5개이하 제공되어야 합니다." });
+          .json({ error: "기업 ID는 1개이상 6개이하 제공되어야 합니다." });
       }
 
       const companies = await prisma.company.findMany({
