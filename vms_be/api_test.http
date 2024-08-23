@@ -1,0 +1,26 @@
+### 기업 리스트 조회 API 테스트 - 민서님
+
+#### 로컬 서버에서 기업 리스트 조회
+GET http://localhost:8000/api/companies
+Content-Type: application/json
+
+#### 로컬 서버에서 페이지네이션 테스트 (2번째 페이지, 5개의 항목)
+GET http://localhost:8000/api/companies?page=2&limit=5
+Content-Type: application/json
+
+#### 로컬 서버에서 검색 기능 테스트 (이름 또는 카테고리에 "에듀" 포함)
+GET http://localhost:8000/api/companies?search=에듀
+Content-Type: application/json
+
+#### 로컬 서버에서 정렬 기능 테스트 (매출액 내림차순 정렬)
+GET http://localhost:8000/api/companies?sort_by=revenue&order=desc
+Content-Type: application/json
+
+#### 로컬 서버에서 잘못된 페이지네이션 입력 테스트 (잘못된 페이지 값)
+GET http://localhost:8000/api/companies?page=invalid&limit=5
+Content-Type: application/json
+
+#### 로컬 서버에서 잘못된 정렬 옵션 테스트 (존재하지 않는 정렬 기준)
+GET http://localhost:8000/api/companies?sort_by=nonexistent_column&order=desc
+Content-Type: application/json
+
