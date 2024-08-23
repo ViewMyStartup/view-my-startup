@@ -235,3 +235,42 @@ Content-Type: application/json
   "order": "desc"
 }
 
+---
+
+### 가상 투자 생성 API 테스트 - 현우님
+
+#### 배포된 서버에서 가상 투자 생성 테스트
+POST https://view-my-startup.onrender.com/api/investments
+Content-Type: application/json
+
+{
+  "companyId": 22,
+  "investorName": "김현우",
+  "investmentAmount": 2000000,
+  "investmentComment": "좋은 회사입니다.",
+  "password": "password123"
+}
+
+#### 배포된 서버에서 필수 필드 누락 테스트 (투자 금액 누락)
+POST https://view-my-startup.onrender.com/api/investments
+Content-Type: application/json
+
+{
+  "companyId": 22,
+  "investorName": "김현우",
+  "investmentComment": "좋은 회사입니다.",
+  "password": "password123"
+}
+
+#### 배포된 서버에서 잘못된 데이터 형식 테스트 (잘못된 회사 ID)
+POST https://view-my-startup.onrender.com/api/investments
+Content-Type: application/json
+
+{
+  "companyId": "invalid_id",
+  "investorName": "김현우",
+  "investmentAmount": 2000000,
+  "investmentComment": "좋은 회사입니다.",
+  "password": "password123"
+}
+
