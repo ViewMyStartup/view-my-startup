@@ -1,0 +1,316 @@
+### 기업 리스트 조회 API 테스트 - 민서님
+
+#### 로컬 서버에서 기업 리스트 조회
+GET http://localhost:8000/api/companies
+Content-Type: application/json
+
+#### 로컬 서버에서 페이지네이션 테스트 (2번째 페이지, 5개의 항목)
+GET http://localhost:8000/api/companies?page=2&limit=5
+Content-Type: application/json
+
+#### 로컬 서버에서 검색 기능 테스트 (이름 또는 카테고리에 "에듀" 포함)
+GET http://localhost:8000/api/companies?search=에듀
+Content-Type: application/json
+
+#### 로컬 서버에서 정렬 기능 테스트 (매출액 내림차순 정렬)
+GET http://localhost:8000/api/companies?sort_by=revenue&order=desc
+Content-Type: application/json
+
+#### 로컬 서버에서 잘못된 페이지네이션 입력 테스트 (잘못된 페이지 값)
+GET http://localhost:8000/api/companies?page=invalid&limit=5
+Content-Type: application/json
+
+#### 로컬 서버에서 잘못된 정렬 옵션 테스트 (존재하지 않는 정렬 기준)
+GET http://localhost:8000/api/companies?sort_by=nonexistent_column&order=desc
+Content-Type: application/json
+
+---
+
+### 기업 상세 조회 API 테스트 - 소희님
+
+#### 로컬 서버에서 기업 상세 조회 (ID가 13인 경우)
+GET http://localhost:8000/api/companies/13
+Content-Type: application/json
+
+#### 로컬 서버에서 존재하지 않는 기업 조회 시 에러 처리 (ID가 999인 경우)
+GET http://localhost:8000/api/companies/999
+Content-Type: application/json
+
+#### 로컬 서버에서 존재하지 않는 기업 ID 조회 테스트
+GET http://localhost:8000/api/companies/9999
+Content-Type: application/json
+
+#### 로컬 서버에서 잘못된 형식의 기업 ID 조회 테스트 (문자열 ID)
+GET http://localhost:8000/api/companies/invalid_id
+Content-Type: application/json
+
+---
+
+### 기업 비교 API 테스트 - 종민님
+
+#### 로컬 서버에서 기업 비교 테스트
+POST http://localhost:8000/api/companies/compare
+Content-Type: application/json
+
+{
+  "companyIds": [11, 12, 13],
+  "sortBy": "revenue",
+  "order": "desc"
+}
+
+#### 로컬 서버에서 비어있는 기업 목록 비교 테스트
+POST http://localhost:8000/api/companies/compare
+Content-Type: application/json
+
+{
+  "companyIds": [],
+  "sortBy": "revenue",
+  "order": "desc"
+}
+
+#### 로컬 서버에서 잘못된 기업 ID 비교 테스트 (비정상적인 데이터)
+POST http://localhost:8000/api/companies/compare
+Content-Type: application/json
+
+{
+  "companyIds": ["invalid_id"],
+  "sortBy": "revenue",
+  "order": "desc"
+}
+
+---
+
+### 가상 투자 생성 API 테스트 - 현우님
+
+#### 로컬 서버에서 가상 투자 생성 테스트
+POST http://localhost:8000/api/investments
+Content-Type: application/json
+
+{
+  "companyId": 22,
+  "investorName": "김현우",
+  "investmentAmount": 2000000,
+  "investmentComment": "좋은 회사입니다.",
+  "password": "password123"
+}
+
+#### 로컬 서버에서 필수 필드 누락 테스트 (투자 금액 누락)
+POST http://localhost:8000/api/investments
+Content-Type: application/json
+
+{
+  "companyId": 22,
+  "investorName": "김현우",
+  "investmentComment": "좋은 회사입니다.",
+  "password": "password123"
+}
+
+#### 로컬 서버에서 잘못된 데이터 형식 테스트 (잘못된 회사 ID)
+POST http://localhost:8000/api/investments
+Content-Type: application/json
+
+{
+  "companyId": "invalid_id",
+  "investorName": "김현우",
+  "investmentAmount": 2000000,
+  "investmentComment": "좋은 회사입니다.",
+  "password": "password123"
+}
+
+---
+
+### 가상 투자 수정 및 삭제 API 테스트 - 준호님
+
+#### 로컬 서버에서 가상 투자 수정 테스트
+PUT http://localhost:8000/api/investments/1
+Content-Type: application/json
+
+{
+  "investmentAmount": 2500000,
+  "investmentComment": "더 많은 투자를 하기로 결정했습니다.",
+  "password": "password123"
+}
+
+#### 로컬 서버에서 잘못된 비밀번호로 수정 시도
+PUT http://localhost:8000/api/investments/1
+Content-Type: application/json
+
+{
+  "investmentAmount": 2500000,
+  "investmentComment": "더 많은 투자를 하기로 결정했습니다.",
+  "password": "wrong_password"
+}
+
+#### 로컬 서버에서 가상 투자 삭제 테스트
+DELETE http://localhost:8000/api/investments/1
+Content-Type: application/json
+
+{
+  "password": "password123"
+}
+
+#### 로컬 서버에서 존재하지 않는 투자 항목 삭제 시도
+DELETE http://localhost:8000/api/investments/9999
+Content-Type: application/json
+
+{
+  "password": "password123"
+}
+
+--- 배포된 서버 ---
+
+### 기업 리스트 조회 API 테스트 - 민서님
+
+#### 배포된 서버에서 기업 리스트 조회
+GET https://view-my-startup.onrender.com/api/companies
+Content-Type: application/json
+
+#### 배포된 서버에서 페이지네이션 테스트 (2번째 페이지, 5개의 항목)
+GET https://view-my-startup.onrender.com/api/companies?page=2&limit=5
+Content-Type: application/json
+
+#### 배포된 서버에서 검색 기능 테스트 (이름 또는 카테고리에 "에듀" 포함)
+GET https://view-my-startup.onrender.com/api/companies?search=에듀
+Content-Type: application/json
+
+#### 배포된 서버에서 정렬 기능 테스트 (매출액 내림차순 정렬)
+GET https://view-my-startup.onrender.com/api/companies?sort_by=revenue&order=desc
+Content-Type: application/json
+
+#### 배포된 서버에서 잘못된 페이지네이션 입력 테스트 (잘못된 페이지 값)
+GET https://view-my-startup.onrender.com/api/companies?page=invalid&limit=5
+Content-Type: application/json
+
+#### 배포된 서버에서 잘못된 정렬 옵션 테스트 (존재하지 않는 정렬 기준)
+GET https://view-my-startup.onrender.com/api/companies?sort_by=nonexistent_column&order=desc
+Content-Type: application/json
+
+---
+
+### 기업 상세 조회 API 테스트 - 소희님
+
+#### 배포된 서버에서 기업 상세 조회 (ID가 13인 경우)
+GET https://view-my-startup.onrender.com/api/companies/13
+Content-Type: application/json
+
+#### 배포된 서버에서 존재하지 않는 기업 조회 시 에러 처리 (ID가 999인 경우)
+GET https://view-my-startup.onrender.com/api/companies/999
+Content-Type: application/json
+
+#### 배포된 서버에서 잘못된 형식의 기업 ID 조회 테스트 (문자열 ID)
+GET https://view-my-startup.onrender.com/api/companies/invalid_id
+Content-Type: application/json
+
+---
+
+### 기업 비교 API 테스트 - 종민님
+
+#### 배포된 서버에서 기업 비교 테스트
+POST https://view-my-startup.onrender.com/api/companies/compare
+Content-Type: application/json
+
+{
+  "companyIds": [11, 12, 13],
+  "sortBy": "revenue",
+  "order": "desc"
+}
+
+#### 배포된 서버에서 비어있는 기업 목록 비교 테스트
+POST https://view-my-startup.onrender.com/api/companies/compare
+Content-Type: application/json
+
+{
+  "companyIds": [],
+  "sortBy": "revenue",
+  "order": "desc"
+}
+
+#### 배포된 서버에서 잘못된 기업 ID 비교 테스트 (비정상적인 데이터)
+POST https://view-my-startup.onrender.com/api/companies/compare
+Content-Type: application/json
+
+{
+  "companyIds": ["invalid_id"],
+  "sortBy": "revenue",
+  "order": "desc"
+}
+
+---
+
+### 가상 투자 생성 API 테스트 - 현우님
+
+#### 배포된 서버에서 가상 투자 생성 테스트
+POST https://view-my-startup.onrender.com/api/investments
+Content-Type: application/json
+
+{
+  "companyId": 22,
+  "investorName": "김현우",
+  "investmentAmount": 2000000,
+  "investmentComment": "좋은 회사입니다.",
+  "password": "password123"
+}
+
+#### 배포된 서버에서 필수 필드 누락 테스트 (투자 금액 누락)
+POST https://view-my-startup.onrender.com/api/investments
+Content-Type: application/json
+
+{
+  "companyId": 22,
+  "investorName": "김현우",
+  "investmentComment": "좋은 회사입니다.",
+  "password": "password123"
+}
+
+#### 배포된 서버에서 잘못된 데이터 형식 테스트 (잘못된 회사 ID)
+POST https://view-my-startup.onrender.com/api/investments
+Content-Type: application/json
+
+{
+  "companyId": "invalid_id",
+  "investorName": "김현우",
+  "investmentAmount": 2000000,
+  "investmentComment": "좋은 회사입니다.",
+  "password": "password123"
+}
+
+---
+
+### 가상 투자 수정 및 삭제 API 테스트 - 준호님
+
+#### 배포된 서버에서 가상 투자 수정 테스트
+PUT https://view-my-startup.onrender.com/api/investments/1
+Content-Type: application/json
+
+{
+  "investmentAmount": 2500000,
+  "investmentComment": "더 많은 투자를 하기로 결정했습니다.",
+  "password": "password123"
+}
+
+#### 배포된 서버에서 잘못된 비밀번호로 수정 시도
+PUT https://view-my-startup.onrender.com/api/investments/1
+Content-Type: application/json
+
+{
+  "investmentAmount": 2500000,
+  "investmentComment": "더 많은 투자를 하기로 결정했습니다.",
+  "password": "wrong_password"
+}
+
+#### 배포된 서버에서 가상 투자 삭제 테스트
+DELETE https://view-my-startup.onrender.com/api/investments/1
+Content-Type: application/json
+
+{
+  "password": "password123"
+}
+
+#### 배포된 서버에서 존재하지 않는 투자 항목 삭제 시도
+DELETE https://view-my-startup.onrender.com/api/investments/9999
+Content-Type: application/json
+
+{
+  "password": "password123"
+}
+
