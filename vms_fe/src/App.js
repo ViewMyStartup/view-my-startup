@@ -9,6 +9,7 @@ import CompanyInvestDetail from "pages/CompanyInvestDetail";
 import CurrentStateInvest from "pages/CurrentStateInvest";
 import MyCompanyCompare from "pages/MyCompanyCompare";
 import CurrentStateCompare from "pages/CurrentStateCompare";
+import MainPage from "pages/MainPage";
 
 //기존 테스트 페이지
 import Test from "./test";
@@ -24,6 +25,7 @@ function App() {
         <Route path="/investinfo" element={<CurrentStateInvest />} />
         <Route path="/id/:name" element={<CompanyInvestDetail />} />
         <Route path="/test" element={<Test />} />
+        <Route path="/mainpage" element={<MainPage/>}/>
       </Routes>
     </BrowserRouter>
   );

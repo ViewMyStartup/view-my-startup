@@ -5,6 +5,9 @@
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid #2E2E2E;
+  position: sticky;
+  z-index: 99;
+  width: 100%;
 }
 
 .pageNavBox {
@@ -17,7 +20,7 @@
   padding: 0px 24px;
 }
 
-.pageNavBox > img {
+.pageNavBox>img {
   margin: 0px 24px;
 }
 
@@ -56,11 +59,13 @@
   .boardList {
     gap: 16px;
   }
+
   .boardList li {
     font-size: 0.8125rem;
     font-weight: 700;
   }
-  .pageNavBox > a > img {
+
+  .pageNavBox>a>img {
     width: 85px;
     height: 100%;
   }
@@ -72,9 +77,8 @@
     padding: 0px 16px;
   }
 
-  .pageNavBox > a > img {
+  .pageNavBox>a>img {
     width: 63.5px;
     height: 100%;
   }
 }
-

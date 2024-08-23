@@ -205,10 +205,7 @@ function MyCompanyCompare() {
                 />
               </div>
               <div className={styles.dataRowWrapper}>
-                <DataRowSetRender
-                  type="rank"
-                  dataList={sortedCompanies}
-                />
+                <DataRowSetRender type="rank" dataList={sortedCompanies} />
               </div>
             </div>
 
@@ -266,7 +263,9 @@ function MyCompanyCompare() {
             <div className={styles.btnWrapper}>
               <MediumBtn
                 text="기업 비교하기"
-                className={selectedCompanies.length === 0 ? styles.disabledBtn : ""}
+                className={
+                  selectedCompanies.length === 0 ? styles.disabledBtn : ""
+                }
                 disabled={selectedCompanies.length === 0}
                 onClick={handleComparisonClick}
               />
@@ -295,4 +294,3 @@ function MyCompanyCompare() {
 }
 
 export default MyCompanyCompare;
-

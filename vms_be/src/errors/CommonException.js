@@ -1,6 +1,6 @@
 export class CommonException extends Error {
   constructor({
-    status = 500, // 기본값으로 500을 설정 (인터널 에러)
+    status = 500,
     code = "UNKNOWN_ERROR",
     message = "예상 외 에러가 발생했습니다",
     identifier,
@@ -15,7 +15,7 @@ export class CommonException extends Error {
     this.message = message;
     this.identifier = identifier;
     this.reason = reason;
-    this.stack = stack || this.stack; // 에러의 스택을 기본값으로 설정
+    this.stack = stack || this.stack;
     this.origin = origin;
     this.occuredAt = occuredAt;
     Error.captureStackTrace(this, this.constructor);
