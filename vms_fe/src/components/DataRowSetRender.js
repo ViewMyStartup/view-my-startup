@@ -11,7 +11,11 @@ function DataRowSetRender({ type = "rank", dataList = [] }) {
       <HeaderColumns type={type} />
       <ul>
         {dataList.map((data) => (
-          <CompanyDataPerRow type={type} dataObject={data} />
+          <CompanyDataPerRow
+            key={data.id} // 리스트를 렌더링할 때, key 추가
+            type={type}
+            dataObject={data}
+          />
         ))}
       </ul>
     </div>
