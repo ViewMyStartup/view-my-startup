@@ -176,7 +176,7 @@ router.post(
         response = sortedCompanies;
       }
 
-      res.json({ companies: sortedCompanies });
+      res.json({ companies: response });
     } catch (error) {
       res
         .status(500)
