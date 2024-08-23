@@ -4,7 +4,23 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 const router = express.Router();
 
-// 기업 관련 API 작성
+// 기업 리스트 조회 API
+router.get("/", async (req, res) => {
+  const { page = 1, limit = 10, search = '', sort_by = 'name', order = 'asc' } = req.query;
+
+  try {
+    // 검색 기능: 이름 또는 카테고리를 기준으로 검색
+    const filter = search ? {
+      OR: [
+        { name: { contains: search, mode: 'insensitive' } },
+        { category: { contains: search, mode: 'insensitive' } }
+      ]
+    } : {};
+
+    // 정렬 기능: 기본값은 이름 오름차순
+    const orderBy = {};
+    orderBy[sort_by] = order;
+
 
 // 기업 상세 조회 API
 router.get("/:companyId", async (req, res) => {
