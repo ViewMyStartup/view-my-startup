@@ -185,3 +185,19 @@ Content-Type: application/json
 GET https://view-my-startup.onrender.com/api/companies?sort_by=nonexistent_column&order=desc
 Content-Type: application/json
 
+---
+
+### 기업 상세 조회 API 테스트 - 소희님
+
+#### 배포된 서버에서 기업 상세 조회 (ID가 13인 경우)
+GET https://view-my-startup.onrender.com/api/companies/13
+Content-Type: application/json
+
+#### 배포된 서버에서 존재하지 않는 기업 조회 시 에러 처리 (ID가 999인 경우)
+GET https://view-my-startup.onrender.com/api/companies/999
+Content-Type: application/json
+
+#### 배포된 서버에서 잘못된 형식의 기업 ID 조회 테스트 (문자열 ID)
+GET https://view-my-startup.onrender.com/api/companies/invalid_id
+Content-Type: application/json
+
