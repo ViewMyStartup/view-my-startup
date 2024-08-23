@@ -38,7 +38,7 @@ router.get("/:companyId", async (req, res) => {
       investments: company.investments,
     });
   } catch (error) {
-    // 서버 오류 발생시
+    // 서버 오류 발생 시
     res
       .status(500)
       .json({ error: "기업 상세 정보를 가져오는 중 오류가 발생했습니다." });
