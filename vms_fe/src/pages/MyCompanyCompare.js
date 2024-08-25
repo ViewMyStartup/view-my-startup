@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./MyCompanyCompare.module.css";
 import PageNav from "components/PageNav";
 import ResetBtn from "components/common/ResetBtn";
+import CompareOtherCompanyBtn from "components/common/CompareOtherCompanyBtn";
 import icRestart from "../assets/images/ic_restart.svg";
 import ModalSelectComparision from "../components/ModalSelectComparision";
 import CompanyCard from "../components/common/CompanyCard";
@@ -30,7 +31,8 @@ function MyCompanyCompare() {
     if (resetButtonText === "전체 초기화") {
       setSelectedCompanies([]);
     } else if (resetButtonText === "다른 기업 비교하기") {
-      // 다른 동작 추가 예정
+      // 모달 열기
+      openModal();
     }
   };
 
@@ -41,20 +43,27 @@ function MyCompanyCompare() {
         <div className={styles.subheadingWrapper}>
           <h1 className={styles.heading}>나의 기업을 선택해 주세요!</h1>
           <div className={styles.addCompanyBtnWrapper}>
-            <ResetBtn
-              text={
-                <>
-                  <img
-                    src={icRestart}
-                    alt="restart"
-                    className={styles.icRestart}
-                  />
-                  &nbsp;{resetButtonText}
-                </>
-              }
-              disabled={selectedCompanies.length === 0}
-              onClick={handleResetButtonClick}
-            />
+            {resetButtonText === "전체 초기화" ? (
+              <ResetBtn
+                text={
+                  <>
+                    <img
+                      src={icRestart}
+                      alt="restart"
+                      className={styles.icRestart}
+                    />
+                    &nbsp;{resetButtonText}
+                  </>
+                }
+                disabled={selectedCompanies.length === 0}
+                onClick={handleResetButtonClick}
+              />
+            ) : (
+              <CompareOtherCompanyBtn
+                text="다른 기업 비교하기"
+                onClick={handleResetButtonClick}
+              />
+            )}
           </div>
         </div>
 
