@@ -61,8 +61,8 @@
 
 @media (max-width: 743px) {
   .companyCard {
-    width: 104px; /* 모바일 버전 카드 너비 */
-    height: 163px; /* 모바일 버전 카드 높이 */
+    width: 95px; /* 모바일 버전 카드 너비 */
+    height: 160px; /* 모바일 버전 카드 높이 */
     border-radius: 8px;
   }
 
