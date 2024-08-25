@@ -1,0 +1,53 @@
+.buttonWrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%; 
+}
+
+.compareCompanyBtn {
+    background-color: var(--black-100);
+    color: var(--gray-200);
+    border-radius: 50px;
+    border: none;
+    width: 183px;
+    height: 48px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19.09px;
+    padding: 13px, 48px, 13px, 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.compareCompanyBtn.active {
+    background-color: var(--brand-orange);
+    color: var(--white);
+}
+
+.compareCompanyBtn.disabledBtn {
+    background-color: #2E2E2E !important;
+    color: #747474 !important;
+    cursor: not-allowed !important; 
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+    .compareCompanyBtn {
+        width: 183px;
+        height: 48px;
+        font-size: 16px;
+        padding: 13px, 48px, 13px, 48px;
+        line-height: 19.09px;
+    }
+}
+
+@media (max-width: 743px) {
+    .compareCompanyBtn {
+        width: 183px;
+        height: 48px;
+        font-size: 16px;
+        line-height: 19.09px;
+    }
+}
+
