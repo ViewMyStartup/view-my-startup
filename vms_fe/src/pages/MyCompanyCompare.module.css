@@ -10,20 +10,24 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 90px;
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  max-width: 1156px;
+  max-width: 1200px;
   flex-grow: 1;
 }
 
-.headingWrapper, .sectionHeadingWrapper {
+.icRestart {
+  filter: brightness(0) invert(1); /* 흰색(#FFFFFF)으로 설정 */
+}
+
+.headingWrapper,
+.sectionHeadingWrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: calc(100% - 48px);  /* Innerbox와 동일한 width */
-  min-width: 1108px; /* 최대 넓이를 지정하여 모든 headingWrapper가 동일하게 맞춰지도록 함 */
+  width: calc(100% - 3px); 
+  max-width: 1200px; /* 전체 페이지와 동일한 최대 너비 */
 }
 
 .heading {
@@ -34,25 +38,13 @@
   font-size: 20px;
 }
 
-.resetBtnWrapper {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
 .sectionWrapper {
   margin-top: 30px;
-  width: calc(100% - 48px);  /* Innerbox와 동일한 width */
+  width: calc(100% - 48px); /* Innerbox와 동일한 width */
   max-width: 1156px;
   display: flex;
   flex-direction: column;
   gap: 20px;
-}
-
-.sectionHeadingWrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .sectionHeading {
@@ -64,12 +56,7 @@
 }
 
 .dataRowWrapper {
-  width: 100%;  /* Innerbox와 동일한 width */
-}
-
-.dropdown {
-  margin-left: auto;  /* 드롭다운이 오른쪽 끝으로 정렬되도록 설정 */
-  margin-right: 20px; /* 오른쪽으로 드롭다운을 더 이동시키기 위한 여백 추가 */
+  width: 100%; /* Innerbox와 동일한 width */
 }
 
 .addMyCompany {
@@ -85,17 +72,28 @@
   position: relative;
 }
 
+.addOtherCompany {
+  margin-top: 30px;
+  background-color: #212121;
+  width: calc(100% - 48px);
+  border-radius: 4px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
 .innerBox {
   background-color: #212121;
   height: 100%;
   width: 100%;
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
   justify-content: center;
-  flex-direction: row;
-  gap: 5px; /* 카드 사이 간격을 줄임 */
   position: relative;
-  padding: 0 5px; /* 양쪽에 최소한의 패딩 추가 */
+  padding: 0 2px; 
+  gap: 1px; 
 }
 
 .myCompanyCardWrapper {
@@ -103,9 +101,9 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  margin: 0; /* 카드 주변의 여백 제거 */
-  padding: 0; /* 카드 주변의 패딩 제거 */
-  flex: 1 1 auto; /* 카드가 가능한 공간을 채우도록 설정 */
+  margin: 0;
+  padding: 0;
+  flex: 1 1 calc(33.333% - 2px); /* 한 줄에 최대 3개씩 배치 */
 }
 
 .comparisonCompanyCardWrapper {
@@ -113,8 +111,8 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  margin: 7px !important; /* 카드 주변의 여백 제거 */
-  padding: 0 !important; /* 카드 주변의 패딩 제거 */
+  margin: 5px !important;
+  padding: 0 !important;
 }
 
 .removeText {
@@ -131,9 +129,9 @@
 
 .subheadingWrapper {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  width: calc(100% - 48px);  /* Innerbox와 동일한 width */
+  width: calc(100% - 48px); /* Innerbox와 동일한 width */
   max-width: 1156px;
   margin-top: 30px;
 }
@@ -143,6 +141,7 @@
   font-family: "Pretendard", sans-serif;
   font-weight: 700;
   font-size: 20px;
+  margin-right: 6px;
 }
 
 .maxCompaniesText {
@@ -150,7 +149,65 @@
   font-family: "Pretendard", sans-serif;
   font-weight: 400;
   font-size: 16px;
-  margin-left: 10px;
+  margin-left: 6px;
+}
+
+/* 태블릿용 스타일 */
+@media (min-width: 744px) and (max-width: 1199px) {
+  .addMyCompany {
+    height: 240px; /* 태블릿에서 "나의 기업을 선택해주세요" 박스 height */
+  }
+
+  .addOtherCompany {
+    height: 240px; /* 태블릿에서 "어떤 기업이 궁금하세요" 박스 height */
+  }
+}
+
+/* 모바일 환경 스타일링 (743px ~ 375px) */
+@media (max-width: 743px) {
+  .heading,
+  .subheading {
+    font-size: calc(20px - 5px);
+    margin-right: 3px;
+  }
+
+  .maxCompaniesText {
+    font-size: calc(16px - 5px);
+    margin-left: 3px;
+  }
+
+  .addMyCompany {
+    height: 180px; /* 모바일에서 "나의 기업을 선택해주세요" 박스 height */
+  }
+
+  .addOtherCompany {
+    height: 350px; /* 모바일에서 "어떤 기업이 궁금하세요" 박스 height */
+  }
+
+  .innerBox {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0 2px;
+    gap: 1px;
+  }
+
+  .myCompanyCardWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    flex: 1 1 calc(33.333% - 2px);
+  }
+
+  .innerBox > .myCompanyCardWrapper:nth-child(4),
+  .innerBox > .myCompanyCardWrapper:nth-child(5) {
+    margin-left: auto;
+    margin-right: auto;
+    flex: 1 1 calc(33.333% - 2px);
+  }
 }
 
 .addCompanyBtnWrapper {
@@ -158,72 +215,6 @@
   justify-content: flex-end;
   align-items: center;
   margin-left: auto;
-}
-
-.addCompanyBtn {
-  width: calc(149px - 20px) !important;
-  height: 40px;
-  font-size: 16px;
-}
-
-/* 태블릿용 스타일 */
-@media (min-width: 744px) and (max-width: 1199px) {
-  .removeText {
-    top: -30px;
-    right: 30px;
-  }
-}
-
-@media (max-width: 743px) and (min-width: 375px) {
-  .infoBox {
-    height: 350px !important;
-  }
-
-  .innerBox {
-    height: 180px !important;
-  }
-
-  .infoBox .innerBox {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0px; /* 모바일 환경에서 카드 간격 더 줄이기 */
-  }
-
-  .myCompanyCardWrapper {
-    width: calc(33.333% - 10px);
-    margin-bottom: 5px;
-    display: flex;
-    justify-content: center;
-  }
-
-  .ccomparisonCompanyCardWrapper {
-    width: calc(33.333% - 10px);
-    display: flex;
-    justify-content: center;
-  }
-
-  .companyCardWrapper:nth-child(3n) {
-    margin-right: 0;
-  }
-
-  .companyCardWrapper:nth-child(3n+1) {
-    margin-left: 0;
-  }
-
-  .companyCardWrapper .companyCard {
-    width: calc(100% - 20px);
-    height: calc(100% - 20px);
-  }
-
-  .comparisonCompanyCardWrapper {
-    margin: 3px;
-  }
-
-  .companyCardWrapper .companyCard {
-    width: auto;
-    height: auto;
-  }
 }
 
 .addButtonWrapper {
@@ -265,18 +256,6 @@
   margin-top: 20px;
 }
 
-.infoBox {
-  margin-top: 30px;
-  background-color: #212121;
-  width: calc(100% - 48px);
-  border-radius: 4px;
-  height: 300px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0; /* infoBox 자체의 패딩 제거 */
-}
-
 .noCompaniesInfo {
   display: flex;
   justify-content: center;
@@ -302,7 +281,7 @@
 }
 
 .disabledBtn {
-  background-color: #2E2E2E !important;
+  background-color: #2e2e2e !important;
   color: #747474 !important;
   cursor: not-allowed !important;
 }
