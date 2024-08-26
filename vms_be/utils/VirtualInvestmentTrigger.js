@@ -3,7 +3,13 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export async function initializeVirtualInvestment() {
-  const companies = await prisma.company.findMany();
+  const companies = await prisma.company.findMany({
+    where: {
+      virtualInvestment: {
+        gt: 0, // 0보다 큰 값만 반환
+      },
+    },
+  });
   console.log(companies);
 
   for (const company of companies) {
