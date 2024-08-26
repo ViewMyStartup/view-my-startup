@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from "react";
+import React, { useEffect, useState, useMemo, useCallback } from "react";
 import style from "./ModalSelectComparision.module.css";
 import mockupData from "assets/mock/mockData";
 import Pagination from "components/common/Pagination";
@@ -6,13 +6,24 @@ import SearchBar from "components/common/SearchBar";
 import SelectBtn from "./common/SelectBtn";
 import deleteIcon from "assets/images/ic_delete.svg";
 
-const ModalSelectComparision = ({ isOpen, onClose, title, text }) => {
+const ModalSelectComparision = ({
+  isOpen,
+  onClose,
+  title,
+  text,
+  autoClose = false, // 바로 닫히기
+  preSelectedCompanies = [], // 선택된 기업 목록
+}) => {
   // 기존 코드 유지
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCompanies, setSelectedCompanies] = useState([]);
   const [error, setError] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
+
+  useEffect(() => {
+    setSelectedCompanies(preSelectedCompanies);
+  }, [preSelectedCompanies, isOpen]);
 
   const filteredCompanies = useMemo(() => {
     return mockupData.filter((company) =>
@@ -43,9 +54,13 @@ const ModalSelectComparision = ({ isOpen, onClose, title, text }) => {
       ) {
         setSelectedCompanies((prev) => [...prev, company]);
         setError("");
+
+        if (autoClose) {
+          onClose([company]);
+        }
       }
     },
-    [selectedCompanies]
+    [selectedCompanies, onClose, autoClose]
   );
 
   const handleDeselect = useCallback((companyName) => {
@@ -73,10 +88,17 @@ const ModalSelectComparision = ({ isOpen, onClose, title, text }) => {
     onClose(selectedCompanies);
   };
 
+  // 모달 바깥 부분 클릭시 모달 닫기
+  const handleOverlayClick = (e) => {
+    if (e.target === e.currentTarget) {
+      handleClose();
+    }
+  };
+
   if (!isOpen) return null;
 
   return (
-    <div className={style.modalOverlay}>
+    <div className={style.modalOverlay} onClick={handleOverlayClick}>
       <div className={style.modalContainer}>
         <div className={style.modalContent}>
           <div className={style.modalHeadText}>
@@ -98,7 +120,7 @@ const ModalSelectComparision = ({ isOpen, onClose, title, text }) => {
           {selectedCompanies.length > 0 && (
             <div className={style.PartitionHug}>
               <h2 className={style.CompaniesColumnText}>
-                {text} ({selectedCompanies.length}) 
+                {text} ({selectedCompanies.length})
                 {/* 선택된 기업 목록의 제목으로 사용되는 text prop */}
               </h2>
               <ul className={style.companyColumnsHug}>
