@@ -9,10 +9,7 @@ import investmentRoutes from "./src/routes/investmentRoutes.js";
 import errorHandlers from "./src/middlewares/errorHandler.js";
 
 //트리거
-import {
-  setupInvestmentTrigger,
-  initializeVirtualInvestment,
-} from "./utils/VirtualInvestmentTrigger.js";
+import initializeVirtualInvestment from "./utils/initializeVirtualInvestment.js";
 
 // 환경 변수 설정
 dotenv.config();
@@ -39,15 +36,12 @@ app.use(...errorHandlers);
 // 서버 시작
 app.listen(process.env.PORT || 8000, () => console.log("Server Started"));
 
-// 데이터베이스 트리거 추가
+// 서버 시작 후 자동 실행
 try {
   // 서버 시작 시 virtualInvestment 초기화
   await initializeVirtualInvestment();
 
-  // 트리거 설정
-  await setupInvestmentTrigger();
-
-  console.log('Database initialization and trigger setup completed.');
+  console.log('virtualInvestment 초기화');
 } catch (error) {
-  console.error('Error during database setup:', error);
+  console.error('initializeVirtualInvestment 오류 :', error);
 }
