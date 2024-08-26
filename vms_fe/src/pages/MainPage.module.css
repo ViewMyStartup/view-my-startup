@@ -1,47 +1,70 @@
-.pageContainer {
-  min-height: 100vh;
-  background-color: #2e2e2e;
-  color: #f3f4f6;
-  overflow: hidden;
+.container {
+  height: 100vh;
   position: relative;
-  font-family: Arial, sans-serif;
+}
+
+.scrollContainer {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  width: 100%;
+  position: relative;
+}
+
+.pageContainer {
+  height: 94vh;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.sidebar {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 75px;
+  background-color: transparent;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  z-index: 10;
+}
+
+.sidebarItem {
+  padding: 8px 10px;
+  margin-bottom: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: 1px solid transparent;
+  font-size: 14px;
+  background-color: transparent;
+}
+
+.sidebarItem:first-child {
+  border-top: 1px solid #ffffff;
+}
+
+.sidebarItem:last-child {
+  border-bottom: 1px solid #ffffff;
+}
+
+.sidebarItem.active,
+.sidebarItem:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .backgroundGradient {
   position: absolute;
   inset: 0;
   background: radial-gradient(ellipse at center, #2e2e2e 0%, #141414 100%);
-  z-index: 1;
-}
-
-.header {
-  position: relative;
-  z-index: 10;
-  background-color: rgba(31, 41, 55, 0.5);
-  padding: 16px 0;
-  border-bottom: 1px solid #374151;
-}
-
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 16px;
-}
-
-.headerTitle {
-  font-size: 24px;
-  font-weight: bold;
-  background: linear-gradient(to right, #131313, #282828);
-  -webkit-background-clip: text;
-  color: transparent;
-}
-
-.mainContent {
-  position: relative;
-  z-index: 10;
-  padding: 32px 32px;
-  margin-top: 60px;
+  z-index: -1;
 }
 
 .introSection {
@@ -53,15 +76,15 @@
   font-size: 40px;
   font-weight: bold;
   margin-bottom: 16px;
-  animation: fade-in-up 0.5s ease-in-out forwards;
+  background: radial-gradient(ellipse at center, #b3b1b1 20%, #555353 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .introSubtitle {
   font-size: 20px;
   color: #4b4b4b;
   margin-bottom: 32px;
-  animation: fade-in-up 0.5s ease-in-out forwards;
-  animation-delay: 0.2s;
 }
 
 .exploreButton {
@@ -70,16 +93,15 @@
   font-weight: bold;
   padding: 12px 24px;
   border-radius: 9999px;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   display: inline-flex;
   align-items: center;
-  animation: fade-in-up 0.5s ease-in-out forwards;
-  animation-delay: 0.4s;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
 }
 
 .exploreButton:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(225, 220, 235, 0.7);
 }
 
 .arrowIcon {
@@ -87,88 +109,211 @@
 }
 
 .chartSection {
-  background-color: #4b4b4b;
-  opacity: 0.5;
-  padding: 24px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  margin-bottom: 64px;
-  animation: fade-in-up 0.5s ease-in-out forwards;
-  animation-delay: 0.6s;
+  background-color: #2e2e2e;
+  width: 70%;
+  padding: 32px;
+  border-radius: 8px;
+  color: #ffffff;
 }
 
 .chartTitle {
   font-size: 24px;
   font-weight: bold;
-  text-align: center;
   margin-bottom: 16px;
 }
 
 .chartContainer {
   height: 400px;
+  width: 100%;
 }
 
 .statsSection {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
-  margin-bottom: 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #2e2e2e;
+  padding: 32px;
+  border-radius: 8px;
+  color: #ffffff;
+  width: 70%;
+  height: 70%;
 }
 
 .statsCard {
-  background-color: #4b4b4b;
-  opacity: 0.5;
-  padding: 24px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  animation: fade-in-up 0.5s ease-in-out forwards;
-  transition: box-shadow 0.3s ease-in-out;
-}
-
-.statsCard:hover {
-  box-shadow: 0 0 20px rgba(225, 220, 235, 0.7);
+  text-align: center;
+  margin: 0 16px;
 }
 
 .statsIcon {
-  width: 48px;
-  height: 48px;
-  color: 4b4b4b;
-  margin-bottom: 16px;
+  width: 40px;
+  height: 40px;
+  color: #ffffff;
 }
 
 .statsTitle {
   font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 8px;
+  font-weight: bold;
 }
 
 .statsValue {
-  font-size: 32px;
+  font-size: 24px;
   font-weight: bold;
-  background: linear-gradient(to right, #131313, #4b4b4b);
-  -webkit-background-clip: text;
-  color: transparent;
 }
 
-.footerGradient {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 33%;
-  background: linear-gradient(to top, #4b4b4b, transparent);
-  opacity: 0.2;
-  pointer-events: none;
+.investmentPortfolio {
+  margin-top: 2rem;
 }
 
-@keyframes fade-in-up {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
+.portfolioItems {
+  display: flex;
+  justify-content: space-around;
+}
+
+.portfolioItem {
+  background-color: #444;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 300px;
+  margin: 10px;
+}
+
+.learnMoreButton {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #0056b3;
+  color: #fff;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.chartInsights {
+  margin-top: 2rem;
+  color: #ffffff;
+}
+
+.chartInsights h4 {
+  margin-bottom: 1rem;
+}
+
+.growthDetails {
+  margin-top: 2rem;
+}
+
+.growthChart,
+.growthCases {
+  margin-bottom: 1rem;
+}
+
+.investorSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2e2e2e;
+  padding: 32px;
+  border-radius: 8px;
+  color: #ffffff;
+  width: 70%;
+  height: 80%;
+}
+
+.InvestorContainer {
+  min-height: 50vh;
+  background: inherit;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.InvestorTitle {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 2rem;
+}
+
+.InvestorDescription {
+  font-size: 1.25rem;
+  color: white;
+  margin-bottom: 3rem;
+  text-align: center;
+  max-width: 40rem;
+  white-space: normal;
+}
+
+.InvestorGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.InvestorCard {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  padding: 1.0rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.InvestorImage {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+.InvestorName {
+  font-size: 1.25rem;
+  font-weight: semibold;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.InvestorRole {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.investmentTotal {
+  margin-top: 2rem;
+}
+
+.investmentChart {
+  height: 300px;
+  background-color: #444;
+}
+
+.startupsList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.startupItem {
+  background-color: #444;
+  padding: 15px;
+  border-radius: 10px;
+  margin: 5px;
+}
+
+@media (max-width: 900px) {
+  .InvestorGrid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
-  100% {
-    opacity: 1;
-    transform: translateY(0);
+  .InvestorCard {
+    max-width: 80%;
+    margin-bottom: 1rem;
   }
 }
