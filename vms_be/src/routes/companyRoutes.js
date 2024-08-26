@@ -125,10 +125,10 @@ router.post(
         });
       }
       // 선택된 기업들의 선택 횟수를 증가시키기 위한 작업
-      await prisma.company.updateMany({
+      await prisma.companySelection.updateMany({
         where: { id: { in: companyIds.map((id) => parseInt(id)) } },
         data: {
-          selections: {
+          selectionCount: {
             increment: 1, // 선택 횟수를 1씩 증가시킴
           },
         },
@@ -156,7 +156,6 @@ router.post(
           .status(404)
           .json({ error: "해당하는 기업이 존재하지 않습니다." });
       }
-
 
       // 정렬 기준에 따라 기업들을 정렬
       let sortedCompanies;
@@ -193,18 +192,15 @@ router.post(
           });
       }
 
-
       // 내 기업의 순위를 확인해야 하는 특수한 상황 => 나의 기업 비교 페이지 => 기업 순위 확인하기 섹션에서 쓰임
 
       let response;
 
       if (checkMyCompanyRanking) {
-
         // 내 기업의 순위를 확인할 때 근접한 기업들을 추출
         const myCompanyIndex = sortedCompanies.findIndex(
           (company) => company.id === myCompanyId
         );
-
 
         // 근접한 기업 인덱스 추출
         const start = Math.max(0, myCompanyIndex - 2);
@@ -246,4 +242,3 @@ router.post(
 );
 
 export default router;
-

@@ -83,10 +83,12 @@ POST http://localhost:8000/api/companies/compare
 Content-Type: application/json
 
 {
-  "companyIds": [11, 12, 13],
+  "companyIds": [11, 12, 13, 14, 15],
+  "myCompanyId": 12,
   "sortBy": "revenue",
   "order": "desc",
-  "includeRank": true
+  "includeRank": true,
+  "checkMyCompanyRanking": true
 }
 
 #### 순위를 포함하지 않고 기업 비교 테스트
