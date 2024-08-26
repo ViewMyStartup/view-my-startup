@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import companyData from "./CompanyData.js";
-
+import investmentData from "./investmentData.js";
 const prisma = new PrismaClient();
 
 async function main() {
@@ -14,9 +14,17 @@ async function main() {
   // 기존 데이터 삭제
   await prisma.company.deleteMany();
 
+  //ID 시퀀스 초기화
+  await resetIdSequence();
+
   // 초기 데이터 삽입
   await prisma.company.createMany({
     data: companyData,
+    skipDuplicates: true,
+  });
+
+  await prisma.investment.createMany({
+    data: investmentData,
     skipDuplicates: true,
   });
 
@@ -25,6 +33,14 @@ async function main() {
   console.log(companies);
 
   console.log("초기 데이터 시딩 작업 완료되었습니다.");
+}
+
+async function resetIdSequence() {
+  // 데이터베이스에 따라 시퀀스 초기화 SQL 명령어를 실행합니다.
+  // PostgreSQL 예제:
+  await prisma.$executeRaw`ALTER SEQUENCE "Company_id_seq" RESTART WITH 1;`;
+  await prisma.$executeRaw`ALTER SEQUENCE "Investment_id_seq" RESTART WITH 1;`;
+  console.log('ID 시퀀스 리셋.');
 }
 
 main()

@@ -20,6 +20,7 @@ model Company {
   description           String
   category              String
   totalInvestment       Float
+  virtualInvestment     Int                @default(0)
   revenue               Float
   employees             Int
   investments           Investment[]       @relation("CompanyInvestments")
