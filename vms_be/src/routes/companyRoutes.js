@@ -102,9 +102,11 @@ router.post(
     try {
       const {
         companyIds,
+        myCompanyId, // 내 기업의 ID 추가
         sortBy,
         order = "desc",
         includeRank = false,
+        checkMyCompanyRanking, // 내 기업의 순위를 확인할지 여부
       } = req.body;
 
       if (
@@ -115,6 +117,12 @@ router.post(
         return res
           .status(400)
           .json({ error: "기업 ID는 1개이상 6개이하 제공되어야 합니다." });
+      }
+
+      if (checkMyCompanyRanking && !companyIds.includes(myCompanyId)) {
+        return res.status(400).json({
+          error: "내 기업 ID는 제공된 기업 ID 목록에 포함되어야 합니다.",
+        });
       }
 
       const companies = await prisma.company.findMany({
@@ -164,16 +172,52 @@ router.post(
           });
       }
 
+      // 내 기업의 순위와 근접한 위 2개, 아래 2개 기업의 기업명, 기업 소개, 카테고리, 누적 투자 금액, 매출액, 고용 인원이 조회됩니다.
+      // 다만 내 기업의 순위가 중간 순위가 아닐(ex. 2위) 경우 내 기업 포함해서 5개의 기업이 조회됩니다.
+
+      // 내 기업의 순위를 확인해야 하는 특수한 상황 => 나의 기업 비교 페이지 => 기업 순위 확인하기 섹션에서 쓰임
+
       let response;
-      if (includeRank) {
-        // 순위를 포함하는 경우
-        response = sortedCompanies.map((company, index) => ({
-          ...company,
-          rank: index + 1,
-        }));
+
+      if (checkMyCompanyRanking) {
+        const myCompanyIndex = sortedCompanies.findIndex(
+          (company) => company.id === myCompanyId
+        );
+
+        let nearbyCompanies;
+        if (myCompanyIndex === 0) {
+          nearbyCompanies = sortedCompanies.slice(0, 5);
+        } else if (myCompanyIndex === sortedCompanies.length - 1) {
+          nearbyCompanies = sortedCompanies.slice(-5);
+        } else {
+          const start = Math.max(0, myCompanyIndex - 2);
+          const end = Math.min(sortedCompanies.length, myCompanyIndex + 3);
+          nearbyCompanies = sortedCompanies.slice(start, end);
+        }
+
+        if (includeRank) {
+          // 순위를 포함하는 경우: 인접한 기업들의 순위를 계산하여 포함시킴
+          response = nearbyCompanies.map((company, index) => ({
+            ...company,
+            rank: sortedCompanies.findIndex((c) => c.id === company.id) + 1,
+          }));
+        } else {
+          // 순위를 포함하지 않는 경우: 내 기업의 순위와 근접한 기업들의 정보를 반환하되, 순위 정보를 포함 X
+          response = nearbyCompanies;
+        }
+
+        // 여기서부터는 내 기업의 순위를 확인 X => 기업 순위 확인하기 섹션이 아닌 원래 일반적인 상황
       } else {
-        // 순위를 포함하지 않는 경우
-        response = sortedCompanies;
+        if (includeRank) {
+          // 순위를 포함하는 경우: 선택된 모든 기업들의 순위를 계산하여 포함시킴
+          response = sortedCompanies.map((company, index) => ({
+            ...company,
+            rank: index + 1,
+          }));
+        } else {
+          // 순위를 포함하지 않는 경우: 선택된 모든 기업들의 정보만 반환,
+          response = sortedCompanies;
+        }
       }
 
       res.json({ companies: response });
