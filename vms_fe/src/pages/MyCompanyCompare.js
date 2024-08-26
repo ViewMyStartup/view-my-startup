@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styles from "./MyCompanyCompare.module.css";
 import PageNav from "components/PageNav";
-import MediumBtn from "components/common/MediumBtn";
-import DropdownMiddleSize from "components/common/DropdownMiddleSize";
+import AddCompanyBtn from "components/common/AddCompanyBtn";
+import CompareCompanyBtn from "components/common/CompareCompanyBtn";
+import CompareOtherCompanyBtn from "components/common/CompareOtherCompanyBtn";
+import ResetBtn from "components/common/ResetBtn";
+import DropdownSmallSize from "components/common/DropdownSmallSize";
 import DataRowSetRenderNoRank from "../components/DataRowSetRenderNoRank";
 import DataRowSetRender from "../components/DataRowSetRender";
 import icCircle from "../assets/images/ic_circle.svg";
@@ -19,6 +22,7 @@ function MyCompanyCompare() {
   const [isComparisonVisible, setIsComparisonVisible] = useState(false);
   const [sortingOption, setSortingOption] = useState("매출액 높은순");
   const [sortedCompanies, setSortedCompanies] = useState([]);
+  const [resetButtonText, setResetButtonText] = useState("전체 초기화");
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -31,13 +35,11 @@ function MyCompanyCompare() {
   const closeModal = (companies) => {
     setSelectedCompanies(companies);
     setIsModalOpen(false);
-    sortCompanies(companies.concat(additionalCompanies), sortingOption);
   };
 
   const closeAdditionalModal = (companies) => {
     setAdditionalCompanies(companies);
     setIsAdditionalModalOpen(false);
-    sortCompanies(selectedCompanies.concat(companies), sortingOption);
   };
 
   const removeCompany = (index, isAdditional) => {
@@ -50,7 +52,6 @@ function MyCompanyCompare() {
     } else {
       setSelectedCompanies(newCompanies);
     }
-    sortCompanies(selectedCompanies.concat(additionalCompanies), sortingOption);
   };
 
   const handleSortingChange = (option) => {
@@ -95,6 +96,20 @@ function MyCompanyCompare() {
   const handleComparisonClick = () => {
     setIsComparisonVisible(true);
     sortCompanies(selectedCompanies.concat(additionalCompanies), sortingOption);
+    setResetButtonText("다른 기업 비교하기"); // 버튼 텍스트 변경
+  };
+
+  // 기업 비교하기 버튼 활성화 조건
+  const isCompareButtonEnabled =
+    selectedCompanies.length > 0 && additionalCompanies.length > 0;
+
+  const handleResetButtonClick = () => {
+    if (resetButtonText === "전체 초기화") {
+      setSelectedCompanies([]);
+      setAdditionalCompanies([]);
+    } else if (resetButtonText === "다른 기업 비교하기") {
+      openAdditionalModal();
+    }
   };
 
   return (
@@ -102,23 +117,30 @@ function MyCompanyCompare() {
       <PageNav />
       <div className={styles.content}>
         {/* "나의 기업을 선택해 주세요!" 부분 */}
-        <div className={styles.headingWrapper}>
+        <div className={styles.subheadingWrapper}>
           <h1 className={styles.heading}>나의 기업을 선택해 주세요!</h1>
-          <div className={styles.resetBtnWrapper}>
-            <MediumBtn
-              text={
-                <>
-                  <img
-                    src={icRestart}
-                    alt="restart"
-                    className={styles.icRestart}
-                  />
-                  &nbsp;전체 초기화
-                </>
-              }
-              disabled={selectedCompanies.length === 0}
-              onClick={() => setSelectedCompanies([])}
-            />
+          <div className={styles.addCompanyBtnWrapper}>
+            {resetButtonText === "전체 초기화" ? (
+              <ResetBtn
+                text={
+                  <>
+                    <img
+                      src={icRestart}
+                      alt="restart"
+                      className={styles.icRestart}
+                    />
+                    &nbsp;{resetButtonText}
+                  </>
+                }
+                disabled={selectedCompanies.length === 0}
+                onClick={handleResetButtonClick}
+              />
+            ) : (
+              <CompareOtherCompanyBtn
+                text="다른 기업 비교하기"
+                onClick={handleResetButtonClick}
+              />
+            )}
           </div>
         </div>
 
@@ -164,7 +186,7 @@ function MyCompanyCompare() {
             <div className={styles.sectionWrapper}>
               <div className={styles.headingWrapper}>
                 <h1 className={styles.heading}>비교 결과 확인하기</h1>
-                <DropdownMiddleSize
+                <DropdownSmallSize
                   initialLabel="매출액 높은순"
                   options={[
                     "누적 투자금액 높은순",
@@ -190,7 +212,7 @@ function MyCompanyCompare() {
             <div className={styles.sectionWrapper}>
               <div className={styles.headingWrapper}>
                 <h1 className={styles.heading}>기업 순위 확인하기</h1>
-                <DropdownMiddleSize
+                <DropdownSmallSize
                   initialLabel="매출액 높은순"
                   options={[
                     "누적 투자금액 높은순",
@@ -205,16 +227,18 @@ function MyCompanyCompare() {
                 />
               </div>
               <div className={styles.dataRowWrapper}>
-                <DataRowSetRender
-                  type="rank"
-                  dataList={sortedCompanies}
-                />
+                <DataRowSetRender type="rank" dataList={sortedCompanies} />
               </div>
             </div>
 
             {/* "나의 기업에 투자하기" 버튼 */}
             <div className={styles.btnWrapper}>
-              <MediumBtn text="나의 기업에 투자하기" />
+              <CompareCompanyBtn
+                text="나의 기업에 투자하기"
+                onClick={() => {
+                }}
+                disabled={!isCompareButtonEnabled} // 버튼 활성화 조건 적용
+              />
             </div>
           </>
         ) : (
@@ -225,7 +249,7 @@ function MyCompanyCompare() {
                   <h2 className={styles.subheading}>어떤 기업이 궁금하세요?</h2>
                   <p className={styles.maxCompaniesText}>(최대 5개)</p>
                   <div className={styles.addCompanyBtnWrapper}>
-                    <MediumBtn
+                    <AddCompanyBtn
                       text="기업 추가하기"
                       className={styles.addCompanyBtn}
                       onClick={openAdditionalModal}
@@ -233,7 +257,7 @@ function MyCompanyCompare() {
                   </div>
                 </div>
 
-                <div className={styles.infoBox}>
+                <div className={styles.addOtherCompany}>
                   <div className={styles.innerBox}>
                     {additionalCompanies.length > 0 ? (
                       additionalCompanies.map((company, index) => (
@@ -264,10 +288,12 @@ function MyCompanyCompare() {
             )}
 
             <div className={styles.btnWrapper}>
-              <MediumBtn
+              <CompareCompanyBtn
                 text="기업 비교하기"
-                className={selectedCompanies.length === 0 ? styles.disabledBtn : ""}
-                disabled={selectedCompanies.length === 0}
+                className={
+                  isCompareButtonEnabled ? styles.activeBtn : styles.disabledBtn
+                }
+                disabled={!isCompareButtonEnabled}
                 onClick={handleComparisonClick}
               />
             </div>

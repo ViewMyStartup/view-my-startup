@@ -46,8 +46,7 @@
 
 @media (max-width: 743px) {
   .searchBar {
-    width: 189px;
-    min-width: 189px;
+    width: 300px;
     height: 40px;
   }
 
