@@ -9,7 +9,7 @@ import investmentRoutes from "./src/routes/investmentRoutes.js";
 import errorHandlers from "./src/middlewares/errorHandler.js";
 
 //트리거
-import initializeVirtualInvestment from "./utils/initializeVirtualInvestment.js";
+import { initializeVirtualInvestment } from "./utils/initializeVirtualInvestment.js";
 
 // 환경 변수 설정
 dotenv.config();
@@ -41,7 +41,7 @@ try {
   // 서버 시작 시 virtualInvestment 초기화
   await initializeVirtualInvestment();
 
-  console.log('virtualInvestment 초기화');
+  console.log("virtualInvestment 초기화");
 } catch (error) {
-  console.error('initializeVirtualInvestment 오류 :', error);
+  console.error("initializeVirtualInvestment 오류 :", error);
 }

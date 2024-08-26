@@ -24,7 +24,7 @@ function useGetCompanyData(
         setError(error);
         setIsLoading(false);
       });
-  }, [currentPage, companyCount, orderBy, keyword]);
+  }, [page, limit, search, sortBy, order]);
   return { companyList, isLoading, error, totalPages };
 }
 
