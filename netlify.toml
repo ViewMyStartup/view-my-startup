@@ -1,7 +1,7 @@
 [build]
-  base    = "vms_fe"
-  publish = "vms_fe/build"
+  base = "/opt/build/repo/vms_fe"
   command = "CI=false npm run build"
+  publish = "/opt/build/repo/vms_fe/build"
 
 [[redirects]]
   from = "/*"
