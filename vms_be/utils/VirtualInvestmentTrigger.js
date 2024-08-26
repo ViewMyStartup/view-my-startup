@@ -4,10 +4,7 @@ const prisma = new PrismaClient();
 
 export async function initializeVirtualInvestment() {
   const companies = await prisma.company.findMany();
-  console.log(companies);
-
   for (const company of companies) {
-    console.log(company);
     const totalInvestmentAmount = await prisma.investment.aggregate({
       where: { companyId: company.id },
       _sum: {
@@ -34,10 +31,10 @@ export async function setupInvestmentTrigger() {
     CREATE OR REPLACE FUNCTION update_virtual_investment()
     RETURNS TRIGGER AS $$
     BEGIN
-      -- 합계를 계산하고 정수로 변환하여 업데이트
+      -- 합계를 계산하여 virtualInvestment 업데이트
       UPDATE Company
       SET virtualInvestment = (
-        SELECT COALESCE(SUM(investmentAmount), 0)::INT
+        SELECT COALESCE(SUM(investmentAmount), 0)
         FROM Investment
         WHERE companyId = NEW.companyId
       )
