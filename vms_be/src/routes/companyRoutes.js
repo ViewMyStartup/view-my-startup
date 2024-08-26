@@ -45,7 +45,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-
 // 기업 상세 조회 API
 router.get("/:companyId", async (req, res) => {
   const { companyId } = req.params;
