@@ -316,6 +316,8 @@ PUT https://view-my-startup.onrender.com/api/investments/1
 Content-Type: application/json
 
 {
+  "companyId": 22,
+  "investorName": "김현우",
   "investmentAmount": 2500000,
   "investmentComment": "더 많은 투자를 하기로 결정했습니다.",
   "password": "password123"
@@ -326,6 +328,8 @@ PUT https://view-my-startup.onrender.com/api/investments/1
 Content-Type: application/json
 
 {
+  "companyId": 22,
+  "investorName": "김현우",
   "investmentAmount": 2500000,
   "investmentComment": "더 많은 투자를 하기로 결정했습니다.",
   "password": "wrong_password"

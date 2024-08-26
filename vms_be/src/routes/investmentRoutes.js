@@ -58,17 +58,11 @@ router.post(
 router.put(
   "/:investmentId",
   asyncHandler(async (req, res) => {
-    const { investmentId } = req.params;
-    const { investorName, investmentAmount, investmentComment, password } =
-      req.body;
+    const investmentId = parseInt(req.params.investmentId, 10);
+    const { investorName, investmentAmount, investmentComment, password } = req.body;
 
     // 필수 필드 검증
-    if (
-      !investorName ||
-      investmentAmount === undefined ||
-      !investmentComment ||
-      !password
-    ) {
+    if (!investorName || investmentAmount === undefined || !investmentComment || !password) {
       throw new BadRequestException("모든 필드는 필수값입니다");
     }
 
@@ -104,7 +98,7 @@ router.put(
 router.delete(
   "/:investmentId",
   asyncHandler(async (req, res) => {
-    const { investmentId } = req.params;
+    const investmentId = parseInt(req.params.investmentId, 10);
     const { password } = req.body;
 
     // 투자 정보 가져오기
