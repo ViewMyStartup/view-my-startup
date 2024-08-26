@@ -14,7 +14,7 @@ import vmsInvestmentTrigger from "./src/models/vmsInvestmentTrigger.js";
 
 const app = express();
 
-vmsInvestment()
+vmsInvestmentTrigger()
   .then(() => {
     console.log('데이터 베이스 세팅 완료');
   })
