@@ -6,7 +6,7 @@ export async function initializeVirtualInvestment() {
   const companies = await prisma.company.findMany({
     where: {
       virtualInvestment: {
-        gt: 0, // 0보다 큰 값만 반환
+        gte: 0,
       },
     },
   });
