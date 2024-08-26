@@ -222,6 +222,7 @@ const companyData = [
       "또한, 건강 관리에 필요한 다양한 도구와 자료를 제공하여 사용자가 건강한 생활을 유지할 수 있도록 돕습니다.",
     category: "헬스케어",
     totalInvestment: faker.number.int({ min: 1, max: 1000 })*10000000,
+    virtualInvestment: 1,
     revenue: faker.number.int({ min: 1, max: 1000 })*10000000,
     employees: faker.number.int({ min: 1, max: 100 }),
     mySelectionCount: faker.number.int({ min: 50, max: 500 }),
