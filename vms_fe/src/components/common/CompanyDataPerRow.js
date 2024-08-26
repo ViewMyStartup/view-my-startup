@@ -6,7 +6,13 @@ import ModalPassword from "../ModalPassword";
 //이미지
 import iconKebab from "../../assets/images/ic_kebab.svg";
 
-function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
+function CompanyDataPerRow({
+  type = "rank",
+  dataObject = {},
+  index,
+  currentPage,
+  limit = 10,
+}) {
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
   // 모달 상태
@@ -194,21 +200,22 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
   const typeChoose = () => {
     const {
       id,
-      rank,
       name,
-      img,
+      logoUrl,
       description,
       category,
-      myCompanyChooseCount,
-      CompareChoohseCount,
+      mySelectionCount,
+      CompareSelectionCount,
     } = dataObject;
 
     return (
       <li key={id} className={styles.dataPerRowContainer}>
         <section className={`${styles.diffSizeContainer} ${styles.investSize}`}>
-          <span className={styles.columnRank}>{`${rank}위`}</span>
+          <span className={styles.columnRank}>{`${
+            index + 1 + (currentPage - 1) * limit
+          }위`}</span>
           <div className={styles.companyInfoContainer}>
-            <img src={img} alt="기업 이미지" />
+            <img src={logoUrl} alt="기업 이미지" />
             <span>{name}</span>
           </div>
           <span className={styles.columnCompanyDescription}>{description}</span>
@@ -217,8 +224,8 @@ function CompanyDataPerRow({ type = "rank", dataObject = {} }) {
         <section
           className={`${styles.sameSizeContainer} ${styles.ivestSizeForSame}`}
         >
-          <span>{`${formatNumberWithCommas(myCompanyChooseCount)}`}</span>
-          <span>{`${formatNumberWithCommas(CompareChoohseCount)}`}</span>
+          <span>{`${formatNumberWithCommas(mySelectionCount)}`}</span>
+          <span>{`${formatNumberWithCommas(CompareSelectionCount)}`}</span>
         </section>
       </li>
     );

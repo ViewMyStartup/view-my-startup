@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import getApiData from "API/api";
+import { getApiData } from "API/api";
 
 function useGetCompanyData(
   page = 1,
@@ -16,7 +16,7 @@ function useGetCompanyData(
   useEffect(() => {
     getApiData(page, limit, search, sortBy, order)
       .then((data) => {
-        setTotalPages(Math.ceil(data.total / companyCount));
+        setTotalPages(Math.ceil(data.total / limit));
         setCompanyList(data.companies);
         setIsLoading(false);
       })
