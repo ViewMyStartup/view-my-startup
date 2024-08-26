@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(cors());
 
 // 정적 파일 제공 설정
-app.use("/images", express.static(process.env.STATIC_FILES_PATH));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // 라우터 등록( API 추가시, 라우터 추가 예정 )
 app.use("/api/companies", companyRoutes);
