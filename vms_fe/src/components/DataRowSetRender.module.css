@@ -25,6 +25,8 @@
   width: 100px;
   height: 100px;
   animation: spin 2s linear infinite; /* 회전 애니메이션 */
+  box-shadow: 0 0 2px 1px #555, /* 바깥쪽 테두리를 연하게 */
+              0 0 1px 1px rgba(0, 0, 0, 0.1); /* 더욱 연한 바깥쪽 효과 */
 }
 
 @keyframes spin {
