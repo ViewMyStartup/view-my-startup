@@ -6,7 +6,13 @@ import SearchBar from "components/common/SearchBar";
 import SelectBtn from "./common/SelectBtn";
 import deleteIcon from "assets/images/ic_delete.svg";
 
-const ModalSelectComparision = ({ isOpen, onClose, title, text }) => {
+const ModalSelectComparision = ({
+  isOpen,
+  onClose,
+  title,
+  text,
+  autoClose = false,
+}) => {
   // 기존 코드 유지
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCompanies, setSelectedCompanies] = useState([]);
@@ -43,9 +49,13 @@ const ModalSelectComparision = ({ isOpen, onClose, title, text }) => {
       ) {
         setSelectedCompanies((prev) => [...prev, company]);
         setError("");
+
+        if (autoClose) {
+          onClose([company]);
+        }
       }
     },
-    [selectedCompanies]
+    [selectedCompanies, onClose, autoClose]
   );
 
   const handleDeselect = useCallback((companyName) => {
@@ -98,7 +108,7 @@ const ModalSelectComparision = ({ isOpen, onClose, title, text }) => {
           {selectedCompanies.length > 0 && (
             <div className={style.PartitionHug}>
               <h2 className={style.CompaniesColumnText}>
-                {text} ({selectedCompanies.length}) 
+                {text} ({selectedCompanies.length})
                 {/* 선택된 기업 목록의 제목으로 사용되는 text prop */}
               </h2>
               <ul className={style.companyColumnsHug}>

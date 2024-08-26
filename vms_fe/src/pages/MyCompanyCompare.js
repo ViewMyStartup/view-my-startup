@@ -235,8 +235,7 @@ function MyCompanyCompare() {
             <div className={styles.btnWrapper}>
               <CompareCompanyBtn
                 text="나의 기업에 투자하기"
-                onClick={() => {
-                }}
+                onClick={() => {}}
                 disabled={!isCompareButtonEnabled} // 버튼 활성화 조건 적용
               />
             </div>
@@ -307,6 +306,7 @@ function MyCompanyCompare() {
         onClose={closeModal}
         title="나의 기업 선택하기"
         text="최근 선택된 기업"
+        autoClose={true}
       />
 
       {/* 비교할 기업 선택하기 모달 */}
@@ -321,4 +321,3 @@ function MyCompanyCompare() {
 }
 
 export default MyCompanyCompare;
-
