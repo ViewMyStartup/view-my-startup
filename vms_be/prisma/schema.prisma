@@ -23,9 +23,9 @@ model Company {
   virtualInvestment     Int                @default(0)
   revenue               Float
   employees             Int
-  investments           Investment[]       @relation("CompanyInvestments")
   mySelectionCount      Int                @default(0)
   CompareSelectionCount Int                @default(0)
+  investments           Investment[]       @relation("CompanyInvestments")
 }
 
 model Investment {

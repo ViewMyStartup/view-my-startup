@@ -1,8 +1,8 @@
 import dotenv from "dotenv";
-dotenv.config(); // 환경 변수 설정
-
 import express from "express";
 import cors from "cors";
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 import companyRoutes from "./src/routes/companyRoutes.js";
 import investmentRoutes from "./src/routes/investmentRoutes.js";
@@ -10,6 +10,11 @@ import errorHandlers from "./src/middlewares/errorHandler.js";
 
 //트리거
 import vmsInvestmentTrigger from "./utils/vmsInvestmentTrigger.js";
+
+// 환경 변수 설정
+dotenv.config(); 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 
 const app = express();
@@ -29,7 +34,8 @@ app.use(express.json());
 app.use(cors());
 
 // 정적 파일 제공 설정 *수정됨
-app.use(express.static(path.join(__dirname, 'seeders')));
+const staticFilesPath = path.join(__dirname, process.env.STATIC_FILES_PATH);
+app.use(express.static(staticFilesPath));
 
 // 라우터 등록( API 추가시, 라우터 추가 예정 )
 app.use("/api/companies", companyRoutes);
