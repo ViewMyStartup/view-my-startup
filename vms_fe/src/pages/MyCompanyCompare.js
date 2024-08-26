@@ -307,6 +307,7 @@ function MyCompanyCompare() {
         title="나의 기업 선택하기"
         text="최근 선택된 기업"
         autoClose={true}
+        preSelectedCompanies={selectedCompanies}
       />
 
       {/* 비교할 기업 선택하기 모달 */}
@@ -315,6 +316,8 @@ function MyCompanyCompare() {
         onClose={closeAdditionalModal}
         title="비교할 기업 선택하기"
         text="선택한 기업"
+        autoCloseOnSelect={false}
+        preSelectedCompanies={additionalCompanies}
       />
     </div>
   );

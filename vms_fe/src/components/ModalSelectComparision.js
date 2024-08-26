@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from "react";
+import React, { useEffect, useState, useMemo, useCallback } from "react";
 import style from "./ModalSelectComparision.module.css";
 import mockupData from "assets/mock/mockData";
 import Pagination from "components/common/Pagination";
@@ -11,7 +11,8 @@ const ModalSelectComparision = ({
   onClose,
   title,
   text,
-  autoClose = false,
+  autoClose = false, // 바로 닫히기
+  preSelectedCompanies = [], // 선택된 기업 목록
 }) => {
   // 기존 코드 유지
   const [searchTerm, setSearchTerm] = useState("");
@@ -19,6 +20,10 @@ const ModalSelectComparision = ({
   const [error, setError] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
+
+  useEffect(() => {
+    setSelectedCompanies(preSelectedCompanies);
+  }, [preSelectedCompanies, isOpen]);
 
   const filteredCompanies = useMemo(() => {
     return mockupData.filter((company) =>
