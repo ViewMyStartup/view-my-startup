@@ -14,10 +14,12 @@ function useGetCompanyData(
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    setIsLoading(true)
     getApiData(page, limit, search, sortBy, order)
       .then((data) => {
         setTotalPages(Math.ceil(data.total / limit));
         setCompanyList(data.companies);
+        console.log(`useEffect : ${data}`)
         setIsLoading(false);
       })
       .catch((error) => {

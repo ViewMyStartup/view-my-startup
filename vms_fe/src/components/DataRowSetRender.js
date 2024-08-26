@@ -12,11 +12,16 @@ function DataRowSetRender({
   limit = 10,
   isloading = false,
 }) {
+  console.log(`DataRowSetRender-dataList[2] : ${dataList[2]}`);
+  console.log(`currentPage=${currentPage}, limit=${limit}`);
   return isloading ? (
-    <section className={styles.loaderBox}>
-      <div>Load...</div>
-      <div className={styles.loader}></div>
-    </section>
+    <div className={styles.dataRowSet}>
+      <HeaderColumns type={type} />
+      <section className={styles.loaderBox}>
+        <div>Load...</div>
+        <div className={styles.loader}></div>
+      </section>
+    </div>
   ) : (
     <div className={styles.dataRowSet}>
       <HeaderColumns type={type} />
