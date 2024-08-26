@@ -9,7 +9,7 @@ import investmentRoutes from "./src/routes/investmentRoutes.js";
 import errorHandlers from "./src/middlewares/errorHandler.js";
 
 //트리거
-import vmsInvestmentTrigger from "./src/models/vmsInvestmentTrigger.js";
+import vmsInvestmentTrigger from "./utils/vmsInvestmentTrigger.js";
 
 
 const app = express();
