@@ -88,10 +88,17 @@ const ModalSelectComparision = ({
     onClose(selectedCompanies);
   };
 
+  // 모달 바깥 부분 클릭시 모달 닫기
+  const handleOverlayClick = (e) => {
+    if (e.target === e.currentTarget) {
+      handleClose();
+    }
+  };
+
   if (!isOpen) return null;
 
   return (
-    <div className={style.modalOverlay}>
+    <div className={style.modalOverlay} onClick={handleOverlayClick}>
       <div className={style.modalContainer}>
         <div className={style.modalContent}>
           <div className={style.modalHeadText}>
