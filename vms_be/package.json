@@ -8,10 +8,8 @@
     "start": "node server.js",
     "postinstall": "npx prisma migrate deploy && npx prisma generate",
     "dev": "nodemon server.js",
-    "build": "echo 'No build step necessary",
-    "seed": "node seeders/seed.js",
-    "seed-investment": "node seeders/seedInvestment.js",
-    "seed-companyselection": "node seeders/seedCompanySelection.js"
+    "build": "mkdir -p dist && cp -r vms_be/seeders/images dist/images",
+    "seed": "node seeders/seed.js"
   },
   "author": "",
   "license": "ISC",
