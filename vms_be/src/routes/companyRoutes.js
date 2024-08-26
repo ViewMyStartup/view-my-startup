@@ -124,7 +124,17 @@ router.post(
           error: "내 기업 ID는 제공된 기업 ID 목록에 포함되어야 합니다.",
         });
       }
+      // 선택된 기업들의 선택 횟수를 증가시키기 위한 작업
+      await prisma.company.updateMany({
+        where: { id: { in: companyIds.map((id) => parseInt(id)) } },
+        data: {
+          selections: {
+            increment: 1, // 선택 횟수를 1씩 증가시킴
+          },
+        },
+      });
 
+      // 선택된 기업들의 데이터를 조회
       const companies = await prisma.company.findMany({
         where: { id: { in: companyIds.map((id) => parseInt(id)) } },
         select: {
@@ -136,15 +146,19 @@ router.post(
           totalInvestment: true,
           revenue: true,
           employees: true,
+          selections: true, // 선택 횟수를 포함하여 조회
         },
       });
 
+      // 선택된 기업이 없을 경우 오류 반환
       if (companies.length === 0) {
         return res
           .status(404)
           .json({ error: "해당하는 기업이 존재하지 않습니다." });
       }
 
+
+      // 정렬 기준에 따라 기업들을 정렬
       let sortedCompanies;
       switch (sortBy) {
         case "totalInvestment":
@@ -166,23 +180,31 @@ router.post(
               : b.employees - a.employees
           );
           break;
+        case "selections":
+          sortedCompanies = companies.sort((a, b) =>
+            order === "asc"
+              ? a.selections - b.selections
+              : b.selections - a.selections
+          );
+          break;
         default:
           return res.status(400).json({
             error: "정렬 기준이 유효하지 않습니다.",
           });
       }
 
-      // 내 기업의 순위와 근접한 위 2개, 아래 2개 기업의 기업명, 기업 소개, 카테고리, 누적 투자 금액, 매출액, 고용 인원이 조회됩니다.
-      // 다만 내 기업의 순위가 중간 순위가 아닐(ex. 2위) 경우 내 기업 포함해서 5개의 기업이 조회됩니다.
 
       // 내 기업의 순위를 확인해야 하는 특수한 상황 => 나의 기업 비교 페이지 => 기업 순위 확인하기 섹션에서 쓰임
 
       let response;
 
       if (checkMyCompanyRanking) {
+
+        // 내 기업의 순위를 확인할 때 근접한 기업들을 추출
         const myCompanyIndex = sortedCompanies.findIndex(
           (company) => company.id === myCompanyId
         );
+
 
         // 근접한 기업 인덱스 추출
         const start = Math.max(0, myCompanyIndex - 2);
@@ -224,3 +246,4 @@ router.post(
 );
 
 export default router;
+
