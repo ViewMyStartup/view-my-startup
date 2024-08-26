@@ -24,7 +24,8 @@ app.use(express.json());
 app.use(cors());
 
 // 정적 파일 제공 설정 *수정됨
-const staticFilesPath = path.join(__dirname, 'seeders/images');
+// const staticFilesPath = path.join(__dirname, 'seeders/images');
+const staticFilesPath = '/opt/render/project/seeders/images';
 console.log('Serving static files from:', staticFilesPath);  // 경로 확인용 로그
 app.use('/images', express.static(staticFilesPath));
 
