@@ -1,6 +1,6 @@
 [build]
   base    = "vms_fe"
-  publish = "vms_fe/build"
+  publish = "build"
   command = "CI=false npm run build"
 
 [[redirects]]
