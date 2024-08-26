@@ -9,7 +9,7 @@ import investmentRoutes from "./src/routes/investmentRoutes.js";
 import errorHandlers from "./src/middlewares/errorHandler.js";
 
 //트리거
-import vmsInvestment from "./src/models/vmsInvestment.js";
+import vmsInvestmentTrigger from "./src/models/vmsInvestmentTrigger.js";
 
 
 const app = express();
@@ -28,7 +28,7 @@ app.use(express.json());
 // cors 설정( 일단, 모든 도메인에서의 요청을 허용해놓음 )
 app.use(cors());
 
-// 정적 파일 제공 설정
+// 정적 파일 제공 설정 *수정됨
 app.use(express.static(path.join(__dirname, 'seeders')));
 
 // 라우터 등록( API 추가시, 라우터 추가 예정 )
