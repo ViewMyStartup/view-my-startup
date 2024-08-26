@@ -61,6 +61,7 @@ function CurrentStateCompare() {
             type="choose"
             dataList={companyList}
             currentPage={currentPage}
+            isloading={isLoading}
           />
         </section>
       </main>

@@ -4,6 +4,34 @@
   gap: 16px;
 }
 
+.loaderBox {
+  background-color: #212121;
+  height: 640px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  font-size: 1.75rem;
+  font-weight: 500;
+  color: #555;
+}
+
+.loader {
+  border: 16px solid #555; /* 회색 테두리 */
+  border-top: 16px solid #b45c09; /* 파란색 테두리 */
+  border-radius: 50%; /* 원 모양으로 만들기 */
+  width: 100px;
+  height: 100px;
+  animation: spin 2s linear infinite; /* 회전 애니메이션 */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 @media (max-width: 744px) {
   .dataRowSet {
     overflow-x: auto;

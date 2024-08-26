@@ -5,8 +5,19 @@ import styles from "./DataRowSetRender.module.css";
 import CompanyDataPerRow from "components/common/CompanyDataPerRow";
 import HeaderColumns from "./common/HeaderColumns";
 
-function DataRowSetRender({ type = "rank", dataList = [], currentPage, limit = 10}) {
-  return (
+function DataRowSetRender({
+  type = "rank",
+  dataList = [],
+  currentPage,
+  limit = 10,
+  isloading = false,
+}) {
+  return isloading ? (
+    <section className={styles.loaderBox}>
+      <div>로딩</div>
+      <div class={styles.loader}></div>
+    </section>
+  ) : (
     <div className={styles.dataRowSet}>
       <HeaderColumns type={type} />
       <ul>
