@@ -4,8 +4,10 @@ const prisma = new PrismaClient();
 
 export async function initializeVirtualInvestment() {
   const companies = await prisma.company.findMany();
+  console.log(companies);
 
   for (const company of companies) {
+    console.log(company);
     const totalInvestmentAmount = await prisma.investment.aggregate({
       where: { companyId: company.id },
       _sum: {
