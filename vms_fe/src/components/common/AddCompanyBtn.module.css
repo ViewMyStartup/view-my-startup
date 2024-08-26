@@ -1,0 +1,52 @@
+.buttonWrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%; 
+}
+
+.addCompanyBtn {
+    background-color: var(--black-100);
+    color: var(--gray-200);
+    border-radius: 50px;
+    border: none;
+    width: 135px;
+    height: 40px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19.09px;
+    padding: 8px, 24px, 8px, 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.addCompanyBtn.active {
+    background-color: var(--brand-orange);
+    color: var(--white);
+}
+
+.addCompanyBtn.disabledBtn {
+    background-color: #2E2E2E !important;
+    color: #747474 !important;
+    cursor: not-allowed !important; 
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+    .addCompanyBtn {
+        width: 135px;
+        height: 40px;
+        font-size: 16px;
+        line-height: 19.09px;
+    }
+}
+
+@media (max-width: 743px) {
+    .addCompanyBtn {
+        width: 100px;
+        height: 32px;
+        font-size: 14px;
+        line-height: 16.71px;
+    }
+}
+

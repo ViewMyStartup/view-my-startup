@@ -6,6 +6,7 @@ package-lock.json
 
 # Ignore request.http file
 requset.http
+requests.http
 
 # dependencies
 /node_modules
