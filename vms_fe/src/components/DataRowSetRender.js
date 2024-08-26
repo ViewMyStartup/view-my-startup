@@ -14,7 +14,7 @@ function DataRowSetRender({
 }) {
   return isloading ? (
     <section className={styles.loaderBox}>
-      <div>로딩</div>
+      <div>Load...</div>
       <div class={styles.loader}></div>
     </section>
   ) : (

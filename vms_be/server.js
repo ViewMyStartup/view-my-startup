@@ -27,8 +27,6 @@ app.use(cors());
 const staticFilesPath = path.join(__dirname, process.env.STATIC_FILES_PATH);
 console.log('Serving static files from:', staticFilesPath);  // 경로 확인용 로그
 app.use('/images', express.static(staticFilesPath));
-const staticFilesPath2 = path.join(__dirname, 'dist/images');
-app.use('/images', express.static(staticFilesPath2));
 
 // 라우터 등록( API 추가시, 라우터 추가 예정 )
 app.use("/api/companies", companyRoutes);

@@ -22,7 +22,7 @@ export function usePageHandlerForPagination ( totalPages = 1) {
     }
   };
 
-  return { currentPage, handlePageChange, setCurrentPage };
+  return { currentPage, handlePageChange };
 }
 
 export default usePageHandler;
