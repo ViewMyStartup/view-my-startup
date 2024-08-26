@@ -26,7 +26,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: calc(100% - 3px); 
+  width: calc(100% - 3px);
   max-width: 1200px; /* 전체 페이지와 동일한 최대 너비 */
 }
 
@@ -124,8 +124,8 @@
 
 .removeText {
   position: absolute;
-  top: -30px;
-  right: 30px;
+  top: 16px;
+  right: 16px;
   font-size: 16px;
   font-weight: 400;
   color: #d8d8d8;
@@ -159,7 +159,9 @@
   margin-left: 6px;
 }
 
-
+.addButton {
+  cursor: pointer;
+}
 
 /* 태블릿용 스타일 */
 @media (min-width: 744px) and (max-width: 1199px) {
@@ -304,4 +306,3 @@
   color: #747474 !important;
   cursor: not-allowed !important;
 }
-

@@ -1,21 +1,30 @@
 import express from "express";
 import { PrismaClient } from "@prisma/client";
+import asyncHandler from "../middlewares/asyncHandler.js";
 
 const prisma = new PrismaClient();
 const router = express.Router();
 
 // 기업 리스트 조회 API
 router.get("/", async (req, res) => {
-  const { page = 1, limit = 10, search = '', sort_by = 'name', order = 'asc' } = req.query;
+  const {
+    page = 1,
+    limit = 10,
+    search = "",
+    sort_by = "name",
+    order = "asc",
+  } = req.query;
 
   try {
     // 검색 기능: 이름 또는 카테고리를 기준으로 검색
-    const filter = search ? {
-      OR: [
-        { name: { contains: search, mode: 'insensitive' } },
-        { category: { contains: search, mode: 'insensitive' } }
-      ]
-    } : {};
+    const filter = search
+      ? {
+          OR: [
+            { name: { contains: search, mode: "insensitive" } },
+            { category: { contains: search, mode: "insensitive" } },
+          ],
+        }
+      : {};
 
     // 정렬 기능: 기본값은 이름 오름차순
     const orderBy = {};
@@ -41,10 +50,11 @@ router.get("/", async (req, res) => {
     });
   } catch (error) {
     // 서버 오류 발생 시
-    res.status(500).json({ error: "기업 리스트를 가져오는 중 오류가 발생했습니다." });
+    res
+      .status(500)
+      .json({ error: "기업 리스트를 가져오는 중 오류가 발생했습니다." });
   }
 });
-
 
 // 기업 상세 조회 API
 router.get("/:companyId", async (req, res) => {
@@ -78,7 +88,7 @@ router.get("/:companyId", async (req, res) => {
       investments: company.investments,
     });
   } catch (error) {
-    // 서버 오류 발생시
+    // 서버 오류 발생 시
     res
       .status(500)
       .json({ error: "기업 상세 정보를 가져오는 중 오류가 발생했습니다." });
@@ -92,10 +102,10 @@ router.post(
     try {
       const {
         companyIds,
-        myCompanyId, // 내 기업의 ID
+        myCompanyId, // 내 기업의 ID 추가
         sortBy,
         order = "desc",
-        includeRank = false, // 순위를 포함할지 여부
+        includeRank = false,
         checkMyCompanyRanking, // 내 기업의 순위를 확인할지 여부
       } = req.body;
 
@@ -106,7 +116,7 @@ router.post(
       ) {
         return res
           .status(400)
-          .json({ error: "기업 ID는 1개 이상 6개 이하로 제공되어야 합니다." });
+          .json({ error: "기업 ID는 1개이상 6개이하 제공되어야 합니다." });
       }
 
       if (checkMyCompanyRanking && !companyIds.includes(myCompanyId)) {
@@ -114,7 +124,6 @@ router.post(
           error: "내 기업 ID는 제공된 기업 ID 목록에 포함되어야 합니다.",
         });
       }
-
       // 선택된 기업들의 선택 횟수를 증가시키기 위한 작업
       await prisma.company.updateMany({
         where: { id: { in: companyIds.map((id) => parseInt(id)) } },
@@ -147,6 +156,7 @@ router.post(
           .status(404)
           .json({ error: "해당하는 기업이 존재하지 않습니다." });
       }
+
 
       // 정렬 기준에 따라 기업들을 정렬
       let sortedCompanies;
@@ -183,23 +193,26 @@ router.post(
           });
       }
 
+
       // 내 기업의 순위를 확인해야 하는 특수한 상황 => 나의 기업 비교 페이지 => 기업 순위 확인하기 섹션에서 쓰임
 
       let response;
 
       if (checkMyCompanyRanking) {
+
         // 내 기업의 순위를 확인할 때 근접한 기업들을 추출
         const myCompanyIndex = sortedCompanies.findIndex(
           (company) => company.id === myCompanyId
         );
 
-        // 근접한 기업 인덱스를 계산
+
+        // 근접한 기업 인덱스 추출
         const start = Math.max(0, myCompanyIndex - 2);
         const end = Math.min(sortedCompanies.length, myCompanyIndex + 3);
         const nearbyCompanies = sortedCompanies.slice(start, end);
 
         if (includeRank) {
-          // 순위를 포함할 경우, 인접한 기업들의 순위를 계산하여 반환
+          // 순위를 포함하는 경우: 인접한 기업들의 순위를 계산하여 포함시킴
           response = nearbyCompanies.map((company, index) => ({
             ...company,
             rank: sortedCompanies.findIndex((c) => c.id === company.id) + 1,
@@ -209,7 +222,7 @@ router.post(
           response = nearbyCompanies;
         }
 
-         // 여기서부터는 내 기업의 순위를 확인 X => 기업 순위 확인하기 섹션이 아닌 원래 일반적인 상황
+        // 여기서부터는 내 기업의 순위를 확인 X => 기업 순위 확인하기 섹션이 아닌 원래 일반적인 상황
       } else {
         if (includeRank) {
           // 순위를 포함하는 경우: 선택된 모든 기업들의 순위를 계산하여 포함시킴
