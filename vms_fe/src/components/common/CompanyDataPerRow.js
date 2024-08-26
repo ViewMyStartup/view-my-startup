@@ -57,7 +57,7 @@ function CompanyDataPerRow({
     } = dataObject;
 
     return (
-      <li key={id} className={styles.dataPerRowContainer}>
+      <li className={styles.dataPerRowContainer}>
         <Link to={`/id/${name}`}>
           <section className={`${styles.diffSizeContainer} ${styles.rankSize}`}>
             <span className={styles.columnRank}>{`${dataObject.rank}위`}</span>
@@ -95,7 +95,7 @@ function CompanyDataPerRow({
     } = dataObject;
 
     return (
-      <li key={id} className={styles.dataPerRowContainer}>
+      <li className={styles.dataPerRowContainer}>
         <section className={`${styles.diffSizeContainer} ${styles.noRankSize}`}>
           <article className={styles.companyInfoContainer}>
             <img src={img} alt="기업 이미지" />
@@ -126,7 +126,7 @@ function CompanyDataPerRow({
     } = dataObject;
 
     return (
-      <li key={id} className={styles.dataPerRowContainer}>
+      <li className={styles.dataPerRowContainer}>
         <section className={`${styles.diffSizeContainer} ${styles.investSize}`}>
           <span className={styles.columnRank}>{`${rank}위`}</span>
           <div className={styles.companyInfoContainer}>
@@ -151,7 +151,7 @@ function CompanyDataPerRow({
       dataObject;
 
     return (
-      <li key={id} className={styles.dataPerRowContainer}>
+      <li className={styles.dataPerRowContainer}>
         <section
           className={`${styles.sameSizeContainer} ${styles.commentSizeForSame}`}
         >
@@ -209,7 +209,7 @@ function CompanyDataPerRow({
     } = dataObject;
 
     return (
-      <li key={id} className={styles.dataPerRowContainer}>
+      <li className={styles.dataPerRowContainer}>
         <section className={`${styles.diffSizeContainer} ${styles.investSize}`}>
           <span className={styles.columnRank}>{`${
             index + 1 + (currentPage - 1) * limit

@@ -13,7 +13,7 @@ export function usePageHandler() {
   return { currentPage, totalPages, handlePageChange, setCurrentPage };
 }
 
-export function usePageHandlerForPagination ( totalPages = 1) {
+export function usePageHandlerForPagination ( totalPages ) {
   const [currentPage, setCurrentPage] = useState(1);
 
   const handlePageChange = (page) => {

@@ -15,7 +15,7 @@ function DataRowSetRender({
   return isloading ? (
     <section className={styles.loaderBox}>
       <div>Load...</div>
-      <div class={styles.loader}></div>
+      <div className={styles.loader}></div>
     </section>
   ) : (
     <div className={styles.dataRowSet}>
