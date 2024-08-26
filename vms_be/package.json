@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
+    "postinstall": "npx prisma migrate deploy",
     "dev": "nodemon server.js",
     "build": "echo 'No build step necessary",
     "seed": "node seeders/seed.js",
