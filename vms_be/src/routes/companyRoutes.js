@@ -203,9 +203,16 @@ router.post(
         );
 
         // 근접한 기업 인덱스 추출
-        const start = Math.max(0, myCompanyIndex - 2);
-        const end = Math.min(sortedCompanies.length, myCompanyIndex + 3);
-        const nearbyCompanies = sortedCompanies.slice(start, end);
+        let nearbyCompanies;
+        if (myCompanyIndex === 0) {
+          nearbyCompanies = sortedCompanies.slice(0, 5);
+        } else if (myCompanyIndex === sortedCompanies.length - 1) {
+          nearbyCompanies = sortedCompanies.slice(-5);
+        } else {
+          const start = Math.max(0, myCompanyIndex - 2);
+          const end = Math.min(sortedCompanies.length, myCompanyIndex + 3);
+          nearbyCompanies = sortedCompanies.slice(start, end);
+        }
 
         if (includeRank) {
           // 순위를 포함하는 경우: 인접한 기업들의 순위를 계산하여 포함시킴
