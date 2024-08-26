@@ -6,6 +6,10 @@ const Pagination = ({ currentPage, totalPages, onPageChange, hasNext }) => {
   const startPage = Math.floor((currentPage - 1) / 5) * 5 + 1;
   const endPage = Math.min(startPage + 4, totalPages);
 
+  const pageNumSelectChange = (e) => {
+    onPageChange(Number(e.target.textContent));
+  };
+
   return (
     <div className={styles.pagination}>
       <button
@@ -19,7 +23,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange, hasNext }) => {
         {Array.from({ length: endPage - startPage + 1 }, (_, index) => (
           <button
             key={startPage + index}
-            onClick={() => onPageChange(startPage + index)}
+            onClick={pageNumSelectChange}
             className={`${styles.button} ${
               startPage + index === currentPage ? styles.active : ""
             }`}

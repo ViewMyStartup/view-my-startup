@@ -41,8 +41,6 @@ app.listen(process.env.PORT || 8000, () => console.log("Server Started"));
 try {
   // 서버 시작 시 virtualInvestment 초기화
   await initializeVirtualInvestment();
-
-  console.log("virtualInvestment 초기화");
 } catch (error) {
   console.error("initializeVirtualInvestment 오류 :", error);
 }
