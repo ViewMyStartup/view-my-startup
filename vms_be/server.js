@@ -1,32 +1,25 @@
 import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
-import path from 'path';
-import { fileURLToPath } from 'url';
+import path from "path";
+import { fileURLToPath } from "url";
 
 import companyRoutes from "./src/routes/companyRoutes.js";
 import investmentRoutes from "./src/routes/investmentRoutes.js";
 import errorHandlers from "./src/middlewares/errorHandler.js";
 
 //트리거
-import vmsInvestmentTrigger from "./utils/vmsInvestmentTrigger.js";
+import {
+  setupInvestmentTrigger,
+  initializeVirtualInvestment,
+} from "./utils/VirtualInvestmentTrigger.js";
 
 // 환경 변수 설정
-dotenv.config(); 
+dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-
 const app = express();
-
-vmsInvestmentTrigger()
-  .then(() => {
-    console.log('데이터 베이스 세팅 완료');
-  })
-  .catch((err) => {
-    console.error('데이터 베이스 세팅 중 오류 발생:', err);
-  });
-
 
 app.use(express.json());
 
@@ -45,3 +38,16 @@ app.use(...errorHandlers);
 
 // 서버 시작
 app.listen(process.env.PORT || 8000, () => console.log("Server Started"));
+
+// 데이터베이스 트리거 추가
+try {
+  // 서버 시작 시 virtualInvestment 초기화
+  await initializeVirtualInvestment();
+
+  // 트리거 설정
+  await setupInvestmentTrigger();
+
+  console.log('Database initialization and trigger setup completed.');
+} catch (error) {
+  console.error('Error during database setup:', error);
+}
