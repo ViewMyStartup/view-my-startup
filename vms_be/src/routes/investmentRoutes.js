@@ -59,10 +59,16 @@ router.put(
   "/:investmentId",
   asyncHandler(async (req, res) => {
     const { investmentId } = req.params;
-    const { investorName, investmentAmount, investmentComment, password } = req.body;
+    const { investorName, investmentAmount, investmentComment, password } =
+      req.body;
 
     // 필수 필드 검증
-    if (!investorName || investmentAmount === undefined || !investmentComment || !password) {
+    if (
+      !investorName ||
+      investmentAmount === undefined ||
+      !investmentComment ||
+      !password
+    ) {
       throw new BadRequestException("모든 필드는 필수값입니다");
     }
 
@@ -123,7 +129,5 @@ router.delete(
     res.status(204).send();
   })
 );
-
-
 
 export default router;
