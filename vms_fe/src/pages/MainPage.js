@@ -192,13 +192,13 @@ const MainPage = () => {
                   <p className={styles.statsValue}>200%+</p>
                 </div>
                 <div className={styles.growthDetails}>
-                  <h4>신뢰 가능한 성장 </h4>
+                  <h2>투자, 성장, 회수, 재투자</h2>
                   <div className={styles.growthChart}>
                     {/* Mock Growth Chart or Graph */}
                   </div>
                   <div className={styles.growthCases}>
                     <h4>성장 사례</h4>
-                    <p>스타트업 X는 최근 6개월 동안 300% 성장하였습니다.</p>
+                    <p>X는 최근 6개월 동안 300% 성장하였습니다.</p>
                   </div>
                 </div>
               </section>
@@ -273,16 +273,16 @@ const MainPage = () => {
                 <div className={styles.startupsList}>
                   <div className={styles.startupItem}>
                     <h4>스타트업 A</h4>
-                    <p>설명: 혁신적인 기술 스타트업.</p>
+                    <p>설명: </p>
                   </div>
                   <div className={styles.startupItem}>
                     <h4>스타트업 B</h4>
-                    <p>설명: 지속 가능한 에너지 스타트업.</p>
+                    <p>설명: </p>
                   </div>
                 </div>
                 <div className={styles.futurePlans}>
                   <h4>미래 계획</h4>
-                  <p>우리는 다음 분기에 새로운 스타트업과 협력할 계획입니다.</p>
+                  <p>계획</p>
                 </div>
               </section>
             )}
