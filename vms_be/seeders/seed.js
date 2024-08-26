@@ -8,9 +8,6 @@ async function main() {
   await prisma.investment.deleteMany({});
   console.log("Investment 데이터 삭제 완료되었습니다.");
 
-  await prisma.companySelection.deleteMany({});
-  console.log("CompanySelection 데이터 삭제 완료되었습니다.");
-
   // 기존 데이터 삭제
   await prisma.company.deleteMany();
 
