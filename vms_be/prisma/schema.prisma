@@ -14,18 +14,18 @@ datasource db {
 }
 
 model Company {
-  id                    Int                @id @default(autoincrement())
-  name                  String             @unique
+  id                    Int          @id @default(autoincrement())
+  name                  String       @unique
   logoUrl               String
   description           String
   category              String
   totalInvestment       Float
-  virtualInvestment     Int                @default(0)
+  virtualInvestment     Float        @default(0)
   revenue               Float
   employees             Int
-  mySelectionCount      Int                @default(0)
-  CompareSelectionCount Int                @default(0)
-  investments           Investment[]       @relation("CompanyInvestments")
+  mySelectionCount      Int          @default(0)
+  CompareSelectionCount Int          @default(0)
+  investments           Investment[] @relation("CompanyInvestments")
 }
 
 model Investment {
