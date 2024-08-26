@@ -85,4 +85,152 @@ router.get("/:companyId", async (req, res) => {
   }
 });
 
+// 기업 비교 API
+router.post(
+  "/compare",
+  asyncHandler(async (req, res) => {
+    try {
+      const {
+        companyIds,
+        myCompanyId, // 내 기업의 ID
+        sortBy,
+        order = "desc",
+        includeRank = false, // 순위를 포함할지 여부
+        checkMyCompanyRanking, // 내 기업의 순위를 확인할지 여부
+      } = req.body;
+
+      if (
+        !Array.isArray(companyIds) ||
+        companyIds.length === 0 ||
+        companyIds.length > 6
+      ) {
+        return res
+          .status(400)
+          .json({ error: "기업 ID는 1개 이상 6개 이하로 제공되어야 합니다." });
+      }
+
+      if (checkMyCompanyRanking && !companyIds.includes(myCompanyId)) {
+        return res.status(400).json({
+          error: "내 기업 ID는 제공된 기업 ID 목록에 포함되어야 합니다.",
+        });
+      }
+
+      // 선택된 기업들의 선택 횟수를 증가시키기 위한 작업
+      await prisma.company.updateMany({
+        where: { id: { in: companyIds.map((id) => parseInt(id)) } },
+        data: {
+          selections: {
+            increment: 1, // 선택 횟수를 1씩 증가시킴
+          },
+        },
+      });
+
+      // 선택된 기업들의 데이터를 조회
+      const companies = await prisma.company.findMany({
+        where: { id: { in: companyIds.map((id) => parseInt(id)) } },
+        select: {
+          id: true,
+          name: true,
+          logoUrl: true,
+          description: true,
+          category: true,
+          totalInvestment: true,
+          revenue: true,
+          employees: true,
+          selections: true, // 선택 횟수를 포함하여 조회
+        },
+      });
+
+      // 선택된 기업이 없을 경우 오류 반환
+      if (companies.length === 0) {
+        return res
+          .status(404)
+          .json({ error: "해당하는 기업이 존재하지 않습니다." });
+      }
+
+      // 정렬 기준에 따라 기업들을 정렬
+      let sortedCompanies;
+      switch (sortBy) {
+        case "totalInvestment":
+          sortedCompanies = companies.sort((a, b) =>
+            order === "asc"
+              ? a.totalInvestment - b.totalInvestment
+              : b.totalInvestment - a.totalInvestment
+          );
+          break;
+        case "revenue":
+          sortedCompanies = companies.sort((a, b) =>
+            order === "asc" ? a.revenue - b.revenue : b.revenue - a.revenue
+          );
+          break;
+        case "employees":
+          sortedCompanies = companies.sort((a, b) =>
+            order === "asc"
+              ? a.employees - b.employees
+              : b.employees - a.employees
+          );
+          break;
+        case "selections":
+          sortedCompanies = companies.sort((a, b) =>
+            order === "asc"
+              ? a.selections - b.selections
+              : b.selections - a.selections
+          );
+          break;
+        default:
+          return res.status(400).json({
+            error: "정렬 기준이 유효하지 않습니다.",
+          });
+      }
+
+      // 내 기업의 순위를 확인해야 하는 특수한 상황 => 나의 기업 비교 페이지 => 기업 순위 확인하기 섹션에서 쓰임
+
+      let response;
+
+      if (checkMyCompanyRanking) {
+        // 내 기업의 순위를 확인할 때 근접한 기업들을 추출
+        const myCompanyIndex = sortedCompanies.findIndex(
+          (company) => company.id === myCompanyId
+        );
+
+        // 근접한 기업 인덱스를 계산
+        const start = Math.max(0, myCompanyIndex - 2);
+        const end = Math.min(sortedCompanies.length, myCompanyIndex + 3);
+        const nearbyCompanies = sortedCompanies.slice(start, end);
+
+        if (includeRank) {
+          // 순위를 포함할 경우, 인접한 기업들의 순위를 계산하여 반환
+          response = nearbyCompanies.map((company, index) => ({
+            ...company,
+            rank: sortedCompanies.findIndex((c) => c.id === company.id) + 1,
+          }));
+        } else {
+          // 순위를 포함하지 않는 경우: 내 기업의 순위와 근접한 기업들의 정보를 반환하되, 순위 정보를 포함 X
+          response = nearbyCompanies;
+        }
+
+         // 여기서부터는 내 기업의 순위를 확인 X => 기업 순위 확인하기 섹션이 아닌 원래 일반적인 상황
+      } else {
+        if (includeRank) {
+          // 순위를 포함하는 경우: 선택된 모든 기업들의 순위를 계산하여 포함시킴
+          response = sortedCompanies.map((company, index) => ({
+            ...company,
+            rank: index + 1,
+          }));
+        } else {
+          // 순위를 포함하지 않는 경우: 선택된 모든 기업들의 정보만 반환,
+          response = sortedCompanies;
+        }
+      }
+
+      res.json({ companies: response });
+    } catch (error) {
+      res
+        .status(500)
+        .json({ error: "기업 비교 정보를 가져오는 중 오류가 발생했습니다." });
+    }
+  })
+);
+
 export default router;
+
