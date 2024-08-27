@@ -12,12 +12,13 @@ const DEFAULT_SORT_OPTION = "View My Startup 투자 금액 높은순";
 
 function CurrentStateInvest() {
   const { currentPage, totalPages, handlePageChange, setCurrentPage } =
-    usePageHandler();
+    usePageHandler(); // 커스텀 훅 사용
   const [selectedOption, setSelectedOption] = useState(DEFAULT_SORT_OPTION); // 기본 옵션
-  const [sortedData, setSortedData] = useState([]);
-  const [totalItems, setTotalItems] = useState(0);
-  const [loading, setLoading] = useState(true);
+  const [sortedData, setSortedData] = useState([]); // 정렬된 데이터
+  const [totalItems, setTotalItems] = useState(0); // 전체 데이터 수
+  const [loading, setLoading] = useState(true); // 로딩 상태
 
+  // 정렬 옵션 리스트
   const customOptions = [
     "View My Startup 투자 금액 높은순",
     "View My Startup 투자 금액 낮은순",
@@ -25,12 +26,13 @@ function CurrentStateInvest() {
     "실제 누적 투자 금액 낮은순",
   ];
 
+  // 정렬 옵션이나 현재 페이지 변경시, 데이터 가져옴
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        let sortBy = "virtualInvestment"; // 기본값은 virtualInvestment
-        let sortOrder = "desc"; // 기본적으로 높은순
+        let sortBy = "virtualInvestment"; // 기본 정렬 필드와 정렬 순서 설정
+        let sortOrder = "desc"; // 높은 순
 
         if (selectedOption.includes("낮은순")) {
           sortOrder = "asc";
@@ -49,8 +51,8 @@ function CurrentStateInvest() {
           sortOrder
         );
         console.log("Fetched Data:", response);
-        setSortedData(response.companies || []);
-        setTotalItems(response.total || 0); // 전체 데이터 수
+        setSortedData(response.companies || []); // 가져온 데이터 저장
+        setTotalItems(response.total || 0); // 전체 데이터 수 저장
       } catch (error) {
         console.error("Error fetching data:", error);
         setSortedData([]);
@@ -71,20 +73,19 @@ function CurrentStateInvest() {
 
   // 페이지 변경 핸들러
   const handlePageClick = (page) => {
-    handlePageChange(page);
+    handlePageChange(page); // 페이지를 변경하는 함수 호출
   };
 
-  // 현재 페이지의 데이터에 순위 추가
+  // 현재 페이지의 데이터에 순위 계산
   const addRankToData = (dataList, currentPage, limit) => {
     return dataList.map((item, index) => ({
       ...item,
-      rank: (currentPage - 1) * limit + index + 1,
+      rank: (currentPage - 1) * limit + index + 1, // 각 항목 순위 계산
     }));
   };
 
-  // 페이지네이션을 고려한 데이터 슬라이싱 및 순위 추가
-  const paginatedData = sortedData; // 이미 현재 페이지 데이터만 가지고 있음
-  const rankedData = addRankToData(paginatedData, currentPage, 10);
+  // 페이지네이션을 고려한 데이터 슬라이싱 및 직접 순위를 추가
+  const rankedData = addRankToData(sortedData, currentPage, 10);
 
   return (
     <div>
