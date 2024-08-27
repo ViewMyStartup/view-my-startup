@@ -6,11 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
+    "postinstall": "npx prisma migrate deploy && npx prisma generate",
     "dev": "nodemon server.js",
-    "build": "echo 'No build step necessary",
-    "seed-company": "node seeders/seedCompany.js",
-    "seed-investment": "node seeders/seedInvestment.js",
-    "seed-companyselection": "node seeders/seedCompanySelection.js"
+    "build": "mkdir -p dist && cp -r vms_be/seeders/images dist/images",
+    "seed": "node seeders/seed.js"
   },
   "author": "",
   "license": "ISC",
@@ -20,7 +19,8 @@
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "mongoose": "^8.5.2",
-    "superstruct": "^2.0.2"
+    "superstruct": "^2.0.2",
+    "@faker-js/faker": "^8.0.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.4",
