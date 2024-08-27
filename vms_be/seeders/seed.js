@@ -10,6 +10,7 @@ async function main() {
 
   // 기존 데이터 삭제
   await prisma.company.deleteMany();
+  console.log("Company 데이터 삭제 완료되었습니다.");
 
   //ID 시퀀스 초기화
   await resetIdSequence();
@@ -19,11 +20,13 @@ async function main() {
     data: companyData,
     skipDuplicates: true,
   });
+  console.log("Company 데이터 시딩 완료");
 
   await prisma.investment.createMany({
     data: investmentData,
     skipDuplicates: true,
   });
+  console.log("investment 데이터 시딩 완료");
 
   // 투자 정보 및 선택한 기업 companyId와 company의 ID를 일치시키기 위해, 모든 회사 데이터 가져오기
   const companies = await prisma.company.findMany();

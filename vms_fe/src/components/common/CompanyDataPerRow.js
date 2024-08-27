@@ -199,7 +199,6 @@ function CompanyDataPerRow({
 
   const typeChoose = () => {
     const {
-      id,
       name,
       logoUrl,
       description,
