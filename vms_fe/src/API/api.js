@@ -15,7 +15,7 @@ export async function getApiData(page, limit, search, sort_by, order) {
         params: { page, limit, search, sort_by, order },
       }
     );
-    console.log(`Response.Data : ${response.data}`);
+    // console.log(`Response.Data : ${response.data}`); // 디버깅용
     return response.data;
   } catch (error) {
     console.error("API Error: ", error);
