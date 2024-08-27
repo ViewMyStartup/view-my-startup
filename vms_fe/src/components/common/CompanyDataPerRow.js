@@ -58,7 +58,7 @@ function CompanyDataPerRow({
 
     return (
       <li className={styles.dataPerRowContainer}>
-        <Link to={`/id/${name}`}>
+        <Link to={`/id/${id}`}>
           <section className={`${styles.diffSizeContainer} ${styles.rankSize}`}>
             <span className={styles.columnRank}>{`${dataObject.rank}위`}</span>
             <article className={styles.companyInfoContainer}>
