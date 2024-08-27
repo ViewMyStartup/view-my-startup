@@ -29,24 +29,21 @@ function CurrentStateInvest() {
     const fetchData = async () => {
       try {
         setLoading(true);
-        // 정렬 기준 결정
         let sortBy = "virtualInvestment"; // 기본값은 virtualInvestment
         let sortOrder = "desc"; // 기본적으로 높은순
 
-        // 옵션에 따라 정렬 기준과 순서 설정
         if (selectedOption.includes("낮은순")) {
           sortOrder = "asc";
         }
 
-        // 실제 누적 투자 금액 옵션이 있을 경우 필드 변경
         if (selectedOption.includes("실제 누적")) {
           sortBy = "totalInvestment";
         }
 
         const response = await getApiData(
-          currentPage,
-          10,
-          "",
+          currentPage, // 현재 페이지를 API에 전달
+          50, // 페이지당 항목 수
+          "", // 검색어 비워둠
           sortBy,
           sortOrder
         );
@@ -63,16 +60,33 @@ function CurrentStateInvest() {
     };
 
     fetchData();
-  }, [currentPage, selectedOption]);
+  }, [selectedOption, currentPage]);
 
+  // 옵션 변경 핸들러
   const handleDropdownChange = (option) => {
     setSelectedOption(option);
-    setCurrentPage(1);
+    setCurrentPage(1); // 옵션 변경 시 첫 페이지로 이동
   };
 
+  // 페이지 변경 핸들러
   const handlePageClick = (page) => {
     handlePageChange(page);
   };
+
+  // 현재 페이지의 데이터에 순위 추가
+  const addRankToData = (dataList, currentPage, limit) => {
+    return dataList.map((item, index) => ({
+      ...item,
+      rank: (currentPage - 1) * limit + index + 1,
+    }));
+  };
+
+  // 페이지네이션을 고려한 데이터 슬라이싱 및 순위 추가
+  const paginatedData = sortedData.slice(
+    (currentPage - 1) * 10,
+    currentPage * 10
+  );
+  const rankedData = addRankToData(paginatedData, currentPage, 10);
 
   return (
     <div>
@@ -92,10 +106,7 @@ function CurrentStateInvest() {
           ) : (
             <DataRowSetRender
               type="invest"
-              dataList={sortedData.slice(
-                (currentPage - 1) * 10,
-                currentPage * 10
-              )}
+              dataList={rankedData} // 순위가 추가된 데이터
               isloading={loading}
             />
           )}
