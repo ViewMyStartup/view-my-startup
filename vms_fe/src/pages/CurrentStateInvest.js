@@ -97,7 +97,7 @@ function CurrentStateInvest() {
         </div>
         <div className={styles.investCompanyList}>
           {loading ? (
-            <p>Loading...</p>
+            <div className={styles.spinner}></div> // 스피너 추가
           ) : (
             <DataRowSetRender
               type="invest"
