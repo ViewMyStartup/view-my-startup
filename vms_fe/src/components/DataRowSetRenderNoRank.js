@@ -26,7 +26,7 @@ function DataRowSetRenderNoRank({
       <ul>
         {dataList.map((dataObject, index) => {
           return (
-            <CompanyDataPerRow
+            <CompanyDataPerRowNoRank
               key={dataObject ? dataObject.id : index} // 리스트를 렌더링할 때, key 추가
               type={type}
               dataObject={dataObject}
