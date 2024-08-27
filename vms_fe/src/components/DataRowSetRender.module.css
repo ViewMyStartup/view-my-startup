@@ -20,11 +20,11 @@
 
 .loader {
   border: 16px solid #555; /* 회색 테두리 */
-  border-top: 16px solid #b45c09; /* 파란색 테두리 */
-  border-radius: 50%; /* 원 모양으로 만들기 */
+  border-top: 16px solid #773f0a;
+  border-radius: 50%; 
   width: 100px;
   height: 100px;
-  animation: spin 2s linear infinite; /* 회전 애니메이션 */
+  animation: spin 0.7s linear infinite; /* 회전 애니메이션 */
   box-shadow: 0 0 2px 1px #555, /* 바깥쪽 테두리를 연하게 */
               0 0 1px 1px rgba(0, 0, 0, 0.1); /* 더욱 연한 바깥쪽 효과 */
 }

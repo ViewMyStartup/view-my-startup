@@ -22,7 +22,7 @@ function App() {
         <Route path="/mycompany" element={<MyCompanyCompare />} />
         <Route path="/compare" element={<CurrentStateCompare />} />
         <Route path="/investinfo" element={<CurrentStateInvest />} />
-        <Route path="/id/:name" element={<CompanyInvestDetail />} />
+        <Route path="/id/:companyId" element={<CompanyInvestDetail />} />
         <Route path="/test" element={<Test />} />
       </Routes>
     </BrowserRouter>
