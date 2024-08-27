@@ -83,12 +83,10 @@ POST http://localhost:8000/api/companies/compare
 Content-Type: application/json
 
 {
-  "companyIds": [11, 12, 13, 14, 15],
-  "myCompanyId": 12,
+  "companyIds": [11, 12, 13],
   "sortBy": "revenue",
   "order": "desc",
-  "includeRank": true,
-  "checkMyCompanyRanking": true
+  "includeRank": true
 }
 
 #### 순위를 포함하지 않고 기업 비교 테스트
@@ -228,6 +226,7 @@ Content-Type: application/json
 GET https://view-my-startup.onrender.com/api/companies/13
 Content-Type: application/json
 
+
 #### 배포된 서버에서 존재하지 않는 기업 조회 시 에러 처리 (ID가 999인 경우)
 GET https://view-my-startup.onrender.com/api/companies/999
 Content-Type: application/json
@@ -314,7 +313,7 @@ Content-Type: application/json
 ### 가상 투자 수정 및 삭제 API 테스트 - 준호님
 
 #### 배포된 서버에서 가상 투자 수정 테스트
-PUT https://view-my-startup.onrender.com/api/investments/27
+PUT https://view-my-startup.onrender.com/api/investments/26
 Content-Type: application/json
 
 {
@@ -325,7 +324,7 @@ Content-Type: application/json
 }
 
 #### 배포된 서버에서 잘못된 비밀번호로 수정 시도
-PUT https://view-my-startup.onrender.com/api/investments/27
+PUT https://view-my-startup.onrender.com/api/investments/26
 Content-Type: application/json
 
 {
