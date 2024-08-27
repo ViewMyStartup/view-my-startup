@@ -26,44 +26,38 @@ function CurrentStateInvest() {
     "실제 누적 투자 금액 낮은순",
   ];
 
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+
+      // 정렬 기준과 순서 설정
+      const sortBy = selectedOption.includes("실제 누적")
+        ? "totalInvestment"
+        : "virtualInvestment";
+      const sortOrder = selectedOption.includes("낮은순") ? "asc" : "desc";
+
+      // API 호출
+      const response = await getApiData(
+        currentPage, // 현재 페이지를 API에 전달
+        10, // 페이지당 항목 수
+        "", // 검색어 비워둠
+        sortBy, // 정렬 기준
+        sortOrder // 정렬 순서
+      );
+      console.log("Fetched Data:", response);
+      setSortedData(response.companies || []); // 가져온 데이터 저장
+      setTotalItems(response.total || 0); // 전체 데이터 수 저장
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setSortedData([]);
+      setTotalItems(0);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   // 정렬 옵션이나 현재 페이지 변경시, 데이터 가져옴
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-
-        // 정렬 기준과 순서 설정
-        let sortBy = "virtualInvestment"; // 기본 정렬 필드 설정
-        let sortOrder = "desc"; // 높은 순
-
-        if (selectedOption.includes("낮은순")) {
-          sortOrder = "asc";
-        }
-
-        if (selectedOption.includes("실제 누적")) {
-          sortBy = "totalInvestment";
-        }
-
-        // API 호출
-        const response = await getApiData(
-          currentPage, // 현재 페이지를 API에 전달
-          10, // 페이지당 항목 수
-          "", // 검색어 비워둠
-          sortBy, // 정렬 기준
-          sortOrder // 정렬 순서
-        );
-        console.log("Fetched Data:", response);
-        setSortedData(response.companies || []); // 가져온 데이터 저장
-        setTotalItems(response.total || 0); // 전체 데이터 수 저장
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        setSortedData([]);
-        setTotalItems(0);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchData();
   }, [selectedOption, currentPage]);
 
