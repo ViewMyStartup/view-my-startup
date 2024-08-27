@@ -114,6 +114,9 @@ router.put(
       },
     });
 
+    // `investment` 객체에서 `companyId` 가져오기
+    const companyId = investment.companyId;
+
     // virtualInvestment 업데이트
     await updateVirtualInvestment(companyId);
 
@@ -141,6 +144,9 @@ router.delete(
     if (investment.password !== password) {
       throw new BadRequestException("비밀번호가 일치하지 않습니다");
     }
+
+    // `investment` 객체에서 `companyId` 가져오기
+    const companyId = investment.companyId;
 
     // 투자 정보 삭제
     await prisma.investment.delete({
