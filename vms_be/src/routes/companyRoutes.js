@@ -83,6 +83,7 @@ router.get("/:companyId", async (req, res) => {
       description: company.description,
       category: company.category,
       totalInvestment: company.totalInvestment,
+      virtualInvestment: company.virtualInvestment,
       revenue: company.revenue,
       employees: company.employees,
       investments: company.investments,

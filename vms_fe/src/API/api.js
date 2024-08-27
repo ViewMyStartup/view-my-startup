@@ -7,5 +7,20 @@ console.log("apiUrl:", apiUrl);
 // 아래 API 호출 코드 작성
 
 // 기업 전체 리스트 조회 API
+export async function getApiData(page, limit, search, sort_by, order) {
+  try {
+    const response = await axios.get(
+      "https://view-my-startup.onrender.com/api/companies",
+      {
+        params: { page, limit, search, sort_by, order },
+      }
+    );
+    console.log(`Response.Data : ${response.data}`);
+    return response.data;
+  } catch (error) {
+    console.error("API Error: ", error);
+    throw error;
+  }
+}
 
 // 기업 상세 조회 API

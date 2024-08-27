@@ -9,6 +9,22 @@ import {
 const router = Router();
 const prisma = new PrismaClient();
 
+// virtualInvestment 업데이트 함수
+async function updateVirtualInvestment(companyId) {
+  const sumVirtualInvestment = await prisma.investment.aggregate({
+    where: { companyId: companyId },
+    _sum: { investmentAmount: true },
+  });
+
+  await prisma.company.update({
+    where: { id: companyId },
+    data: {
+      virtualInvestment: sumVirtualInvestment._sum.investmentAmount || 0,
+    },
+  });
+}
+
+//가상 투자 추가 API
 router.post(
   "/",
   asyncHandler(async (req, res) => {
@@ -50,6 +66,8 @@ router.post(
       },
     });
 
+    // virtualInvestment 업데이트 *추가
+    await updateVirtualInvestment(companyId);
     res.status(201).json(investment);
   })
 );
@@ -96,6 +114,9 @@ router.put(
       },
     });
 
+    // virtualInvestment 업데이트
+    await updateVirtualInvestment(companyId);
+
     res.status(200).json(updatedInvestment);
   })
 );
@@ -125,6 +146,9 @@ router.delete(
     await prisma.investment.delete({
       where: { id: investmentId },
     });
+
+    // virtualInvestment 업데이트
+    await updateVirtualInvestment(companyId);
 
     res.status(204).send();
   })
@@ -168,7 +192,7 @@ router.get(
     res.status(200).json({
       investment: investmentWithRank, // 투자자 순위
       rank: investmentWithRank.rank, // 투자자 순위
-      totalInvestments: rankedInvestments.length, // 페이지네이션 목적용 총 투자자수 
+      totalInvestments: rankedInvestments.length, // 페이지네이션 목적용 총 투자자수
     });
   })
 );
