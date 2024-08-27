@@ -4,22 +4,22 @@ import Pagination from "components/common/Pagination";
 import SearchBar from "components/common/SearchBar";
 import SelectBtn from "./common/SelectBtn";
 import deleteIcon from "assets/images/ic_delete.svg";
-import { getApiData } from "../API/api";
+import { getApiData } from "../API/api"; // 서버 API 함수 추가
 
 const ModalSelectComparision = ({
   isOpen,
   onClose,
   title,
   text,
-  autoClose = false,
-  preSelectedCompanies = [],
+  autoClose = false, // 바로 닫히기
+  preSelectedCompanies = [], // 선택된 기업 목록
 }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCompanies, setSelectedCompanies] = useState([]);
   const [error, setError] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [companyList, setCompanyList] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [companyList, setCompanyList] = useState([]); // 서버에서 가져온 기업 리스트 상태
+  const [isLoading, setIsLoading] = useState(false); // 로딩 상태
   const itemsPerPage = 5;
 
   useEffect(() => {
@@ -35,8 +35,8 @@ const ModalSelectComparision = ({
   const fetchCompanies = async () => {
     setIsLoading(true);
     try {
-      const data = await getApiData(1, 84, searchTerm, "name", "asc");
-      setCompanyList(data.companies || []);
+      const data = await getApiData(1, 84, searchTerm, "name", "asc"); // 84개의 기업 데이터를 가져오기
+      setCompanyList(data.companies || []); // 데이터가 없을 수 있는 경우 대비
     } catch (error) {
       console.error("기업 데이터를 가져오는 중 오류가 발생했습니다:", error);
     } finally {
