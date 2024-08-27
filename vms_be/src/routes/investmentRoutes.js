@@ -145,15 +145,17 @@ router.get(
       throw new NotFoundException("해당 투자 정보가 존재하지 않습니다");
     }
 
-    // 전체 투자자 목록을 investmentAmount 기준으로 정렬
-    const allInvestments = await prisma.investment.findMany({
+    // 같은 회사에 대한 모든 투자자 가져오기
+    const companyId = investment.companyId;
+    const companyInvestments = await prisma.investment.findMany({
+      where: { companyId },
       orderBy: {
         investmentAmount: "desc",
       },
     });
 
     // 순위 계산
-    const rankedInvestments = allInvestments.map((inv, index) => ({
+    const rankedInvestments = companyInvestments.map((inv, index) => ({
       ...inv,
       rank: index + 1,
     }));
