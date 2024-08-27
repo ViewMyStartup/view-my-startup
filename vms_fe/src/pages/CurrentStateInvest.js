@@ -31,7 +31,9 @@ function CurrentStateInvest() {
     const fetchData = async () => {
       try {
         setLoading(true);
-        let sortBy = "virtualInvestment"; // 기본 정렬 필드와 정렬 순서 설정
+
+        // 정렬 기준과 순서 설정
+        let sortBy = "virtualInvestment"; // 기본 정렬 필드 설정
         let sortOrder = "desc"; // 높은 순
 
         if (selectedOption.includes("낮은순")) {
@@ -47,8 +49,8 @@ function CurrentStateInvest() {
           currentPage, // 현재 페이지를 API에 전달
           10, // 페이지당 항목 수
           "", // 검색어 비워둠
-          sortBy,
-          sortOrder
+          sortBy, // 정렬 기준
+          sortOrder // 정렬 순서
         );
         console.log("Fetched Data:", response);
         setSortedData(response.companies || []); // 가져온 데이터 저장
