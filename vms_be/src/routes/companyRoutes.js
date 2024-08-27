@@ -125,15 +125,30 @@ router.post(
           error: "내 기업 ID는 제공된 기업 ID 목록에 포함되어야 합니다.",
         });
       }
-      // 선택된 기업들의 선택 횟수를 증가시키기 위한 작업
-      await prisma.companySelection.updateMany({
-        where: { id: { in: companyIds.map((id) => parseInt(id)) } },
-        data: {
-          selectionCount: {
-            increment: 1, // 선택 횟수를 1씩 증가시킴
+      // 내 기업 선택 횟수 증가
+      if (myCompanyId) {
+        await prisma.company.update({
+          where: { id: myCompanyId },
+          data: {
+            mySelectionCount: {
+              increment: 1, // 나의 기업 선택 횟수를 1씩 증가시킴
+            },
           },
-        },
-      });
+        });
+      }
+
+      // 비교 기업 선택 횟수 증가
+      const compareCompanyIds = companyIds.filter((id) => id !== myCompanyId);
+      if (compareCompanyIds.length > 0) {
+        await prisma.company.updateMany({
+          where: { id: { in: compareCompanyIds } },
+          data: {
+            compareSelectionCount: {
+              increment: 1, // 비교 기업 선택 횟수를 1씩 증가시킴
+            },
+          },
+        });
+      }
 
       // 선택된 기업들의 데이터를 조회
       const companies = await prisma.company.findMany({
@@ -147,7 +162,8 @@ router.post(
           totalInvestment: true,
           revenue: true,
           employees: true,
-          selections: true, // 선택 횟수를 포함하여 조회
+          mySelectionCount: true, // 나의 기업 선택 횟수
+          compareSelectionCount: true, // 비교 기업 선택 횟수
         },
       });
 
@@ -180,11 +196,18 @@ router.post(
               : b.employees - a.employees
           );
           break;
-        case "selections":
+        case "mySelectionCount":
           sortedCompanies = companies.sort((a, b) =>
             order === "asc"
-              ? a.selections - b.selections
-              : b.selections - a.selections
+              ? a.mySelectionCount - b.mySelectionCount
+              : b.mySelectionCount - a.mySelectionCount
+          );
+          break;
+        case "compareSelectionCount":
+          sortedCompanies = companies.sort((a, b) =>
+            order === "asc"
+              ? a.compareSelectionCount - b.compareSelectionCount
+              : b.compareSelectionCount - a.compareSelectionCount
           );
           break;
         default:
