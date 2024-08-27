@@ -8,21 +8,26 @@ import Pagination from "components/common/Pagination";
 import DropdownMiddleSize from "components/common/DropdownMiddleSize";
 
 // 커스텀 훅
-import usePageHandler from "hook/usePageHandler";
 import useGetCompanyData from "hook/useGetCompanyData";
 
 function CurrentStateCompare() {
   const [sortBy, setSortBy] = useState("mySelectionCount");
   const [oder, setOrder] = useState("desc");
-  const { currentPage, handlePageChange } = usePageHandler();
-  const { companyList, isLoading, totalPages } = useGetCompanyData(
-    currentPage,
-    10,
-    "",
-    sortBy,
-    oder
-  );
+  const [currentPage, setCurrentPage] = useState(1);
 
+  const {
+    companyList,
+    isLoading,
+    error,
+    totalPages,
+  } = useGetCompanyData(currentPage, 10, "", sortBy, oder);
+
+  const handlePageChange = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  }
+  
   const handleOptionChange = (option) => {
     if (option === "나의 기업 선택 횟수 높은순") {
       setSortBy("mySelectionCount");
@@ -37,7 +42,9 @@ function CurrentStateCompare() {
       setSortBy("CompareSelectionCount");
       setOrder("asc");
     }
+    setCurrentPage(1);
   };
+
 
   const options = [
     "나의 기업 선택 횟수 높은순",
@@ -81,5 +88,3 @@ function CurrentStateCompare() {
 }
 
 export default CurrentStateCompare;
-
-//   console.log(`companyList: ${companyList}`);
