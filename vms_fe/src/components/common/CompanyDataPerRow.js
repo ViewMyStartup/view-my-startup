@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "./CompanyDataPerRow.module.css";
 import ModalPassword from "../ModalPassword";
 
-//이미지
+// 이미지
 import iconKebab from "../../assets/images/ic_kebab.svg";
 
 function CompanyDataPerRow({
@@ -51,14 +51,14 @@ function CompanyDataPerRow({
       logoUrl, // img -> logoUrl
       description,
       category,
-      total_investment,
+      totalInvestment,  // 수정된 부분
       revenue,
       employees,
     } = dataObject;
 
     return (
       <li className={styles.dataPerRowContainer}>
-        <Link to={`/id/${name}`}>
+        <Link to={`/id/${id}`}>
           <section className={`${styles.diffSizeContainer} ${styles.rankSize}`}>
             <span className={styles.columnRank}>{`${dataObject.rank}위`}</span>
             <article className={styles.companyInfoContainer}>
@@ -73,7 +73,7 @@ function CompanyDataPerRow({
             className={`${styles.sameSizeContainer} ${styles.rankSizeForSame}`}
           >
             <span>{category}</span>
-            <span>{`${convertToBillion(total_investment)}억 원`}</span>
+            <span>{`${convertToBillion(totalInvestment)}억 원`}</span> {/* 수정된 부분 */}
             <span>{`${convertToBillion(revenue)}억 원`}</span>
             <span>{`${employees}명`}</span>
           </section>
@@ -89,7 +89,7 @@ function CompanyDataPerRow({
       img,
       description,
       category,
-      total_investment,
+      totalInvestment,  // 수정된 부분
       revenue,
       employees,
     } = dataObject;
@@ -105,7 +105,7 @@ function CompanyDataPerRow({
         </section>
         <section className={styles.sameSizeContainer}>
           <span>{category}</span>
-          <span>{`${convertToBillion(total_investment)}억 원`}</span>
+          <span>{`${convertToBillion(totalInvestment)}억 원`}</span> {/* 수정된 부분 */}
           <span>{`${convertToBillion(revenue)}억 원`}</span>
           <span>{`${employees}명`}</span>
         </section>
@@ -244,3 +244,4 @@ function CompanyDataPerRow({
 }
 
 export default CompanyDataPerRow;
+
