@@ -29,7 +29,13 @@ function DefaultPage() {
           sortBy,
           order
         );
-        setCompanies(data.companies);
+
+        const rankToCompanies = data.companies.map((company, index) => ({
+          ...company,
+          rank: (currentPage - 1) * companiesPerPage + index + 1, // rank 설정
+        }));
+
+        setCompanies(rankToCompanies);
         setTotalPages(Math.ceil(data.total / companiesPerPage)); // totalPages 설정
       } catch (error) {
         console.error("fetch error:", error);
