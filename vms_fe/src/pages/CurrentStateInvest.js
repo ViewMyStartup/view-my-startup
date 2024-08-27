@@ -37,14 +37,7 @@ function CurrentStateInvest() {
       const sortOrder = selectedOption.includes("낮은순") ? "asc" : "desc";
 
       // API 호출
-      const response = await getApiData(
-        currentPage, // 현재 페이지를 API에 전달
-        10, // 페이지당 항목 수
-        "", // 검색어 비워둠
-        sortBy, // 정렬 기준
-        sortOrder // 정렬 순서
-      );
-      console.log("Fetched Data:", response);
+      const response = await getApiData(currentPage, 10, "", sortBy, sortOrder);
       setSortedData(response.companies || []); // 가져온 데이터 저장
       setTotalItems(response.total || 0); // 전체 데이터 수 저장
     } catch (error) {
@@ -56,7 +49,6 @@ function CurrentStateInvest() {
     }
   };
 
-  // 정렬 옵션이나 현재 페이지 변경시, 데이터 가져옴
   useEffect(() => {
     fetchData();
   }, [selectedOption, currentPage]);
@@ -64,19 +56,19 @@ function CurrentStateInvest() {
   // 옵션 변경 핸들러
   const handleDropdownChange = (option) => {
     setSelectedOption(option);
-    setCurrentPage(1); // 옵션 변경 시 첫 페이지로 이동
+    setCurrentPage(1);
   };
 
   // 페이지 변경 핸들러
   const handlePageClick = (page) => {
-    handlePageChange(page); // 페이지를 변경하는 함수 호출
+    handlePageChange(page);
   };
 
   // 현재 페이지의 데이터에 순위 계산
   const addRankToData = (dataList, currentPage, limit) => {
     return dataList.map((item, index) => ({
       ...item,
-      rank: (currentPage - 1) * limit + index + 1, // 각 항목 순위 계산
+      rank: (currentPage - 1) * limit + index + 1,
     }));
   };
 
@@ -96,22 +88,18 @@ function CurrentStateInvest() {
           />
         </div>
         <div className={styles.investCompanyList}>
-          {loading ? (
-            <div className={styles.spinner}></div> // 스피너 추가
-          ) : (
-            <DataRowSetRender
-              type="invest"
-              dataList={rankedData} // 순위가 추가된 데이터
-              isloading={loading}
-            />
-          )}
+          <DataRowSetRender
+            type="invest"
+            dataList={rankedData}
+            isloading={loading} // 로딩 상태 전달
+          />
         </div>
         <div className={styles.pagination}>
           <Pagination
             currentPage={currentPage}
-            totalPages={Math.ceil(totalItems / 10)} // 전체 페이지 수
+            totalPages={Math.ceil(totalItems / 10)}
             onPageChange={handlePageClick}
-            hasNext={currentPage < Math.ceil(totalItems / 10)} // 다음 페이지 여부
+            hasNext={currentPage < Math.ceil(totalItems / 10)}
           />
         </div>
       </div>
