@@ -16,10 +16,12 @@ function DefaultPage() {
   const [sortOption, setSortOption] = useState("누적 투자금액 높은순");
   const [companies, setCompanies] = useState([]);
   const [totalPages, setTotalPages] = useState(5);
+  const [isloading, setIsLoading] = useState(false);
   const companiesPerPage = 10;
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true);
       const { sortBy, order } = SortingOptions(sortOption);
       try {
         const data = await getApiData(
@@ -39,6 +41,8 @@ function DefaultPage() {
         setTotalPages(Math.ceil(data.total / companiesPerPage)); // totalPages 설정
       } catch (error) {
         console.error("fetch error:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -78,7 +82,12 @@ function DefaultPage() {
           </div>
         </div>
         <div className={styles.listContainer}>
-          <DataRowSetRender type="rank" dataList={companies} />
+          <DataRowSetRender
+            type="rank"
+            dataList={companies}
+            currentPage={currentPage}
+            isloading={isloading}
+          />
         </div>
         <Pagination
           currentPage={currentPage}
