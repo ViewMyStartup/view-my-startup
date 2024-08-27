@@ -354,6 +354,15 @@ Content-Type: application/json
   "password": "password123"
 }
 
+#### 배포된 서버에서 가상 투자 삭제 테스트 / 잘못된 비밀번호로 시도
+DELETE https://view-my-startup.onrender.com/api/investments/27
+Content-Type: application/json
+
+{
+  "password": "password12345"
+}
+
+
 
 ### vertualInvestment 증가여부 테스트
 
@@ -376,4 +385,8 @@ Content-Type: application/json
 
 #### 배포된 서버에서 기업 상세 조회 (ID가 22인 경우)
 GET https://view-my-startup.onrender.com/api/companies/22
+Content-Type: application/json
+
+#### 배포된 서버에서 정렬 기능 테스트 (매출액 내림차순 정렬)
+GET https://view-my-startup.onrender.com/api/companies?sort_by=CompareSelectionCount&order=desc
 Content-Type: application/json
