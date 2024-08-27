@@ -1,6 +1,11 @@
 import { PrismaClient } from "@prisma/client";
 import companyData from "./CompanyData.js";
 import investmentData from "./investmentData.js";
+
+//유틸 
+import { initializeVirtualInvestment } from "./utils/initializeVirtualInvestment.js";
+import { resetIdSequence } from "./utils/resetIdSequence.js";
+
 const prisma = new PrismaClient();
 
 async function main() {
@@ -33,15 +38,17 @@ async function main() {
   console.log(companies);
 
   console.log("초기 데이터 시딩 작업 완료되었습니다.");
+
+  // 데이터 시딩 시 virtualInvestment 초기화 // 만약 성공하면 서버 실행 코드에 필요 없어짐
+  try {
+    await initializeVirtualInvestment();
+  } catch (error) {
+    console.error("initializeVirtualInvestment 오류 :", error);
+  }
+
+  console.log("initializeVirtualInvestment 초기화 완료되었습니다.");
 }
 
-async function resetIdSequence() {
-  // 데이터베이스에 따라 시퀀스 초기화 SQL 명령어를 실행합니다.
-  // PostgreSQL 예제:
-  await prisma.$executeRaw`ALTER SEQUENCE "Company_id_seq" RESTART WITH 1;`;
-  await prisma.$executeRaw`ALTER SEQUENCE "Investment_id_seq" RESTART WITH 1;`;
-  console.log('ID 시퀀스 리셋.');
-}
 
 main()
   .then(async () => {
@@ -52,3 +59,5 @@ main()
     await prisma.$disconnect();
     process.exit(1);
   });
+
+  

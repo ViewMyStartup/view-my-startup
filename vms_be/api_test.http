@@ -344,7 +344,7 @@ Content-Type: application/json
 }
 
 #### 배포된 서버에서 가상 투자 삭제 테스트
-DELETE https://view-my-startup.onrender.com/api/investments/27
+DELETE https://view-my-startup.onrender.com/api/investments/31
 Content-Type: application/json
 
 {
@@ -360,7 +360,7 @@ Content-Type: application/json
 }
 
 #### 배포된 서버에서 가상 투자 삭제 테스트 / 잘못된 비밀번호로 시도
-DELETE https://view-my-startup.onrender.com/api/investments/27
+DELETE https://view-my-startup.onrender.com/api/investments/26
 Content-Type: application/json
 
 {
