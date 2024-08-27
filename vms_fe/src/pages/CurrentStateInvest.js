@@ -40,16 +40,17 @@ function CurrentStateInvest() {
           sortBy = "totalInvestment";
         }
 
+        // API 호출
         const response = await getApiData(
           currentPage, // 현재 페이지를 API에 전달
-          50, // 페이지당 항목 수
+          10, // 페이지당 항목 수
           "", // 검색어 비워둠
           sortBy,
           sortOrder
         );
         console.log("Fetched Data:", response);
         setSortedData(response.companies || []);
-        setTotalItems(response.total || 0);
+        setTotalItems(response.total || 0); // 전체 데이터 수
       } catch (error) {
         console.error("Error fetching data:", error);
         setSortedData([]);
@@ -82,10 +83,7 @@ function CurrentStateInvest() {
   };
 
   // 페이지네이션을 고려한 데이터 슬라이싱 및 순위 추가
-  const paginatedData = sortedData.slice(
-    (currentPage - 1) * 10,
-    currentPage * 10
-  );
+  const paginatedData = sortedData; // 이미 현재 페이지 데이터만 가지고 있음
   const rankedData = addRankToData(paginatedData, currentPage, 10);
 
   return (
@@ -114,9 +112,9 @@ function CurrentStateInvest() {
         <div className={styles.pagination}>
           <Pagination
             currentPage={currentPage}
-            totalPages={Math.ceil(totalItems / 10)}
+            totalPages={Math.ceil(totalItems / 10)} // 전체 페이지 수
             onPageChange={handlePageClick}
-            hasNext={currentPage < Math.ceil(totalItems / 10)}
+            hasNext={currentPage < Math.ceil(totalItems / 10)} // 다음 페이지 여부
           />
         </div>
       </div>
