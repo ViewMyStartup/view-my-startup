@@ -16,7 +16,6 @@ router.get("/", async (req, res) => {
   } = req.query;
 
   try {
-    // 검색 기능: 이름 또는 카테고리를 기준으로 검색
     const filter = search
       ? {
           OR: [
@@ -26,11 +25,9 @@ router.get("/", async (req, res) => {
         }
       : {};
 
-    // 정렬 기능: 기본값은 이름 오름차순
     const orderBy = {};
     orderBy[sort_by] = order;
 
-    // 페이지네이션 및 검색, 정렬 적용된 기업 리스트 조회
     const companies = await prisma.company.findMany({
       where: filter,
       orderBy: orderBy,
@@ -38,10 +35,8 @@ router.get("/", async (req, res) => {
       take: parseInt(limit),
     });
 
-    // 전체 기업 수 조회 (페이지네이션을 위한 전체 항목 수)
     const total = await prisma.company.count({ where: filter });
 
-    // 응답 데이터
     res.json({
       page: parseInt(page),
       limit: parseInt(limit),
@@ -49,7 +44,6 @@ router.get("/", async (req, res) => {
       companies: companies,
     });
   } catch (error) {
-    // 서버 오류 발생 시
     res
       .status(500)
       .json({ error: "기업 리스트를 가져오는 중 오류가 발생했습니다." });
@@ -62,20 +56,18 @@ router.get("/:companyId", async (req, res) => {
 
   try {
     const company = await prisma.company.findUnique({
-      where: { id: parseInt(companyId) }, // companyId를 정수로 변환하여 조회
+      where: { id: parseInt(companyId) },
       include: {
-        investments: true, // Investment 모델의 가상 투자정보 포함!
+        investments: true,
       },
     });
 
-    // 해당 ID의 회사가 데이터베이스에 존재하지 않는 경우
     if (!company) {
       return res
         .status(404)
         .json({ error: "찾으시는 기업이 존재하지 않습니다." });
     }
 
-    // 투자 정보를 포함한 회사 정보 응답 형식
     res.json({
       id: company.id,
       name: company.name,
@@ -89,7 +81,6 @@ router.get("/:companyId", async (req, res) => {
       investments: company.investments,
     });
   } catch (error) {
-    // 서버 오류 발생 시
     res
       .status(500)
       .json({ error: "기업 상세 정보를 가져오는 중 오류가 발생했습니다." });
@@ -103,11 +94,13 @@ router.post(
     try {
       const {
         companyIds,
-        myCompanyId, // 내 기업의 ID 추가
+        myCompanyId,
         sortBy,
         order = "desc",
         includeRank = false,
-        checkMyCompanyRanking, // 내 기업의 순위를 확인할지 여부
+        checkMyCompanyRanking,
+        incrementMySelection = false, // 나의 기업 선택 횟수를 증가시킬지 여부
+        incrementCompareSelection = false, // 다른 기업 선택 횟수를 증가시킬지 여부
       } = req.body;
 
       if (
@@ -125,17 +118,23 @@ router.post(
           error: "내 기업 ID는 제공된 기업 ID 목록에 포함되어야 합니다.",
         });
       }
-      // 선택된 기업들의 선택 횟수를 증가시키기 위한 작업
-      await prisma.companySelection.updateMany({
-        where: { id: { in: companyIds.map((id) => parseInt(id)) } },
-        data: {
-          selectionCount: {
-            increment: 1, // 선택 횟수를 1씩 증가시킴
-          },
-        },
-      });
 
-      // 선택된 기업들의 데이터를 조회
+      // 나의 기업 선택 횟수를 증가시킬지 다른 기업 선택 횟수를 증가시킬지
+      const updateData = {};
+      if (incrementMySelection) {
+        updateData.mySelectionCount = { increment: 1 };
+      }
+      if (incrementCompareSelection) {
+        updateData.CompareSelectionCount = { increment: 1 };
+      }
+
+      if (Object.keys(updateData).length > 0) {
+        await prisma.company.updateMany({
+          where: { id: { in: companyIds.map((id) => parseInt(id)) } },
+          data: updateData,
+        });
+      }
+
       const companies = await prisma.company.findMany({
         where: { id: { in: companyIds.map((id) => parseInt(id)) } },
         select: {
@@ -147,18 +146,17 @@ router.post(
           totalInvestment: true,
           revenue: true,
           employees: true,
-          selections: true, // 선택 횟수를 포함하여 조회
+          mySelectionCount: true,
+          CompareSelectionCount: true,
         },
       });
 
-      // 선택된 기업이 없을 경우 오류 반환
       if (companies.length === 0) {
         return res
           .status(404)
           .json({ error: "해당하는 기업이 존재하지 않습니다." });
       }
 
-      // 정렬 기준에 따라 기업들을 정렬
       let sortedCompanies;
       switch (sortBy) {
         case "totalInvestment":
@@ -180,11 +178,18 @@ router.post(
               : b.employees - a.employees
           );
           break;
-        case "selections":
+        case "mySelectionCount":
           sortedCompanies = companies.sort((a, b) =>
             order === "asc"
-              ? a.selections - b.selections
-              : b.selections - a.selections
+              ? a.mySelectionCount - b.mySelectionCount
+              : b.mySelectionCount - a.mySelectionCount
+          );
+          break;
+        case "CompareSelectionCount":
+          sortedCompanies = companies.sort((a, b) =>
+            order === "asc"
+              ? a.CompareSelectionCount - b.CompareSelectionCount
+              : b.CompareSelectionCount - a.CompareSelectionCount
           );
           break;
         default:
@@ -193,17 +198,13 @@ router.post(
           });
       }
 
-      // 내 기업의 순위를 확인해야 하는 특수한 상황 => 나의 기업 비교 페이지 => 기업 순위 확인하기 섹션에서 쓰임
-
       let response;
 
       if (checkMyCompanyRanking) {
-        // 내 기업의 순위를 확인할 때 근접한 기업들을 추출
         const myCompanyIndex = sortedCompanies.findIndex(
           (company) => company.id === myCompanyId
         );
 
-        // 근접한 기업 인덱스 추출
         let nearbyCompanies;
         if (myCompanyIndex === 0) {
           nearbyCompanies = sortedCompanies.slice(0, 5);
@@ -216,26 +217,20 @@ router.post(
         }
 
         if (includeRank) {
-          // 순위를 포함하는 경우: 인접한 기업들의 순위를 계산하여 포함시킴
           response = nearbyCompanies.map((company, index) => ({
             ...company,
             rank: sortedCompanies.findIndex((c) => c.id === company.id) + 1,
           }));
         } else {
-          // 순위를 포함하지 않는 경우: 내 기업의 순위와 근접한 기업들의 정보를 반환하되, 순위 정보를 포함 X
           response = nearbyCompanies;
         }
-
-        // 여기서부터는 내 기업의 순위를 확인 X => 기업 순위 확인하기 섹션이 아닌 원래 일반적인 상황
       } else {
         if (includeRank) {
-          // 순위를 포함하는 경우: 선택된 모든 기업들의 순위를 계산하여 포함시킴
           response = sortedCompanies.map((company, index) => ({
             ...company,
             rank: index + 1,
           }));
         } else {
-          // 순위를 포함하지 않는 경우: 선택된 모든 기업들의 정보만 반환,
           response = sortedCompanies;
         }
       }
