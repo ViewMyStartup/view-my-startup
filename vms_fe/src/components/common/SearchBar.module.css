@@ -27,6 +27,9 @@
   top: 50%;
   transform: translate(0, -50%);
   transition: left 0.3s ease;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .searchIconActive {

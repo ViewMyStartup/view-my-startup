@@ -51,6 +51,9 @@ function DefaultPage() {
 
   const handleSearchChange = (value) => {
     setSearchQuery(value);
+  };
+
+  const handleSearch = () => {
     handlePageChange(1); // 검색 시 페이지를 첫 페이지로 리셋
   };
 
@@ -77,6 +80,7 @@ function DefaultPage() {
               value={searchQuery}
               onChange={handleSearchChange}
               onClear={handleClearSearch}
+              onSearch={handleSearch}
             />
             <Dropdown onOptionSelect={handleSortChange} />
           </div>
