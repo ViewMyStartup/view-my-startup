@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./CompanyDataPerRow.module.css";
+import ModalInvestmentUpdate from "../ModalInvestmentUpdate";
 import ModalPassword from "../ModalPassword";
 
 // 이미지
@@ -14,24 +15,32 @@ function CompanyDataPerRow({
   limit = 10,
 }) {
   const [dropdownVisible, setDropdownVisible] = useState(false);
-
-  // 모달 상태
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+  const [selectedId, setSelectedId] = useState(null);
+  const [selectedInvestment, setSelectedInvestment] = useState(null);
 
-  // 드롭다운 토글 함수
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
   };
 
-  // 모달 열기 함수
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
+  const handleOpenModal = (type, id) => {
+    if (type === "password") {
+      setIsModalOpen(true);
+      setSelectedId(id);
+    } else if (type === "update") {
+      setSelectedInvestment(dataObject);
+      setIsUpdateModalOpen(true);
+    }
     setDropdownVisible(false); // 모달 열릴 때 드롭다운 닫기
   };
 
   // 모달 닫기 함수
   const handleCloseModal = () => {
     setIsModalOpen(false);
+    setIsUpdateModalOpen(false);
+    setSelectedId(null);
+    setSelectedInvestment(null);
   };
 
   const convertToBillion = (number) => {
@@ -52,6 +61,7 @@ function CompanyDataPerRow({
       description,
       category,
       totalInvestment,  // 수정된 부분
+      totalInvestment,
       revenue,
       employees,
     } = dataObject;
@@ -60,7 +70,7 @@ function CompanyDataPerRow({
       <li className={styles.dataPerRowContainer}>
         <Link to={`/id/${id}`}>
           <section className={`${styles.diffSizeContainer} ${styles.rankSize}`}>
-            <span className={styles.columnRank}>{`${dataObject.rank}위`}</span>
+            <span className={styles.columnRank}>{`${rank}위`}</span>
             <article className={styles.companyInfoContainer}>
               <img src={logoUrl} alt="기업 이미지" />
               <span>{name}</span>
@@ -73,7 +83,7 @@ function CompanyDataPerRow({
             className={`${styles.sameSizeContainer} ${styles.rankSizeForSame}`}
           >
             <span>{category}</span>
-            <span>{`${convertToBillion(totalInvestment)}억 원`}</span> {/* 수정된 부분 */}
+            <span>{`${convertToBillion(totalInvestment)}억 원`}</span>
             <span>{`${convertToBillion(revenue)}억 원`}</span>
             <span>{`${employees}명`}</span>
           </section>
@@ -118,11 +128,11 @@ function CompanyDataPerRow({
       id,
       rank,
       name,
-      logoUrl, // img를 logoUrl로 수정함
+      logoUrl,
       description,
       category,
-      investmentVmsTotal,
-      investmentInfactTotal,
+      virtualInvestment, // 수정된 필드
+      totalInvestment, // 수정된 필드
     } = dataObject;
 
     return (
@@ -139,8 +149,8 @@ function CompanyDataPerRow({
         <section
           className={`${styles.sameSizeContainer} ${styles.ivestSizeForSame}`}
         >
-          <span>{`${convertToBillion(investmentVmsTotal)}억 원`}</span>
-          <span>{`${convertToBillion(investmentInfactTotal)}억 원`}</span>
+          <span>{`${convertToBillion(virtualInvestment)}억 원`}</span>
+          <span>{`${convertToBillion(totalInvestment)}억 원`}</span>
         </section>
       </li>
     );
@@ -172,14 +182,12 @@ function CompanyDataPerRow({
             />
             {dropdownVisible && (
               <div className={styles.dropdownMenu}>
-                <button
-                  onClick={() =>
-                    alert("수정하기 클릭, 추가 로직 필요시 추가예정")
-                  }
-                >
+                <button onClick={() => handleOpenModal("update", id)}>
                   수정하기
                 </button>
-                <button onClick={handleOpenModal}>삭제하기</button>
+                <button onClick={() => handleOpenModal("password", id)}>
+                  삭제하기
+                </button>
               </div>
             )}
           </div>
@@ -187,10 +195,17 @@ function CompanyDataPerRow({
 
         {isModalOpen && (
           <ModalPassword
+            isOpen={isModalOpen}
             onClose={handleCloseModal}
-            onDelete={() => {
-              handleCloseModal();
-            }}
+            investmentId={selectedId}
+          />
+        )}
+
+        {isUpdateModalOpen && selectedInvestment && (
+          <ModalInvestmentUpdate
+            isOpen={isUpdateModalOpen}
+            onClose={handleCloseModal}
+            selectedInvestment={selectedInvestment}
           />
         )}
       </li>

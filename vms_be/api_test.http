@@ -99,10 +99,14 @@ POST http://localhost:8000/api/companies/compare
 Content-Type: application/json
 
 {
-  "companyIds": [11, 12, 13],
-  "sortBy": "revenue",
+  "companyIds": [1, 2, 3, 4, 5],
+  "myCompanyId": 1,
+  "sortBy": "totalInvestment",
   "order": "desc",
-  "includeRank": false
+  "includeRank": true,
+  "checkMyCompanyRanking": true,
+  "incrementMySelection": true,
+  "incrementCompareSelection": false
 }
 
 #### 7개의 기업 ID를 제공하여 오류 테스트
