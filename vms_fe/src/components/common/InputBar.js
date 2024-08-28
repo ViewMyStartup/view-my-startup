@@ -31,8 +31,7 @@ const InputBar = ({ onSubmit, onClose }) => {
     if (!confirmPassword) {
       newErrors.confirmPassword = "비밀번호 확인은 필수로 입력해주세요.";
     } else if (confirmPassword !== password) {
-      newErrors.confirmPassword =
-        "비밀번호와 비밀번호 확인이 일치하지 않습니다.";
+      newErrors.confirmPassword = "비밀번호가 일치하지 않습니다.";
     }
 
     if (!investorName) {
@@ -157,10 +156,10 @@ const InputBar = ({ onSubmit, onClose }) => {
               className={styles.ConfirmPasswordToggleIcon}
             />
           </div>
-          {errors.confirmPassword && (
-            <p className={styles.errorMessage}>{errors.confirmPassword}</p>
-          )}
         </div>
+        {errors.confirmPassword && (
+          <p className={styles.errorMessage}>{errors.confirmPassword}</p>
+        )}
 
         <div className={styles.inputButtons}>
           <button
