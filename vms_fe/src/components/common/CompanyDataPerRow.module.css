@@ -35,7 +35,6 @@
 
 .dataPerRowContainer:hover {
   background-color: #4b4b4b;
-  transform: scale(1.007);
 }
 
 .diffSizeContainer>span,
