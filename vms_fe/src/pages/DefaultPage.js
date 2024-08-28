@@ -47,7 +47,7 @@ function DefaultPage() {
     };
 
     fetchData();
-  }, [currentPage, sortOption]);
+  }, [currentPage, searchQuery, sortOption]);
 
   const handleSearchChange = (value) => {
     setSearchQuery(value);
