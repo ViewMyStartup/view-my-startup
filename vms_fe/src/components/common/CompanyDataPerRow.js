@@ -20,18 +20,15 @@ function CompanyDataPerRow({
   const [selectedId, setSelectedId] = useState(null);
   const [selectedInvestment, setSelectedInvestment] = useState(null);
 
-  // 드롭다운 토글 함수
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
   };
 
-  // 모달 열기 함수
   const handleOpenModal = (type, id) => {
     if (type === "password") {
       setIsModalOpen(true);
       setSelectedId(id);
     } else if (type === "update") {
-      // 선택된 투자 정보 저장
       setSelectedInvestment(dataObject);
       setIsUpdateModalOpen(true);
     }
@@ -184,9 +181,7 @@ function CompanyDataPerRow({
             />
             {dropdownVisible && (
               <div className={styles.dropdownMenu}>
-                <button
-                  onClick={() => handleOpenModal("update", id)} // 수정하기 클릭 시
-                >
+                <button onClick={() => handleOpenModal("update", id)}>
                   수정하기
                 </button>
                 <button onClick={() => handleOpenModal("password", id)}>
