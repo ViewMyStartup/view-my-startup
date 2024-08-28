@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // 개발 서버
-const apiUrl = window.env.REACT_APP_API_BASE_URL;
+const apiUrl = window.env.REACT_APP_API_URL;
 console.log("apiUrl:", apiUrl);
 
 // 아래 API 호출 코드 작성
@@ -24,14 +24,12 @@ export async function getApiData(page, limit, search, sort_by, order) {
 }
 
 export const fetchCompanies = async (page = 1, limit = 100) => {
-  if (!apiUrl) {
-    throw new Error("API URL이 설정되지 않았습니다.");
-  }
-  const response = await axios.get(`${apiUrl}/api/companies`, {
+  const response = await axios.get("https://view-my-startup.onrender.com/api/companies", {
     params: { page, limit },
   });
   return response.data;
 };
+
 
 
 // 서버에서 가져온 기업 데이터를 정렬하는 sortCompanies
