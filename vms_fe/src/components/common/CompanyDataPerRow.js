@@ -60,7 +60,6 @@ function CompanyDataPerRow({
       logoUrl, // img -> logoUrl
       description,
       category,
-      totalInvestment,  // 수정된 부분
       totalInvestment,
       revenue,
       employees,
@@ -99,7 +98,7 @@ function CompanyDataPerRow({
       img,
       description,
       category,
-      totalInvestment,  // 수정된 부분
+      totalInvestment, // 수정된 부분
       revenue,
       employees,
     } = dataObject;
@@ -115,7 +114,8 @@ function CompanyDataPerRow({
         </section>
         <section className={styles.sameSizeContainer}>
           <span>{category}</span>
-          <span>{`${convertToBillion(totalInvestment)}억 원`}</span> {/* 수정된 부분 */}
+          <span>{`${convertToBillion(totalInvestment)}억 원`}</span>{" "}
+          {/* 수정된 부분 */}
           <span>{`${convertToBillion(revenue)}억 원`}</span>
           <span>{`${employees}명`}</span>
         </section>
@@ -259,4 +259,3 @@ function CompanyDataPerRow({
 }
 
 export default CompanyDataPerRow;
-

@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+const API_BASE_URL = window.env.REACT_APP_API_BASE_URL;
 
 export const fetchCompanyData = async (companyId) => {
   try {
