@@ -9,9 +9,11 @@ function useGetCompanyData(
   order = "desc"
 ) {
   const [companyList, setCompanyList] = useState([]);
-  const [totalPages, setTotalPages] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const [totalPages, setTotalPages] = useState(1);
+
 
   useEffect(() => {
     // console.log(`sortBy & order: ${sortBy}, order: ${order}`) // 디버깅용
@@ -28,7 +30,9 @@ function useGetCompanyData(
         setError(error);
         setIsLoading(false);
       });
+      // console.log(`totalPage : ${totalPages}`) // 디버깅용
   }, [page, limit, search, sortBy, order]);
+
   return { companyList, isLoading, error, totalPages };
 }
 
