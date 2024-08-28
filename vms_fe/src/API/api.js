@@ -23,4 +23,11 @@ export async function getApiData(page, limit, search, sort_by, order) {
   }
 }
 
-// 기업 상세 조회 API
+export const fetchCompanies = async () => {
+  if (!apiUrl) {
+    throw new Error("API URL이 설정되지 않았습니다.");
+  }
+  const response = await axios.get(`${apiUrl}/api/companies`);
+  return response.data;
+};
+
