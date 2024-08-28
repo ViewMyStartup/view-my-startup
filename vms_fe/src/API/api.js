@@ -23,14 +23,16 @@ export async function getApiData(page, limit, search, sort_by, order) {
   }
 }
 
-// 서버에서 가져온 기업 데이터
-export const fetchCompanies = async () => {
+export const fetchCompanies = async (page = 1, limit = 100) => {
   if (!apiUrl) {
     throw new Error("API URL이 설정되지 않았습니다.");
   }
-  const response = await axios.get(`${apiUrl}/api/companies`);
+  const response = await axios.get(`${apiUrl}/api/companies`, {
+    params: { page, limit },
+  });
   return response.data;
 };
+
 
 // 서버에서 가져온 기업 데이터를 정렬하는 sortCompanies
 export const sortCompanies = (companies, option) => {
@@ -63,5 +65,57 @@ export const sortCompanies = (companies, option) => {
     ...company,
     rank: index + 1,
   }));
+};
+
+// 나의 기업을 제외한 나머지 기업들로부터 나의 기업의 순위 근처 기업들을 가져오는 함수
+export const getCompaniesForRanking = async (myCompanyId, rankOption) => {
+  try {
+    // 모든 기업 데이터 가져오기
+    const response = await fetchCompanies();
+    const allCompanies = response.companies;
+
+    console.log("베포된 서버에 있는 모든 기업 목록:", allCompanies);
+
+    // 데이터가 배열인지 확인
+    if (!Array.isArray(allCompanies)) {
+      throw new Error("서버에서 잘못된 데이터 형식이 반환되었습니다.");
+    }
+
+    // 나의 기업 ID가 유효한지 확인
+    if (!myCompanyId) {
+      throw new Error("유효한 기업 ID가 제공되지 않았습니다.");
+    }
+
+    // 전체 기업 리스트를 정렬
+    const sortedCompanies = sortCompanies(allCompanies, rankOption);
+
+    console.log("정렬된 기업들:", sortedCompanies);
+    console.log("나의 기업 ID:", myCompanyId);
+
+    // 나의 기업의 순위 찾기
+    const myCompanyIndex = sortedCompanies.findIndex(company => company.id === myCompanyId);
+
+    if (myCompanyIndex === -1) {
+      console.error(`나의 기업 (${myCompanyId})이 데이터에 존재하지 않습니다.`);
+      throw new Error("나의 기업이 데이터에 존재하지 않습니다.");
+    }
+
+    // 나의 기업의 순위가 중간 순위일 경우: 위 2개, 아래 2개 기업 포함
+    if (myCompanyIndex > 1 && myCompanyIndex < sortedCompanies.length - 2) {
+      const topCompanies = sortedCompanies.slice(myCompanyIndex - 2, myCompanyIndex);
+      const bottomCompanies = sortedCompanies.slice(myCompanyIndex + 1, myCompanyIndex + 3);
+      return [...topCompanies, sortedCompanies[myCompanyIndex], ...bottomCompanies];
+    }
+
+    // 나의 기업의 순위가 중간 순위가 아닐 경우 (나의 기업 포함 총 5개 기업 조회)
+    const startIndex = Math.max(myCompanyIndex - 2, 0);
+    const endIndex = Math.min(myCompanyIndex + 2, sortedCompanies.length - 1);
+
+    // 나의 기업 포함하여 5개의 기업 추출
+    return sortedCompanies.slice(startIndex, endIndex + 1);
+  } catch (error) {
+    console.error("기업 순위 데이터 로딩 실패:", error);
+    throw error;
+  }
 };
 
