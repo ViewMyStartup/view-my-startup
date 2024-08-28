@@ -34,7 +34,7 @@ function CompanyDataPerRowNoRank({ type = "noRank", dataObject = {} }) {
       logoUrl, // logoUrl 사용
       description,
       category,
-      total_investment,
+      totalInvestment,  // 수정된 부분
       revenue,
       employees,
     } = dataObject;
@@ -52,7 +52,7 @@ function CompanyDataPerRowNoRank({ type = "noRank", dataObject = {} }) {
         </section>
         <section className={styles.sameSizeContainer}>
           <span>{category}</span>
-          <span>{`${convertToBillion(total_investment)}억 원`}</span>
+          <span>{`${convertToBillion(totalInvestment)}억 원`}</span> {/* 수정된 부분 */}
           <span>{`${convertToBillion(revenue)}억 원`}</span>
           <span>{`${employees}명`}</span>
         </section>
@@ -69,7 +69,7 @@ function CompanyDataPerRowNoRank({ type = "noRank", dataObject = {} }) {
       logoUrl,
       description,
       category,
-      total_investment,
+      totalInvestment,  // 수정된 부분
       revenue,
       employees,
     } = dataObject;
@@ -90,7 +90,7 @@ function CompanyDataPerRowNoRank({ type = "noRank", dataObject = {} }) {
           className={`${styles.sameSizeContainer} ${styles.rankSizeForSame}`}
         >
           <span>{category}</span>
-          <span>{`${convertToBillion(total_investment)}억 원`}</span>
+          <span>{`${convertToBillion(totalInvestment)}억 원`}</span> {/* 수정된 부분 */}
           <span>{`${convertToBillion(revenue)}억 원`}</span>
           <span>{`${employees}명`}</span>
         </section>
@@ -108,4 +108,5 @@ function CompanyDataPerRowNoRank({ type = "noRank", dataObject = {} }) {
 }
 
 export default CompanyDataPerRowNoRank;
+
 
