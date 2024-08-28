@@ -1,7 +1,5 @@
 import React from "react";
 import styles from "./DataRowSetRenderNoRank.module.css";
-
-// 컴포넌트
 import CompanyDataPerRowNoRank from "components/common/CompanyDataPerRowNoRank"; // NoRank 전용 컴포넌트
 import HeaderColumns from "./common/HeaderColumns";
 
@@ -11,6 +9,7 @@ function DataRowSetRenderNoRank({
   currentPage,
   limit = 10,
   isloading = false,
+  myCompanyId, // myCompanyId를 추가
 }) {
   return isloading ? (
     <div className={`${styles.dataRowSet} ${styles.fadeInUpContents}`}>
@@ -27,9 +26,10 @@ function DataRowSetRenderNoRank({
         {dataList.map((dataObject, index) => {
           return (
             <CompanyDataPerRowNoRank
-              key={dataObject ? dataObject.id : index} // 리스트를 렌더링할 때, key 추가
+              key={dataObject ? dataObject.id : index}
               type={type}
               dataObject={dataObject}
+              myCompanyId={myCompanyId} // myCompanyId를 전달
             />
           );
         })}
@@ -38,4 +38,6 @@ function DataRowSetRenderNoRank({
   );
 }
 
+
 export default DataRowSetRenderNoRank;
+

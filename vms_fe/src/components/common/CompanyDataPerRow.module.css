@@ -16,6 +16,10 @@
   }
 }
 
+.myCompanyPerRow > a {
+  background-color: #2e2e2e !important;
+}
+
 .dataPerRowContainer {
   display: flex;
   justify-content: center;
@@ -23,7 +27,7 @@
   min-width: 697px;
   max-width: 1200px;
   height: 64px;
-  background-color: #212121;
+  background-color: #212121 !important;
   border-radius: 4px;
   transition: all 0.3s ease;
 }
@@ -226,3 +230,4 @@
     font-size: 0.8125rem;
   }
 }
+
