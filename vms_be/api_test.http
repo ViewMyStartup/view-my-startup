@@ -53,9 +53,14 @@ POST http://localhost:8000/api/companies/compare
 Content-Type: application/json
 
 {
-  "companyIds": [11, 12, 13],
-  "sortBy": "revenue",
-  "order": "desc"
+  "companyIds": [1, 2, 3, 4, 5],
+  "myCompanyId": 1,
+  "sortBy": "totalInvestment",
+  "order": "desc",
+  "includeRank": true,
+  "checkMyCompanyRanking": true,
+  "incrementMySelection": true,
+  "incrementCompareSelection": false
 }
 
 #### 로컬 서버에서 비어있는 기업 목록 비교 테스트
