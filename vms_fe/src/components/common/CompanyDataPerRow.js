@@ -127,11 +127,11 @@ function CompanyDataPerRow({
       id,
       rank,
       name,
-      logoUrl, // img를 logoUrl로 수정함
+      logoUrl,
       description,
       category,
-      investmentVmsTotal,
-      investmentInfactTotal,
+      virtualInvestment, // 수정된 필드
+      totalInvestment, // 수정된 필드
     } = dataObject;
 
     return (
@@ -148,8 +148,8 @@ function CompanyDataPerRow({
         <section
           className={`${styles.sameSizeContainer} ${styles.ivestSizeForSame}`}
         >
-          <span>{`${convertToBillion(investmentVmsTotal)}억 원`}</span>
-          <span>{`${convertToBillion(investmentInfactTotal)}억 원`}</span>
+          <span>{`${convertToBillion(virtualInvestment)}억 원`}</span>
+          <span>{`${convertToBillion(totalInvestment)}억 원`}</span>
         </section>
       </li>
     );
