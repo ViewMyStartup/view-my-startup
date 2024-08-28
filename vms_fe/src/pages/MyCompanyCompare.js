@@ -13,7 +13,7 @@ import icPlus from "../assets/images/ic_plus.svg";
 import icRestart from "../assets/images/ic_restart.svg";
 import ModalSelectComparision from "../components/ModalSelectComparision";
 import CompanyCard from "../components/common/CompanyCard";
-import axios from "axios";
+import { fetchCompanies } from "../API/api"; // API 함수 임포트
 
 function MyCompanyCompare() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,16 +29,16 @@ function MyCompanyCompare() {
   const [allCompanies, setAllCompanies] = useState([]);
 
   useEffect(() => {
-    const fetchCompanies = async () => {
+    const getCompanies = async () => {
       try {
-        const response = await axios.get('/api/companies');
-        setAllCompanies(response.data);
+        const data = await fetchCompanies();
+        setAllCompanies(data);
       } catch (error) {
         console.error("기업 데이터를 가져오는 데 실패했습니다.", error);
       }
     };
 
-    fetchCompanies();
+    getCompanies();
   }, []);
 
   useEffect(() => {
