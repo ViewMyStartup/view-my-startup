@@ -60,7 +60,7 @@ function CompanyDataPerRow({
       logoUrl, // img -> logoUrl
       description,
       category,
-      totalInvestment, // 수정된 부분
+      totalInvestment,
       revenue,
       employees,
     } = dataObject;
