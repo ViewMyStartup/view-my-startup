@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import styles from "./MyCompanyCompare.module.css";
 import PageNav from "components/PageNav";
 import AddCompanyBtn from "components/common/AddCompanyBtn";
@@ -13,26 +13,39 @@ import icPlus from "../assets/images/ic_plus.svg";
 import icRestart from "../assets/images/ic_restart.svg";
 import ModalSelectComparision from "../components/ModalSelectComparision";
 import CompanyCard from "../components/common/CompanyCard";
-import { fetchCompanies, sortCompanies } from "../API/api"; // API 함수 임포트
+import { fetchCompanies, sortCompanies, getCompaniesForRanking } from "../API/api";
 
 function MyCompanyCompare() {
+  // 모달 상태 관리
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAdditionalModalOpen, setIsAdditionalModalOpen] = useState(false);
+
+  // 선택된 기업과 추가된 기업 상태 관리
   const [selectedCompanies, setSelectedCompanies] = useState([]);
   const [additionalCompanies, setAdditionalCompanies] = useState([]);
+
+  // 비교와 정렬 옵션 상태 관리
   const [isComparisonVisible, setIsComparisonVisible] = useState(false);
   const [sortingOptionForComparison, setSortingOptionForComparison] = useState("매출액 높은순");
   const [sortingOptionForRank, setSortingOptionForRank] = useState("매출액 높은순");
+
+  // 정렬된 기업과 순위 기업 상태 관리
   const [sortedCompaniesForComparison, setSortedCompaniesForComparison] = useState([]);
-  const [sortedCompaniesForRank, setSortedCompaniesForRank] = useState([]);
+  const [rankedCompanies, setRankedCompanies] = useState([]);
+
+  // 초기화 버튼 텍스트 상태 관리
   const [resetButtonText, setResetButtonText] = useState("전체 초기화");
+
+  // 모든 기업 데이터 상태 관리
   const [allCompanies, setAllCompanies] = useState([]);
 
+  // 처음에 모든 기업 데이터를 가져오는 역할
   useEffect(() => {
     const getCompanies = async () => {
       try {
         const data = await fetchCompanies();
         setAllCompanies(data);
+        console.log("Fetched companies:", data);
       } catch (error) {
         console.error("기업 데이터를 가져오는 데 실패했습니다.", error);
       }
@@ -41,25 +54,59 @@ function MyCompanyCompare() {
     getCompanies();
   }, []);
 
+  // 선택된 기업들 및 추가된 기업들을 정렬해서 비교용 데이터로 설정하는 역할
   useEffect(() => {
     if (selectedCompanies.length > 0 || additionalCompanies.length > 0) {
       const combinedCompanies = selectedCompanies.concat(additionalCompanies);
       setSortedCompaniesForComparison(sortCompanies(combinedCompanies, sortingOptionForComparison));
-      setSortedCompaniesForRank(sortCompanies(combinedCompanies, sortingOptionForRank));
     }
-  }, [selectedCompanies, additionalCompanies, sortingOptionForComparison, sortingOptionForRank]);
+  }, [selectedCompanies, additionalCompanies, sortingOptionForComparison]);
 
+  // 선택된 나의 기업의 순위 근처 기업들을 가져오는 역할
+  const fetchRankedCompanies = useCallback(async () => {
+    if (selectedCompanies.length === 0) return;
+
+    try {
+      // 나의 기업 ID 가져오기 (하나만 선택 가능)
+      const myCompanyId = selectedCompanies[0].id;
+
+      console.log("Fetching ranked companies for My Company ID:", myCompanyId);
+
+      // 선택된 정렬 옵션에 따른 기업 순위 데이터 가져오기
+      const data = await getCompaniesForRanking(myCompanyId, sortingOptionForRank);
+      setRankedCompanies(data);
+      console.log("Ranked Companies:", data);
+    } catch (error) {
+      console.error("기업 순위 데이터를 가져오는 데 실패했습니다.", error);
+    }
+  }, [selectedCompanies, sortingOptionForRank]);
+
+  // "기업 비교 버튼"을 눌러 비교 화면이 보이도록 설정된 후 기업 순위 데이터를 가져오는 역할
+  useEffect(() => {
+    if (isComparisonVisible && selectedCompanies.length > 0) {
+      fetchRankedCompanies();
+    }
+  }, [isComparisonVisible, selectedCompanies, sortingOptionForRank, fetchRankedCompanies]);
+
+  // 모달 열기
   const openModal = () => setIsModalOpen(true);
+
+  // 추가 모달 열기
   const openAdditionalModal = () => setIsAdditionalModalOpen(true);
+
+  // 모달 닫고 선택된 기업 설정
   const closeModal = (companies) => {
     setSelectedCompanies(companies);
     setIsModalOpen(false);
   };
+
+  // 추가 모달 닫고 추가된 기업 설정
   const closeAdditionalModal = (companies) => {
     setAdditionalCompanies(companies);
     setIsAdditionalModalOpen(false);
   };
 
+  // 기업 삭제 (추가된 기업인지 선택된 기업인지에 따라)
   const removeCompany = (index, isAdditional) => {
     const newCompanies = isAdditional
       ? [...additionalCompanies]
@@ -72,21 +119,30 @@ function MyCompanyCompare() {
     }
   };
 
+  // 비교를 위한 정렬 옵션 변경
   const handleSortingChangeForComparison = (option) => {
     setSortingOptionForComparison(option);
   };
 
+  // 순위 확인을 위한 정렬 옵션 변경
   const handleSortingChangeForRank = (option) => {
     setSortingOptionForRank(option);
   };
 
+  // 비교 버튼 클릭 시 동작
   const handleComparisonClick = () => {
-    setIsComparisonVisible(true);
-    setResetButtonText("다른 기업 비교하기");
+    if (selectedCompanies.length > 0 && additionalCompanies.length > 0) {
+      setIsComparisonVisible(true);
+      setResetButtonText("다른 기업 비교하기");
+    } else {
+      console.error("비교를 위해 충분한 기업이 선택되지 않았습니다.");
+    }
   };
 
+  // 비교 버튼 활성화 여부
   const isCompareButtonEnabled = selectedCompanies.length > 0 && additionalCompanies.length > 0;
 
+  // 초기화 버튼 클릭 시 동작
   const handleResetButtonClick = () => {
     if (resetButtonText === "전체 초기화") {
       setSelectedCompanies([]);
@@ -95,27 +151,6 @@ function MyCompanyCompare() {
       openAdditionalModal();
     }
   };
-
-  const getRankedCompanies = (sortedCompanies, rankOption) => {
-    const rankSortedList = [...sortedCompanies];
-    let myCompanyIndex = rankSortedList.findIndex(company => selectedCompanies.some(selected => selected.id === company.id));
-
-    if (myCompanyIndex === -1) return []; // 내 기업이 없다면 빈 배열 반환
-
-    if (myCompanyIndex > 2) {
-      return [
-        rankSortedList[myCompanyIndex],
-        ...rankSortedList.slice(myCompanyIndex - 2, myCompanyIndex),
-        ...rankSortedList.slice(myCompanyIndex + 1, myCompanyIndex + 3),
-      ];
-    } else {
-      return [
-        ...rankSortedList.slice(0, 5)
-      ];
-    }
-  };
-
-  const rankedCompanies = getRankedCompanies(sortedCompaniesForRank, sortingOptionForRank);
 
   return (
     <div className={styles.pageContainer}>
