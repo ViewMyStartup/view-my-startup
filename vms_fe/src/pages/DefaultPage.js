@@ -60,7 +60,7 @@ function DefaultPage() {
 
   const handleClearSearch = () => {
     setSearchQuery("");
-    handlePageChange(1); // 검색어 초기화 시 페이지를 첫 페이지로 리셋
+    handlePageChange(1);
     fetchData();
   };
 
@@ -69,10 +69,17 @@ function DefaultPage() {
     handlePageChange(1);
   };
 
+  const handleHomeClick = () => {
+    setSearchQuery("");
+    setSortOption("누적 투자금액 높은순");
+    handlePageChange(1);
+    fetchData();
+  };
+
   return (
     <div className={styles.pageContainer}>
       <div className={styles.nav}>
-        <PageNav />
+        <PageNav onHomeClick={handleHomeClick} />
       </div>
       <div className={styles.mainContainer}>
         <div className={styles.searchBarContainer}>
