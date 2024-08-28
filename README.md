@@ -4,7 +4,7 @@
 
 <h3>스타트업 정보 확인 및 모의 투자 서비스</h3><br>
 
-<b>[View My Startup 바로가기](https://deploy-preview-36--team4-vms.netlify.app/)</b> <br>
+<b>[View My Startup 바로가기](https://team4-vms.netlify.app/)</b> <br>
 
 <br> 
 </div>
