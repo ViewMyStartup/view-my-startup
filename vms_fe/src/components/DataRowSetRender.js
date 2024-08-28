@@ -14,7 +14,7 @@ function DataRowSetRender({
 }) {
   // console.log(`currentPage=${currentPage}, limit=${limit}`); // 디버깅용
   return isloading ? (
-    <div className={styles.dataRowSet}>
+    <div className={`${styles.dataRowSet} ${styles.fadeInUpContents}`}>
       <HeaderColumns type={type} />
       <section className={styles.loaderBox}>
         <div>Loading...</div>
@@ -22,7 +22,7 @@ function DataRowSetRender({
       </section>
     </div>
   ) : (
-    <div className={styles.dataRowSet}>
+    <div className={`${styles.dataRowSet} ${styles.fadeInUpContents}`}>
       <HeaderColumns type={type} />
       <ul>
         {dataList.map((dataObject, index) => {

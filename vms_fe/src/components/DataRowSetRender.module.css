@@ -4,6 +4,32 @@
   gap: 16px;
 }
 
+@media (max-width: 744px) {
+  .dataRowSet {
+    overflow-x: auto;
+    padding-bottom: 12px;
+  }
+  .dataRowSet::-webkit-scrollbar {
+    height: 12px;
+  }
+
+  .dataRowSet::-webkit-scrollbar-track {
+    background: #212121;
+    border-radius: 10px;
+  }
+
+  .dataRowSet::-webkit-scrollbar-thumb {
+    min-width: 101px;
+    background-color: #131313;
+    border-radius: 10px;
+    border: 2px solid #212121;
+  }
+
+  .dataRowSet::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+  }
+}
+
 .loaderBox {
   background-color: #212121;
   height: 640px;
@@ -34,28 +60,18 @@
   100% { transform: rotate(360deg); }
 }
 
-@media (max-width: 744px) {
-  .dataRowSet {
-    overflow-x: auto;
-    padding-bottom: 12px;
-  }
-  .dataRowSet::-webkit-scrollbar {
-    height: 12px;
-  }
 
-  .dataRowSet::-webkit-scrollbar-track {
-    background: #212121;
-    border-radius: 10px;
+@keyframes fadeInUp {
+  from {
+    opacity: 0.1;
+    transform: translateY(20px); /* 아래에서 시작 */
   }
+  to {
+    opacity: 1;
+    transform: translateY(0); /* 살짝 위로 이동 */
+  }
+}
 
-  .dataRowSet::-webkit-scrollbar-thumb {
-    min-width: 101px;
-    background-color: #131313;
-    border-radius: 10px;
-    border: 2px solid #212121;
-  }
-
-  .dataRowSet::-webkit-scrollbar-thumb:hover {
-    background-color: #555;
-  }
+.fadeInUpContents {
+  animation: fadeInUp 1.2s ease-out forwards;
 }
