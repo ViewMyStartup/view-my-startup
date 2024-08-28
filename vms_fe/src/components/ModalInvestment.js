@@ -1,9 +1,35 @@
-import React from "react";
-import style from "./ModalInvestment.module.css"; // CSS 모듈
+import React, { useCallback } from "react";
+import style from "./ModalInvestment.module.css";
 import deleteIcon from "assets/images/ic_delete.svg";
 import InputBar from "./common/InputBar";
+import { createInvestment } from "API/CompanyInvestDetailAPI";
+import { useCompanyData } from "context/CompanyDataContext";
 
 const ModalInvestment = ({ isOpen, onClose, selectedCompanies }) => {
+  const { fetchData } = useCompanyData();
+
+  const handleInvestmentSubmit = useCallback(
+    async (investmentData) => {
+      try {
+        const companyId = selectedCompanies[0]?.id;
+        if (!companyId) throw new Error("기업 ID가 없습니다.");
+
+        await createInvestment({
+          companyId,
+          ...investmentData,
+        });
+
+        alert("투자가 성공적으로 저장되었습니다.");
+        fetchData();
+        onClose();
+      } catch (error) {
+        console.error("투자에 실패했습니다", error);
+        alert("투자 저장에 실패했습니다.");
+      }
+    },
+    [selectedCompanies, onClose]
+  );
+
   if (!isOpen) return null;
 
   return (
@@ -45,7 +71,7 @@ const ModalInvestment = ({ isOpen, onClose, selectedCompanies }) => {
               ))}
             </ul>
           </div>
-          <InputBar onClose={onClose} />
+          <InputBar onSubmit={handleInvestmentSubmit} onClose={onClose} />
         </div>
       </div>
     </div>

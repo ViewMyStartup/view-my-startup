@@ -3,7 +3,7 @@ import styles from "./InputBar.module.css";
 import eyeOpenIcon from "assets/images/ic_password_eye_open.svg";
 import eyeSlashIcon from "assets/images/ic_password_eye_close.svg";
 
-const InputBar = ({ onClose }) => {
+const InputBar = ({ onSubmit, onClose }) => {
   const [investorName, setInvestorName] = useState("");
   const [investmentAmount, setInvestmentAmount] = useState("");
   const [investmentComment, setInvestmentComment] = useState("");
@@ -46,18 +46,15 @@ const InputBar = ({ onClose }) => {
       return;
     }
 
-    console.log({
+    // 폼 데이터를 상위 컴포넌트로 전달
+    onSubmit({
       investorName,
-      investmentAmount,
+      investmentAmount: parseFloat(investmentAmount),
       investmentComment,
       password,
-      confirmPassword,
     });
-
-    onClose();
   };
 
-  // 비밀번호 가시성 토글 함수
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -120,7 +117,7 @@ const InputBar = ({ onClose }) => {
           </label>
           <div className={styles.passwordInputWrapper}>
             <input
-              type={showPassword ? "text" : "password"} // 비밀번호 입력란의 type 변경
+              type={showPassword ? "text" : "password"}
               id="password"
               placeholder="비밀번호를 입력해주세요"
               value={password}
@@ -128,7 +125,7 @@ const InputBar = ({ onClose }) => {
               className={`${styles.input} ${styles.passwordInput}`}
             />
             <img
-              src={showPassword ? eyeSlashIcon : eyeOpenIcon} // 가시성에 따른 아이콘 변경
+              src={showPassword ? eyeSlashIcon : eyeOpenIcon}
               alt="비밀번호 가시성 토글"
               onClick={togglePasswordVisibility}
               className={styles.passwordToggleIcon}
@@ -146,7 +143,7 @@ const InputBar = ({ onClose }) => {
           </label>
           <div className={styles.passwordInputWrapper}>
             <input
-              type={showPassword ? "text" : "password"} // 비밀번호 확인 입력란의 type 변경
+              type={showPassword ? "text" : "password"}
               id="confirmPassword"
               placeholder="비밀번호를 다시 한번 입력해주세요"
               value={confirmPassword}
@@ -154,7 +151,7 @@ const InputBar = ({ onClose }) => {
               className={`${styles.input} ${styles.passwordInput}`}
             />
             <img
-              src={showPassword ? eyeSlashIcon : eyeOpenIcon} // 가시성에 따른 아이콘 변경
+              src={showPassword ? eyeSlashIcon : eyeOpenIcon}
               alt="비밀번호 가시성 토글"
               onClick={togglePasswordVisibility}
               className={styles.ConfirmPasswordToggleIcon}
