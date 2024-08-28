@@ -13,7 +13,7 @@ import icPlus from "../assets/images/ic_plus.svg";
 import icRestart from "../assets/images/ic_restart.svg";
 import ModalSelectComparision from "../components/ModalSelectComparision";
 import CompanyCard from "../components/common/CompanyCard";
-import { fetchCompanies } from "../API/api"; // API 함수 임포트
+import { fetchCompanies, sortCompanies } from "../API/api"; // API 함수 임포트
 
 function MyCompanyCompare() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -44,8 +44,8 @@ function MyCompanyCompare() {
   useEffect(() => {
     if (selectedCompanies.length > 0 || additionalCompanies.length > 0) {
       const combinedCompanies = selectedCompanies.concat(additionalCompanies);
-      sortCompanies(combinedCompanies, sortingOptionForComparison, "comparison");
-      sortCompanies(combinedCompanies, sortingOptionForRank, "rank");
+      setSortedCompaniesForComparison(sortCompanies(combinedCompanies, sortingOptionForComparison));
+      setSortedCompaniesForRank(sortCompanies(combinedCompanies, sortingOptionForRank));
     }
   }, [selectedCompanies, additionalCompanies, sortingOptionForComparison, sortingOptionForRank]);
 
@@ -78,44 +78,6 @@ function MyCompanyCompare() {
 
   const handleSortingChangeForRank = (option) => {
     setSortingOptionForRank(option);
-  };
-
-  const sortCompanies = (companies, option, type) => {
-    const sortedList = [...companies];
-
-    switch (option) {
-      case "누적 투자금액 높은순":
-        sortedList.sort((a, b) => b.totalInvestment - a.totalInvestment);
-        break;
-      case "누적 투자금액 낮은순":
-        sortedList.sort((a, b) => a.totalInvestment - b.totalInvestment);
-        break;
-      case "매출액 높은순":
-        sortedList.sort((a, b) => b.revenue - a.revenue);
-        break;
-      case "매출액 낮은순":
-        sortedList.sort((a, b) => a.revenue - b.revenue);
-        break;
-      case "고용 인원 많은순":
-        sortedList.sort((a, b) => b.employees - a.employees);
-        break;
-      case "고용 인원 적은순":
-        sortedList.sort((a, b) => a.employees - b.employees);
-        break;
-      default:
-        break;
-    }
-
-    const rankedList = sortedList.map((company, index) => ({
-      ...company,
-      rank: index + 1,
-    }));
-
-    if (type === "comparison") {
-      setSortedCompaniesForComparison(rankedList);
-    } else if (type === "rank") {
-      setSortedCompaniesForRank(rankedList);
-    }
   };
 
   const handleComparisonClick = () => {
