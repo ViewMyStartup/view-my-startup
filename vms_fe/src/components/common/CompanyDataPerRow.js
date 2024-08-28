@@ -51,14 +51,14 @@ function CompanyDataPerRow({
       logoUrl, // img -> logoUrl
       description,
       category,
-      total_investment,
+      totalInvestment,
       revenue,
       employees,
     } = dataObject;
 
     return (
       <li className={styles.dataPerRowContainer}>
-        <Link to={`/id/${name}`}>
+        <Link to={`/id/${id}`}>
           <section className={`${styles.diffSizeContainer} ${styles.rankSize}`}>
             <span className={styles.columnRank}>{`${dataObject.rank}위`}</span>
             <article className={styles.companyInfoContainer}>
@@ -73,7 +73,7 @@ function CompanyDataPerRow({
             className={`${styles.sameSizeContainer} ${styles.rankSizeForSame}`}
           >
             <span>{category}</span>
-            <span>{`${convertToBillion(total_investment)}억 원`}</span>
+            <span>{`${convertToBillion(totalInvestment)}억 원`}</span>
             <span>{`${convertToBillion(revenue)}억 원`}</span>
             <span>{`${employees}명`}</span>
           </section>
