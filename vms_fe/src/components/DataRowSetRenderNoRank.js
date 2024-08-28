@@ -5,18 +5,37 @@ import styles from "./DataRowSetRenderNoRank.module.css";
 import CompanyDataPerRowNoRank from "components/common/CompanyDataPerRowNoRank"; // NoRank 전용 컴포넌트
 import HeaderColumns from "./common/HeaderColumns";
 
-function DataRowSetRenderNoRank({ type = "noRank", dataList = [] }) {
-  return (
-    <div className={styles.dataRowSet}>
+function DataRowSetRenderNoRank({
+  type = "rank",
+  dataList = [],
+  currentPage,
+  limit = 10,
+  isloading = false,
+}) {
+  return isloading ? (
+    <div className={`${styles.dataRowSet} ${styles.fadeInUpContents}`}>
+      <HeaderColumns type={type} />
+      <section className={styles.loaderBox}>
+        <div>Loading...</div>
+        <div className={styles.loader}></div>
+      </section>
+    </div>
+  ) : (
+    <div className={`${styles.dataRowSet} ${styles.fadeInUpContents}`}>
       <HeaderColumns type={type} />
       <ul>
-        {dataList.map((data) => (
-          <CompanyDataPerRowNoRank type={type} dataObject={data} />
-        ))}
+        {dataList.map((dataObject, index) => {
+          return (
+            <CompanyDataPerRowNoRank
+              key={dataObject ? dataObject.id : index} // 리스트를 렌더링할 때, key 추가
+              type={type}
+              dataObject={dataObject}
+            />
+          );
+        })}
       </ul>
     </div>
   );
 }
 
 export default DataRowSetRenderNoRank;
-

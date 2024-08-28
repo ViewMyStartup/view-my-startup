@@ -119,12 +119,13 @@
 - LargeBtn
 - MediumBtn
 - ModalInvestMent
+- ModalInvestMentUpdate
 - ModalSelect
 
 🎨 프론트엔드
 
 - 기업 상세 페이지 구현
-- 기업 상세 조회 API를 호출하여 해당 기업의 정보와 가상 투자 내역을 화면에 렌더링
+- 기업 상세 조회 API를 호출하여 해당 기업의 정보와 가상 투자 내역을 화면에 렌더링 / 투자자 댓글 추가, 삭제기능 호출
 - 404 페이지 구현
 
 🛠️ 백엔드
@@ -279,6 +280,7 @@
  ┗ 📂src
  ┃ ┣ 📂API
  ┃ ┃ ┗ 📜api.js
+ ┃ ┃ ┗ 📜CompanyInvestDetailAPI.js
  ┃ ┣ 📂assets
  ┃ ┃ ┣ 📂images
  ┃ ┃ ┃ ┣ 📂mock_img
@@ -360,6 +362,8 @@
  ┃ ┃ ┣ 📜MessagePopUpTwoBtn.module.css
  ┃ ┃ ┣ 📜ModalInvestment.js
  ┃ ┃ ┣ 📜ModalInvestment.module.css
+ ┃ ┃ ┣ 📜ModalInvestmentUpdate.js
+ ┃ ┃ ┣ 📜ModalInvestmentUpdate.module.css
  ┃ ┃ ┣ 📜ModalPassword.js
  ┃ ┃ ┣ 📜ModalPassword.module.css
  ┃ ┃ ┣ 📜ModalSelectComparision.js
@@ -371,7 +375,11 @@
  ┃ ┃ ┣ 📜companyInfoList.js
  ┃ ┃ ┣ 📜companyItem.js
  ┃ ┃ ┗ 📜companyItem.module.css
- ┃ ┣ 📂hook
+ ┃ ┣ 📂context
+ ┃ ┃ ┗ 📜CompanyDataContext.js
+ ┃ ┃ ┗ 📜DropdownContext.js
+ ┃ ┃ ┗ 📜ModalContext.js
+ ┃ ┃ 📂hook
  ┃ ┃ ┗ 📜usePageHandler.js
  ┃ ┣ 📂pages
  ┃ ┃ ┣ 📜CompanyInvestDetail.js

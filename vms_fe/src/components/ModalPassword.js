@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import MediumBtn from "./common/MediumBtn.js";
 import styles from "./ModalPassword.module.css";
 import eyeOpenIcon from "../assets/images/ic_password_eye_open.svg";
 import eyeCloseIcon from "../assets/images/ic_password_eye_close.svg";
-import deleteIcon from  "../assets/images/ic_delete.svg"
+import deleteIcon from "../assets/images/ic_delete.svg";
+import { deleteInvestment } from "API/CompanyInvestDetailAPI";
+import { useCompanyData } from "context/CompanyDataContext"; // CompanyDataContext import
 
-const ModalPassword = ({ onClose }) => {
+const ModalPassword = ({ onClose, investmentId }) => {
   const [password, setPassword] = useState("");
   const [isPasswordVisible, setPasswordVisible] = useState(false);
-  const [errors, setErrors] = useState({}); // 에러 상태 관리
+  const [errors, setErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+
+  const { fetchData } = useCompanyData(); // useCompanyData 훅을 사용하여 fetchData 함수 가져오기
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
@@ -18,12 +23,11 @@ const ModalPassword = ({ onClose }) => {
     setPasswordVisible(!isPasswordVisible);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const newErrors = {};
 
-    // 비밀번호 유효성 검사
     if (!password) {
       newErrors.password = "비밀번호는 필수로 입력해주세요.";
     }
@@ -33,17 +37,26 @@ const ModalPassword = ({ onClose }) => {
       return;
     }
 
-    // 비밀번호 제출 처리 로직
-    console.log("입력한 비밀번호:", password);
+    setIsLoading(true);
 
-    onClose();
+    try {
+      await deleteInvestment(investmentId, password);
+      alert("삭제가 성공적으로 완료되었습니다");
+      onClose(); // 모달 닫기
+      await fetchData(); // 데이터 새로 고침
+    } catch (error) {
+      console.error("비밀번호 인증 실패", error);
+      setErrors({ password: "비밀번호가 올바르지 않습니다." });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modalContainer}>
         <button className={styles.closeButton} onClick={onClose}>
-          <img src={deleteIcon} alt="닫기" /> {/* 삭제 아이콘으로 변경 */}
+          <img src={deleteIcon} alt="닫기" />
         </button>
         <h2 className={styles.modalHeader}>삭제 권한 인증</h2>
         <form onSubmit={handleSubmit} className={styles.form}>
@@ -71,7 +84,11 @@ const ModalPassword = ({ onClose }) => {
               <p className={styles.errorMessage}>{errors.password}</p>
             )}
           </div>
-          <MediumBtn text="삭제하기" onClick={handleSubmit} />
+          <MediumBtn
+            text={isLoading ? "삭제 중..." : "삭제하기"}
+            type="submit"
+            disabled={isLoading}
+          />
         </form>
       </div>
     </div>
@@ -79,4 +96,3 @@ const ModalPassword = ({ onClose }) => {
 };
 
 export default ModalPassword;
-

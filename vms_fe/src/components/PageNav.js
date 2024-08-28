@@ -5,7 +5,7 @@ import styles from "./PageNav.module.css";
 //이미지
 import logo from "../assets/images/logo_desktop_tablet.svg";
 
-function PageNav() {
+function PageNav({ onHomeClick }) {
   const location = useLocation(); // 현재 페이지 경로를 불러오는 훅
 
   const BoardList = () => {
@@ -51,7 +51,7 @@ function PageNav() {
     // 이미지 클릭 시 홈으로 돌아가게 하는 Link 사전 추가
     <nav className={styles.outlineContain}>
       <section className={styles.pageNavBox}>
-        <Link to="/">
+        <Link to="/" onClick={onHomeClick}>
           <img src={logo} alt="logo" />
         </Link>
         <BoardList />
