@@ -1,141 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams, Link } from "react-router-dom";
 import PageNav from "components/PageNav";
 import ModalInvestment from "components/ModalInvestment";
-import ModalPassword from "components/ModalPassword";
 import DataRowSetRender from "components/DataRowSetRender";
 import Pagination from "components/common/Pagination";
 import usePageHandler from "hook/usePageHandler";
-import {
-  fetchCompanyData,
-  createInvestment,
-  updateInvestment,
-  deleteInvestment,
-  fetchUserData,
-} from "./CompanyInvestDetailAPI";
 import { convertToHundredMillion } from "utils/convertTo100mil";
+import {
+  CompanyDataProvider,
+  useCompanyData,
+} from "context/CompanyDataContext";
+import { ModalProvider, useModal } from "context/ModalContext";
+import { DropdownProvider, useDropdown } from "context/DropdownContext";
 import styles from "./CompanyInvestDetail.module.css";
 
 function CompanyInvestDetail() {
   const { companyId } = useParams();
-  const [companyData, setCompanyData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [modalType, setModalType] = useState(null);
-  const [selectedCommentId, setSelectedCommentId] = useState(null);
-  const [dropdownVisible, setDropdownVisible] = useState({});
-  const [transformedInvestments, setTransformedInvestments] = useState([]);
-
-  // 페이지당 항목 수 설정
-  const itemsPerPage = 5;
   const { currentPage, handlePageChange } = usePageHandler();
+  const { companyData, transformedInvestments, loading } = useCompanyData();
+  const { modalType, handleOpenModal, handleCloseModal } = useModal();
+  const { dropdownVisible, handleToggleDropdown } = useDropdown();
 
-  const transformInvestmentData = (data) => {
-    return data.map((item) => ({
-      id: item.investment.id,
-      userName: item.investment.investorName, // 변환된 필드 이름
-      userRank: item.rank || "Unknown", // 예를 들어, rank가 없으면 'Unknown'으로 대체
-      userTotalInvestment: item.investment.investmentAmount,
-      userComment: item.investment.investmentComment,
-    }));
-  };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // 회사 데이터 가져오기
-        const companyResponse = await fetchCompanyData(companyId);
-        if (companyResponse) {
-          setCompanyData(companyResponse);
-
-          // 투자자 데이터 가져오기
-          const investments = companyResponse.investments || [];
-          const userDataPromises = investments.map((inv) =>
-            fetchUserData(inv.id)
-          );
-          const userDataResponses = await Promise.all(userDataPromises);
-
-          // 투자 데이터와 사용자 데이터 통합
-          const investmentsWithRank =
-            transformInvestmentData(userDataResponses);
-          setTransformedInvestments(investmentsWithRank);
-        } else {
-          console.error("No data received from API");
-        }
-      } catch (error) {
-        console.error("Error fetching company data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [companyId]);
-
-  // 모달 열기 핸들러
-  const handleOpenModal = (type, commentId = null) => {
-    setModalType(type);
-    if (commentId) setSelectedCommentId(commentId);
-  };
-
-  // 모달 닫기 핸들러
-  const handleCloseModal = () => {
-    setModalType(null);
-    setSelectedCommentId(null);
-  };
-
-  // 드롭다운 토글 핸들러
-  const handleToggleDropdown = (commentId) => {
-    setDropdownVisible((prev) => ({
-      ...prev,
-      [commentId]: !prev[commentId],
-    }));
-  };
-
-  // 투자 생성 핸들러
-  const handleCreateInvestment = async (investmentData) => {
-    try {
-      const newInvestment = await createInvestment(investmentData);
-      setCompanyData((prevData) => ({
-        ...prevData,
-        investments: [...prevData.investments, newInvestment],
-      }));
-    } catch (error) {
-      console.error("Error creating investment:", error);
-    }
-  };
-
-  // 투자 수정 핸들러
-  const handleUpdateInvestment = async (investmentId, investmentData) => {
-    try {
-      const updatedInvestment = await updateInvestment(
-        investmentId,
-        investmentData
-      );
-      setCompanyData((prevData) => ({
-        ...prevData,
-        investments: prevData.investments.map((inv) =>
-          inv.id === investmentId ? updatedInvestment : inv
-        ),
-      }));
-    } catch (error) {
-      console.error("Error updating investment:", error);
-    }
-  };
-
-  // 투자 삭제 핸들러
-  const handleDeleteInvestment = async (investmentId, password) => {
-    try {
-      await deleteInvestment(investmentId, password);
-      setCompanyData((prevData) => ({
-        ...prevData,
-        investments: prevData.investments.filter(
-          (inv) => inv.id !== investmentId
-        ),
-      }));
-    } catch (error) {
-      console.error("Error deleting investment:", error);
-    }
-  };
+  const itemsPerPage = 5;
 
   if (loading) return <div>Loading...</div>;
 
@@ -150,6 +36,7 @@ function CompanyInvestDetail() {
       <div className={styles.pageContainer}>
         <PageNav />
         <div className={styles.contentsContainer}>
+          {/* 회사 정보 렌더링 */}
           <div className={styles.titleSection}>
             <div className={styles.titleHug}>
               <img
@@ -165,6 +52,7 @@ function CompanyInvestDetail() {
               </div>
             </div>
           </div>
+          {/* 회사 데이터 */}
           <div className={styles.companyDataGrid}>
             <div className={styles.companyDataItem}>
               <div className={styles.companyDataTitle}>누적 투자 금액</div>
@@ -193,6 +81,7 @@ function CompanyInvestDetail() {
               </div>
             </div>
           </div>
+          {/* 투자 모달 열기 */}
           <div className={styles.InvestmentButtonSection}>
             <div className={styles.InvestmentButtonTitle}>
               View My Startup에서 받은 투자
@@ -209,20 +98,9 @@ function CompanyInvestDetail() {
               isOpen={modalType === "investment"}
               onClose={handleCloseModal}
               selectedCompanies={[companyData]}
-              onCreateInvestment={handleCreateInvestment}
-              onUpdateInvestment={handleUpdateInvestment}
-              onDeleteInvestment={handleDeleteInvestment}
             />
           )}
-          {modalType === "password" && (
-            <ModalPassword
-              isOpen={modalType === "password"}
-              onClose={handleCloseModal}
-              onConfirm={(investmentId, password) =>
-                handleDeleteInvestment(investmentId, password)
-              }
-            />
-          )}
+          {/* 투자 데이터 */}
           <div className={styles.dataRowSetRender}>
             <DataRowSetRender
               type="comment"
@@ -264,4 +142,16 @@ function CompanyInvestDetail() {
   );
 }
 
-export default CompanyInvestDetail;
+export default function CompanyInvestDetailWrapper() {
+  const { companyId } = useParams();
+
+  return (
+    <CompanyDataProvider companyId={companyId}>
+      <ModalProvider>
+        <DropdownProvider>
+          <CompanyInvestDetail />
+        </DropdownProvider>
+      </ModalProvider>
+    </CompanyDataProvider>
+  );
+}

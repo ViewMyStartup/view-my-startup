@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./CompanyDataPerRow.module.css";
+import ModalInvestmentUpdate from "../ModalInvestmentUpdate";
 import ModalPassword from "../ModalPassword";
 
-//이미지
+// 이미지
 import iconKebab from "../../assets/images/ic_kebab.svg";
 
 function CompanyDataPerRow({
@@ -14,24 +15,32 @@ function CompanyDataPerRow({
   limit = 10,
 }) {
   const [dropdownVisible, setDropdownVisible] = useState(false);
-
-  // 모달 상태
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+  const [selectedId, setSelectedId] = useState(null);
+  const [selectedInvestment, setSelectedInvestment] = useState(null);
 
-  // 드롭다운 토글 함수
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
   };
 
-  // 모달 열기 함수
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
+  const handleOpenModal = (type, id) => {
+    if (type === "password") {
+      setIsModalOpen(true);
+      setSelectedId(id);
+    } else if (type === "update") {
+      setSelectedInvestment(dataObject);
+      setIsUpdateModalOpen(true);
+    }
     setDropdownVisible(false); // 모달 열릴 때 드롭다운 닫기
   };
 
   // 모달 닫기 함수
   const handleCloseModal = () => {
     setIsModalOpen(false);
+    setIsUpdateModalOpen(false);
+    setSelectedId(null);
+    setSelectedInvestment(null);
   };
 
   const convertToBillion = (number) => {
@@ -60,7 +69,7 @@ function CompanyDataPerRow({
       <li className={styles.dataPerRowContainer}>
         <Link to={`/id/${id}`}>
           <section className={`${styles.diffSizeContainer} ${styles.rankSize}`}>
-            <span className={styles.columnRank}>{`${dataObject.rank}위`}</span>
+            <span className={styles.columnRank}>{`${rank}위`}</span>
             <article className={styles.companyInfoContainer}>
               <img src={logoUrl} alt="기업 이미지" />
               <span>{name}</span>
@@ -172,14 +181,12 @@ function CompanyDataPerRow({
             />
             {dropdownVisible && (
               <div className={styles.dropdownMenu}>
-                <button
-                  onClick={() =>
-                    alert("수정하기 클릭, 추가 로직 필요시 추가예정")
-                  }
-                >
+                <button onClick={() => handleOpenModal("update", id)}>
                   수정하기
                 </button>
-                <button onClick={handleOpenModal}>삭제하기</button>
+                <button onClick={() => handleOpenModal("password", id)}>
+                  삭제하기
+                </button>
               </div>
             )}
           </div>
@@ -187,10 +194,17 @@ function CompanyDataPerRow({
 
         {isModalOpen && (
           <ModalPassword
+            isOpen={isModalOpen}
             onClose={handleCloseModal}
-            onDelete={() => {
-              handleCloseModal();
-            }}
+            investmentId={selectedId}
+          />
+        )}
+
+        {isUpdateModalOpen && selectedInvestment && (
+          <ModalInvestmentUpdate
+            isOpen={isUpdateModalOpen}
+            onClose={handleCloseModal}
+            selectedInvestment={selectedInvestment}
           />
         )}
       </li>
