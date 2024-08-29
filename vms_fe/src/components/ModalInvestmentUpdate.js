@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
+import ReactDOM from "react-dom";
 import style from "./ModalInvestmentUpdate.module.css";
 import deleteIcon from "../assets/images/ic_delete.svg";
 import eyeOpenIcon from "../assets/images/ic_password_eye_open.svg";
@@ -93,7 +94,7 @@ const ModalInvestmentUpdate = ({ isOpen, onClose, selectedInvestment }) => {
 
   if (!isOpen) return null;
 
-  return (
+  return ReactDOM.createPortal(
     <div className={style.modalOverlay}>
       <div className={style.modalContainer}>
         <div className={style.modalContent}>
@@ -198,7 +199,8 @@ const ModalInvestmentUpdate = ({ isOpen, onClose, selectedInvestment }) => {
           </form>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body // 모달을 렌더링할 DOM 노드
   );
 };
 

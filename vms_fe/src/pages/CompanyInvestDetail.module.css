@@ -9,6 +9,7 @@
   flex: 1;
   max-width: 1200px;
   margin: 40px 360px 100px 360px;
+  align-self: center;
 }
 
 .titleSection {
@@ -227,6 +228,7 @@
     flex: 1;
     max-width: 1200px;
     margin: 40px 24px 115px 24px;
+    align-self: normal;
   }
 
   .companyDataGrid {

@@ -1,11 +1,12 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
 import MediumBtn from "./common/MediumBtn.js";
 import styles from "./ModalPassword.module.css";
 import eyeOpenIcon from "../assets/images/ic_password_eye_open.svg";
 import eyeCloseIcon from "../assets/images/ic_password_eye_close.svg";
 import deleteIcon from "../assets/images/ic_delete.svg";
 import { deleteInvestment } from "API/CompanyInvestDetailAPI";
-import { useCompanyData } from "context/CompanyDataContext"; // CompanyDataContext import
+import { useCompanyData } from "context/CompanyDataContext";
 
 const ModalPassword = ({ onClose, investmentId }) => {
   const [password, setPassword] = useState("");
@@ -13,7 +14,7 @@ const ModalPassword = ({ onClose, investmentId }) => {
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
-  const { fetchData } = useCompanyData(); // useCompanyData 훅을 사용하여 fetchData 함수 가져오기
+  const { fetchData } = useCompanyData();
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
@@ -42,8 +43,8 @@ const ModalPassword = ({ onClose, investmentId }) => {
     try {
       await deleteInvestment(investmentId, password);
       alert("삭제가 성공적으로 완료되었습니다");
-      onClose(); // 모달 닫기
-      await fetchData(); // 데이터 새로 고침
+      onClose();
+      await fetchData();
     } catch (error) {
       console.error("비밀번호 인증 실패", error);
       setErrors({ password: "비밀번호가 올바르지 않습니다." });
@@ -52,7 +53,7 @@ const ModalPassword = ({ onClose, investmentId }) => {
     }
   };
 
-  return (
+  return ReactDOM.createPortal(
     <div className={styles.modalOverlay}>
       <div className={styles.modalContainer}>
         <button className={styles.closeButton} onClick={onClose}>
@@ -91,7 +92,8 @@ const ModalPassword = ({ onClose, investmentId }) => {
           />
         </form>
       </div>
-    </div>
+    </div>,
+    document.body // 모달을 렌더링할 DOM 노드
   );
 };
 
