@@ -250,15 +250,14 @@
 @media (max-width: 1200px) {
   .contentsContainer {
     flex: 1;
-    max-width: 744px;
+    width: calc(100% - 48px);
   }
 }
 
 @media (max-width: 744px) {
   .contentsContainer {
     flex: 1;
-    max-width: 350px;
-    margin: 40px 24px 115px 24px;
+    width: calc(100% - 48px);
     align-self: center;
   }
 
