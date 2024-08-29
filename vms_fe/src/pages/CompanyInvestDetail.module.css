@@ -7,8 +7,9 @@
 
 .contentsContainer {
   flex: 1;
+  width: 1150px;
   max-width: 1200px;
-  margin: 40px 360px 100px 360px;
+  margin-top: 40px;
   align-self: center;
 }
 
@@ -249,17 +250,16 @@
 @media (max-width: 1200px) {
   .contentsContainer {
     flex: 1;
-    max-width: 1200px;
-    margin: 40px 50px 115px 50px;
+    max-width: 744px;
   }
 }
 
 @media (max-width: 744px) {
   .contentsContainer {
     flex: 1;
-    max-width: 1200px;
+    max-width: 350px;
     margin: 40px 24px 115px 24px;
-    align-self: normal;
+    align-self: center;
   }
 
   .companyDataGrid {
