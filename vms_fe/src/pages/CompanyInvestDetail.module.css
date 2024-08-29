@@ -257,7 +257,7 @@
 @media (max-width: 744px) {
   .contentsContainer {
     flex: 1;
-    width: calc(100% - 48px);
+    width: calc(100% - 32px);
     align-self: center;
   }
 
