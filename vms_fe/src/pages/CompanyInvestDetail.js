@@ -25,7 +25,7 @@ function CompanyInvestDetail() {
   const itemsPerPage = 5;
 
   const handleOpenModal = (modalType, dataObject, position, toggleRef) => {
-    console.log("Opening modal:", modalType, dataObject, position, toggleRef);
+    // console.log("Opening modal:", modalType, dataObject, position, toggleRef); // 디버깅용
     setModalInfo({
       modalType,
       dataObject,
