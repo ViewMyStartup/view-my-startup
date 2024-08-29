@@ -3,8 +3,8 @@ import companyData from "./CompanyData.js";
 import investmentData from "./investmentData.js";
 
 //유틸 
-import { initializeVirtualInvestment } from "./utils/initializeVirtualInvestment.js";
-import { resetIdSequence } from "./utils/resetIdSequence.js";
+import { initializeVirtualInvestment } from "../utils/initializeVirtualInvestment.js";
+import { resetIdSequence } from "../utils/resetIdSequence.js";
 
 const prisma = new PrismaClient();
 
