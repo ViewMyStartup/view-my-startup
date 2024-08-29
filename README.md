@@ -50,6 +50,8 @@
 
 ## <span id="dev">🛠️ 3. 기술 및 개발 환경</span>
 
+![image](https://github.com/user-attachments/assets/36a6768d-6aa9-4f26-b682-d7884f64446f)
+
 ### Frontend
 
 <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black"> <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> <img src="https://img.shields.io/badge/Css-1572B6?style=for-the-badge&logo=Css&logoColor=white">
