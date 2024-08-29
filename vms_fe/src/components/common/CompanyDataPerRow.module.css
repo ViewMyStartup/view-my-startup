@@ -170,6 +170,7 @@
 
 .kebabIcon {
   cursor: pointer;
+  margin-right: 13px;
 }
 
 @media (max-width: 744px) {

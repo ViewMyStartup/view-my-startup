@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import styles from "./CompanyDataPerRow.module.css";
-import ModalInvestmentUpdate from "../ModalInvestmentUpdate";
-import ModalPassword from "../ModalPassword";
 import iconKebab from "../../assets/images/ic_kebab.svg";
 
 function CompanyDataPerRow({
@@ -12,41 +10,22 @@ function CompanyDataPerRow({
   currentPage,
   limit = 10,
   myCompanyId,
-  activeDropdownId,
-  onDropdownToggle,
+  activeDropdownId,  // 현재 열려있는 드롭다운의 ID를 확인하기 위해 추가
+  onOpenModal, // 모달 열기 핸들러
+  onCloseModal // 모달 닫기 핸들러
 }) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
-  const [selectedId, setSelectedId] = useState(null);
-  const [selectedInvestment, setSelectedInvestment] = useState(null);
+  const kebabIconRef = useRef(null);
+  const isMyCompany = dataObject.id === myCompanyId;
 
-  const handleDropdownToggle = () => {
-    onDropdownToggle(dataObject.id);
-  };
-
-  const handleOpenModal = (type, id) => {
-    if (type === "password") {
-      setIsModalOpen(true);
-      setSelectedId(id);
-    } else if (type === "update") {
-      setSelectedInvestment(dataObject);
-      setIsUpdateModalOpen(true);
+  const handleKebabClick = () => {
+    if (activeDropdownId === dataObject.id) {
+      // 모달이 열려 있는 경우, 모달을 닫음
+      onCloseModal();
+    } else {
+      const rect = kebabIconRef.current.getBoundingClientRect();
+      onOpenModal("menu", dataObject, { x: rect.left, y: rect.bottom }, kebabIconRef);
     }
   };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    setIsUpdateModalOpen(false);
-    setSelectedId(null);
-    setSelectedInvestment(null);
-  };
-
-  useEffect(() => {
-    // When a modal is open, close the dropdown
-    if (isModalOpen || isUpdateModalOpen) {
-      onDropdownToggle(null);
-    }
-  }, [isModalOpen, isUpdateModalOpen, onDropdownToggle]);
 
   const convertToBillion = (number) => {
     return parseFloat((number / 100000000).toFixed(2));
@@ -55,8 +34,6 @@ function CompanyDataPerRow({
   function formatNumberWithCommas(number) {
     return number.toLocaleString();
   }
-
-  const isMyCompany = dataObject.id === myCompanyId;
 
   const typeRank = () => {
     const {
@@ -145,7 +122,7 @@ function CompanyDataPerRow({
   };
 
   const typeComment = () => {
-    const { id, userName, userRank, userTotalInvestment, userComment } =
+    const { userName, userRank, userTotalInvestment, userComment } =
       dataObject;
 
     return (
@@ -169,41 +146,12 @@ function CompanyDataPerRow({
             <img
               src={iconKebab}
               alt="kebab"
-              onClick={handleDropdownToggle}
+              ref={kebabIconRef} // 케밥 아이콘 참조 전달
+              onClick={handleKebabClick} // 클릭 시 모달 열기/닫기 핸들러 호출
               className={styles.kebabIcon}
             />
-            {activeDropdownId === dataObject.id && (
-              <div className={styles.dropdownMenu}>
-                <button
-                  onClick={() => handleOpenModal("update", dataObject.id)}
-                >
-                  수정하기
-                </button>
-                <button
-                  onClick={() => handleOpenModal("password", dataObject.id)}
-                >
-                  삭제하기
-                </button>
-              </div>
-            )}
           </div>
         </section>
-
-        {isModalOpen && (
-          <ModalPassword
-            isOpen={isModalOpen}
-            onClose={handleCloseModal}
-            investmentId={selectedId}
-          />
-        )}
-
-        {isUpdateModalOpen && selectedInvestment && (
-          <ModalInvestmentUpdate
-            isOpen={isUpdateModalOpen}
-            onClose={handleCloseModal}
-            selectedInvestment={selectedInvestment}
-          />
-        )}
       </li>
     );
   };

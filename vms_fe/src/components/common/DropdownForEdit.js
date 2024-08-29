@@ -1,51 +1,46 @@
-import React, { useState, useRef, useEffect } from "react";
-import styles from "./DropdownMenu.module.css";
+import React, { useEffect, useRef } from "react";
+import styles from "./DropdownForEdit.module.css";
 
-function DropdownMenu({ dataObject, onOpenModal }) {
-  const { activeDropdownId, onDropdownToggle } = useDropdown();
-
-  const handleDropdownToggle = () => {
-    onDropdownToggle(dataObject.id);
-  };
-
-  options = ["수정하기", "삭제하기"];
-
-  //드랍다운 참조값
+function DropdownForEdit({ position, onClose, onEdit, onDelete, toggleRef }) {
   const dropdownRef = useRef(null);
 
-  const toggleDropdown = () => setIsOpen(!isOpen);
-
-  const handleOptionClick = (option) => {
-    setSelectedOption(option);
-    setIsOpen(false);
-    handleOptionChange(option);
-  };
-
-  // 이벤트 리스너 등록
   useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target) &&
+        (!toggleRef || !toggleRef.current.contains(event.target))
+      ) {
+        onClose(); // 모달 닫기
+      }
+    }
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [onClose, toggleRef]);
 
   return (
-    <div className={styles.dropdownContainer} ref={dropdownRef}>
-      {activeDropdownId === dataObject.id && (
-        <ul className={`${styles.dropdownMenu} ${styles.dropdownMenuOpen}`}>
-          {options.map((option, index) => (
-            <li
-              key={index}
-              className={styles.dropdownMenuItem}
-              onClick={() => handleOptionClick(option)}
-            >
-              {option}
-            </li>
-          ))}
-        </ul>
-      )}
+    <div
+      ref={dropdownRef}
+      className={styles.dropdownContainer}
+      style={{
+        position: "absolute",
+        top: `${position.y}px`,
+        left: `${position.x}px`,
+        zIndex: 1000,
+      }}
+    >
+      <ul className={styles.dropdownMenu}>
+        <li className={styles.menuItem} onClick={onEdit}>
+          수정하기
+        </li>
+        <li className={styles.menuItem} onClick={onDelete}>
+          삭제하기
+        </li>
+      </ul>
     </div>
   );
 }
 
-export default DropdownMenu;
+export default DropdownForEdit;

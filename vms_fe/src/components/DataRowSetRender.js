@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./DataRowSetRender.module.css";
 import CompanyDataPerRow from "components/common/CompanyDataPerRow";
 import HeaderColumns from "./common/HeaderColumns";
@@ -10,13 +10,10 @@ function DataRowSetRender({
   limit = 10,
   isloading = false,
   myCompanyId,
+  onOpenModal, // 모달 열기 핸들러
+  onCloseModal, // 모달 닫기 핸들러
+  activeDropdownId, // 현재 활성화된 드롭다운 ID
 }) {
-  const [activeDropdownId, setActiveDropdownId] = useState(null);
-
-  const handleDropdownToggle = (id) => {
-    setActiveDropdownId(activeDropdownId === id ? null : id);
-  };
-
   return isloading ? (
     <div className={`${styles.dataRowSet} ${styles.fadeInUpContents}`}>
       <HeaderColumns type={type} />
@@ -39,8 +36,9 @@ function DataRowSetRender({
               currentPage={currentPage}
               limit={limit}
               myCompanyId={myCompanyId}
-              activeDropdownId={activeDropdownId}
-              onDropdownToggle={handleDropdownToggle}
+              activeDropdownId={activeDropdownId} // 현재 활성화된 드롭다운의 ID를 전달
+              onOpenModal={onOpenModal} // 모달 열기 핸들러 전달
+              onCloseModal={onCloseModal} // 모달 닫기 핸들러 전달
             />
           );
         })}
