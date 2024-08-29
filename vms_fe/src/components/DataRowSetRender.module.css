@@ -6,7 +6,10 @@
 
 @media (max-width: 744px) {
   .dataRowSet {
-    overflow-x: auto;
+    height: 100%;
+    overflow-x: auto;  
+    overflow-y: hidden;  /* y축의 스크롤을 비활성화 */
+    white-space: nowrap; /* 줄바꿈을 방지하여 x축 스크롤을 유지 */
     padding-bottom: 12px;
   }
   .dataRowSet::-webkit-scrollbar {

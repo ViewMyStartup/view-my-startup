@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import styles from "./DefaultPage.module.css";
 
 import PageNav from "components/PageNav.js";
@@ -24,7 +24,7 @@ function DefaultPage() {
     }
   };
 
-  const loadData = async () => {
+  const loadData = useCallback(async () => {
     setIsLoading(true);
     const result = await fetchData(
       currentPage,
@@ -36,11 +36,11 @@ function DefaultPage() {
     setCompanies(result.companies);
     setTotalPages(Math.ceil(result.total / companiesPerPage));
     setIsLoading(false);
-  };
+  }, [currentPage, companiesPerPage, searchQuery, sortOption]);
 
   useEffect(() => {
     loadData();
-  }, [currentPage, sortOption]);
+  }, [loadData]);
 
   const handleSearchChange = (value) => {
     setSearchQuery(value);

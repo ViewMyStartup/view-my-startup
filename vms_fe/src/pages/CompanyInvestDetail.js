@@ -10,15 +10,13 @@ import {
   CompanyDataProvider,
   useCompanyData,
 } from "context/CompanyDataContext";
-import { ModalProvider, useModal } from "context/ModalContext";
-import { DropdownProvider, useDropdown } from "context/DropdownContext";
+import DropdownForEdit from "components/common/DropdownForEdit"
 import styles from "./CompanyInvestDetail.module.css";
 
 function CompanyInvestDetail() {
   const { companyData, transformedInvestments, loading } = useCompanyData();
-  const { modalType, handleOpenModal, handleCloseModal } = useModal();
-  const { dropdownVisible, handleToggleDropdown } = useDropdown();
-
+  const [modalInfo, setModalInfo] = useState(null);
+  
   const itemsPerPage = 5;
   const totalPages = Math.ceil(
     (transformedInvestments.length || 0) / itemsPerPage
