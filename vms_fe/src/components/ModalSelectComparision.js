@@ -219,7 +219,7 @@ const ModalSelectComparision = ({
             </div>
           )}
 
-          {companyList.length > 0 && (
+          {searchTerm && companyList.length > 0 && (
             <Pagination
               currentPage={currentPage}
               totalPages={totalPages}

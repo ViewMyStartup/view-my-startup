@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import styles from "./CompanyDataPerRow.module.css";
 import ModalInvestmentUpdate from "../ModalInvestmentUpdate";
 import ModalPassword from "../ModalPassword";
-
-// 이미지
 import iconKebab from "../../assets/images/ic_kebab.svg";
 
 function CompanyDataPerRow({
@@ -13,6 +11,7 @@ function CompanyDataPerRow({
   index,
   currentPage,
   limit = 10,
+  myCompanyId, // myCompanyId를 추가
 }) {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -35,7 +34,6 @@ function CompanyDataPerRow({
     setDropdownVisible(false); // 모달 열릴 때 드롭다운 닫기
   };
 
-  // 모달 닫기 함수
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setIsUpdateModalOpen(false);
@@ -44,20 +42,21 @@ function CompanyDataPerRow({
   };
 
   const convertToBillion = (number) => {
-    return parseFloat((number / 100000000).toFixed(2)); // 반올림
-    // return Math.floor((number / 100000000) * 100) / 100; // 버림
+    return parseFloat((number / 100000000).toFixed(2));
   };
 
   function formatNumberWithCommas(number) {
     return number.toLocaleString();
   }
 
+  const isMyCompany = dataObject.id === myCompanyId; // myCompanyId와 비교
+
   const typeRank = () => {
     const {
       id,
       rank,
       name,
-      logoUrl, // img -> logoUrl
+      logoUrl,
       description,
       category,
       totalInvestment,
@@ -66,7 +65,9 @@ function CompanyDataPerRow({
     } = dataObject;
 
     return (
-      <li className={styles.dataPerRowContainer}>
+      <li
+      className={`${styles.dataPerRowContainer} ${isMyCompany ? styles.myCompanyPerRow : ""}`}
+      >
         <Link to={`/id/${id}`}>
           <section className={`${styles.diffSizeContainer} ${styles.rankSize}`}>
             <span className={styles.columnRank}>{`${rank}위`}</span>
@@ -91,38 +92,6 @@ function CompanyDataPerRow({
     );
   };
 
-  const typeNoRank = () => {
-    const {
-      id,
-      name,
-      img,
-      description,
-      category,
-      totalInvestment, // 수정된 부분
-      revenue,
-      employees,
-    } = dataObject;
-
-    return (
-      <li className={styles.dataPerRowContainer}>
-        <section className={`${styles.diffSizeContainer} ${styles.noRankSize}`}>
-          <article className={styles.companyInfoContainer}>
-            <img src={img} alt="기업 이미지" />
-            <span>{name}</span>
-          </article>
-          <span className={styles.columnCompanyDescription}>{description}</span>
-        </section>
-        <section className={styles.sameSizeContainer}>
-          <span>{category}</span>
-          <span>{`${convertToBillion(totalInvestment)}억 원`}</span>{" "}
-          {/* 수정된 부분 */}
-          <span>{`${convertToBillion(revenue)}억 원`}</span>
-          <span>{`${employees}명`}</span>
-        </section>
-      </li>
-    );
-  };
-
   const typeInvest = () => {
     const {
       id,
@@ -131,12 +100,14 @@ function CompanyDataPerRow({
       logoUrl,
       description,
       category,
-      virtualInvestment, // 수정된 필드
-      totalInvestment, // 수정된 필드
+      virtualInvestment,
+      totalInvestment,
     } = dataObject;
 
     return (
-      <li className={styles.dataPerRowContainer}>
+      <li
+        className={`${styles.dataPerRowContainer} ${isMyCompany ? styles.myCompany : ""}`} // 스타일 적용
+      >
         <section className={`${styles.diffSizeContainer} ${styles.investSize}`}>
           <span className={styles.columnRank}>{`${rank}위`}</span>
           <div className={styles.companyInfoContainer}>
@@ -157,11 +128,12 @@ function CompanyDataPerRow({
   };
 
   const typeComment = () => {
-    const { id, userName, userRank, userTotalInvestment, userComment } =
-      dataObject;
+    const { id, userName, userRank, userTotalInvestment, userComment } = dataObject;
 
     return (
-      <li className={styles.dataPerRowContainer}>
+      <li
+        className={`${styles.dataPerRowContainer} ${isMyCompany ? styles.myCompany : ""}`} // 스타일 적용
+      >
         <section
           className={`${styles.sameSizeContainer} ${styles.commentSizeForSame}`}
         >
@@ -223,7 +195,9 @@ function CompanyDataPerRow({
     } = dataObject;
 
     return (
-      <li className={styles.dataPerRowContainer}>
+      <li
+        className={`${styles.dataPerRowContainer} ${isMyCompany ? styles.myCompany : ""}`} // 스타일 적용
+      >
         <section className={`${styles.diffSizeContainer} ${styles.investSize}`}>
           <span className={styles.columnRank}>{`${
             index + 1 + (currentPage - 1) * limit
@@ -247,8 +221,6 @@ function CompanyDataPerRow({
 
   if (type === "rank") {
     return typeRank();
-  } else if (type === "noRank") {
-    return typeNoRank();
   } else if (type === "invest") {
     return typeInvest();
   } else if (type === "comment") {
@@ -259,3 +231,4 @@ function CompanyDataPerRow({
 }
 
 export default CompanyDataPerRow;
+
