@@ -258,7 +258,7 @@
   - **투자 정보 업데이트**: 검증이 완료되면 투자자 이름, 투자 금액, 투자 코멘트를 업데이트
   - **VirtualInvestment 업데이트**: 투자 정보 수정 후, 해당 기업의 `virtualInvestment` 값을 업데이트하는 로직 구현
 
-- **가상 투자 삭제 API (DELETE /api/investments/:investmentId)**
+- 가상 투자 삭제 API (DELETE /api/investments/:investmentId)
   - `investmentId`를 통해 특정 가상 투자 항목을 삭제하는 기능 구현
   - **투자 정보 존재 여부 확인**: `investmentId`를 기반으로 해당 투자 항목이 존재하는지 확인하고, 존재하지 않을 경우 404 오류 반환
   - **비밀번호 확인**: 제공된 비밀번호와 기존 투자 항목의 비밀번호를 비교하여 일치하지 않을 경우 400 오류 반환

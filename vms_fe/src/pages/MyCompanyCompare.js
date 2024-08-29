@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { useNavigate } from "react-router-dom"; // useNavigate 훅 추가
 import styles from "./MyCompanyCompare.module.css";
 import PageNav from "components/PageNav";
 import AddCompanyBtn from "components/common/AddCompanyBtn";
@@ -27,6 +28,8 @@ function MyCompanyCompare() {
   const [rankedCompanies, setRankedCompanies] = useState([]);
   const [resetButtonText, setResetButtonText] = useState("전체 초기화");
   const [allCompanies, setAllCompanies] = useState([]);
+
+  const navigate = useNavigate(); // useNavigate 훅 사용
 
   useEffect(() => {
     const getCompanies = async () => {
@@ -123,6 +126,14 @@ function MyCompanyCompare() {
   };
 
   const myCompanyId = selectedCompanies.length > 0 ? selectedCompanies[0].id : null;
+
+  // 선택된 기업의 상세 페이지로 이동하는 함수 추가
+  const handleInvestmentClick = () => {
+    if (selectedCompanies.length > 0) {
+      const companyId = selectedCompanies[0].id;
+      navigate(`/id/${companyId}`); // companyId를 사용하여 이동
+    }
+  };
 
   return (
     <div className={styles.pageContainer}>
@@ -248,7 +259,7 @@ function MyCompanyCompare() {
             <div className={styles.btnWrapper}>
               <CompareCompanyBtn
                 text="나의 기업에 투자하기"
-                onClick={() => {}}
+                onClick={handleInvestmentClick}  // 클릭 시 이동 처리
                 disabled={!isCompareButtonEnabled}
               />
             </div>
