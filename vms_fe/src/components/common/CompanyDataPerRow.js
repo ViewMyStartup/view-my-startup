@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./CompanyDataPerRow.module.css";
 import ModalInvestmentUpdate from "../ModalInvestmentUpdate";
@@ -11,16 +11,17 @@ function CompanyDataPerRow({
   index,
   currentPage,
   limit = 10,
-  myCompanyId, // myCompanyId를 추가
+  myCompanyId,
+  activeDropdownId,
+  onDropdownToggle,
 }) {
-  const [dropdownVisible, setDropdownVisible] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
   const [selectedInvestment, setSelectedInvestment] = useState(null);
 
-  const toggleDropdown = () => {
-    setDropdownVisible(!dropdownVisible);
+  const handleDropdownToggle = () => {
+    onDropdownToggle(dataObject.id);
   };
 
   const handleOpenModal = (type, id) => {
@@ -31,7 +32,6 @@ function CompanyDataPerRow({
       setSelectedInvestment(dataObject);
       setIsUpdateModalOpen(true);
     }
-    setDropdownVisible(false); // 모달 열릴 때 드롭다운 닫기
   };
 
   const handleCloseModal = () => {
@@ -41,6 +41,13 @@ function CompanyDataPerRow({
     setSelectedInvestment(null);
   };
 
+  useEffect(() => {
+    // When a modal is open, close the dropdown
+    if (isModalOpen || isUpdateModalOpen) {
+      onDropdownToggle(null);
+    }
+  }, [isModalOpen, isUpdateModalOpen, onDropdownToggle]);
+
   const convertToBillion = (number) => {
     return parseFloat((number / 100000000).toFixed(2));
   };
@@ -49,7 +56,7 @@ function CompanyDataPerRow({
     return number.toLocaleString();
   }
 
-  const isMyCompany = dataObject.id === myCompanyId; // myCompanyId와 비교
+  const isMyCompany = dataObject.id === myCompanyId;
 
   const typeRank = () => {
     const {
@@ -66,7 +73,9 @@ function CompanyDataPerRow({
 
     return (
       <li
-      className={`${styles.dataPerRowContainer} ${isMyCompany ? styles.myCompanyPerRow : ""}`}
+        className={`${styles.dataPerRowContainer} ${
+          isMyCompany ? styles.myCompanyPerRow : ""
+        }`}
       >
         <Link to={`/id/${id}`}>
           <section className={`${styles.diffSizeContainer} ${styles.rankSize}`}>
@@ -106,7 +115,9 @@ function CompanyDataPerRow({
 
     return (
       <li
-        className={`${styles.dataPerRowContainer} ${isMyCompany ? styles.myCompany : ""}`} // 스타일 적용
+        className={`${styles.dataPerRowContainer} ${
+          isMyCompany ? styles.myCompany : ""
+        }`}
       >
         <section className={`${styles.diffSizeContainer} ${styles.investSize}`}>
           <span className={styles.columnRank}>{`${rank}위`}</span>
@@ -128,11 +139,14 @@ function CompanyDataPerRow({
   };
 
   const typeComment = () => {
-    const { id, userName, userRank, userTotalInvestment, userComment } = dataObject;
+    const { id, userName, userRank, userTotalInvestment, userComment } =
+      dataObject;
 
     return (
       <li
-        className={`${styles.dataPerRowContainer} ${isMyCompany ? styles.myCompany : ""}`} // 스타일 적용
+        className={`${styles.dataPerRowContainer} ${
+          isMyCompany ? styles.myCompany : ""
+        }`}
       >
         <section
           className={`${styles.sameSizeContainer} ${styles.commentSizeForSame}`}
@@ -149,15 +163,19 @@ function CompanyDataPerRow({
             <img
               src={iconKebab}
               alt="kebab"
-              onClick={toggleDropdown}
+              onClick={handleDropdownToggle}
               className={styles.kebabIcon}
             />
-            {dropdownVisible && (
+            {activeDropdownId === dataObject.id && (
               <div className={styles.dropdownMenu}>
-                <button onClick={() => handleOpenModal("update", id)}>
+                <button
+                  onClick={() => handleOpenModal("update", dataObject.id)}
+                >
                   수정하기
                 </button>
-                <button onClick={() => handleOpenModal("password", id)}>
+                <button
+                  onClick={() => handleOpenModal("password", dataObject.id)}
+                >
                   삭제하기
                 </button>
               </div>
@@ -196,7 +214,9 @@ function CompanyDataPerRow({
 
     return (
       <li
-        className={`${styles.dataPerRowContainer} ${isMyCompany ? styles.myCompany : ""}`} // 스타일 적용
+        className={`${styles.dataPerRowContainer} ${
+          isMyCompany ? styles.myCompany : ""
+        }`}
       >
         <section className={`${styles.diffSizeContainer} ${styles.investSize}`}>
           <span className={styles.columnRank}>{`${
@@ -231,4 +251,3 @@ function CompanyDataPerRow({
 }
 
 export default CompanyDataPerRow;
-

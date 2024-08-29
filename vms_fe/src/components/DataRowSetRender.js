@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./DataRowSetRender.module.css";
 import CompanyDataPerRow from "components/common/CompanyDataPerRow";
 import HeaderColumns from "./common/HeaderColumns";
@@ -9,8 +9,14 @@ function DataRowSetRender({
   currentPage,
   limit = 10,
   isloading = false,
-  myCompanyId, // myCompanyId를 추가
+  myCompanyId,
 }) {
+  const [activeDropdownId, setActiveDropdownId] = useState(null);
+
+  const handleDropdownToggle = (id) => {
+    setActiveDropdownId(activeDropdownId === id ? null : id);
+  };
+
   return isloading ? (
     <div className={`${styles.dataRowSet} ${styles.fadeInUpContents}`}>
       <HeaderColumns type={type} />
@@ -32,7 +38,9 @@ function DataRowSetRender({
               index={index}
               currentPage={currentPage}
               limit={limit}
-              myCompanyId={myCompanyId} // myCompanyId를 전달
+              myCompanyId={myCompanyId}
+              activeDropdownId={activeDropdownId}
+              onDropdownToggle={handleDropdownToggle}
             />
           );
         })}
@@ -42,4 +50,3 @@ function DataRowSetRender({
 }
 
 export default DataRowSetRender;
-
