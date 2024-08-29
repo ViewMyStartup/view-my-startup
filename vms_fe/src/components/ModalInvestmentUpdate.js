@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import style from "./ModalInvestmentUpdate.module.css";
-import deleteIcon from "../assets/images/ic_delete.svg";
+import deleteIcon from  "assets/images/ic_delete.svg"
 import eyeOpenIcon from "../assets/images/ic_password_eye_open.svg";
 import eyeCloseIcon from "../assets/images/ic_password_eye_close.svg";
 import MediumBtn from "./common/MediumBtn";
