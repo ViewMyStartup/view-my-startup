@@ -15,14 +15,12 @@ import {
 import styles from "./CompanyInvestDetail.module.css";
 
 function CompanyInvestDetail() {
-  const { currentPage, handlePageChange } = usePageHandler();
   const { companyData, transformedInvestments, loading } = useCompanyData();
 
   const [modalInfo, setModalInfo] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false); // 모달 상태 관리
   const [activeDropdownId, setActiveDropdownId] = useState(null); // 드롭다운 상태 관리
 
-  const itemsPerPage = 5;
 
   const handleOpenModal = (modalType, dataObject, position, toggleRef) => {
     // console.log("Opening modal:", modalType, dataObject, position, toggleRef); // 디버깅용
@@ -54,7 +52,13 @@ function CompanyInvestDetail() {
     }
   };
 
-  if (loading) {
+  const itemsPerPage = 5;
+  const totalPages = Math.ceil(
+    (transformedInvestments.length || 0) / itemsPerPage
+  );
+  const { currentPage, handlePageChange } = usePageHandler(totalPages);
+
+  if (loading)
     return (
       <div className={styles.loadingContainer}>
         <div className={styles.spinner}></div>
@@ -66,7 +70,6 @@ function CompanyInvestDetail() {
         </p>
       </div>
     );
-  }
 
   if (companyData) {
     const paginatedData =
@@ -74,6 +77,11 @@ function CompanyInvestDetail() {
         (currentPage - 1) * itemsPerPage,
         currentPage * itemsPerPage
       ) || [];
+      console.log("Current Page:", currentPage); // 디버깅용 로그
+      console.log("Paginated Data:", paginatedData); // 슬라이싱된 데이터 로그
+      console.log("total pages:", totalPages); // 슬라이싱된 데이터 로그
+      console.log("target Data:", transformedInvestments); // 슬라이싱된 데이터 로그
+
 
     return (
       <div className={styles.pageContainer}>
@@ -136,10 +144,9 @@ function CompanyInvestDetail() {
           </div>
           <Pagination
             currentPage={currentPage}
-            totalPages={Math.ceil(
-              (transformedInvestments.length || 0) / itemsPerPage
-            )}
+            totalPages={totalPages}
             onPageChange={handlePageChange}
+            hasNext={currentPage < totalPages}
           />
         </div>
 

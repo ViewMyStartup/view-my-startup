@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // 개발 서버
-const apiUrl = window.env.REACT_APP_API_BASE_URL;
+// const apiUrl = window.env.REACT_APP_API_BASE_URL; // 주석처리
 // console.log("apiUrl:", apiUrl);
 
 // 아래 API 호출 코드 작성
