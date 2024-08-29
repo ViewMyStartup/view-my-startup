@@ -15,12 +15,16 @@ import { DropdownProvider, useDropdown } from "context/DropdownContext";
 import styles from "./CompanyInvestDetail.module.css";
 
 function CompanyInvestDetail() {
-  const { currentPage, handlePageChange } = usePageHandler();
   const { companyData, transformedInvestments, loading } = useCompanyData();
   const { modalType, handleOpenModal, handleCloseModal } = useModal();
   const { dropdownVisible, handleToggleDropdown } = useDropdown();
 
   const itemsPerPage = 5;
+  const totalPages = Math.ceil(
+    (transformedInvestments.length || 0) / itemsPerPage
+  );
+
+  const { currentPage, handlePageChange } = usePageHandler(totalPages);
 
   if (loading)
     return (
@@ -122,9 +126,7 @@ function CompanyInvestDetail() {
           </div>
           <Pagination
             currentPage={currentPage}
-            totalPages={Math.ceil(
-              (transformedInvestments.length || 0) / itemsPerPage
-            )}
+            totalPages={totalPages}
             onPageChange={handlePageChange}
           />
         </div>

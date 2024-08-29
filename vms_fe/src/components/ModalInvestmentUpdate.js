@@ -150,7 +150,7 @@ const ModalInvestmentUpdate = ({ isOpen, onClose, selectedInvestment }) => {
                 투자 금액
               </label>
               <input
-                type="text"
+                type="number"
                 id="amount"
                 name="amount"
                 placeholder="투자 금액을 입력하세요"
