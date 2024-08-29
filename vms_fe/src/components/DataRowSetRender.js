@@ -1,7 +1,5 @@
 import React from "react";
 import styles from "./DataRowSetRender.module.css";
-
-// 컴포넌트
 import CompanyDataPerRow from "components/common/CompanyDataPerRow";
 import HeaderColumns from "./common/HeaderColumns";
 
@@ -11,34 +9,37 @@ function DataRowSetRender({
   currentPage,
   limit = 10,
   isloading = false,
+  myCompanyId, // myCompanyId를 추가
 }) {
-  console.log(`DataRowSetRender-dataList[2] : ${dataList[2]}`);
-  console.log(`currentPage=${currentPage}, limit=${limit}`);
   return isloading ? (
-    <div className={styles.dataRowSet}>
+    <div className={`${styles.dataRowSet} ${styles.fadeInUpContents}`}>
       <HeaderColumns type={type} />
       <section className={styles.loaderBox}>
-        <div>Load...</div>
+        <div>Loading...</div>
         <div className={styles.loader}></div>
       </section>
     </div>
   ) : (
-    <div className={styles.dataRowSet}>
+    <div className={`${styles.dataRowSet} ${styles.fadeInUpContents}`}>
       <HeaderColumns type={type} />
       <ul>
-        {dataList.map((dataObject, index) => (
-          <CompanyDataPerRow
-            key={dataObject.id} // 리스트를 렌더링할 때, key 추가
-            type={type}
-            dataObject={dataObject}
-            index={index}
-            currentPage={currentPage}
-            limit={limit}
-          />
-        ))}
+        {dataList.map((dataObject, index) => {
+          return (
+            <CompanyDataPerRow
+              key={dataObject ? dataObject.id : index}
+              type={type}
+              dataObject={dataObject}
+              index={index}
+              currentPage={currentPage}
+              limit={limit}
+              myCompanyId={myCompanyId} // myCompanyId를 전달
+            />
+          );
+        })}
       </ul>
     </div>
   );
 }
 
 export default DataRowSetRender;
+

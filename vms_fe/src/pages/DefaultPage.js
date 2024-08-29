@@ -19,44 +19,49 @@ function DefaultPage() {
   const [isloading, setIsLoading] = useState(false);
   const companiesPerPage = 10;
 
+  const fetchData = async () => {
+    setIsLoading(true);
+    const { sortBy, order } = SortingOptions(sortOption);
+    try {
+      const data = await getApiData(
+        currentPage,
+        companiesPerPage,
+        searchQuery,
+        sortBy,
+        order
+      );
+
+      const rankToCompanies = data.companies.map((company, index) => ({
+        ...company,
+        rank: (currentPage - 1) * companiesPerPage + index + 1,
+      }));
+
+      setCompanies(rankToCompanies);
+      setTotalPages(Math.ceil(data.total / companiesPerPage));
+    } catch (error) {
+      console.error("fetch error:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      const { sortBy, order } = SortingOptions(sortOption);
-      try {
-        const data = await getApiData(
-          currentPage,
-          companiesPerPage,
-          searchQuery,
-          sortBy,
-          order
-        );
-
-        const rankToCompanies = data.companies.map((company, index) => ({
-          ...company,
-          rank: (currentPage - 1) * companiesPerPage + index + 1, // rank 설정
-        }));
-
-        setCompanies(rankToCompanies);
-        setTotalPages(Math.ceil(data.total / companiesPerPage)); // totalPages 설정
-      } catch (error) {
-        console.error("fetch error:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
     fetchData();
-  }, [currentPage, searchQuery, sortOption]);
+  }, [currentPage, sortOption]);
 
   const handleSearchChange = (value) => {
     setSearchQuery(value);
+  };
+
+  const handleSearch = () => {
     handlePageChange(1); // 검색 시 페이지를 첫 페이지로 리셋
+    fetchData();
   };
 
   const handleClearSearch = () => {
     setSearchQuery("");
-    handlePageChange(1); // 검색어 초기화 시 페이지를 첫 페이지로 리셋
+    handlePageChange(1);
+    fetchData();
   };
 
   const handleSortChange = (option) => {
@@ -64,10 +69,17 @@ function DefaultPage() {
     handlePageChange(1);
   };
 
+  const handleHomeClick = () => {
+    setSearchQuery("");
+    setSortOption("누적 투자금액 높은순");
+    handlePageChange(1);
+    fetchData();
+  };
+
   return (
     <div className={styles.pageContainer}>
       <div className={styles.nav}>
-        <PageNav />
+        <PageNav onHomeClick={handleHomeClick} />
       </div>
       <div className={styles.mainContainer}>
         <div className={styles.searchBarContainer}>
@@ -77,6 +89,7 @@ function DefaultPage() {
               value={searchQuery}
               onChange={handleSearchChange}
               onClear={handleClearSearch}
+              onSearch={handleSearch}
             />
             <Dropdown onOptionSelect={handleSortChange} />
           </div>

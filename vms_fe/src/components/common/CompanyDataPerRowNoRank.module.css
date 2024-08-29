@@ -7,6 +7,11 @@
   height: 64px;
   background-color: #212121;
   border-radius: 4px;
+  transition: all .3s ease;
+}
+
+.myCompanyNoRank {
+  background-color: #2e2e2e !important;
 }
 
 /* 가장 마지막 child가 아니면 bottom border 출력 */
@@ -16,11 +21,12 @@
 
 .dataPerRowContainer:hover {
   background-color: #4b4b4b;
+  transform: scale(1.007);
 }
 
-.diffSizeContainer > span,
-.sameSizeContainer > span,
-.companyInfoContainer > span {
+.diffSizeContainer>span,
+.sameSizeContainer>span,
+.companyInfoContainer>span {
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 16.71px;
@@ -65,13 +71,13 @@
   padding: 0 24px;
 }
 
-.companyInfoContainer > span {
+.companyInfoContainer>span {
   font-size: 0.875rem;
   font-weight: 500;
   color: #ffffff;
 }
 
-.companyInfoContainer > img {
+.companyInfoContainer>img {
   aspect-ratio: 1;
   width: 32px;
   height: 32px;
@@ -86,7 +92,7 @@
   width: 100%;
 }
 
-.sameSizeContainer > span {
+.sameSizeContainer>span {
   width: 100%;
 }
 
@@ -135,13 +141,13 @@
 }
 
 @media (max-width: 744px) {
-  .companyInfoContainer > span {
+  .companyInfoContainer>span {
     font-size: 0.8125rem;
   }
 
-  .diffSizeContainer > span,
-  .sameSizeContainer > span,
-  .companyInfoContainer > span {
+  .diffSizeContainer>span,
+  .sameSizeContainer>span,
+  .companyInfoContainer>span {
     font-size: 0.8125rem;
   }
 }

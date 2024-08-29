@@ -8,42 +8,50 @@ import Pagination from "components/common/Pagination";
 import DropdownMiddleSize from "components/common/DropdownMiddleSize";
 
 // 커스텀 훅
-import usePageHandler from "hook/usePageHandler";
 import useGetCompanyData from "hook/useGetCompanyData";
 
-//테스트 이미지
-import Companyimg from "../assets/images/mock_img/company_temp.svg";
-
 function CurrentStateCompare() {
-  // CompanyPerRow & HeaderColumns 컴포넌트 테스트용 데이터 데이터
-
-  const [sortBy, setSortBy] = useState("totalInvestment");
+  const [sortBy, setSortBy] = useState("mySelectionCount");
   const [oder, setOrder] = useState("desc");
-  const { currentPage, handlePageChange } = usePageHandler();
-  const { companyList, isLoading, error, totalPages } = useGetCompanyData(
-    currentPage,
-    10,
-    "",
-    sortBy,
-    oder
-  );
+  const [currentPage, setCurrentPage] = useState(1);
 
+  const {
+    companyList,
+    isLoading,
+    error,
+    totalPages,
+  } = useGetCompanyData(currentPage, 10, "", sortBy, oder);
+
+  const handlePageChange = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  }
+  
   const handleOptionChange = (option) => {
-    setSortBy(option);
+    if (option === "나의 기업 선택 횟수 높은순") {
+      setSortBy("mySelectionCount");
+      setOrder("desc");
+    } else if (option === "나의 기업 선택 횟수 낮은순") {
+      setSortBy("mySelectionCount");
+      setOrder("asc");
+    } else if (option === "비교 기업 선택 횟수 높은순") {
+      setSortBy("CompareSelectionCount");
+      setOrder("desc");
+    } else if (option === "비교 기업 선택 횟수 낮은순") {
+      setSortBy("CompareSelectionCount");
+      setOrder("asc");
+    }
+    setCurrentPage(1);
   };
 
-  const handleOderChange = (option) => {
-    setOrder(option);
-  };
 
   const options = [
     "나의 기업 선택 횟수 높은순",
     "나의 기업 선택 횟수 낮은순",
-    "실제 누적 투자 금액 높은순",
-    "실제 누적 투자 금액 낮은순",
+    "비교 기업 선택 횟수 높은순",
+    "비교 기업 선택 횟수 낮은순",
   ];
-
-  console.log(`companyList: ${companyList}`);
 
   return (
     <div className={styles.bgSet}>

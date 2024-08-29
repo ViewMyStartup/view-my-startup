@@ -4,7 +4,7 @@
 
 <h3>스타트업 정보 확인 및 모의 투자 서비스</h3><br>
 
-<b>[View My Startup 바로가기](https://deploy-preview-36--team4-vms.netlify.app/)</b> <br>
+<b>[View My Startup 바로가기](https://team4-vms.netlify.app/)</b> <br>
 
 <br> 
 </div>
@@ -102,16 +102,17 @@
 
 🛠️ 백엔드
 
-- 기업 비교 API (POST /api/companies/compare)
-  - 최대 5개 기업 비교 기능 구현
-  - 누적 투자 금액, 매출액, 고용 인원에 따른 정렬 기능 구현
-  - 비교 결과 반환 기능 포함
-  - 내 기업의 순위와 근접한 기업 조회 기능
-    - 내 기업의 순위와 근접한 위 2개, 아래 2개 기업의 정보 조회
-    - 내 기업의 순위가 중간이 아닌 경우, 내 기업 포함 최대 5개 기업 조회
+- 기업 비교 API (POST /api/companies/compare) 구현
+  - **기업 비교 요청 처리**: 클라이언트로부터 여러 기업 ID와 나의 기업 ID를 받아 비교 작업을 수행
+  - **유효성 검사**: 기업 ID 배열이 1개 이상 6개 이하인지 확인하고, `checkMyCompanyRanking` 옵션이 활성화된 경우 나의 기업 ID가 제공된 기업 ID 목록에 포함되는지 검증
+  - **선택 횟수 업데이트**: `incrementMySelection`과 `incrementCompareSelection` 옵션에 따라 나의 기업 및 다른 기업의 선택 횟수를 증가시키도록 구현
+  - **기업 정보 조회 및 정렬**: 주어진 기업 ID 목록에 대한 정보를 조회하고, `sortBy`와 `order` 파라미터에 따라 기업을 정렬하여 반환
+  정렬 기준으로는 `totalInvestment`, `revenue`, `employees`, `mySelectionCount`, `CompareSelectionCount` 등이 포함
+  - **순위 포함 옵션 처리**: `includeRank` 옵션이 활성화된 경우, 정렬된 기업 목록에 각 기업의 순위를 포함하여 반환
+  - **에러 처리**: 유효하지 않은 입력이나 서버 오류 발생 시 적절한 오류 메시지를 반환하도록 처리
 
 <br>
-  
+
 ### 김현우
 
 🎶 공통 컴포넌트
@@ -119,20 +120,28 @@
 - LargeBtn
 - MediumBtn
 - ModalInvestMent
+- ModalInvestMentUpdate
 - ModalSelect
 
 🎨 프론트엔드
 
 - 기업 상세 페이지 구현
-- 기업 상세 조회 API를 호출하여 해당 기업의 정보와 가상 투자 내역을 화면에 렌더링
+- 기업 상세 조회 API를 호출하여 해당 기업의 정보와 가상 투자 내역을 화면에 렌더링 / 투자자 댓글 추가, 삭제기능 호출
 - 404 페이지 구현
 
 🛠️ 백엔드
 
 - 가상 투자 생성 API (POST /api/investments)
-  - 투자자 이름, 투자 금액, 투자 코멘트, 비밀번호 포함
-  * 가상 투자자 상세조회, 순위정렬 API (GET /api/investments/:id)
-  - 투자자 이름, 투자 금액, 투자 코멘트, 비밀번호, 순위 포함 조회
+  - 클라이언트로부터 `companyId`, `investorName`, `investmentAmount`, `investmentComment`, `password` 등의 데이터를 받아 가상 투자를 생성하는 기능 구현
+  - **필수 필드 검증**: 필수 필드(`companyId`, `investorName`, `investmentAmount`, `investmentComment`, `password`)가 누락되지 않았는지 검증
+  - **회사 존재 여부 확인**: `companyId`를 기반으로 해당 회사가 존재하는지 확인하고, 존재하지 않을 경우 404 오류 반환
+  - **VirtualInvestment 업데이트**: 가상 투자 생성 후, 해당 기업의 `virtualInvestment` 값을 업데이트하는 로직 구현
+
+- 가상 투자자 상세조회 및 순위 정렬 API (GET /api/investments/:investmentId)
+  - `investmentId`를 기반으로 특정 가상 투자자의 상세 정보를 조회
+  - **회사 내 투자자 목록 조회**: 투자자의 `companyId`를 사용해 해당 회사의 모든 투자자 목록을 조회하고, 투자 금액을 기준으로 내림차순 정렬
+  - **순위 계산**: 각 투자자의 순위를 계산하여, 요청된 투자자의 상세 정보와 함께 반환
+  - **응답 데이터 구성**: 요청된 투자자의 상세 정보, 해당 투자자의 순위, 그리고 전체 투자자 수를 JSON 형식으로 반환
 
 <br>
 
@@ -153,11 +162,18 @@
 
 - 나의 기업 비교 페이지 구현
 - 기업 비교 API를 호출하여 나의 기업과 선택한 기업의 비교 결과를 화면에 렌더링
+  * **비교 결과 확인하기 섹션**: 나의 기업과 선택한 기업 간의 비교 결과를 화면에 렌더링
+  * **기업 순위 확인하기 섹션**: 나의 기업과 전체 기업에서 나의 기업을 제외한 후, 나의 기업과 근접한 위 2개, 아래 2개 기업을 조회하여 순위와 함께 렌더링 <br> (나의 기업이 상위 또는 하위에 있을 경우, 나의 기업 포함 5개 기업 조회)
+    - 나의 기업의 순위를 계산하고, 근접한 상위 및 하위 기업들과 함께 순위를 반환하는 기능을 구현하여, 이를 바탕으로 나의 기업비교 페이지에서 순위와 비교 결과를 화면에 렌더링
 
 🛠️ 백엔드
 
-- 기업 리스트 조회 API (GET /api/companies)
-  - 페이지네이션, 검색, 정렬 기능 포함
+- 기업 리스트 조회 API (GET /api/companies) 구현
+  - **페이지네이션 기능**: 클라이언트 요청에 따라 `page`와 `limit` 값을 활용해 결과를 페이지 단위로 분할하여 반환
+  - **검색 기능**: 기업명 또는 카테고리에 대한 부분 일치 검색을 가능하게 하며, 대소문자 구분 없이 검색 실행
+  - **정렬 기능**: `sort_by`와 `order` 매개변수를 사용해 원하는 필드와 정렬 순서(오름차순/내림차순)로 결과를 정렬하여 반환
+  - **필터링 및 카운팅**: 검색 조건에 따른 기업 목록을 필터링하고, 해당 조건에 맞는 총 기업 수를 함께 반환하여 클라이언트가 전체 결과를 쉽게 파악할 수 있도록 구현
+  - **에러 처리**: API 호출 중 발생할 수 있는 서버 측 오류를 처리하고, 사용자에게 적절한 오류 메시지를 반환하도록 구현
 
 <br>
 
@@ -177,8 +193,12 @@
 🛠️ 백엔드
 
 - 데이터베이스 모델링
-- 기업 상세 조회 API (GET /api/companies/<company_id>)
-  - 기업 정보와 가상 투자 정보 포함
+- 기업 상세 조회 API (GET /api/companies/:companyId) 구현
+  - **기업 상세 정보 조회**: `companyId`를 사용하여 특정 기업의 상세 정보를 조회
+  - **투자 정보 포함**: 조회된 기업의 상세 정보에 해당 기업의 투자 관련 정보(`investments`)를 포함하여 반환
+  - **존재 여부 확인**: 해당 `companyId`로 기업이 존재하지 않을 경우, 404 상태 코드와 함께 "찾으시는 기업이 존재하지 않습니다." 메시지를 반환
+  - **기업 정보 반환**: 기업의 ID, 이름, 로고 URL, 설명, 카테고리, 총 투자금액, 가상 투자금액, 수익, 직원 수, 그리고 투자 내역을 포함한 JSON 응답을 반환
+  - **에러 처리**: API 호출 중 발생할 수 있는 서버 측 오류를 처리하고, 사용자에게 적절한 오류 메시지를 반환하도록 구현
 
 <br>
 
@@ -197,10 +217,20 @@
 
 🛠️ 백엔드
 
-- 가상 투자 수정 API (PUT /api/investments/<investment_id>)
-  - 비밀번호 확인 후 투자 정보 수정 기능 구현
-- 가상 투자 삭제 API (DELETE /api/investments/<investment_id>)
-  - 비밀번호 확인 후 투자 정보 삭제 기능 구현
+- 가상 투자 수정 API (PUT /api/investments/:investmentId)
+  - `investmentId`를 통해 특정 가상 투자 항목을 수정하는 기능 구현
+  - **필수 필드 검증**: `investorName`, `investmentAmount`, `investmentComment`, `password` 등의 필드가 올바르게 제공되었는지 확인
+  - **투자 정보 존재 여부 확인**: `investmentId`를 기반으로 해당 투자 항목이 존재하는지 확인하고, 존재하지 않을 경우 404 오류 반환
+  - **비밀번호 확인**: 제공된 비밀번호와 기존 투자 항목의 비밀번호를 비교하여 일치하지 않을 경우 400 오류 반환
+  - **투자 정보 업데이트**: 검증이 완료되면 투자자 이름, 투자 금액, 투자 코멘트를 업데이트
+  - **VirtualInvestment 업데이트**: 투자 정보 수정 후, 해당 기업의 `virtualInvestment` 값을 업데이트하는 로직 구현
+
+- **가상 투자 삭제 API (DELETE /api/investments/:investmentId)**
+  - `investmentId`를 통해 특정 가상 투자 항목을 삭제하는 기능 구현
+  - **투자 정보 존재 여부 확인**: `investmentId`를 기반으로 해당 투자 항목이 존재하는지 확인하고, 존재하지 않을 경우 404 오류 반환
+  - **비밀번호 확인**: 제공된 비밀번호와 기존 투자 항목의 비밀번호를 비교하여 일치하지 않을 경우 400 오류 반환
+  - **투자 정보 삭제**: 비밀번호 확인이 완료되면 해당 투자 항목을 데이터베이스에서 삭제
+  - **VirtualInvestment 업데이트**: 투자 항목 삭제 후, 해당 기업의 `virtualInvestment` 값을 업데이트하는 로직 구현
 
 <br>
 <br>
@@ -279,6 +309,7 @@
  ┗ 📂src
  ┃ ┣ 📂API
  ┃ ┃ ┗ 📜api.js
+ ┃ ┃ ┗ 📜CompanyInvestDetailAPI.js
  ┃ ┣ 📂assets
  ┃ ┃ ┣ 📂images
  ┃ ┃ ┃ ┣ 📂mock_img
@@ -360,6 +391,8 @@
  ┃ ┃ ┣ 📜MessagePopUpTwoBtn.module.css
  ┃ ┃ ┣ 📜ModalInvestment.js
  ┃ ┃ ┣ 📜ModalInvestment.module.css
+ ┃ ┃ ┣ 📜ModalInvestmentUpdate.js
+ ┃ ┃ ┣ 📜ModalInvestmentUpdate.module.css
  ┃ ┃ ┣ 📜ModalPassword.js
  ┃ ┃ ┣ 📜ModalPassword.module.css
  ┃ ┃ ┣ 📜ModalSelectComparision.js
@@ -371,7 +404,11 @@
  ┃ ┃ ┣ 📜companyInfoList.js
  ┃ ┃ ┣ 📜companyItem.js
  ┃ ┃ ┗ 📜companyItem.module.css
- ┃ ┣ 📂hook
+ ┃ ┣ 📂context
+ ┃ ┃ ┗ 📜CompanyDataContext.js
+ ┃ ┃ ┗ 📜DropdownContext.js
+ ┃ ┃ ┗ 📜ModalContext.js
+ ┃ ┃ 📂hook
  ┃ ┃ ┗ 📜usePageHandler.js
  ┃ ┣ 📂pages
  ┃ ┃ ┣ 📜CompanyInvestDetail.js

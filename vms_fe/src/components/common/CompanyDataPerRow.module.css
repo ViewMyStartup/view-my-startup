@@ -1,4 +1,4 @@
-.dataPerRowContainer > a {
+.dataPerRowContainer>a {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,9 +8,16 @@
   height: 99%;
   background-color: #212121;
   border-radius: 4px;
+  transition: all 0.3s ease;
+
   &:hover {
     background-color: #4b4b4b;
+    transform: scale(1.007);
   }
+}
+
+.myCompanyPerRow > a {
+  background-color: #2e2e2e !important;
 }
 
 .dataPerRowContainer {
@@ -20,8 +27,9 @@
   min-width: 697px;
   max-width: 1200px;
   height: 64px;
-  background-color: #212121;
+  background-color: #212121 !important;
   border-radius: 4px;
+  transition: all 0.3s ease;
 }
 
 /* 가장 마지막 child가 아니면 bottom border 출력 */
@@ -33,9 +41,9 @@
   background-color: #4b4b4b;
 }
 
-.diffSizeContainer > span,
-.sameSizeContainer > span,
-.companyInfoContainer > span {
+.diffSizeContainer>span,
+.sameSizeContainer>span,
+.companyInfoContainer>span {
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 16.71px;
@@ -80,13 +88,13 @@
   padding: 0 24px;
 }
 
-.companyInfoContainer > span {
+.companyInfoContainer>span {
   font-size: 0.875rem;
   font-weight: 500;
   color: #ffffff;
 }
 
-.companyInfoContainer > img {
+.companyInfoContainer>img {
   aspect-ratio: 1;
   width: 32px;
   height: 32px;
@@ -101,7 +109,7 @@
   width: 100%;
 }
 
-.sameSizeContainer > span {
+.sameSizeContainer>span {
   width: 100%;
 }
 
@@ -212,13 +220,14 @@
 }
 
 @media (max-width: 744px) {
-  .companyInfoContainer > span {
+  .companyInfoContainer>span {
     font-size: 0.8125rem;
   }
 
-  .diffSizeContainer > span,
-  .sameSizeContainer > span,
-  .companyInfoContainer > span {
+  .diffSizeContainer>span,
+  .sameSizeContainer>span,
+  .companyInfoContainer>span {
     font-size: 0.8125rem;
   }
 }
+
