@@ -40,7 +40,13 @@ p {
 }
 
 @media (max-width: 744px) {
-  .investCompanyList .currentStateInvest {
-    padding: 24px 16px;
+  /* 투자 현황, 드롭다운 메뉴 */
+  .investStateNav {
+    padding-top: 0;
+  }
+
+  /* 페이지네이션 */
+  .pagination {
+    margin-top: 16px;
   }
 }
