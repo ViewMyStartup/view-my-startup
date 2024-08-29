@@ -44,7 +44,7 @@
 /* 모바일 버전 (화면 크기 744px 이하) */
 @media (max-width: 744px) {
   .dropdownMenu {
-    max-width: 217px;
+    width: 127;
   }
 
   .menuItem {
