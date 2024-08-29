@@ -328,22 +328,41 @@
 
 ### **🎨 프론트엔드**
 
-- public/favicon/ : 파비콘
-- src/assets/ : 전역에서 사용
-- src/components/ : 공통 컴포넌트
-- src/pages/ : 서비스에 사용되는 각 페이지
-- src/context/ : Context API
-- src/routes/ : 페이지 라우팅
+- public/ : 애플리케이션의 정적 자원 파일을 포함
+
+  - images/ : 애플리케이션에서 사용하는 이미지 파일을 포함
+  - favicon/favicon.png : 웹사이트의 파비콘 이미지 파일
+  - index.html: 애플리케이션의 기본 HTML 파일
+
+- src/ : 애플리케이션의 주요 소스 코드와 관련 자원을 포함
+  - API/api.js : 기업 데이터 조회 등 다양한 API 호출 함수들이 포함된 파일
+  - API/CompanyInvestDetailAPI.js : 기업 데이터와 관련된 정보를 페이징 및 정렬 옵션에 따라 가져오는 함수가 포함된 파일
+  - API/DefaultPageAPI.js : 기본 페이지와 관련된 데이터를 처리하는 API 호출 함수들이 포함된 파일
+- src/assets/images: 애플리케이션에서 사용하는 이미지 파일들이 포함된 폴더
+- src/components/ : 여러 페이지에서 공통으로 사용되는 컴포넌트들이 포함된 폴더
+- src/context: 애플리케이션에서 전역 상태를 관리하는 데 사용되는 Context API를 포함하는 폴더
+- src/hook : 사용자 정의 훅을 정의하여 컴포넌트에서 재사용 가능한 상태 및 로직을 제공하는 파일들
+- src/pages/ : 각 서비스 페이지를 정의하는 컴포넌트들을 포함하며, 페이지 라우팅 및 페이지별 데이터 제공을 담당
+- src/styles/ : 공통 색상, 폰트, 전역 스타일 등을 정의하여 애플리케이션에 일관된 스타일 제공
+- src/utils/ : 다양한 유틸리티 함수와 도구를 제공하여 코드의 재사용성을 높이고 공통된 기능을 중앙에서 관리
+
+- App.css: 애플리케이션의 전반적인 스타일을 정의하는 CSS 파일
+- App.js: 애플리케이션의 루트 컴포넌트를 정의하는 React 컴포넌트 파일
+- index.css: 전역 스타일을 정의하는 CSS 파일
+- index.js: 애플리케이션의 진입점이며, ReactDOM을 사용해 루트 컴포넌트를 렌더링하는 파일
+- test.js: 테스트 코드 포함 파일
 
 ```
 📦vms_fe
  ┣ 📂public
+ ┃ ┣ 📂images
  ┃ ┣ 📜favicon.png
  ┃ ┗ 📜index.html
  ┗ 📂src
  ┃ ┣ 📂API
  ┃ ┃ ┗ 📜api.js
- ┃ ┃ ┗ 📜CompanyInvestDetailAPI.js
+ ┃ ┃ ┣ 📜CompanyInvestDetailAPI.js
+ ┃ ┃ ┗ 📜DefaultPageAPI.js
  ┃ ┣ 📂assets
  ┃ ┃ ┣ 📂images
  ┃ ┃ ┃ ┣ 📂mock_img
@@ -369,9 +388,6 @@
  ┃ ┃ ┃ ┣ 📜ic_toggle.svg
  ┃ ┃ ┃ ┣ 📜logo_desktop_tablet.svg
  ┃ ┃ ┃ ┗ 📜logo_mobile.svg
- ┃ ┃ ┣ 📂mock
- ┃ ┃ ┃ ┣ 📜mockData.js
- ┃ ┃ ┃ ┗ 📜userData.js
  ┃ ┃ ┗ 📜temp.js
  ┃ ┣ 📂components
  ┃ ┃ ┣ 📂common
@@ -443,6 +459,7 @@
  ┃ ┃ ┗ 📜DropdownContext.js
  ┃ ┃ ┗ 📜ModalContext.js
  ┃ ┃ 📂hook
+ ┃ ┃ ┣ 📜useGetCompanyData.js
  ┃ ┃ ┗ 📜usePageHandler.js
  ┃ ┣ 📂pages
  ┃ ┃ ┣ 📜CompanyInvestDetail.js
@@ -459,7 +476,8 @@
  ┃ ┃ ┗ 📜reset.css
  ┃ ┣ 📂utils
  ┃ ┃ ┣ 📜convertTo100mil.js
- ┃ ┃ ┗ 📜similarity.js
+ ┃ ┃ ┣ 📜similarity.js
+ ┃ ┃ ┗ 📜sorting.js
  ┃ ┣ 📜App.css
  ┃ ┣ 📜App.js
  ┃ ┣ 📜index.css
