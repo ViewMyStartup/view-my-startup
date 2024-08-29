@@ -2,7 +2,9 @@
 	<span id="top">
 	<h1>View My Startup</h1><br>
 
-<h3>스타트업 정보 확인 및 모의 투자 서비스</h3><br>
+![9F90073A-3F89-4AF6-8A8B-52388088CDFC](https://github.com/user-attachments/assets/f0a17654-554e-4f4c-bc4f-c6a2d111df73)
+
+
 
 <b>[View My Startup 바로가기](https://team4-vms.netlify.app/)</b> <br>
 
@@ -78,29 +80,28 @@
 
 <br><br>
 
-## <span id="schedule">📅 4. 개발 일정</span>
+## <span id="schedule">📅 4. 개발 일정 [**2024-08-13 ~ 2024-09-02**]</span> 
+### 1. 기획 완료
 
-### 1. 기획 완료 :
+- [x] 요구사항 분석 및 수집
+- [x] 기술 스택 검토 및 선정
+- [x] GitBranch 전략 수립
+- [x] PR 규칙 등 팀 컨벤션 확립 [**2024-08-13 ~ 2024-08-13**]
 
-- [x] 요구사항 수집
-- [x] 기술 스택 검토
-- [x] GitBranch 전략 검토
-- [x] PR Rules등 팀 컨벤션 수립 [**2024-08-12 ~ 2024-08-13**]
+### 2. 프론트엔드 개발
 
-### 2. 프론트엔드
+- [x] 각 단위별 담당자 지정 [**2024-08-13**]
+- [x] 최소 단위 컴포넌트 개발 (Component 1) [**2024-08-14 ~ 2024-08-16**]
+- [x] 중간 단위 컴포넌트 개발 (Component 2) [**2024-08-17 ~ 2024-08-19**]
+- [x] 페이지 단위 컴포넌트 개발 [**2024-08-20 ~ 2024-08-22**]
 
-- [x] 각 단위별 담당인원 할당 [**2024-08-13**]
-- [x] 최소단위 컴포넌트 (Component 1) [**2024-08-14 ~ 2024-08-16**]
-- [x] 중간단위 컴포넌트 (Component 2) [**2024-08-17 ~ 2024-08-19**]
-- [x] 페이지 단위 컴포넌트 [**2024-08-20 ~ 2024-08-22**]
-
-### 3. 프론트 마무리, 중간 점검 및 중간 발표
+### 3. 프론트엔드 개발 마무리, 중간 점검 및 중간 발표
 
 - [x] 중간발표 [**2024-08-22**]
-- [x] 백엔드 API 구성, 담당인원 할당 및 DB구축 [**2024-08-22**]
+- [x] 백엔드 API 구성, 담당자 지정 및 DB 구축 [**2024-08-22**]
 - [x] 중간 회의
 
-### 4. 백엔드 및 프론트엔드-백엔드 통합과정
+### 4. 백엔드 개발 및 프론트엔드 통합 과정
 
 - [x] 백엔드 API 구현 [**2024-08-23**]
 - [x] 백엔드 - 프론트엔드 통합 및 디테일 수정, 프로젝트 마무리 단계 [**2024-08-25** ~ **2024-08-29**]
@@ -109,13 +110,10 @@
 ### 5. 릴리스
 
 - [ ] 최종 검토
-- [ ] 최종 제출 [**2024-09-02**]
+- [ ] **최종 발표** [**2024-09-02**]
 
-<div align="center">
-	
-</div>
-
-<br><br>
+#### <p align="right"><a href="#top">TOP👆🏻</a></p>
+<br>
 
 ## <span id="roles">📝 5. 역할 분담</span>
 
@@ -144,6 +142,25 @@
   - **순위 포함 옵션 처리**: `includeRank` 옵션이 활성화된 경우, 정렬된 기업 목록에 각 기업의 순위를 포함하여 반환
   - **에러 처리**: 유효하지 않은 입력이나 서버 오류 발생 시 적절한 오류 메시지를 반환하도록 처리
 
+<br>
+
+✨ **기업 전체 리스트 페이지**
+<table>
+  <tr>
+    <th style="width: 650px; height: 100px;">데스크탑 & 태블릿 버전</th>
+    <th style="width: 350px; height: 100px;">모바일 버전</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/ca3eefc4-774c-4f29-815a-39727a8983dd" alt="데스크탑 & 태블릿 버전 이미지"></td>
+    <td><img src="https://github.com/user-attachments/assets/0631ca53-47a6-427b-ad21-8e12a50020d3" alt="모바일 버전 이미지"></td>
+  </tr>
+</table>
+
+- View My Startup에 등록된 모든 스타트업 목록 조회가 가능합니다 <br>
+- 기업명, 기업 소개, 카테고리, 누적 투자 금액, 매출액, 고용 인원이 조회됩니다 <br>
+- 페이지네이션, 기업명 검색 기능, 누적 투자 금액, 매출액, 고용 인원 별 오름차순/내림차순 정렬을 제공합니다 <br>
+
+#### <p align="right"><a href="#top">TOP👆🏻</a></p>
 <br>
 
 ### 김현우
@@ -179,6 +196,67 @@
 
 <br>
 
+✨ **기업 상세 페이지**
+<table>
+  <tr>
+    <th style="width: 650px; height: 100px;">데스크탑 & 태블릿 버전</th>
+    <th style="width: 350px; height: 100px;">모바일 버전</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/fcc9ebb3-32e3-4700-98c7-c08f789733dc" alt="데스크탑 & 태블릿 버전 이미지"></td>
+    <td><img src="https://github.com/user-attachments/assets/c9ab7d41-73da-42fd-b1c2-4a485b54bdcb" alt="모바일 버전 이미지"></td>
+  </tr>
+</table>
+
+- 전체 스타트업 목록 페이지에서 각 기업을 클릭할 경우, 스타트업 정보 상세 조회가 가능합니다
+- 기업명, 카테고리, 누적 투자 금액, 매출액, 고용 인원, 기업 소개, View My Startup에서 받은 투자(=가상투자) 정보 조회가 가능합니다
+- View My Startup에서 받은 투자(=가상투자) 정보는 투자 이름, 투자 금액, 투자 코멘트가 조회됩니다
+
+<br>
+
+✅ **특정 기업에 가상 투자하기 기능**
+<table>
+  <tr>
+    <th style="width: 650px; height: 100px;">데스크탑 & 태블릿 버전</th>
+    <th style="width: 350px; height: 100px;">모바일 버전</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/9225cb43-3119-4217-be6f-bab71a01fc16" alt="데스크탑 & 태블릿 버전 이미지"></td>
+    <td><img src="https://github.com/user-attachments/assets/a4449d73-8f4c-45af-9728-6b365212649e" alt="모바일 버전 이미지"></td>
+  </tr>
+</table>
+
+<br>
+
+✅ **투자 정보 수정하기 기능**
+<table>
+  <tr>
+    <th style="width: 650px; height: 100px;">데스크탑 & 태블릿 버전</th>
+    <th style="width: 350px; height: 100px;">모바일 버전</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/df75104a-7c06-444d-921a-5f33d2316adc" alt="데스크탑 & 태블릿 버전 이미지"></td>
+    <td><img src="https://github.com/user-attachments/assets/1e446e19-4e77-443f-815f-affc02639ac3" alt="모바일 버전 이미지"></td>
+  </tr>
+</table>
+
+<br>
+
+✅ **투자 정보 삭제하기 기능**
+<table>
+  <tr>
+    <th style="width: 650px; height: 100px;">데스크탑 & 태블릿 버전</th>
+    <th style="width: 350px; height: 100px;">모바일 버전</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/4a95ba03-9b46-4d59-9966-6f754d886c12" alt="데스크탑 & 태블릿 버전 이미지"></td>
+    <td><img src="https://github.com/user-attachments/assets/2b16e5ba-96ac-4c19-b112-08ff11831699" alt="모바일 버전 이미지"></td>
+  </tr>
+</table>
+
+#### <p align="right"><a href="#top">TOP👆🏻</a></p>
+<br>
+
 ### 김민서
 
 🎶 공통 컴포넌트
@@ -211,6 +289,92 @@
 
 <br>
 
+✨ **나의 기업 비교 페이지**
+<table>
+  <tr>
+    <th style="width: 650px; height: 100px;">데스크탑 & 태블릿 버전</th>
+    <th style="width: 350px; height: 100px;">모바일 버전</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/049f2563-d5c6-4e3e-963f-a813b6338d0d" alt="데스크탑 & 태블릿 버전 이미지"></td>
+    <td><img src="https://github.com/user-attachments/assets/6f3b2013-9342-4a1e-85a8-7014b4e0f5f8" alt="모바일 버전 이미지"></td>
+  </tr>
+</table>
+
+- **비교할 기업 선택**
+  - 나의 기업 및 비교 대상 기업(최대 5개)를 선택합니다
+  - 나의 기업 선택 시, 페이지네이션, 기업명 검색 기능, 최근 선택된 기업 조회(최대 5개)를 제공합니다. 또한 선택 횟수가 누적됩니다
+  - 비교 대상 기업 선택 시, 최대 5개까지 가능하며, 페이지네이션, 기업명 검색 기능, 선택한 기업 목록을 제공을 제공하고, 선택 횟수가 누적됩니다. 선택 완료 버튼을 클릭해야 선택이 완료되며 1개 이상 5개 이하일 경우에만 활성화됩니다
+  - 선택 취소 및 전체 선택 초기화 기능을 제공합니다
+- **기업 비교 결과 확인 (나의 기업 vs 비교 대상 선택 기업)**
+  - 내 기업과 비교 대상 기업들 비교 결과 조회 가능합니다. 기업명, 기업 소개, 카테고리, 누적 투자 금액, 매출액, 고용 인원이 조회됩니다
+  - 누적 투자 금액, 매출액, 고용 인원 별 오름차순/내림차순 정렬을 제공합니다
+- **나의 기업 순위 확인 (나의 기업 vs 전체 기업)** 
+  - 나의 기업으로 선택한 기업의 매출액, 고용 인원 별 오름차순/내림차순 기준 순위 조회가 가능합니다. 기업명, 기업 소개, 카테고리, 누적 투자 금액, 매출액, 고용 인원이 조회됩니다
+  - 나의 기업의 순위와 근접한 위 2개, 아래 2개 기업의 기업명, 기업 소개, 카테고리, 누적 투자 금액, 매출액, 고용 인원이 조회됩니다
+  - 다만 나의 기업의 순위가 중간 순위가 아닐(ex. 2위) 경우 나의 기업 포함해서 5개의 기업이 조회됩니다
+- **나의 기업에 가상 투자 하기**
+    - 비교 결과 조회 페이지에서 나의 기업에 가상 투자하기 버튼을 나의 기업 상세페이지로 이동을 하여 나의 기업에 가상 투자가 가능합니다
+
+<br>
+
+✅ **나의 기업 선택하기 기능**
+<table>
+  <tr>
+    <th style="width: 650px; height: 100px;">데스크탑 & 태블릿 버전</th>
+    <th style="width: 350px; height: 100px;">모바일 버전</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/23567501-c270-44d2-8e8b-9843efd2afbf" alt="데스크탑 & 태블릿 버전 이미지"></td>
+    <td><img src="https://github.com/user-attachments/assets/1483e44d-3e49-4ea4-84e4-7892246ab71f" alt="모바일 버전 이미지"></td>
+  </tr>
+</table>
+
+<br>
+
+✅ **비교 대상 기업 선택하기 기능**
+<table>
+  <tr>
+    <th style="width: 650px; height: 100px;">데스크탑 & 태블릿 버전</th>
+    <th style="width: 350px; height: 100px;">모바일 버전</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/27144652-90c6-4b55-9b00-dcbe08b48115" alt="데스크탑 & 태블릿 버전 이미지"></td>
+    <td><img src="https://github.com/user-attachments/assets/ea3e7d65-2872-4298-bc9f-d3e345db1eb5" alt="모바일 버전 이미지"></td>
+  </tr>
+</table>
+
+<br>
+
+✅ **나의 기업과 비교 대상 기업 목록**
+<table>
+  <tr>
+    <th style="width: 650px; height: 100px;">데스크탑 & 태블릿 버전</th>
+    <th style="width: 350px; height: 100px;">모바일 버전</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/3ede97c5-fb63-4c71-baa5-6829f0629902" alt="데스크탑 & 태블릿 버전 이미지"></td>
+    <td><img src="https://github.com/user-attachments/assets/d1b4d82e-63b5-44a3-b207-587ff2d7f015" alt="모바일 버전 이미지"></td>
+  </tr>
+</table>
+
+<br>
+
+✅ **기업 비교 결과 확인 (나의 기업 vs 비교 대상 선택 기업), 나의 기업 순위 확인 (나의 기업 vs 전체 기업) 불러오기 기능 - 나의 기업은 자동 하이라이트 표시**
+<table>
+  <tr>
+    <th style="width: 650px; height: 100px;">데스크탑 & 태블릿 버전</th>
+    <th style="width: 350px; height: 100px;">모바일 버전</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/cc6a42b6-0b8c-40e9-b108-5b7bc923a454" alt="데스크탑 & 태블릿 버전 이미지"></td>
+    <td><img src="https://github.com/user-attachments/assets/2818b0b8-8a23-466b-84b3-15e2843b5259" alt="모바일 버전 이미지"></td>
+  </tr>
+</table>
+
+#### <p align="right"><a href="#top">TOP👆🏻</a></p>
+<br>
+
 ### 김소희
 
 🎶 공통 컴포넌트
@@ -234,6 +398,24 @@
   - **기업 정보 반환**: 기업의 ID, 이름, 로고 URL, 설명, 카테고리, 총 투자금액, 가상 투자금액, 수익, 직원 수, 그리고 투자 내역을 포함한 JSON 응답을 반환
   - **에러 처리**: API 호출 중 발생할 수 있는 서버 측 오류를 처리하고, 사용자에게 적절한 오류 메시지를 반환하도록 구현
 
+<br>
+
+✨ **투자 현황 페이지**
+<table>
+  <tr>
+    <th style="width: 650px; height: 100px;">데스크탑 & 태블릿 버전</th>
+    <th style="width: 350px; height: 100px;">모바일 버전</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/eb186e1a-f82e-4332-9e2d-b9ae6aa63fac" alt="데스크탑 & 태블릿 버전 이미지"></td>
+    <td><img src="https://github.com/user-attachments/assets/143872ea-0958-468c-90e9-b7d3a8f5ec1f" alt="모바일 버전 이미지"></td>
+  </tr>
+</table>
+
+- 투자 현황 페이지에서 가상 투자 및 실제 투자 금액 조회가 가능합니다. 순위, 기업명, 기업 소개, 카테고리,View My Startup에서 받은 투자 금액, 실제 누적 투자 금액이 조회됩니다
+- 페이지네이션, View My Startup에서 받은 투자 금액, 실제 누적 투자 금액 별 오름차순/내림차순 정렬을 제공합니다
+
+#### <p align="right"><a href="#top">TOP👆🏻</a></p>
 <br>
 
 ### 정준호
@@ -268,6 +450,23 @@
   - **VirtualInvestment 업데이트**: 투자 항목 삭제 후, 해당 기업의 `virtualInvestment` 값을 업데이트하는 로직 구현
 
 <br>
+
+✨ **비교 현황 페이지**
+<table>
+  <tr>
+    <th style="width: 650px; height: 100px;">데스크탑 & 태블릿 버전</th>
+    <th style="width: 350px; height: 100px;">모바일 버전</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/92c7f735-f580-4b83-b81c-dd108b899169" alt="데스크탑 & 태블릿 버전 이미지"></td>
+    <td><img src="https://github.com/user-attachments/assets/211bd24c-65d3-4e75-a4a9-c4d1cb5e6731" alt="모바일 버전 이미지"></td>
+  </tr>
+</table>
+
+- 각 기업이 선택된 횟수 현황을 조회할 수 있습니다. 기업명, 기업 소개, 카테고리, 나의 기업 선택 횟수, 비교 기업 선택 횟수가 조회됩니다
+- 페이지네이션 기능, 각 기업별 나의 기업 선택 횟수, 비교 기업 선택 횟수 별 오름차순/내림차순 정렬을 제공합니다
+
+#### <p align="right"><a href="#top">TOP👆🏻</a></p>
 <br>
 
 ## <span id="feature">✨ 6. 구현 기능</span>
@@ -290,7 +489,7 @@
 | 투자 정보 수정 API   | /api/investments/:id       | PUT        | 특정 투자 정보를 수정하는 API                                       | `id` (정수, 필수, URL 매개변수)                                                                                                                                                    | 수정된 투자 정보: id, companyId, investorName, investmentAmount, investmentComment, password                                                                  | `{"error": "해당 투자 정보가 존재하지 않습니다."}`                                                                                                                                                                                                                                                                       |
 | 투자 정보 삭제 API   | /api/investments/:id       | DELETE     | 특정 투자 정보를 삭제하는 API                                       | `id` (정수, 필수, URL 매개변수)                                                                                                                                                    | (응답 본문 없음)                                                                                                                                              | `{"error": "해당 투자 정보가 존재하지 않습니다."}`                                                                                                                                                                                                                                                                       |
 
-<br>
+#### <p align="right"><a href="#top">TOP👆🏻</a></p>
 <br>
 
 ## <span id="convention">🖌️ 7. 컨벤션</span>
@@ -324,7 +523,9 @@
 - **이미지 파일**
   - Snake 표기법 사용 - `(형태)(의미)(순서)_(상태)` / 예: `btn_login_001_off.png`
 - **ClassName** - Kebab 표기법 사용
-  <br>
+  
+#### <p align="right"><a href="#top">TOP👆🏻</a></p>
+<br>
 
 ## <span id="tree">🌱 8. 프로젝트 구조</span>
 
@@ -493,6 +694,9 @@
  ┃ ┗ 📜test.js
 ```
 
+#### <p align="right"><a href="#top">TOP👆🏻</a></p>
+<br>
+
 ### **🛠️ 백엔드**
 
 - prisma/ : Prisma 설정 파일과 데이터베이스 스키마를 포함
@@ -556,13 +760,15 @@
  ┗ 📜server.js
 ```
 
-<br><br>
+#### <p align="right"><a href="#top">TOP👆🏻</a></p>
+<br>
 
-## <span id="culture">💪 9. 협업 문화</span>
+## <span id="culture">💪🏻 9. 협업 문화</span>
 
 - 일시: 월, 수, 금 오후 5시 ~ 7시 고정 + 평일 추가 상황 발생 시, 문제 상황이 있을 때마다 실시간으로 바로 피드백
 - 내용: PR 내용 발표 및 코드 리뷰, 진행 상황 점검, 추가 이후 계획 논의
 
+#### <p align="right"><a href="#top">TOP👆🏻</a></p>
 <br>
 
 ## <span id="issues">핵심 코드</span>
