@@ -8,7 +8,7 @@ import companyRoutes from "./src/routes/companyRoutes.js";
 import investmentRoutes from "./src/routes/investmentRoutes.js";
 import errorHandlers from "./src/middlewares/errorHandler.js";
 
-//트리거
+//유틸 
 import { initializeVirtualInvestment } from "./utils/initializeVirtualInvestment.js";
 
 // 환경 변수 설정

@@ -28,19 +28,20 @@ function DropdownMidleSize({
     handleOptionChange(option);
   };
 
-  //드랍다운 밖을 선택하면 실행할 핸들러 함수
-  const handleClickOutside = (event) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-      setIsOpen(false);
-    }
-  };
-
+  // 이벤트 리스너 등록
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  //드랍다운 밖을 선택하면 실행할 핸들러 함수
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setIsOpen(false);
+    }
+  };
 
   return (
     <div className={styles.dropdown} ref={dropdownRef}>
