@@ -128,6 +128,7 @@ function CompanyInvestDetail() {
             currentPage={currentPage}
             totalPages={totalPages}
             onPageChange={handlePageChange}
+            hasNext={currentPage < totalPages}
           />
         </div>
       </div>
