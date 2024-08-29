@@ -35,7 +35,7 @@ function CompanyInvestDetail() {
     return (
       <div className={styles.pageContainer}>
         <PageNav />
-        <div className={styles.contentsContainer}>
+        <div className={styles.contentsContainer} data-modal-container>
           {/* 회사 정보 렌더링 */}
           <div className={styles.titleSection}>
             <div className={styles.titleHug}>

@@ -105,7 +105,7 @@ const ModalPassword = ({ isOpen, onClose, investmentId }) => {
         </form>
       </div>
     </div>,
-    document.querySelector(".CompanyInvestDetail_contentsContainer__FiEL7") // 모달을 렌더링할 DOM 노드
+    document.querySelector("[data-modal-container]")
   );
 };
 
