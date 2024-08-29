@@ -6,17 +6,23 @@ import SearchBar from "components/common/SearchBar.js";
 import Dropdown from "components/common/Dropdown.js";
 import DataRowSetRender from "components/DataRowSetRender.js";
 import Pagination from "components/common/Pagination.js";
-import usePageHandler from "hook/usePageHandler.js";
 import fetchData from "API/DefaultPageAPI.js";
 
 function DefaultPage() {
-  const { currentPage, handlePageChange } = usePageHandler();
+  const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
   const [sortOption, setSortOption] = useState("누적 투자금액 높은순");
   const [companies, setCompanies] = useState([]);
   const [totalPages, setTotalPages] = useState(5);
   const [isloading, setIsLoading] = useState(false);
+
   const companiesPerPage = 10;
+
+  const handlePageChange = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
 
   const loadData = async () => {
     setIsLoading(true);
@@ -41,25 +47,25 @@ function DefaultPage() {
   };
 
   const handleSearch = () => {
-    handlePageChange(1); // 검색 시 페이지를 첫 페이지로 리셋
+    setCurrentPage(1);
     loadData();
   };
 
   const handleClearSearch = () => {
     setSearchQuery("");
-    handlePageChange(1);
+    setCurrentPage(1);
     loadData();
   };
 
   const handleSortChange = (option) => {
     setSortOption(option);
-    handlePageChange(1);
+    setCurrentPage(1);
   };
 
   const handleHomeClick = () => {
     setSearchQuery("");
     setSortOption("누적 투자금액 높은순");
-    handlePageChange(1);
+    setCurrentPage(1);
     loadData();
   };
 
