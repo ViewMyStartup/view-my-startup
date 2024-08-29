@@ -107,7 +107,7 @@
   - **유효성 검사**: 기업 ID 배열이 1개 이상 6개 이하인지 확인하고, `checkMyCompanyRanking` 옵션이 활성화된 경우 나의 기업 ID가 제공된 기업 ID 목록에 포함되는지 검증
   - **선택 횟수 업데이트**: `incrementMySelection`과 `incrementCompareSelection` 옵션에 따라 나의 기업 및 다른 기업의 선택 횟수를 증가시키도록 구현
   - **기업 정보 조회 및 정렬**: 주어진 기업 ID 목록에 대한 정보를 조회하고, `sortBy`와 `order` 파라미터에 따라 기업을 정렬하여 반환
-  정렬 기준으로는 `totalInvestment`, `revenue`, `employees`, `mySelectionCount`, `CompareSelectionCount` 등이 포함
+    정렬 기준으로는 `totalInvestment`, `revenue`, `employees`, `mySelectionCount`, `CompareSelectionCount` 등이 포함
   - **순위 포함 옵션 처리**: `includeRank` 옵션이 활성화된 경우, 정렬된 기업 목록에 각 기업의 순위를 포함하여 반환
   - **에러 처리**: 유효하지 않은 입력이나 서버 오류 발생 시 적절한 오류 메시지를 반환하도록 처리
 
@@ -132,6 +132,7 @@
 🛠️ 백엔드
 
 - 가상 투자 생성 API (POST /api/investments)
+
   - 클라이언트로부터 `companyId`, `investorName`, `investmentAmount`, `investmentComment`, `password` 등의 데이터를 받아 가상 투자를 생성하는 기능 구현
   - **필수 필드 검증**: 필수 필드(`companyId`, `investorName`, `investmentAmount`, `investmentComment`, `password`)가 누락되지 않았는지 검증
   - **회사 존재 여부 확인**: `companyId`를 기반으로 해당 회사가 존재하는지 확인하고, 존재하지 않을 경우 404 오류 반환
@@ -162,8 +163,8 @@
 
 - 나의 기업 비교 페이지 구현
 - 기업 비교 API를 호출하여 나의 기업과 선택한 기업의 비교 결과를 화면에 렌더링
-  * **비교 결과 확인하기 섹션**: 나의 기업과 선택한 기업 간의 비교 결과를 화면에 렌더링
-  * **기업 순위 확인하기 섹션**: 나의 기업과 전체 기업에서 나의 기업을 제외한 후, 나의 기업과 근접한 위 2개, 아래 2개 기업을 조회하여 순위와 함께 렌더링 <br> (나의 기업이 상위 또는 하위에 있을 경우, 나의 기업 포함 5개 기업 조회)
+  - **비교 결과 확인하기 섹션**: 나의 기업과 선택한 기업 간의 비교 결과를 화면에 렌더링
+  - **기업 순위 확인하기 섹션**: 나의 기업과 전체 기업에서 나의 기업을 제외한 후, 나의 기업과 근접한 위 2개, 아래 2개 기업을 조회하여 순위와 함께 렌더링 <br> (나의 기업이 상위 또는 하위에 있을 경우, 나의 기업 포함 5개 기업 조회)
     - 나의 기업의 순위를 계산하고, 근접한 상위 및 하위 기업들과 함께 순위를 반환하는 기능을 구현하여, 이를 바탕으로 나의 기업비교 페이지에서 순위와 비교 결과를 화면에 렌더링
 
 🛠️ 백엔드
@@ -218,6 +219,7 @@
 🛠️ 백엔드
 
 - 가상 투자 수정 API (PUT /api/investments/:investmentId)
+
   - `investmentId`를 통해 특정 가상 투자 항목을 수정하는 기능 구현
   - **필수 필드 검증**: `investorName`, `investmentAmount`, `investmentComment`, `password` 등의 필드가 올바르게 제공되었는지 확인
   - **투자 정보 존재 여부 확인**: `investmentId`를 기반으로 해당 투자 항목이 존재하는지 확인하고, 존재하지 않을 경우 404 오류 반환
@@ -435,11 +437,27 @@
 
 ### **🛠️ 백엔드**
 
-- prisma/ :
-- seeders/ :
-- src/errors/ :
-- src/middlewares/ :
-- src/routes/ : 기업 및 가상 투자 API
+- prisma/ : Prisma 설정 파일과 데이터베이스 스키마를 포함
+  - migrations/ : 데이터베이스 스키마 변경을 위한 마이그레이션 파일이 포함
+  - schema.prisma : 데이터베이스의 데이터 모델을 정의하는 파일
+- seeders/ : 데이터베이스를 초기화하기 위한 스크립트와 이미지를 포함
+  - CompanyData.js, investmentData.js : 초기 데이터가 포함된 JavaScript 파일들
+  - seed.js : 기업, 투자 데이터의 시딩 스크립트
+- src/: 애플리케이션의 주요 코드가 포함
+  - errors/: 커스텀 오류 처리를 정의
+    - CommonException.js: 애플리케이션의 공통 예외를 정의
+    - CustomExceptions.js: 특정 케이스에 대한 커스텀 예외를 정의
+- src/middlewares/ : 요청 처리용 미들웨어 함수가 포함
+  - asyncHandler.js: 비동기 작업을 처리하는 미들웨어
+  - errorHandler.js: 중앙집중식 오류 처리를 위한 미들웨어
+- src/routes/ : 기업 및 투자 API 요청을 처리하는 라우트 정의
+  - companyRoutes.js: 기업 관련 API 엔드포인트 라우트
+  - investmentRoutes.js: 투자 관련 API 엔드포인트 라우트
+- utils/: 유틸리티 함수와 도우미 함수가 포함
+  - initializeVirtualInvestment.js: 가상 투자 초기화 및 업데이트를 수행하는 스크립트
+  - resetIdSequence.js: 데이터베이스의 ID 시퀀스를 리셋하는 스크립트
+- api_test.http: API 테스트를 위한 HTTP 요청이 포함된 파일
+- server.js: 서버 애플리케이션의 진입점
 
 ```
 📦vms_be
@@ -447,24 +465,21 @@
  ┃ ┣ 📂migrations
  ┃ ┃ ┣ 📂20240819094145_init
  ┃ ┃ ┃ ┗ 📜migration.sql
- ┃ ┃ ┗ 📂20240820003106_add
+ ┃ ┃ ┣ 📂20240820003106_add
+ ┃ ┃ ┃ ┗ 📜migration.sql
+ ┃ ┃ ┗ 📂20240826093414_add_new_selection_count
+ ┃ ┃ ┃ ┗ 📜migration.sql
+ ┃ ┃ ┗ 📂20240826101216_add_new_field_vms_investment
+ ┃ ┃ ┃ ┗ 📜migration.sql
+ ┃ ┃ ┗ 📂20240826101732_add_delete_model_selection
+ ┃ ┃ ┃ ┗ 📜migration.sql
+ ┃ ┃ ┗ 📂20240826124937_add_virtual_investment_type_modify
  ┃ ┃ ┃ ┗ 📜migration.sql
  ┃ ┗ 📜schema.prisma
- ┣ 📂public
- ┃ ┗ 📜test.js
  ┣ 📂seeders
- ┃ ┣ 📂images
- ┃ ┃ ┣ 📜company_logo_1.svg
- ┃ ┃ ┣ 📜company_logo_2.svg
- ┃ ┃ ┣ 📜company_logo_3.svg
- ┃ ┃ ┣ 📜company_logo_4.svg
- ┃ ┃ ┗ 📜company_logo_5.svg
  ┃ ┣ 📜CompanyData.js
- ┃ ┣ 📜CompanySelectionData.js
  ┃ ┣ 📜investmentData.js
- ┃ ┣ 📜seedCompany.js
- ┃ ┣ 📜seedCompanySelection.js
- ┃ ┗ 📜seedInvestment.js
+ ┃ ┗ 📜seed.js
  ┣ 📂src
  ┃ ┣ 📂errors
  ┃ ┃ ┣ 📜CommonException.js
@@ -472,14 +487,14 @@
  ┃ ┣ 📂middlewares
  ┃ ┃ ┣ 📜asyncHandler.js
  ┃ ┃ ┗ 📜errorHandler.js
- ┃ ┣ 📂models
- ┃ ┃ ┗ 📜temp.js
  ┃ ┗ 📂routes
  ┃ ┃ ┣ 📜companyRoutes.js
  ┃ ┃ ┗ 📜investmentRoutes.js
  ┣ 📂utils
- ┃ ┗ 📜temp.js
+ ┃ ┣ 📜initializeVirtualInvestment.js
+ ┃ ┗ 📜resetIdSequence.js
  ┣ 📜api_test.http
+ ┣ 📜package.json
  ┗ 📜server.js
 ```
 
