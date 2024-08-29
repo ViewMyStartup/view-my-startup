@@ -7,8 +7,7 @@ import Dropdown from "components/common/Dropdown.js";
 import DataRowSetRender from "components/DataRowSetRender.js";
 import Pagination from "components/common/Pagination.js";
 import usePageHandler from "hook/usePageHandler.js";
-import { getApiData } from "API/api.js";
-import { SortingOptions } from "utils/sorting.js";
+import fetchData from "API/DefaultPageAPI.js";
 
 function DefaultPage() {
   const { currentPage, handlePageChange } = usePageHandler();
@@ -19,34 +18,22 @@ function DefaultPage() {
   const [isloading, setIsLoading] = useState(false);
   const companiesPerPage = 10;
 
-  const fetchData = async () => {
+  const loadData = async () => {
     setIsLoading(true);
-    const { sortBy, order } = SortingOptions(sortOption);
-    try {
-      const data = await getApiData(
-        currentPage,
-        companiesPerPage,
-        searchQuery,
-        sortBy,
-        order
-      );
+    const result = await fetchData(
+      currentPage,
+      companiesPerPage,
+      searchQuery,
+      sortOption
+    );
 
-      const rankToCompanies = data.companies.map((company, index) => ({
-        ...company,
-        rank: (currentPage - 1) * companiesPerPage + index + 1,
-      }));
-
-      setCompanies(rankToCompanies);
-      setTotalPages(Math.ceil(data.total / companiesPerPage));
-    } catch (error) {
-      console.error("fetch error:", error);
-    } finally {
-      setIsLoading(false);
-    }
+    setCompanies(result.companies);
+    setTotalPages(Math.ceil(result.total / companiesPerPage));
+    setIsLoading(false);
   };
 
   useEffect(() => {
-    fetchData();
+    loadData();
   }, [currentPage, sortOption]);
 
   const handleSearchChange = (value) => {
@@ -55,13 +42,13 @@ function DefaultPage() {
 
   const handleSearch = () => {
     handlePageChange(1); // 검색 시 페이지를 첫 페이지로 리셋
-    fetchData();
+    loadData();
   };
 
   const handleClearSearch = () => {
     setSearchQuery("");
     handlePageChange(1);
-    fetchData();
+    loadData();
   };
 
   const handleSortChange = (option) => {
@@ -73,7 +60,7 @@ function DefaultPage() {
     setSearchQuery("");
     setSortOption("누적 투자금액 높은순");
     handlePageChange(1);
-    fetchData();
+    loadData();
   };
 
   return (
