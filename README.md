@@ -78,7 +78,7 @@
 
 ## <span id="schedule">📅 4. 개발 일정</span>
 
-### 1. 기획 완료 : 
+### 1. 기획 완료 :
 
 - [x] 요구사항 수집
 - [x] 기술 스택 검토
@@ -93,6 +93,7 @@
 - [x] 페이지 단위 컴포넌트 [**2024-08-20 ~ 2024-08-22**]
 
 ### 3. 프론트 마무리, 중간 점검 및 중간 발표
+
 - [x] 중간발표 [**2024-08-22**]
 - [x] 백엔드 API 구성, 담당인원 할당 및 DB구축 [**2024-08-22**]
 - [x] 중간 회의
@@ -468,11 +469,27 @@
 
 ### **🛠️ 백엔드**
 
-- prisma/ : 프리즈마 스키마 등
-- seeders/ : 시딩파일
-- src/errors/ : 커스텀 에러 클래스 등
-- src/middlewares/ : 어싱크핸들러 및 에러핸들러
-- src/routes/ : 기업 및 가상 투자 API
+- prisma/ : Prisma 설정 파일과 데이터베이스 스키마를 포함
+  - migrations/ : 데이터베이스 스키마 변경을 위한 마이그레이션 파일이 포함
+  - schema.prisma : 데이터베이스의 데이터 모델을 정의하는 파일
+- seeders/ : 데이터베이스를 초기화하기 위한 스크립트와 이미지를 포함
+  - CompanyData.js, investmentData.js : 초기 데이터가 포함된 JavaScript 파일들
+  - seed.js : 기업, 투자 데이터의 시딩 스크립트
+- src/: 애플리케이션의 주요 코드가 포함
+  - errors/: 커스텀 오류 처리를 정의
+    - CommonException.js: 애플리케이션의 공통 예외를 정의
+    - CustomExceptions.js: 특정 케이스에 대한 커스텀 예외를 정의
+- src/middlewares/ : 요청 처리용 미들웨어 함수가 포함
+  - asyncHandler.js: 비동기 작업을 처리하는 미들웨어
+  - errorHandler.js: 중앙집중식 오류 처리를 위한 미들웨어
+- src/routes/ : 기업 및 투자 API 요청을 처리하는 라우트 정의
+  - companyRoutes.js: 기업 관련 API 엔드포인트 라우트
+  - investmentRoutes.js: 투자 관련 API 엔드포인트 라우트
+- utils/: 유틸리티 함수와 도우미 함수가 포함
+  - initializeVirtualInvestment.js: 가상 투자 초기화 및 업데이트를 수행하는 스크립트
+  - resetIdSequence.js: 데이터베이스의 ID 시퀀스를 리셋하는 스크립트
+- api_test.http: API 테스트를 위한 HTTP 요청이 포함된 파일
+- server.js: 서버 애플리케이션의 진입점
 
 ```
 📦vms_be
@@ -480,24 +497,21 @@
  ┃ ┣ 📂migrations
  ┃ ┃ ┣ 📂20240819094145_init
  ┃ ┃ ┃ ┗ 📜migration.sql
- ┃ ┃ ┗ 📂20240820003106_add
+ ┃ ┃ ┣ 📂20240820003106_add
+ ┃ ┃ ┃ ┗ 📜migration.sql
+ ┃ ┃ ┗ 📂20240826093414_add_new_selection_count
+ ┃ ┃ ┃ ┗ 📜migration.sql
+ ┃ ┃ ┗ 📂20240826101216_add_new_field_vms_investment
+ ┃ ┃ ┃ ┗ 📜migration.sql
+ ┃ ┃ ┗ 📂20240826101732_add_delete_model_selection
+ ┃ ┃ ┃ ┗ 📜migration.sql
+ ┃ ┃ ┗ 📂20240826124937_add_virtual_investment_type_modify
  ┃ ┃ ┃ ┗ 📜migration.sql
  ┃ ┗ 📜schema.prisma
- ┣ 📂public
- ┃ ┗ 📜test.js
  ┣ 📂seeders
- ┃ ┣ 📂images
- ┃ ┃ ┣ 📜company_logo_1.svg
- ┃ ┃ ┣ 📜company_logo_2.svg
- ┃ ┃ ┣ 📜company_logo_3.svg
- ┃ ┃ ┣ 📜company_logo_4.svg
- ┃ ┃ ┗ 📜company_logo_5.svg
  ┃ ┣ 📜CompanyData.js
- ┃ ┣ 📜CompanySelectionData.js
  ┃ ┣ 📜investmentData.js
- ┃ ┣ 📜seedCompany.js
- ┃ ┣ 📜seedCompanySelection.js
- ┃ ┗ 📜seedInvestment.js
+ ┃ ┗ 📜seed.js
  ┣ 📂src
  ┃ ┣ 📂errors
  ┃ ┃ ┣ 📜CommonException.js
@@ -505,14 +519,14 @@
  ┃ ┣ 📂middlewares
  ┃ ┃ ┣ 📜asyncHandler.js
  ┃ ┃ ┗ 📜errorHandler.js
- ┃ ┣ 📂models
- ┃ ┃ ┗ 📜temp.js
  ┃ ┗ 📂routes
  ┃ ┃ ┣ 📜companyRoutes.js
  ┃ ┃ ┗ 📜investmentRoutes.js
  ┣ 📂utils
- ┃ ┗ 📜temp.js
+ ┃ ┣ 📜initializeVirtualInvestment.js
+ ┃ ┗ 📜resetIdSequence.js
  ┣ 📜api_test.http
+ ┣ 📜package.json
  ┗ 📜server.js
 ```
 
