@@ -6,7 +6,6 @@ import SearchBar from "components/common/SearchBar.js";
 import Dropdown from "components/common/Dropdown.js";
 import DataRowSetRender from "components/DataRowSetRender.js";
 import Pagination from "components/common/Pagination.js";
-import usePageHandler from "hook/usePageHandler.js";
 import fetchData from "API/DefaultPageAPI.js";
 
 function DefaultPage() {
