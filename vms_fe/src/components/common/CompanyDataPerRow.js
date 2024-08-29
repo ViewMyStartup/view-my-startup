@@ -119,21 +119,27 @@ function CompanyDataPerRow({
           isMyCompany ? styles.myCompany : ""
         }`}
       >
-        <section className={`${styles.diffSizeContainer} ${styles.investSize}`}>
-          <span className={styles.columnRank}>{`${rank}위`}</span>
-          <div className={styles.companyInfoContainer}>
-            <img src={logoUrl} alt="기업 이미지" />
-            <span>{name}</span>
-          </div>
-          <span className={styles.columnCompanyDescription}>{description}</span>
-          <span className={styles.columnCategory}>{category}</span>
-        </section>
-        <section
-          className={`${styles.sameSizeContainer} ${styles.ivestSizeForSame}`}
-        >
-          <span>{`${convertToBillion(virtualInvestment)}억 원`}</span>
-          <span>{`${convertToBillion(totalInvestment)}억 원`}</span>
-        </section>
+        <Link to={`/id/${id}`}>
+          <section
+            className={`${styles.diffSizeContainer} ${styles.investSize}`}
+          >
+            <span className={styles.columnRank}>{`${rank}위`}</span>
+            <div className={styles.companyInfoContainer}>
+              <img src={logoUrl} alt="기업 이미지" />
+              <span>{name}</span>
+            </div>
+            <span className={styles.columnCompanyDescription}>
+              {description}
+            </span>
+            <span className={styles.columnCategory}>{category}</span>
+          </section>
+          <section
+            className={`${styles.sameSizeContainer} ${styles.ivestSizeForSame}`}
+          >
+            <span>{`${convertToBillion(virtualInvestment)}억 원`}</span>
+            <span>{`${convertToBillion(totalInvestment)}억 원`}</span>
+          </section>
+        </Link>
       </li>
     );
   };
@@ -204,6 +210,7 @@ function CompanyDataPerRow({
 
   const typeChoose = () => {
     const {
+      id,
       name,
       logoUrl,
       description,
@@ -218,23 +225,29 @@ function CompanyDataPerRow({
           isMyCompany ? styles.myCompany : ""
         }`}
       >
-        <section className={`${styles.diffSizeContainer} ${styles.investSize}`}>
-          <span className={styles.columnRank}>{`${
-            index + 1 + (currentPage - 1) * limit
-          }위`}</span>
-          <div className={styles.companyInfoContainer}>
-            <img src={logoUrl} alt="기업 이미지" />
-            <span>{name}</span>
-          </div>
-          <span className={styles.columnCompanyDescription}>{description}</span>
-          <span className={styles.columnCategory}>{category}</span>
-        </section>
-        <section
-          className={`${styles.sameSizeContainer} ${styles.ivestSizeForSame}`}
-        >
-          <span>{`${formatNumberWithCommas(mySelectionCount)}`}</span>
-          <span>{`${formatNumberWithCommas(CompareSelectionCount)}`}</span>
-        </section>
+        <Link to={`/id/${id}`}>
+          <section
+            className={`${styles.diffSizeContainer} ${styles.investSize}`}
+          >
+            <span className={styles.columnRank}>{`${
+              index + 1 + (currentPage - 1) * limit
+            }위`}</span>
+            <div className={styles.companyInfoContainer}>
+              <img src={logoUrl} alt="기업 이미지" />
+              <span>{name}</span>
+            </div>
+            <span className={styles.columnCompanyDescription}>
+              {description}
+            </span>
+            <span className={styles.columnCategory}>{category}</span>
+          </section>
+          <section
+            className={`${styles.sameSizeContainer} ${styles.ivestSizeForSame}`}
+          >
+            <span>{`${formatNumberWithCommas(mySelectionCount)}`}</span>
+            <span>{`${formatNumberWithCommas(CompareSelectionCount)}`}</span>
+          </section>
+        </Link>
       </li>
     );
   };
