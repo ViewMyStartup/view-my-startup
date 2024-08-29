@@ -16,7 +16,7 @@
   }
 }
 
-.myCompanyPerRow > a {
+.myCompanyPerRow>a {
   background-color: #2e2e2e !important;
 }
 
@@ -35,10 +35,12 @@
 /* 가장 마지막 child가 아니면 bottom border 출력 */
 .dataPerRowContainer:not(:last-child) {
   border-bottom: 1px solid #4b4b4b;
+
 }
 
 .dataPerRowContainer:hover {
-  background-color: #4b4b4b;
+  background-color: #4b4b4b !important;
+  transform: scale(1.007);
 }
 
 .diffSizeContainer>span,
@@ -230,4 +232,3 @@
     font-size: 0.8125rem;
   }
 }
-

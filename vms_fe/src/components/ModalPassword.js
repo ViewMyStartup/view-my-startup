@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import MediumBtn from "./common/MediumBtn.js";
 import styles from "./ModalPassword.module.css";
@@ -8,13 +8,25 @@ import deleteIcon from "../assets/images/ic_delete.svg";
 import { deleteInvestment } from "API/CompanyInvestDetailAPI";
 import { useCompanyData } from "context/CompanyDataContext";
 
-const ModalPassword = ({ onClose, investmentId }) => {
+const ModalPassword = ({ isOpen, onClose, investmentId }) => {
   const [password, setPassword] = useState("");
   const [isPasswordVisible, setPasswordVisible] = useState(false);
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
   const { fetchData } = useCompanyData();
+
+  useEffect(() => {
+    // 모달이 열릴 때 스크롤을 비활성화
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    }
+
+    // 모달이 닫힐 때 스크롤을 활성화
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
@@ -93,7 +105,7 @@ const ModalPassword = ({ onClose, investmentId }) => {
         </form>
       </div>
     </div>,
-    document.body // 모달을 렌더링할 DOM 노드
+    document.querySelector(".CompanyInvestDetail_contentsContainer__FiEL7") // 모달을 렌더링할 DOM 노드
   );
 };
 

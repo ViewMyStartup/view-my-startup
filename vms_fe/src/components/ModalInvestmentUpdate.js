@@ -31,6 +31,19 @@ const ModalInvestmentUpdate = ({ isOpen, onClose, selectedInvestment }) => {
     }
   }, [selectedInvestment, isOpen]);
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden"; // 모달이 열리면 스크롤 비활성화
+    } else {
+      document.body.style.overflow = ""; // 모달이 닫히면 스크롤 활성화
+    }
+
+    // 컴포넌트가 언마운트될 때 스크롤 원래대로
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInvestmentData((prevData) => ({
@@ -200,7 +213,7 @@ const ModalInvestmentUpdate = ({ isOpen, onClose, selectedInvestment }) => {
         </div>
       </div>
     </div>,
-    document.body // 모달을 렌더링할 DOM 노드
+    document.querySelector(".CompanyInvestDetail_contentsContainer__FiEL7") // 모달을 렌더링할 DOM 노드
   );
 };
 
