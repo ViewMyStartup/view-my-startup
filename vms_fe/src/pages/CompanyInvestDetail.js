@@ -15,7 +15,6 @@ import { DropdownProvider, useDropdown } from "context/DropdownContext";
 import styles from "./CompanyInvestDetail.module.css";
 
 function CompanyInvestDetail() {
-  const { companyId } = useParams();
   const { currentPage, handlePageChange } = usePageHandler();
   const { companyData, transformedInvestments, loading } = useCompanyData();
   const { modalType, handleOpenModal, handleCloseModal } = useModal();
@@ -23,7 +22,18 @@ function CompanyInvestDetail() {
 
   const itemsPerPage = 5;
 
-  if (loading) return <div>Loading...</div>;
+  if (loading)
+    return (
+      <div className={styles.loadingContainer}>
+        <div className={styles.spinner}></div>
+        <p className={styles.notFoundMessage}>
+          로딩중입니다, 잠시만 기다려주세요
+        </p>
+        <p className={styles.notFoundSubmessage}>
+          해당 화면이 지속된다면, 관리자에게 문의해주세요!
+        </p>
+      </div>
+    );
 
   if (companyData) {
     const paginatedData =
