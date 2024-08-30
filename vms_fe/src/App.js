@@ -23,7 +23,6 @@ function App() {
         <Route path="/compare" element={<CurrentStateCompare />} />
         <Route path="/investinfo" element={<CurrentStateInvest />} />
         <Route path="/id/:companyId" element={<CompanyInvestDetail />} />
-        <Route path="/test" element={<Test />} />
       </Routes>
     </BrowserRouter>
   );
