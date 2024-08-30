@@ -10,8 +10,6 @@ import CurrentStateInvest from "pages/CurrentStateInvest";
 import MyCompanyCompare from "pages/MyCompanyCompare";
 import CurrentStateCompare from "pages/CurrentStateCompare";
 
-//기존 테스트 페이지
-import Test from "./test";
 
 function App() {
   return (
