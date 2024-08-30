@@ -61,7 +61,8 @@
 }
 
 .formGroup {
-  padding-bottom: 20px; /* 추가 */
+  padding-bottom: 20px;
+  /* 추가 */
 }
 
 .label {
@@ -101,8 +102,10 @@
 /* 판매 가격 입력 필드 옆의 증가/감소 버튼 숨기기 */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none; /* WebKit 브라우저에서 숨기기 */
-  margin: 0; /* 마진 제거 */
+  -webkit-appearance: none;
+  /* WebKit 브라우저에서 숨기기 */
+  margin: 0;
+  /* 마진 제거 */
 }
 
 /* 비밀번호 input 눈 아이콘 */
@@ -130,6 +133,16 @@ input[type="number"]::-webkit-outer-spin-button {
   width: 183px;
   height: 48px;
   background: var(--brand-orange);
+  color: #ffffff;
+  border: none;
+  font-size: 16px;
+  border-radius: 50px;
+}
+
+.submitInvestButton:disabled {
+  width: 183px;
+  height: 48px;
+  background: var(--gray-300);
   color: #ffffff;
   border: none;
   font-size: 16px;

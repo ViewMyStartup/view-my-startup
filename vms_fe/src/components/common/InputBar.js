@@ -11,6 +11,7 @@ const InputBar = ({ onSubmit, onClose }) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleInvestmentAmountChange = (e) => {
     const value = e.target.value;
@@ -19,7 +20,7 @@ const InputBar = ({ onSubmit, onClose }) => {
     }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const newErrors = {};
@@ -45,13 +46,31 @@ const InputBar = ({ onSubmit, onClose }) => {
       return;
     }
 
-    // 폼 데이터를 상위 컴포넌트로 전달
-    onSubmit({
-      investorName,
-      investmentAmount: parseFloat(investmentAmount),
-      investmentComment,
-      password,
-    });
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+
+    try {
+      await onSubmit({
+        investorName,
+        investmentAmount: parseFloat(investmentAmount),
+        investmentComment,
+        password,
+      });
+
+      setInvestorName("");
+      setInvestmentAmount("");
+      setInvestmentComment("");
+      setPassword("");
+      setConfirmPassword("");
+      setErrors({});
+      onClose();
+    } catch (error) {
+      console.error("투자에 실패했습니다:", error);
+      alert("투자 저장에 실패했습니다.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const togglePasswordVisibility = () => {
@@ -73,6 +92,7 @@ const InputBar = ({ onSubmit, onClose }) => {
             value={investorName}
             onChange={(e) => setInvestorName(e.target.value)}
             className={styles.input}
+            disabled={isSubmitting}
           />
         </div>
         {errors.investorName && (
@@ -91,6 +111,7 @@ const InputBar = ({ onSubmit, onClose }) => {
             value={investmentAmount}
             onChange={handleInvestmentAmountChange}
             className={styles.input}
+            disabled={isSubmitting}
           />
         </div>
 
@@ -106,6 +127,7 @@ const InputBar = ({ onSubmit, onClose }) => {
             value={investmentComment}
             onChange={(e) => setInvestmentComment(e.target.value)}
             className={`${styles.input} ${styles.investmentComment}`}
+            disabled={isSubmitting}
           />
         </div>
 
@@ -122,6 +144,7 @@ const InputBar = ({ onSubmit, onClose }) => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className={`${styles.input} ${styles.passwordInput}`}
+              disabled={isSubmitting}
             />
             <img
               src={showPassword ? eyeSlashIcon : eyeOpenIcon}
@@ -148,6 +171,7 @@ const InputBar = ({ onSubmit, onClose }) => {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               className={`${styles.input} ${styles.passwordInput}`}
+              disabled={isSubmitting}
             />
             <img
               src={showPassword ? eyeSlashIcon : eyeOpenIcon}
@@ -166,11 +190,16 @@ const InputBar = ({ onSubmit, onClose }) => {
             className={styles.cancelButton}
             type="button"
             onClick={onClose}
+            disabled={isSubmitting}
           >
             취소
           </button>
-          <button className={styles.submitInvestButton} type="submit">
-            투자하기
+          <button
+            className={styles.submitInvestButton}
+            type="submit"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "투자중.." : "투자하기"}
           </button>
         </div>
       </form>
