@@ -224,7 +224,7 @@
   </tr>
   <tr>
     <td><img src="https://github.com/user-attachments/assets/9225cb43-3119-4217-be6f-bab71a01fc16" alt="데스크탑 & 태블릿 버전 이미지"></td>
-    <td><img src="https://github.com/user-attachments/assets/a4449d73-8f4c-45af-9728-6b365212649e" alt="모바일 버전 이미지"></td>
+    <td><img src="https://github.com/user-attachments/assets/37618a92-38c0-441c-ad69-a2cf404dcef2" alt="모바일 버전 이미지"></td>
   </tr>
 </table>
 
