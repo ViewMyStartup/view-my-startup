@@ -14,7 +14,11 @@ import icPlus from "../assets/images/ic_plus.svg";
 import icRestart from "../assets/images/ic_restart.svg";
 import ModalSelectComparision from "../components/ModalSelectComparision";
 import CompanyCard from "../components/common/CompanyCard";
-import { fetchCompanies, sortCompanies, getCompaniesForRanking } from "../API/api";
+import {
+  fetchCompanies,
+  sortCompanies,
+  getCompaniesForRanking,
+} from "../API/api";
 
 function MyCompanyCompare() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -22,9 +26,12 @@ function MyCompanyCompare() {
   const [selectedCompanies, setSelectedCompanies] = useState([]);
   const [additionalCompanies, setAdditionalCompanies] = useState([]);
   const [isComparisonVisible, setIsComparisonVisible] = useState(false);
-  const [sortingOptionForComparison, setSortingOptionForComparison] = useState("매출액 높은순");
-  const [sortingOptionForRank, setSortingOptionForRank] = useState("매출액 높은순");
-  const [sortedCompaniesForComparison, setSortedCompaniesForComparison] = useState([]);
+  const [sortingOptionForComparison, setSortingOptionForComparison] =
+    useState("매출액 높은순");
+  const [sortingOptionForRank, setSortingOptionForRank] =
+    useState("매출액 높은순");
+  const [sortedCompaniesForComparison, setSortedCompaniesForComparison] =
+    useState([]);
   const [rankedCompanies, setRankedCompanies] = useState([]);
   const [resetButtonText, setResetButtonText] = useState("전체 초기화");
   const [allCompanies, setAllCompanies] = useState([]);
@@ -55,7 +62,9 @@ function MyCompanyCompare() {
     if (selectedCompanies.length > 0 || additionalCompanies.length > 0) {
       setIsLoading(true); // 로딩 시작
       const combinedCompanies = selectedCompanies.concat(additionalCompanies);
-      setSortedCompaniesForComparison(sortCompanies(combinedCompanies, sortingOptionForComparison));
+      setSortedCompaniesForComparison(
+        sortCompanies(combinedCompanies, sortingOptionForComparison)
+      );
       setIsLoading(false); // 로딩 종료
     }
   }, [selectedCompanies, additionalCompanies, sortingOptionForComparison]);
@@ -68,7 +77,10 @@ function MyCompanyCompare() {
     try {
       const myCompanyId = selectedCompanies[0].id;
       console.log("Fetching ranked companies for My Company ID:", myCompanyId);
-      const data = await getCompaniesForRanking(myCompanyId, sortingOptionForRank);
+      const data = await getCompaniesForRanking(
+        myCompanyId,
+        sortingOptionForRank
+      );
       setRankedCompanies(data);
       console.log("Ranked Companies:", data);
     } catch (error) {
@@ -88,7 +100,12 @@ function MyCompanyCompare() {
       };
       fetchData();
     }
-  }, [isComparisonVisible, selectedCompanies, sortingOptionForRank, fetchRankedCompanies]);
+  }, [
+    isComparisonVisible,
+    selectedCompanies,
+    sortingOptionForRank,
+    fetchRankedCompanies,
+  ]);
 
   const openModal = () => setIsModalOpen(true);
   const openAdditionalModal = () => setIsAdditionalModalOpen(true);
@@ -134,7 +151,10 @@ function MyCompanyCompare() {
     await fetchRankedCompanies(); // 순위 회사 데이터를 다시 로드
 
     const combinedCompanies = selectedCompanies.concat(additionalCompanies);
-    const sortedData = sortCompanies(combinedCompanies, sortingOptionForComparison);
+    const sortedData = sortCompanies(
+      combinedCompanies,
+      sortingOptionForComparison
+    );
     setSortedCompaniesForComparison(sortedData);
 
     setIsLoading(false); // 로딩 종료
@@ -149,7 +169,8 @@ function MyCompanyCompare() {
     }
   };
 
-  const isCompareButtonEnabled = selectedCompanies.length > 0 && additionalCompanies.length > 0;
+  const isCompareButtonEnabled =
+    selectedCompanies.length > 0 && additionalCompanies.length > 0;
 
   const handleResetButtonClick = () => {
     if (resetButtonText === "전체 초기화") {
@@ -160,7 +181,8 @@ function MyCompanyCompare() {
     }
   };
 
-  const myCompanyId = selectedCompanies.length > 0 ? selectedCompanies[0].id : null;
+  const myCompanyId =
+    selectedCompanies.length > 0 ? selectedCompanies[0].id : null;
 
   const handleInvestmentClick = () => {
     if (selectedCompanies.length > 0) {
@@ -260,7 +282,7 @@ function MyCompanyCompare() {
                   type="noRank"
                   dataList={sortedCompaniesForComparison}
                   myCompanyId={myCompanyId}
-                  isloading={isloading}  // 로딩 상태 전달
+                  isloading={isloading} // 로딩 상태 전달
                 />
               </div>
             </div>
@@ -287,7 +309,7 @@ function MyCompanyCompare() {
                   type="rank"
                   dataList={rankedCompanies}
                   myCompanyId={myCompanyId}
-                  isloading={isloading}  // 로딩 상태 전달
+                  isloading={isloading} // 로딩 상태 전달
                 />
               </div>
             </div>
@@ -384,4 +406,3 @@ function MyCompanyCompare() {
 }
 
 export default MyCompanyCompare;
-

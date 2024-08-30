@@ -9,7 +9,7 @@ import CompanyInvestDetail from "pages/CompanyInvestDetail";
 import CurrentStateInvest from "pages/CurrentStateInvest";
 import MyCompanyCompare from "pages/MyCompanyCompare";
 import CurrentStateCompare from "pages/CurrentStateCompare";
-
+import MainPage from "pages/MainPage";
 
 function App() {
   return (
@@ -21,6 +21,7 @@ function App() {
         <Route path="/compare" element={<CurrentStateCompare />} />
         <Route path="/investinfo" element={<CurrentStateInvest />} />
         <Route path="/id/:companyId" element={<CompanyInvestDetail />} />
+        <Route path="/mainpage" element={<MainPage />} />
       </Routes>
     </BrowserRouter>
   );
