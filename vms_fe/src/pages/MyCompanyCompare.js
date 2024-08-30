@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { useNavigate } from "react-router-dom"; // useNavigate 훅 추가
+import { useNavigate } from "react-router-dom";
 import styles from "./MyCompanyCompare.module.css";
 import PageNav from "components/PageNav";
 import AddCompanyBtn from "components/common/AddCompanyBtn";
@@ -28,33 +28,43 @@ function MyCompanyCompare() {
   const [rankedCompanies, setRankedCompanies] = useState([]);
   const [resetButtonText, setResetButtonText] = useState("전체 초기화");
   const [allCompanies, setAllCompanies] = useState([]);
+  const [isloading, setIsLoading] = useState(false); // 하나의 로딩 상태로 전체 관리
 
-  const navigate = useNavigate(); // useNavigate 훅 사용
+  const navigate = useNavigate();
 
+  // 회사 데이터 초기 로드
   useEffect(() => {
     const getCompanies = async () => {
+      setIsLoading(true); // 로딩 시작
       try {
         const data = await fetchCompanies();
         setAllCompanies(data);
         console.log("Fetched companies:", data);
       } catch (error) {
         console.error("기업 데이터를 가져오는 데 실패했습니다.", error);
+      } finally {
+        setIsLoading(false); // 로딩 종료
       }
     };
 
     getCompanies();
   }, []);
 
+  // 선택된 회사와 추가된 회사를 정렬
   useEffect(() => {
     if (selectedCompanies.length > 0 || additionalCompanies.length > 0) {
+      setIsLoading(true); // 로딩 시작
       const combinedCompanies = selectedCompanies.concat(additionalCompanies);
       setSortedCompaniesForComparison(sortCompanies(combinedCompanies, sortingOptionForComparison));
+      setIsLoading(false); // 로딩 종료
     }
   }, [selectedCompanies, additionalCompanies, sortingOptionForComparison]);
 
+  // 순위 회사 데이터 로드
   const fetchRankedCompanies = useCallback(async () => {
     if (selectedCompanies.length === 0) return;
 
+    setIsLoading(true); // 로딩 시작
     try {
       const myCompanyId = selectedCompanies[0].id;
       console.log("Fetching ranked companies for My Company ID:", myCompanyId);
@@ -63,12 +73,20 @@ function MyCompanyCompare() {
       console.log("Ranked Companies:", data);
     } catch (error) {
       console.error("기업 순위 데이터를 가져오는 데 실패했습니다.", error);
+    } finally {
+      setIsLoading(false); // 로딩 종료
     }
   }, [selectedCompanies, sortingOptionForRank]);
 
+  // 비교 결과가 보이는 상태에서 순위 데이터를 로드
   useEffect(() => {
     if (isComparisonVisible && selectedCompanies.length > 0) {
-      fetchRankedCompanies();
+      setIsLoading(true); // 로딩 시작
+      const fetchData = async () => {
+        await fetchRankedCompanies(); // 순위 데이터 로드
+        setIsLoading(false); // 로딩 종료
+      };
+      fetchData();
     }
   }, [isComparisonVisible, selectedCompanies, sortingOptionForRank, fetchRankedCompanies]);
 
@@ -97,12 +115,29 @@ function MyCompanyCompare() {
     }
   };
 
-  const handleSortingChangeForComparison = (option) => {
+  const handleSortingChangeForComparison = async (option) => {
+    setIsLoading(true); // 로딩 시작
     setSortingOptionForComparison(option);
+
+    const combinedCompanies = selectedCompanies.concat(additionalCompanies);
+    const sortedData = sortCompanies(combinedCompanies, option);
+    setSortedCompaniesForComparison(sortedData);
+
+    await fetchRankedCompanies(); // 순위 데이터도 새로 로드하여 로딩 동기화
+    setIsLoading(false); // 로딩 종료
   };
 
-  const handleSortingChangeForRank = (option) => {
+  const handleSortingChangeForRank = async (option) => {
+    setIsLoading(true); // 로딩 시작
     setSortingOptionForRank(option);
+
+    await fetchRankedCompanies(); // 순위 회사 데이터를 다시 로드
+
+    const combinedCompanies = selectedCompanies.concat(additionalCompanies);
+    const sortedData = sortCompanies(combinedCompanies, sortingOptionForComparison);
+    setSortedCompaniesForComparison(sortedData);
+
+    setIsLoading(false); // 로딩 종료
   };
 
   const handleComparisonClick = () => {
@@ -127,11 +162,10 @@ function MyCompanyCompare() {
 
   const myCompanyId = selectedCompanies.length > 0 ? selectedCompanies[0].id : null;
 
-  // 선택된 기업의 상세 페이지로 이동하는 함수 추가
   const handleInvestmentClick = () => {
     if (selectedCompanies.length > 0) {
       const companyId = selectedCompanies[0].id;
-      navigate(`/id/${companyId}`); // companyId를 사용하여 이동
+      navigate(`/id/${companyId}`);
     }
   };
 
@@ -225,7 +259,8 @@ function MyCompanyCompare() {
                 <DataRowSetRenderNoRank
                   type="noRank"
                   dataList={sortedCompaniesForComparison}
-                  myCompanyId={myCompanyId}  // myCompanyId 전달
+                  myCompanyId={myCompanyId}
+                  isloading={isloading}  // 로딩 상태 전달
                 />
               </div>
             </div>
@@ -251,7 +286,8 @@ function MyCompanyCompare() {
                 <DataRowSetRender
                   type="rank"
                   dataList={rankedCompanies}
-                  myCompanyId={myCompanyId}  // myCompanyId 전달
+                  myCompanyId={myCompanyId}
+                  isloading={isloading}  // 로딩 상태 전달
                 />
               </div>
             </div>
@@ -259,7 +295,7 @@ function MyCompanyCompare() {
             <div className={styles.btnWrapper}>
               <CompareCompanyBtn
                 text="나의 기업에 투자하기"
-                onClick={handleInvestmentClick}  // 클릭 시 이동 처리
+                onClick={handleInvestmentClick}
                 disabled={!isCompareButtonEnabled}
               />
             </div>
