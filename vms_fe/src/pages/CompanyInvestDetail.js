@@ -14,9 +14,8 @@ import {
   useCompanyData,
 } from "context/CompanyDataContext";
 import styles from "./CompanyInvestDetail.module.css";
-
 function CompanyInvestDetail() {
-  const { currentPage, handlePageChange } = usePageHandler();
+
   const { companyData, transformedInvestments, loading } = useCompanyData();
 
   const [modalInfo, setModalInfo] = useState(null);
@@ -25,6 +24,11 @@ function CompanyInvestDetail() {
   const [modalType, setModalType] = useState(null); // 모달 타입 상태 관리
 
   const itemsPerPage = 5;
+  const totalPages = Math.ceil(
+    (transformedInvestments.length || 0) / itemsPerPage
+  );
+
+  const { currentPage, handlePageChange } = usePageHandler(totalPages);
 
   const handleOpenModal = (modalType, dataObject, position, toggleRef) => {
     setModalType(modalType); // 모달 타입 설정
@@ -170,10 +174,9 @@ function CompanyInvestDetail() {
           </div>
           <Pagination
             currentPage={currentPage}
-            totalPages={Math.ceil(
-              (transformedInvestments.length || 0) / itemsPerPage
-            )}
+            totalPages={totalPages}
             onPageChange={handlePageChange}
+            hasNext={currentPage < totalPages}
           />
         </div>
 
