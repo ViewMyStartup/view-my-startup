@@ -12,7 +12,7 @@
 }
 
 .pageContainer {
-  height: 94vh;
+  height: 100vh;
   scroll-snap-align: start;
   display: flex;
   flex-direction: column;
@@ -20,8 +20,6 @@
   align-items: center;
   position: relative;
   box-sizing: border-box;
-
-  z-index: 9999;
 }
 
 .sidebar {
@@ -138,7 +136,7 @@
 }
 
 .chartTextContainer {
-  display:flex;
+  display: flex;
   flex-direction: column;
   text-align: center;
   align-self: center;

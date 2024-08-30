@@ -12,7 +12,12 @@ import {
 } from "recharts";
 import styles from "./MainPage.module.css";
 import PageNav from "components/PageNav";
-import placeholder from "assets/images/placeholder.jpg";
+import placeholder1 from "assets/images/placeHolder1.jpg";
+import placeholder2 from "assets/images/placeHolder2.jpg";
+import placeholder3 from "assets/images/placeHolder3.jpg";
+import placeholder4 from "assets/images/placeHolder4.jpg";
+import placeholder5 from "assets/images/placeHolder5.jpg";
+import placeholder6 from "assets/images/placeHolder6.jpg";
 
 const generateChartData = () => {
   return Array.from({ length: 12 }, (_, i) => ({
@@ -35,32 +40,32 @@ const MainPage = () => {
     {
       name: "Warren Buffett",
       role: "버크셔 해서웨이",
-      image: placeholder,
+      image: placeholder1,
     },
     {
       name: "Ray Dalio",
       role: "브리지워터 어소시에이츠",
-      image: placeholder,
+      image: placeholder2,
     },
     {
       name: "George Soros",
       role: "소로스 펀드 매니지먼트",
-      image: placeholder,
+      image: placeholder3,
     },
     {
       name: "조정호",
       role: "메리츠 금융지주 회장",
-      image: placeholder,
+      image: placeholder4,
     },
     {
       name: "Jim Simons",
       role: "르네상스 테크놀로지",
-      image: placeholder,
+      image: placeholder5,
     },
     {
       name: "John Templeton",
       role: "르네상스 테크놀로지",
-      image: placeholder,
+      image: placeholder6,
     },
   ];
 
@@ -114,7 +119,7 @@ const MainPage = () => {
     }
   };
 
-  const pageTitles = ["1", "2", "3", "4",];
+  const pageTitles = ["1", "2", "3", "4"];
 
   return (
     <div className={styles.container}>
@@ -197,8 +202,7 @@ const MainPage = () => {
                 </div>
                 <div className={styles.growthDetails}>
                   <h2>투자, 성장, 회수, 재투자</h2>
-                  <div className={styles.growthChart}>
-                  </div>
+                  <div className={styles.growthChart}></div>
                   <div className={styles.growthCases}>
                     <h4>성장 사례</h4>
                     <p>X는 최근 6개월 동안 300% 성장하였습니다.</p>
@@ -211,7 +215,7 @@ const MainPage = () => {
                 <div className={styles.InvestorContainer}>
                   <h1 className={styles.InvestorTitle}>활동한 투자자들</h1>
                   <p className={styles.InvestorDescription}>
-                    신뢰성있는 투자자들과 함께한 엄선된 회사들
+                    신뢰성있는 투자자들과 함께한 유망한 회사들
                   </p>
                   <div className={styles.InvestorGrid}>
                     {viewportWidth <= 900
