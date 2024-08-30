@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import styles from "./PageNav.module.css";
 
 //이미지
-import logo from "../assets/images/logo_desktop_tablet.svg";
+import LogoSvg from "assets/images/logo_desktop_tablet.js";
 
 function PageNav({ onHomeClick }) {
   const location = useLocation(); // 현재 페이지 경로를 불러오는 훅
@@ -52,7 +52,7 @@ function PageNav({ onHomeClick }) {
     <nav className={styles.outlineContain}>
       <section className={styles.pageNavBox}>
         <Link to="/" onClick={onHomeClick}>
-          <img src={logo} alt="logo" />
+          <LogoSvg />
         </Link>
         <BoardList />
       </section>
