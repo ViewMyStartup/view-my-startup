@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import styles from "./PageNav.module.css";
 
 //이미지
-import LogoSvg from "assets/images/logo_desktop_tablet.js";
+import LogoSvg from "assets/images/logo_home.js";
 
 function PageNav({ onHomeClick }) {
   const location = useLocation(); // 현재 페이지 경로를 불러오는 훅
