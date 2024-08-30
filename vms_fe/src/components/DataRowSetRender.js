@@ -18,8 +18,8 @@ function DataRowSetRender({
     <div className={`${styles.dataRowSet} ${styles.fadeInUpContents}`}>
       <HeaderColumns type={type} />
       <section className={styles.loaderBox}>
-        <div>Loading...</div>
         <div className={styles.loader}></div>
+        <div>로딩중...</div>
       </section>
     </div>
   ) : (
