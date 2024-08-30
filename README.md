@@ -567,24 +567,58 @@
 📦vms_fe
  ┣ 📂public
  ┃ ┣ 📂images
+ ┃ ┃ ┣ 📜company_logo_1.png
+ ┃ ┃ ┣ 📜company_logo_10.png
+ ┃ ┃ ┣ 📜company_logo_11.png
+ ┃ ┃ ┣ 📜company_logo_12.png
+ ┃ ┃ ┣ 📜company_logo_13.png
+ ┃ ┃ ┣ 📜company_logo_14.png
+ ┃ ┃ ┣ 📜company_logo_15.png
+ ┃ ┃ ┣ 📜company_logo_16.png
+ ┃ ┃ ┣ 📜company_logo_17.png
+ ┃ ┃ ┣ 📜company_logo_18.png
+ ┃ ┃ ┣ 📜company_logo_19.png
+ ┃ ┃ ┣ 📜company_logo_2.png
+ ┃ ┃ ┣ 📜company_logo_20.png
+ ┃ ┃ ┣ 📜company_logo_21.png
+ ┃ ┃ ┣ 📜company_logo_22.png
+ ┃ ┃ ┣ 📜company_logo_23.png
+ ┃ ┃ ┣ 📜company_logo_24.png
+ ┃ ┃ ┣ 📜company_logo_25.png
+ ┃ ┃ ┣ 📜company_logo_26.png
+ ┃ ┃ ┣ 📜company_logo_27.png
+ ┃ ┃ ┣ 📜company_logo_28.png
+ ┃ ┃ ┣ 📜company_logo_29.png
+ ┃ ┃ ┣ 📜company_logo_3.png
+ ┃ ┃ ┣ 📜company_logo_30.png
+ ┃ ┃ ┣ 📜company_logo_31.png
+ ┃ ┃ ┣ 📜company_logo_32.png
+ ┃ ┃ ┣ 📜company_logo_33.png
+ ┃ ┃ ┣ 📜company_logo_34.png
+ ┃ ┃ ┣ 📜company_logo_35.png
+ ┃ ┃ ┣ 📜company_logo_36.png
+ ┃ ┃ ┣ 📜company_logo_37.png
+ ┃ ┃ ┣ 📜company_logo_38.png
+ ┃ ┃ ┣ 📜company_logo_39.png
+ ┃ ┃ ┣ 📜company_logo_4.png
+ ┃ ┃ ┣ 📜company_logo_40.png
+ ┃ ┃ ┣ 📜company_logo_41.png
+ ┃ ┃ ┣ 📜company_logo_42.png
+ ┃ ┃ ┣ 📜company_logo_43.png
+ ┃ ┃ ┣ 📜company_logo_5.png
+ ┃ ┃ ┣ 📜company_logo_6.png
+ ┃ ┃ ┣ 📜company_logo_7.png
+ ┃ ┃ ┣ 📜company_logo_8.png
+ ┃ ┃ ┗ 📜company_logo_9.png
  ┃ ┣ 📜favicon.png
  ┃ ┗ 📜index.html
- ┗ 📂src
+ ┣ 📂src
  ┃ ┣ 📂API
- ┃ ┃ ┗ 📜api.js
  ┃ ┃ ┣ 📜CompanyInvestDetailAPI.js
- ┃ ┃ ┗ 📜DefaultPageAPI.js
+ ┃ ┃ ┣ 📜DefaultPageAPI.js
+ ┃ ┃ ┗ 📜api.js
  ┃ ┣ 📂assets
- ┃ ┃ ┣ 📂images
- ┃ ┃ ┃ ┣ 📂mock_img
- ┃ ┃ ┃ ┃ ┣ 📜company_temp.svg
- ┃ ┃ ┃ ┃ ┣ 📜logo_desktop_tablet.svg
- ┃ ┃ ┃ ┃ ┗ 📜logo_mobile.svg
- ┃ ┃ ┃ ┣ 📜company_logo_1.svg
- ┃ ┃ ┃ ┣ 📜company_logo_2.svg
- ┃ ┃ ┃ ┣ 📜company_logo_3.svg
- ┃ ┃ ┃ ┣ 📜company_logo_4.svg
- ┃ ┃ ┃ ┣ 📜company_logo_5.svg
+ ┃ ┃ ┗ 📂images
  ┃ ┃ ┃ ┣ 📜ic_check.svg
  ┃ ┃ ┃ ┣ 📜ic_circle.svg
  ┃ ┃ ┃ ┣ 📜ic_delete.svg
@@ -599,7 +633,6 @@
  ┃ ┃ ┃ ┣ 📜ic_toggle.svg
  ┃ ┃ ┃ ┣ 📜logo_desktop_tablet.svg
  ┃ ┃ ┃ ┗ 📜logo_mobile.svg
- ┃ ┃ ┗ 📜temp.js
  ┃ ┣ 📂components
  ┃ ┃ ┣ 📂common
  ┃ ┃ ┃ ┣ 📜AddCompanyBtn.js
@@ -616,6 +649,8 @@
  ┃ ┃ ┃ ┣ 📜CompareOtherCompanyBtn.module.css
  ┃ ┃ ┃ ┣ 📜Dropdown.js
  ┃ ┃ ┃ ┣ 📜Dropdown.module.css
+ ┃ ┃ ┃ ┣ 📜DropdownForEdit.js
+ ┃ ┃ ┃ ┣ 📜DropdownForEdit.module.css
  ┃ ┃ ┃ ┣ 📜DropdownMiddleSize.js
  ┃ ┃ ┃ ┣ 📜DropdownMiddleSize.module.css
  ┃ ┃ ┃ ┣ 📜DropdownSmallSize.js
@@ -666,10 +701,10 @@
  ┃ ┃ ┣ 📜companyItem.js
  ┃ ┃ ┗ 📜companyItem.module.css
  ┃ ┣ 📂context
- ┃ ┃ ┗ 📜CompanyDataContext.js
- ┃ ┃ ┗ 📜DropdownContext.js
+ ┃ ┃ ┣ 📜CompanyDataContext.js
+ ┃ ┃ ┣ 📜DropdownContext.js
  ┃ ┃ ┗ 📜ModalContext.js
- ┃ ┃ 📂hook
+ ┃ ┣ 📂hook
  ┃ ┃ ┣ 📜useGetCompanyData.js
  ┃ ┃ ┗ 📜usePageHandler.js
  ┃ ┣ 📂pages
@@ -692,8 +727,11 @@
  ┃ ┣ 📜App.css
  ┃ ┣ 📜App.js
  ┃ ┣ 📜index.css
- ┃ ┣ 📜index.js
- ┃ ┗ 📜test.js
+ ┃ ┗ 📜index.js
+ ┣ 📜.env
+ ┣ 📜jsconfig.json
+ ┣ 📜package-lock.json
+ ┗ 📜package.json
 ```
 
 #### <p align="right"><a href="#top">TOP👆🏻</a></p>
@@ -731,11 +769,11 @@
  ┃ ┃ ┃ ┗ 📜migration.sql
  ┃ ┃ ┣ 📂20240820003106_add
  ┃ ┃ ┃ ┗ 📜migration.sql
- ┃ ┃ ┗ 📂20240826093414_add_new_selection_count
+ ┃ ┃ ┣ 📂20240826093414_add_new_selection_count
  ┃ ┃ ┃ ┗ 📜migration.sql
- ┃ ┃ ┗ 📂20240826101216_add_new_field_vms_investment
+ ┃ ┃ ┣ 📂20240826101216_add_new_field_vms_investment
  ┃ ┃ ┃ ┗ 📜migration.sql
- ┃ ┃ ┗ 📂20240826101732_add_delete_model_selection
+ ┃ ┃ ┣ 📂20240826101732_add_delete_model_selection
  ┃ ┃ ┃ ┗ 📜migration.sql
  ┃ ┃ ┗ 📂20240826124937_add_virtual_investment_type_modify
  ┃ ┃ ┃ ┗ 📜migration.sql
@@ -757,7 +795,9 @@
  ┣ 📂utils
  ┃ ┣ 📜initializeVirtualInvestment.js
  ┃ ┗ 📜resetIdSequence.js
+ ┣ 📜.env
  ┣ 📜api_test.http
+ ┣ 📜package-lock.json
  ┣ 📜package.json
  ┗ 📜server.js
 ```
