@@ -181,6 +181,8 @@
 
 🛠️ 백엔드
 
+- 커스텀 에러클래스 정의 및 HTTP 상태 코드와 예외 코드 매핑
+
 - 가상 투자 생성 API (POST /api/investments)
 
   - 클라이언트로부터 `companyId`, `investorName`, `investmentAmount`, `investmentComment`, `password` 등의 데이터를 받아 가상 투자를 생성하는 기능 구현
