@@ -56,7 +56,6 @@ function DefaultPage() {
     setTempQuery("");
     setSearchQuery("");
     setCurrentPage(1);
-    loadData();
   };
 
   const handleSortChange = (option) => {
@@ -69,7 +68,6 @@ function DefaultPage() {
     setSearchQuery("");
     setSortOption("누적 투자금액 높은순");
     setCurrentPage(1);
-    loadData();
   };
 
   return (
