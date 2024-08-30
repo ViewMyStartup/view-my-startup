@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./DataRowSetRender.module.css";
 import CompanyDataPerRow from "components/common/CompanyDataPerRow";
 import HeaderColumns from "./common/HeaderColumns";
@@ -14,12 +14,28 @@ function DataRowSetRender({
   onCloseModal, // 모달 닫기 핸들러
   activeDropdownId, // 현재 활성화된 드롭다운 ID
 }) {
+  const [loadingText, setLoadingText] = useState("Loading.");
+
+  useEffect(() => {
+    if (!isloading) return;
+
+    const loadingPhases = ["Loading.", "Loading..", "Loading..."];
+    let currentIndex = 0;
+
+    const interval = setInterval(() => {
+      currentIndex = (currentIndex + 1) % loadingPhases.length;
+      setLoadingText(loadingPhases[currentIndex]);
+    }, 200);
+
+    return () => clearInterval(interval);
+  }, [isloading]);
+
   return isloading ? (
     <div className={`${styles.dataRowSet} ${styles.fadeInUpContents}`}>
       <HeaderColumns type={type} />
       <section className={styles.loaderBox}>
         <div className={styles.loader}></div>
-        <div>로딩중...</div>
+        <div>{loadingText}</div>
       </section>
     </div>
   ) : (
