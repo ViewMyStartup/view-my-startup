@@ -1,11 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import {
-  ArrowRight,
-  TrendingUp,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
+import { ArrowRight, TrendingUp } from "lucide-react";
 import {
   LineChart,
   Line,
@@ -119,7 +114,7 @@ const MainPage = () => {
     }
   };
 
-  const pageTitles = ["1", "2", "3", "4", "5", "6"];
+  const pageTitles = ["1", "2", "3", "4",];
 
   return (
     <div className={styles.container}>
@@ -136,7 +131,7 @@ const MainPage = () => {
                 <div className={styles.backgroundGradient}></div>
                 <h2 className={styles.introTitle}>View My StartUp</h2>
                 <p className={styles.introSubtitle}>
-                  무궁무진한 가능성의 스타트업에 투자하세요
+                  무궁무진한 가능성에 투자하세요
                 </p>
                 <Link to="/" className={styles.exploreButton}>
                   투자하기
@@ -146,41 +141,50 @@ const MainPage = () => {
             )}
             {index === 1 && (
               <section className={styles.chartSection}>
-                <h3 className={styles.chartTitle}>라이브 투자금액 차트</h3>
-                <div className={styles.chartContainer}>
-                  <ResponsiveContainer width="100%" height="100%">
-                    <LineChart data={chartData}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="#444" />
-                      <XAxis dataKey="month" stroke="#888" />
-                      <YAxis stroke="#888" tickFormatter={formatToBillion} />
-                      <Tooltip
-                        contentStyle={{
-                          backgroundColor: "#747474",
-                          border: "none",
-                          borderRadius: "15px",
-                        }}
-                        itemStyle={{ color: "#ffffff" }}
-                        formatter={(value) => formatToBillion(value)}
-                        labelFormatter={(label) => `${label}`}
-                      />
-                      <Line
-                        type="monotone"
-                        dataKey="value"
-                        stroke="#747474"
-                        strokeWidth={2}
-                        dot={{ fill: "#2e2e2e", strokeWidth: 2 }}
-                        activeDot={{ r: 8 }}
-                      />
-                    </LineChart>
-                  </ResponsiveContainer>
+                <div>
+                  <h3 className={styles.chartTitle}>라이브 투자금액 차트</h3>
+                  <div className={styles.chartContainer}>
+                    <ResponsiveContainer width="100%" height="100%">
+                      <LineChart data={chartData}>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#444" />
+                        <XAxis dataKey="month" stroke="#888" />
+                        <YAxis stroke="#888" tickFormatter={formatToBillion} />
+                        <Tooltip
+                          contentStyle={{
+                            backgroundColor: "#747474",
+                            border: "none",
+                            borderRadius: "15px",
+                          }}
+                          itemStyle={{ color: "#ffffff" }}
+                          formatter={(value) => formatToBillion(value)}
+                          labelFormatter={(label) => `${label}`}
+                        />
+                        <Line
+                          type="monotone"
+                          dataKey="value"
+                          stroke="#747474"
+                          strokeWidth={2}
+                          dot={{ fill: "#2e2e2e", strokeWidth: 2 }}
+                          activeDot={{ r: 8 }}
+                        />
+                      </LineChart>
+                    </ResponsiveContainer>
+                  </div>
+                  <div className={styles.chartInsights}>
+                    <p>
+                      현 최고 투자금액:{" "}
+                      {formatToBillion(
+                        Math.max(...chartData.map((data) => data.value))
+                      )}
+                    </p>
+                  </div>
                 </div>
-                <div className={styles.chartInsights}>
-                  <p>
-                    현 최고 투자금액:{" "}
-                    {formatToBillion(
-                      Math.max(...chartData.map((data) => data.value))
-                    )}
-                  </p>
+                <div className={styles.chartTextContainer}>
+                  <div className={styles.chartTextTitle}>압도적 정보량</div>
+                  <div className={styles.chartTextTitle}>
+                    빠른판단에 뒤따르는 빠른 업데이트
+                    <br /> 고객경험의 새로운 지평을 열다.
+                  </div>
                 </div>
               </section>
             )}
@@ -194,7 +198,6 @@ const MainPage = () => {
                 <div className={styles.growthDetails}>
                   <h2>투자, 성장, 회수, 재투자</h2>
                   <div className={styles.growthChart}>
-                    {/* Mock Growth Chart or Graph */}
                   </div>
                   <div className={styles.growthCases}>
                     <h4>성장 사례</h4>
@@ -259,30 +262,6 @@ const MainPage = () => {
                           </div>
                         ))}
                   </div>
-                </div>
-              </section>
-            )}
-            {index === 4 && (
-              <section className={styles.statsSection}>
-                <div></div>
-              </section>
-            )}
-            {index === 5 && (
-              <section className={styles.statsSection}>
-                <h3 className={styles.statsTitle}>함께한 스타트업</h3>
-                <div className={styles.startupsList}>
-                  <div className={styles.startupItem}>
-                    <h4>스타트업 A</h4>
-                    <p>설명: </p>
-                  </div>
-                  <div className={styles.startupItem}>
-                    <h4>스타트업 B</h4>
-                    <p>설명: </p>
-                  </div>
-                </div>
-                <div className={styles.futurePlans}>
-                  <h4>미래 계획</h4>
-                  <p>계획</p>
                 </div>
               </section>
             )}
