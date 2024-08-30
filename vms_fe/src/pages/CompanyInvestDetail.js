@@ -6,6 +6,7 @@ import Pagination from "components/common/Pagination";
 import DropdownForEdit from "components/common/DropdownForEdit";
 import ModalInvestmentUpdate from "components/ModalInvestmentUpdate";
 import ModalPassword from "components/ModalPassword";
+import ModalInvestment from "components/ModalInvestment";
 import usePageHandler from "hook/usePageHandler";
 import { convertToHundredMillion } from "utils/convertTo100mil";
 import {
@@ -15,50 +16,58 @@ import {
 import styles from "./CompanyInvestDetail.module.css";
 
 function CompanyInvestDetail() {
+  const { currentPage, handlePageChange } = usePageHandler();
   const { companyData, transformedInvestments, loading } = useCompanyData();
 
   const [modalInfo, setModalInfo] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false); // 모달 상태 관리
   const [activeDropdownId, setActiveDropdownId] = useState(null); // 드롭다운 상태 관리
+  const [modalType, setModalType] = useState(null); // 모달 타입 상태 관리
 
+  const itemsPerPage = 5;
 
   const handleOpenModal = (modalType, dataObject, position, toggleRef) => {
-    // console.log("Opening modal:", modalType, dataObject, position, toggleRef); // 디버깅용
+    setModalType(modalType); // 모달 타입 설정
     setModalInfo({
       modalType,
       dataObject,
       position,
-      toggleRef, // 여기에서 toggleRef를 저장
+      toggleRef,
     });
-    setActiveDropdownId(dataObject.id); // 드롭다운 ID 설정
+    setActiveDropdownId(dataObject?.id || null); // 드롭다운 ID 설정
     setIsModalOpen(true); // 모달 열림 상태로 설정
   };
 
   const handleCloseModal = () => {
     setIsModalOpen(false); // 모달 닫힘 상태로 설정
     setActiveDropdownId(null); // 드롭다운 ID 초기화
+    setModalType(null); // 모달 타입 초기화
     setModalInfo(null); // 모달 정보 초기화
   };
 
   const handleEdit = () => {
     if (modalInfo?.dataObject) {
-      handleOpenModal("update", modalInfo.dataObject, modalInfo.position, modalInfo.toggleRef);
+      handleOpenModal(
+        "update",
+        modalInfo.dataObject,
+        modalInfo.position,
+        modalInfo.toggleRef
+      );
     }
   };
 
   const handleDelete = () => {
     if (modalInfo?.dataObject) {
-      handleOpenModal("password", modalInfo.dataObject, modalInfo.position, modalInfo.toggleRef);
+      handleOpenModal(
+        "password",
+        modalInfo.dataObject,
+        modalInfo.position,
+        modalInfo.toggleRef
+      );
     }
   };
 
-  const itemsPerPage = 5;
-  const totalPages = Math.ceil(
-    (transformedInvestments.length || 0) / itemsPerPage
-  );
-  const { currentPage, handlePageChange } = usePageHandler(totalPages);
-
-  if (loading)
+  if (loading) {
     return (
       <div className={styles.loadingContainer}>
         <div className={styles.spinner}></div>
@@ -70,6 +79,7 @@ function CompanyInvestDetail() {
         </p>
       </div>
     );
+  }
 
   if (companyData) {
     const paginatedData =
@@ -77,17 +87,11 @@ function CompanyInvestDetail() {
         (currentPage - 1) * itemsPerPage,
         currentPage * itemsPerPage
       ) || [];
-      console.log("Current Page:", currentPage); // 디버깅용 로그
-      console.log("Paginated Data:", paginatedData); // 슬라이싱된 데이터 로그
-      console.log("total pages:", totalPages); // 슬라이싱된 데이터 로그
-      console.log("target Data:", transformedInvestments); // 슬라이싱된 데이터 로그
-
 
     return (
       <div className={styles.pageContainer}>
         <PageNav />
         <div className={styles.contentsContainer} data-modal-container>
-          {/* 회사 정보 렌더링 */}
           <div className={styles.titleSection}>
             <div className={styles.titleHug}>
               <img
@@ -103,7 +107,7 @@ function CompanyInvestDetail() {
               </div>
             </div>
           </div>
-          {/* 회사 데이터 */}
+
           <div className={styles.companyDataGrid}>
             <div className={styles.companyDataItem}>
               <div className={styles.companyDataTitle}>누적 투자 금액</div>
@@ -124,6 +128,7 @@ function CompanyInvestDetail() {
               </div>
             </div>
           </div>
+
           <div className={styles.CompanyDescriptionSection}>
             <div className={styles.CompanyDescriptionContent}>
               <div className={styles.CompanyDescriptionTitle}>기업 소개</div>
@@ -132,36 +137,58 @@ function CompanyInvestDetail() {
               </div>
             </div>
           </div>
-          {/* 투자 데이터 */}
+
+          <div className={styles.InvestmentButtonSection}>
+            <div className={styles.InvestmentButtonTitle}>
+              View My Startup에서 받은 투자
+            </div>
+            <button
+              className={styles.InvestmentButton}
+              onClick={() => handleOpenModal("investment", companyData)}
+            >
+              기업투자하기
+            </button>
+          </div>
+
+          {/* 투자 모달 열기 */}
+          {modalType === "investment" && (
+            <ModalInvestment
+              isOpen={true}
+              onClose={handleCloseModal}
+              selectedCompanies={[companyData]}
+            />
+          )}
+
           <div className={styles.dataRowSetRender}>
             <DataRowSetRender
               type="comment"
               dataList={paginatedData}
-              onOpenModal={handleOpenModal} // 모달 열기 핸들러 전달
-              onCloseModal={handleCloseModal} // 모달 닫기 핸들러 전달
-              activeDropdownId={activeDropdownId} // 현재 활성화된 드롭다운 ID 전달
+              onOpenModal={handleOpenModal}
+              onCloseModal={handleCloseModal}
+              activeDropdownId={activeDropdownId}
             />
           </div>
           <Pagination
             currentPage={currentPage}
-            totalPages={totalPages}
+            totalPages={Math.ceil(
+              (transformedInvestments.length || 0) / itemsPerPage
+            )}
             onPageChange={handlePageChange}
-            hasNext={currentPage < totalPages}
           />
         </div>
 
         {/* 모달 렌더링 */}
-        {isModalOpen && modalInfo && modalInfo.modalType === "menu" && (
+        {isModalOpen && modalType === "menu" && (
           <DropdownForEdit
             position={modalInfo.position}
             onClose={handleCloseModal}
-            onEdit={handleEdit}  // 수정된 부분
-            onDelete={handleDelete} // 수정된 부분
-            toggleRef={modalInfo.toggleRef} // 여기서 전달된 toggleRef를 사용
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+            toggleRef={modalInfo.toggleRef}
           />
         )}
 
-        {isModalOpen && modalInfo && modalInfo.modalType === "update" && (
+        {isModalOpen && modalType === "update" && (
           <ModalInvestmentUpdate
             isOpen={true}
             onClose={handleCloseModal}
@@ -169,7 +196,7 @@ function CompanyInvestDetail() {
           />
         )}
 
-        {isModalOpen && modalInfo && modalInfo.modalType === "password" && (
+        {isModalOpen && modalType === "password" && (
           <ModalPassword
             isOpen={true}
             onClose={handleCloseModal}
