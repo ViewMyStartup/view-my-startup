@@ -11,6 +11,7 @@ import fetchData from "API/DefaultPageAPI.js";
 function DefaultPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
+  const [tempQuery, setTempQuery] = useState("");
   const [sortOption, setSortOption] = useState("누적 투자금액 높은순");
   const [companies, setCompanies] = useState([]);
   const [totalPages, setTotalPages] = useState(5);
@@ -43,15 +44,16 @@ function DefaultPage() {
   }, [loadData]);
 
   const handleSearchChange = (value) => {
-    setSearchQuery(value);
+    setTempQuery(value);
   };
 
   const handleSearch = () => {
+    setSearchQuery(tempQuery);
     setCurrentPage(1);
-    loadData();
   };
 
   const handleClearSearch = () => {
+    setTempQuery("");
     setSearchQuery("");
     setCurrentPage(1);
     loadData();
@@ -63,6 +65,7 @@ function DefaultPage() {
   };
 
   const handleHomeClick = () => {
+    setTempQuery("");
     setSearchQuery("");
     setSortOption("누적 투자금액 높은순");
     setCurrentPage(1);
@@ -79,7 +82,7 @@ function DefaultPage() {
           <h2 className={styles.listTitle}>전체 스타트업 목록</h2>
           <div className={styles.searchBarRight}>
             <SearchBar
-              value={searchQuery}
+              value={tempQuery}
               onChange={handleSearchChange}
               onClear={handleClearSearch}
               onSearch={handleSearch}
