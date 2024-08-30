@@ -332,7 +332,19 @@
   margin: 5px;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1200px) {
+  .chartSection {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    width: 70%;
+    padding: 32px;
+    border-radius: 8px;
+    color: #ffffff;
+  }
+}
+
+@media (max-width: 744px) {
   .InvestorGrid {
     display: flex;
     flex-direction: column;
@@ -343,4 +355,6 @@
     max-width: 80%;
     margin-bottom: 1rem;
   }
+
+
 }
