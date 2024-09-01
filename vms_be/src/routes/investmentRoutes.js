@@ -5,12 +5,13 @@ import {
   BadRequestException,
   NotFoundException,
 } from "../errors/CustomExceptions.js";
+import bcrypt from 'bcrypt';
 
 const router = Router();
 const prisma = new PrismaClient();
 
-// virtualInvestment 업데이트 함수
-async function updateVirtualInvestment(companyId) {
+// 가상 투자 업데이트 함수
+async function updateVirtualInvestment(companyId, prisma) {
   const sumVirtualInvestment = await prisma.investment.aggregate({
     where: { companyId: companyId },
     _sum: { investmentAmount: true },
@@ -24,7 +25,7 @@ async function updateVirtualInvestment(companyId) {
   });
 }
 
-//가상 투자 추가 API
+// 가상 투자 추가 API
 router.post(
   "/",
   asyncHandler(async (req, res) => {
@@ -47,7 +48,7 @@ router.post(
       throw new BadRequestException("모든 필드는 필수값입니다");
     }
 
-    // 투자 항목 생성
+    // 회사 존재 여부 확인
     const companyExists = await prisma.company.findUnique({
       where: { id: companyId },
     });
@@ -56,18 +57,27 @@ router.post(
       throw new NotFoundException("해당 회사 정보가 존재하지 않습니다");
     }
 
-    const investment = await prisma.investment.create({
-      data: {
-        companyId,
-        investorName,
-        investmentAmount,
-        investmentComment,
-        password,
-      },
+    // 비밀번호 해싱
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // 트랜잭션으로 투자 정보 생성 및 가상 투자 업데이트
+    const investment = await prisma.$transaction(async (prisma) => {
+      const investment = await prisma.investment.create({
+        data: {
+          companyId,
+          investorName,
+          investmentAmount,
+          investmentComment,
+          password: hashedPassword,
+        },
+      });
+
+      // 가상 투자 업데이트
+      await updateVirtualInvestment(companyId, prisma);
+
+      return investment;
     });
 
-    // virtualInvestment 업데이트 *추가
-    await updateVirtualInvestment(companyId);
     res.status(201).json(investment);
   })
 );
@@ -100,25 +110,27 @@ router.put(
     }
 
     // 비밀번호 검증
-    if (investment.password !== password) {
+    const isMatch = await bcrypt.compare(password, investment.password);
+    if (!isMatch) {
       throw new BadRequestException("비밀번호가 일치하지 않습니다");
     }
 
-    // 투자 정보 업데이트
-    const updatedInvestment = await prisma.investment.update({
-      where: { id: investmentId },
-      data: {
-        investorName,
-        investmentAmount,
-        investmentComment,
-      },
+    // 트랜잭션으로 투자 정보 업데이트 및 가상 투자 업데이트
+    const updatedInvestment = await prisma.$transaction(async (prisma) => {
+      const updatedInvestment = await prisma.investment.update({
+        where: { id: investmentId },
+        data: {
+          investorName,
+          investmentAmount,
+          investmentComment,
+        },
+      });
+
+      // 가상 투자 업데이트
+      await updateVirtualInvestment(updatedInvestment.companyId, prisma);
+
+      return updatedInvestment;
     });
-
-    // `investment` 객체에서 `companyId` 가져오기
-    const companyId = investment.companyId;
-
-    // virtualInvestment 업데이트
-    await updateVirtualInvestment(companyId);
 
     res.status(200).json(updatedInvestment);
   })
@@ -141,26 +153,26 @@ router.delete(
     }
 
     // 비밀번호 검증
-    if (investment.password !== password) {
+    const isMatch = await bcrypt.compare(password, investment.password);
+    if (!isMatch) {
       throw new BadRequestException("비밀번호가 일치하지 않습니다");
     }
 
-    // `investment` 객체에서 `companyId` 가져오기
-    const companyId = investment.companyId;
+    // 트랜잭션으로 투자 정보 삭제 및 가상 투자 업데이트
+    await prisma.$transaction(async (prisma) => {
+      await prisma.investment.delete({
+        where: { id: investmentId },
+      });
 
-    // 투자 정보 삭제
-    await prisma.investment.delete({
-      where: { id: investmentId },
+      // 가상 투자 업데이트
+      await updateVirtualInvestment(investment.companyId, prisma);
     });
-
-    // virtualInvestment 업데이트
-    await updateVirtualInvestment(companyId);
 
     res.status(204).send();
   })
 );
 
-// 투자자 상세 정보 조회 및 순위 계산 API
+// 투자자 상세 정보 조회 API
 router.get(
   "/:investmentId",
   asyncHandler(async (req, res) => {

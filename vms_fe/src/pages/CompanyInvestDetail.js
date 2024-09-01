@@ -14,6 +14,7 @@ import {
   useCompanyData,
 } from "context/CompanyDataContext";
 import styles from "./CompanyInvestDetail.module.css";
+
 function CompanyInvestDetail() {
 
   const { companyData, transformedInvestments, loading } = useCompanyData();
