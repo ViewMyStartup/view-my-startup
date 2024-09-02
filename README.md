@@ -21,7 +21,7 @@
 7. [컨벤션](#convention)
 8. [프로젝트 구조](#tree)
 9. [협업 문화](#culture)
-10. [버그 관리](#bug)
+10. [버그 문제](#bug)
 
 </details>
 <br>
