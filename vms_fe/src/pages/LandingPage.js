@@ -10,7 +10,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import styles from "./MainPage.module.css";
+import styles from "./LandingPage.module.css";
 import PageNav from "components/PageNav";
 import placeholder1 from "assets/images/placeHolder1.jpg";
 import placeholder2 from "assets/images/placeHolder2.jpg";

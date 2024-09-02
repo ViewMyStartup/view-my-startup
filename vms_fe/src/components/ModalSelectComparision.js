@@ -86,6 +86,11 @@ const ModalSelectComparision = ({
     [companyList, selectedCompanies, onClose, autoClose]
   );
 
+  // handleSearch 함수 수정: 검색어 전달
+  const handleSearch = () => {
+    debouncedFetchCompanies();
+  };
+
   const handleDeselect = useCallback((companyName) => {
     setSelectedCompanies((prev) =>
       prev.filter((company) => company.name !== companyName)
@@ -137,6 +142,7 @@ const ModalSelectComparision = ({
             value={searchTerm}
             onChange={handleSearchChange}
             onClear={() => handleSearchChange("")}
+            onSearch={handleSearch} // Enter나 검색 아이콘 클릭 시 검색 수행
           />
 
           {selectedCompanies.length > 0 && (

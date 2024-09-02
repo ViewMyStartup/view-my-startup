@@ -23,7 +23,14 @@ function CompanyDataPerRow({
       onCloseModal();
     } else {
       const rect = kebabIconRef.current.getBoundingClientRect();
-      onOpenModal("menu", dataObject, { x: rect.left, y: rect.bottom }, kebabIconRef);
+  
+      const scrollX = window.scrollX
+      const scrollY = window.scrollY
+  
+      const adjustedX = rect.left + scrollX;
+      const adjustedY = rect.bottom + scrollY + 1; 
+  
+      onOpenModal("menu", dataObject, { x: adjustedX, y: adjustedY }, kebabIconRef);
     }
   };
 
