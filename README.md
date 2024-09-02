@@ -21,8 +21,7 @@
 7. [컨벤션](#convention)
 8. [프로젝트 구조](#tree)
 9. [협업 문화](#culture)
-10. [이슈 관리](#issues)
-11. [버그 관리](#bug)
+10. [버그 관리](#bug)
 
 </details>
 <br>
@@ -833,10 +832,6 @@
 - 내용: PR 내용 발표 및 코드 리뷰, 진행 상황 점검, 추가 이후 계획 논의
 
 #### <p align="right"><a href="#top">TOP👆🏻</a></p>
-
-<br>
-
-## <span id="issues">핵심 코드</span>
 
 <br>
 
