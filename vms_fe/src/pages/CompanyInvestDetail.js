@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import PageNav from "components/PageNav";
 import DataRowSetRender from "components/DataRowSetRender";
@@ -16,6 +16,17 @@ import {
 import styles from "./CompanyInvestDetail.module.css";
 
 function CompanyInvestDetail() {
+  useEffect(() => {
+    const handleResize = () => {
+      handleCloseModal(); // Always close the modal on window resize
+    };
+  
+    window.addEventListener('resize', handleResize);
+  
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const { companyData, transformedInvestments, loading } = useCompanyData();
 
