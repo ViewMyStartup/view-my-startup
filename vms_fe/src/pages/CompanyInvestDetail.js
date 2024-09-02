@@ -158,6 +158,7 @@ function CompanyInvestDetail() {
             <div className={styles.InvestmentButtonTitle}>
               View My Startup에서 받은 투자
             </div>
+            
             <button
               className={styles.InvestmentButton}
               onClick={() => handleOpenModal("investment", companyData)}
@@ -165,6 +166,9 @@ function CompanyInvestDetail() {
               기업투자하기
             </button>
           </div>
+          <div
+            className={styles.totalVirtualInvestment}
+          >총 {convertToHundredMillion(companyData.totalInvestment)}억 원</div>
 
           {/* 투자 모달 열기 */}
           {modalType === "investment" && (
