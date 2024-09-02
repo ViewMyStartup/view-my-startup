@@ -70,6 +70,14 @@ router.post(
           investmentComment,
           password: hashedPassword,
         },
+        // select로 password를 제외하고 필요한 필드만 반환
+        select: {
+          id: true,
+          companyId: true,
+          investorName: true,
+          investmentAmount: true,
+          investmentComment: true,
+        },
       });
 
       // 가상 투자 업데이트
@@ -123,6 +131,14 @@ router.put(
           investorName,
           investmentAmount,
           investmentComment,
+        },
+        // select로 password를 제외하고 필요한 필드만 반환
+        select: {
+          id: true,
+          companyId: true,
+          investorName: true,
+          investmentAmount: true,
+          investmentComment: true,
         },
       });
 
@@ -178,9 +194,16 @@ router.get(
   asyncHandler(async (req, res) => {
     const investmentId = parseInt(req.params.investmentId, 10);
 
-    // 투자자 정보 가져오기
+    // 투자자 정보 가져오기 (password 제외)
     const investment = await prisma.investment.findUnique({
       where: { id: investmentId },
+      select: {
+        id: true,
+        companyId: true,
+        investorName: true,
+        investmentAmount: true,
+        investmentComment: true,
+      },
     });
 
     if (!investment) {
@@ -193,6 +216,12 @@ router.get(
       where: { companyId },
       orderBy: {
         investmentAmount: "desc",
+      },
+      select: {
+        id: true,
+        investorName: true,
+        investmentAmount: true,
+        investmentComment: true,
       },
     });
 
@@ -208,9 +237,9 @@ router.get(
     );
 
     res.status(200).json({
-      investment: investmentWithRank, // 투자자 순위
+      investment: investmentWithRank, // 투자자 정보와 순위
       rank: investmentWithRank.rank, // 투자자 순위
-      totalInvestments: rankedInvestments.length, // 페이지네이션 목적용 총 투자자수
+      totalInvestments: rankedInvestments.length, // 페이지네이션 목적용 총 투자자 수
     });
   })
 );
