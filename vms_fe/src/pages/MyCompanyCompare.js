@@ -35,14 +35,15 @@ function MyCompanyCompare() {
   const [rankedCompanies, setRankedCompanies] = useState([]);
   const [resetButtonText, setResetButtonText] = useState("전체 초기화");
   const [allCompanies, setAllCompanies] = useState([]);
-  const [isloading, setIsLoading] = useState(false); // 하나의 로딩 상태로 전체 관리
+  const [isLoadingComparison, setIsLoadingComparison] = useState(false);
+  const [isLoadingRank, setIsLoadingRank] = useState(false);
 
   const navigate = useNavigate();
 
   // 회사 데이터 초기 로드
   useEffect(() => {
     const getCompanies = async () => {
-      setIsLoading(true); // 로딩 시작
+      setIsLoadingComparison(true); // 로딩 시작
       try {
         const data = await fetchCompanies();
         setAllCompanies(data);
@@ -50,7 +51,7 @@ function MyCompanyCompare() {
       } catch (error) {
         console.error("기업 데이터를 가져오는 데 실패했습니다.", error);
       } finally {
-        setIsLoading(false); // 로딩 종료
+        setIsLoadingComparison(false); // 로딩 종료
       }
     };
 
@@ -60,12 +61,12 @@ function MyCompanyCompare() {
   // 선택된 회사와 추가된 회사를 정렬
   useEffect(() => {
     if (selectedCompanies.length > 0 || additionalCompanies.length > 0) {
-      setIsLoading(true); // 로딩 시작
+      setIsLoadingComparison(true); // 로딩 시작
       const combinedCompanies = selectedCompanies.concat(additionalCompanies);
       setSortedCompaniesForComparison(
         sortCompanies(combinedCompanies, sortingOptionForComparison)
       );
-      setIsLoading(false); // 로딩 종료
+      setIsLoadingComparison(false); // 로딩 종료
     }
   }, [selectedCompanies, additionalCompanies, sortingOptionForComparison]);
 
@@ -73,7 +74,7 @@ function MyCompanyCompare() {
   const fetchRankedCompanies = useCallback(async () => {
     if (selectedCompanies.length === 0) return;
 
-    setIsLoading(true); // 로딩 시작
+    setIsLoadingRank(true); // 로딩 시작
     try {
       const myCompanyId = selectedCompanies[0].id;
       console.log("Fetching ranked companies for My Company ID:", myCompanyId);
@@ -86,17 +87,17 @@ function MyCompanyCompare() {
     } catch (error) {
       console.error("기업 순위 데이터를 가져오는 데 실패했습니다.", error);
     } finally {
-      setIsLoading(false); // 로딩 종료
+      setIsLoadingRank(false); // 로딩 종료
     }
   }, [selectedCompanies, sortingOptionForRank]);
 
   // 비교 결과가 보이는 상태에서 순위 데이터를 로드
   useEffect(() => {
     if (isComparisonVisible && selectedCompanies.length > 0) {
-      setIsLoading(true); // 로딩 시작
+      setIsLoadingRank(true); // 로딩 시작
       const fetchData = async () => {
         await fetchRankedCompanies(); // 순위 데이터 로드
-        setIsLoading(false); // 로딩 종료
+        setIsLoadingRank(false); // 로딩 종료
       };
       fetchData();
     }
@@ -133,7 +134,7 @@ function MyCompanyCompare() {
   };
 
   const handleSortingChangeForComparison = async (option) => {
-    setIsLoading(true); // 로딩 시작
+    setIsLoadingComparison(true); // 로딩 시작
     setSortingOptionForComparison(option);
 
     const combinedCompanies = selectedCompanies.concat(additionalCompanies);
@@ -141,11 +142,11 @@ function MyCompanyCompare() {
     setSortedCompaniesForComparison(sortedData);
 
     await fetchRankedCompanies(); // 순위 데이터도 새로 로드하여 로딩 동기화
-    setIsLoading(false); // 로딩 종료
+    setIsLoadingComparison(false); // 로딩 종료
   };
 
   const handleSortingChangeForRank = async (option) => {
-    setIsLoading(true); // 로딩 시작
+    setIsLoadingRank(true); // 로딩 시작
     setSortingOptionForRank(option);
 
     await fetchRankedCompanies(); // 순위 회사 데이터를 다시 로드
@@ -157,7 +158,7 @@ function MyCompanyCompare() {
     );
     setSortedCompaniesForComparison(sortedData);
 
-    setIsLoading(false); // 로딩 종료
+    setIsLoadingRank(false); // 로딩 종료
   };
 
   const handleComparisonClick = () => {
@@ -282,7 +283,7 @@ function MyCompanyCompare() {
                   type="noRank"
                   dataList={sortedCompaniesForComparison}
                   myCompanyId={myCompanyId}
-                  isloading={isloading} // 로딩 상태 전달
+                  isloading={isLoadingComparison} // 로딩 상태 전달
                 />
               </div>
             </div>
@@ -309,7 +310,7 @@ function MyCompanyCompare() {
                   type="rank"
                   dataList={rankedCompanies}
                   myCompanyId={myCompanyId}
-                  isloading={isloading} // 로딩 상태 전달
+                  isloading={isLoadingRank} // 로딩 상태 전달
                 />
               </div>
             </div>
