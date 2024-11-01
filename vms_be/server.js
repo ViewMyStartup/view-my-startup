@@ -20,8 +20,10 @@ const app = express();
 
 app.use(express.json());
 
-// cors 설정( 일단, 모든 도메인에서의 요청을 허용해놓음 )
-app.use(cors());
+// cors 설정
+app.use(cors({
+  origin: 'https://view-my-startup-company.netlify.app'
+}));
 
 // 정적 파일 제공 설정 *수정됨
 // const staticFilesPath = path.join(__dirname, 'seeders/images');
