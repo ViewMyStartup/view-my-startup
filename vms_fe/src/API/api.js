@@ -10,7 +10,7 @@ import axios from "axios";
 export async function getApiData(page, limit, search, sort_by, order) {
   try {
     const response = await axios.get(
-      "https://view-my-startup.onrender.com/api/companies",
+      "https://view-my-startup-inxl.onrender.com/api/companies",
       {
         params: { page, limit, search, sort_by, order },
       }
@@ -24,7 +24,7 @@ export async function getApiData(page, limit, search, sort_by, order) {
 }
 
 export const fetchCompanies = async (page = 1, limit = 100) => {
-  const response = await axios.get("https://view-my-startup.onrender.com/api/companies", {
+  const response = await axios.get("https://view-my-startup-inxl.onrender.com/api/companies", {
     params: { page, limit },
   });
   return response.data;
