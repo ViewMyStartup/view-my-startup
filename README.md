@@ -4,7 +4,7 @@
 
 ![9F90073A-3F89-4AF6-8A8B-52388088CDFC](https://github.com/user-attachments/assets/f0a17654-554e-4f4c-bc4f-c6a2d111df73)
 
-<b>[View My Startup 바로가기](https://team4-vms.netlify.app/)</b> <br>
+<b>[View My Startup 바로가기](https://view-my-startup-company.netlify.app/)</b> <br>
 
 <br> 
 </div>
