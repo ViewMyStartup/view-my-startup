@@ -23,7 +23,7 @@ export async function getApiData(page, limit, search, sort_by, order) {
   }
 }
 
-export const fetchCompanies = async (page = 1, limit = 100) => {
+export const fetchCompanies = async (page = 1, limit = 10) => {
   const response = await axios.get("https://view-my-startup-inxl.onrender.com/api/companies", {
     params: { page, limit },
   });
