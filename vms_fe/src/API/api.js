@@ -7,7 +7,7 @@ import axios from "axios";
 // 아래 API 호출 코드 작성
 
 // 기업 전체 리스트 조회 API
-export async function getApiData(page, limit, search, sort_by, order) {
+export async function getApiData(page = 1, limit = 10, search, sort_by, order) {
   try {
     const response = await axios.get(
       "https://view-my-startup-inxl.onrender.com/api/companies",
@@ -24,12 +24,19 @@ export async function getApiData(page, limit, search, sort_by, order) {
 }
 
 export const fetchCompanies = async (page = 1, limit = 10) => {
-  const response = await axios.get("https://view-my-startup-inxl.onrender.com/api/companies", {
-    params: { page, limit },
-  });
-  return response.data;
+  try {
+    const response = await axios.get(
+      "https://view-my-startup-inxl.onrender.com/api/companies",
+      {
+        params: { page, limit },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Failed to fetch companies data", error);
+    throw error;
+  }
 };
-
 
 
 // 서버에서 가져온 기업 데이터를 정렬하는 sortCompanies
