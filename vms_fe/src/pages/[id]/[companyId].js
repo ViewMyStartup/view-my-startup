@@ -18,15 +18,17 @@ import styles from "../../styles/pages/CompanyInvestDetail.module.css";
 
 function CompanyInvestDetail() {
   useEffect(() => {
-    const handleResize = () => {
-      handleCloseModal();
-    };
+    if (typeof window !== "undefined") {
+      const handleResize = () => {
+        handleCloseModal();
+      };
 
-    window.addEventListener('resize', handleResize);
+      window.addEventListener("resize", handleResize);
 
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }
   }, []);
 
   const { companyData, transformedInvestments, loading } = useCompanyData();
@@ -175,9 +177,9 @@ function CompanyInvestDetail() {
                 기업투자하기
               </button>
             </div>
-            <div
-              className={styles.totalVirtualInvestment}
-            >총 {convertToHundredMillion(companyData.totalInvestment)}억 원</div>
+            <div className={styles.totalVirtualInvestment}>
+              총 {convertToHundredMillion(companyData.totalInvestment)}억 원
+            </div>
 
             {modalType === "investment" && (
               <ModalInvestment
@@ -264,4 +266,3 @@ export default function CompanyInvestDetailWrapper() {
     </CompanyDataProvider>
   );
 }
-
