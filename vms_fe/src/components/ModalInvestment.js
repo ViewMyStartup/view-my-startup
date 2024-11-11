@@ -1,6 +1,5 @@
-import React, { useCallback,useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import style from "./ModalInvestment.module.css";
-import deleteIcon from "assets/images/ic_delete.svg";
 import InputBar from "./common/InputBar";
 import { createInvestment } from "API/CompanyInvestDetailAPI";
 import { useCompanyData } from "context/CompanyDataContext";
@@ -9,12 +8,9 @@ const ModalInvestment = ({ isOpen, onClose, selectedCompanies }) => {
   const { fetchData } = useCompanyData();
 
   useEffect(() => {
-    // 모달이 열릴 때 스크롤을 비활성화
     if (isOpen) {
       document.body.style.overflow = "hidden";
     }
-
-    // 모달이 닫힐 때 스크롤을 활성화
     return () => {
       document.body.style.overflow = "auto";
     };
@@ -51,7 +47,7 @@ const ModalInvestment = ({ isOpen, onClose, selectedCompanies }) => {
           <div className={style.modalHeadText}>
             기업에 투자하기
             <img
-              src={deleteIcon}
+              src="/assets/images/ic_delete.svg"
               className={style.deleteLogo}
               alt="deleteLogo"
               onClick={onClose}

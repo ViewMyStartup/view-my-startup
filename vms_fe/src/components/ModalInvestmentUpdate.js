@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import style from "./ModalInvestmentUpdate.module.css";
-import deleteIcon from  "assets/images/ic_delete.svg"
-import eyeOpenIcon from "../assets/images/ic_password_eye_open.svg";
-import eyeCloseIcon from "../assets/images/ic_password_eye_close.svg";
 import MediumBtn from "./common/MediumBtn";
 import { updateInvestment } from "API/CompanyInvestDetailAPI";
 import { useCompanyData } from "context/CompanyDataContext";
@@ -38,7 +35,6 @@ const ModalInvestmentUpdate = ({ isOpen, onClose, selectedInvestment }) => {
       document.body.style.overflow = ""; // 모달이 닫히면 스크롤 활성화
     }
 
-    // 컴포넌트가 언마운트될 때 스크롤 원래대로
     return () => {
       document.body.style.overflow = "";
     };
@@ -114,22 +110,16 @@ const ModalInvestmentUpdate = ({ isOpen, onClose, selectedInvestment }) => {
           <div className={style.modalHeadText}>
             <h2>투자 정보 수정</h2>
             <img
-              src={deleteIcon}
+              src="/assets/images/ic_delete.svg"
               className={style.deleteLogo}
               alt="deleteLogo"
               onClick={onClose}
             />
           </div>
 
-          <form
-            onSubmit={handleInvestmentSubmit}
-            className={style.PartitionHug}
-          >
+          <form onSubmit={handleInvestmentSubmit} className={style.PartitionHug}>
             <div className={style.inputWrapper}>
-              <label
-                htmlFor="investorName"
-                className={style.companyColumnsName}
-              >
+              <label htmlFor="investorName" className={style.companyColumnsName}>
                 투자자 이름
               </label>
               <input
@@ -193,7 +183,7 @@ const ModalInvestmentUpdate = ({ isOpen, onClose, selectedInvestment }) => {
                   className={style.input}
                 />
                 <img
-                  src={isPasswordVisible ? eyeCloseIcon : eyeOpenIcon}
+                  src={isPasswordVisible ? "/assets/images/ic_password_eye_close.svg" : "/assets/images/ic_password_eye_open.svg"}
                   alt="Toggle visibility"
                   className={style.passwordToggle}
                   onClick={togglePasswordVisibility}

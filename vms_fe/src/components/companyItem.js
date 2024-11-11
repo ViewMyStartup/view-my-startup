@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./companyItem.module.css"; // CSS 모듈 import
+import styles from "./companyItem.module.css";
 
 const CompanyItem = ({ logo, name, category }) => {
   const [selected, setSelected] = useState(false); // 처음에는 선택 안된 상태
@@ -19,6 +19,9 @@ const CompanyItem = ({ logo, name, category }) => {
       <button
         className={`${styles.selectBtn} ${selected ? styles.selected : ""}`}
         onClick={handleClick}
+        style={{
+          backgroundImage: selected ? 'url("/assets/images/ic_check.svg")' : "none",
+        }}
       >
         {selected ? "선택완료" : "선택하기"}
       </button>

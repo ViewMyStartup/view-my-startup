@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import styles from "./InputBar.module.css";
-import eyeOpenIcon from "assets/images/ic_password_eye_open.svg";
-import eyeSlashIcon from "assets/images/ic_password_eye_close.svg";
 
 const InputBar = ({ onSubmit, onClose }) => {
   const [investorName, setInvestorName] = useState("");
@@ -147,7 +145,7 @@ const InputBar = ({ onSubmit, onClose }) => {
               disabled={isSubmitting}
             />
             <img
-              src={showPassword ? eyeSlashIcon : eyeOpenIcon}
+              src={showPassword ? "/assets/images/ic_password_eye_close.svg" : "/assets/images/ic_password_eye_open.svg"}
               alt="비밀번호 가시성 토글"
               onClick={togglePasswordVisibility}
               className={styles.passwordToggleIcon}
@@ -174,7 +172,7 @@ const InputBar = ({ onSubmit, onClose }) => {
               disabled={isSubmitting}
             />
             <img
-              src={showPassword ? eyeSlashIcon : eyeOpenIcon}
+              src={showPassword ? "/assets/images/ic_password_eye_close.svg" : "/assets/images/ic_password_eye_open.svg"}
               alt="비밀번호 가시성 토글"
               onClick={togglePasswordVisibility}
               className={styles.ConfirmPasswordToggleIcon}

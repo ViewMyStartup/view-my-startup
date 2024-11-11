@@ -47,6 +47,10 @@
   }
 }
 
+.inputWithPlaceholder::placeholder {
+  font-size: 13px; 
+}
+
 @media (max-width: 743px) {
   .searchBar {
     width: 300px;
@@ -55,9 +59,5 @@
 
   .searchInput {
     padding-right: 0;
-  }
-
-  input::placeholder {
-    font-size: 13px;
   }
 }

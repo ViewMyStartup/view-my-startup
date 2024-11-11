@@ -1,4 +1,4 @@
-import searchIcon from "../../assets/images/ic_search.svg";
+import searchIcon from "../../public/assets/images/ic_search.svg";
 import styles from "./SearchBarSmall.module.css";
 
 const SearchBarSmall = ({ value, onChange }) => {

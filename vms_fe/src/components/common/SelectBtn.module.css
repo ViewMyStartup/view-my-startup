@@ -23,7 +23,7 @@
   cursor: pointer;
   text-align: center;
   padding-left: 28.5px;
-  background-image: url("assets/images/ic_check.svg");
+  background-image: url("../../../public/assets/images/ic_check.svg");
   background-repeat: no-repeat;
   background-position: 11px center;
 }

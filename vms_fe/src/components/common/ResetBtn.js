@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./ResetBtn.module.css";  // 파일 이름도 변경해주어야 합니다
+import styles from "./ResetBtn.module.css";
 
 const ResetBtn = ({ text, onClick, disabled = false }) => {
   return (

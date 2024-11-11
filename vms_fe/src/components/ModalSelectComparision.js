@@ -4,7 +4,6 @@ import style from "./ModalSelectComparision.module.css";
 import Pagination from "components/common/Pagination";
 import SearchBar from "components/common/SearchBar";
 import SelectBtn from "./common/SelectBtn";
-import deleteIcon from "assets/images/ic_delete.svg";
 import { getApiData } from "../API/api";
 
 const ModalSelectComparision = ({
@@ -86,7 +85,6 @@ const ModalSelectComparision = ({
     [companyList, selectedCompanies, onClose, autoClose]
   );
 
-  // handleSearch 함수 수정: 검색어 전달
   const handleSearch = () => {
     debouncedFetchCompanies();
   };
@@ -131,7 +129,7 @@ const ModalSelectComparision = ({
           <div className={style.modalHeadText}>
             {title}
             <img
-              src={deleteIcon}
+              src="/assets/images/ic_delete.svg"
               className={style.deleteLogo}
               alt="deleteLogo"
               onClick={handleClose}
@@ -142,7 +140,7 @@ const ModalSelectComparision = ({
             value={searchTerm}
             onChange={handleSearchChange}
             onClear={() => handleSearchChange("")}
-            onSearch={handleSearch} // Enter나 검색 아이콘 클릭 시 검색 수행
+            onSearch={handleSearch}
           />
 
           {selectedCompanies.length > 0 && (
@@ -249,3 +247,4 @@ const ModalSelectComparision = ({
 };
 
 export default ModalSelectComparision;
+

@@ -4,7 +4,7 @@
   margin: 0 auto;
   width: 448px;
   height: 48px;
-  margin-bottom: 12px; /* 여기 기업아이템간 간격 마음대로 바꾸셔도됩니당 */
+  margin-bottom: 12px;
 }
 
 /* 기업로고 기업명 카테고리 박스 */
@@ -51,11 +51,10 @@
 
 /* 선택완료 시 버튼 */
 .selectBtn.selected {
-  background-image: url("/src/assets/images/ic_check.svg");
   background-position: 10px center;
   background-size: 24px;
   padding-left: 35px; /* 텍스트와 이미지 사이 간격 조정 */
-  text-align: center; /* 텍스트 중앙 정렬 */
+  text-align: center;
   background-repeat: no-repeat;
   background-color: transparent;
   border: 1px solid var(--white);
@@ -108,7 +107,6 @@
 
   /* 선택하기 버튼 클릭 시, 선택완료 */
   .selectBtn.selected {
-    background-image: url("/src/assets/images/ic_check.svg");
     background-position: 6px center;
     background-size: 16px;
     padding-left: 24px;

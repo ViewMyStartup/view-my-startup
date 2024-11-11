@@ -1,10 +1,10 @@
-body {
+.bodyBackground {
   background: var(--black-400);
   margin: 0;
   padding: 0;
+  min-height: 100vh;
 }
 
-/* 전체 컨테이너 스타일 */
 .currentStateInvest {
   background: var(--black-400);
   padding: 20px;
@@ -22,7 +22,7 @@ body {
 }
 
 /* 투자 현황 문구 */
-p {
+.investStateNav p {
   font-size: 20px;
   font-weight: 700;
   color: var(--white);
@@ -33,7 +33,7 @@ p {
   flex-direction: column;
   gap: 16px;
 }
-/* 페이지네이션 */
+
 .pagination {
   margin-top: 40px;
   padding-bottom: 133px;
@@ -46,11 +46,10 @@ p {
   }
 
   /* 투자 현황 문구 */
-  p {
+  .investStateNav p {
     font-size: 16px;
   }
 
-  /* 페이지네이션 */
   .pagination {
     margin-top: 16px;
   }

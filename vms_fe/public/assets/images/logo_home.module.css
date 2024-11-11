@@ -1,0 +1,10 @@
+.logoSvg {
+  width: 112px;
+  height: 40px;
+}
+@media (max-width: 744px) {
+  .logoSvg {
+    width: 64px;
+    height: 23px;
+  }
+}

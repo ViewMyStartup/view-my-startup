@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./Dropdown.module.css";
-import ToggleIcon from "./../../assets/images/ic_toggle.svg";
 
 const Dropdown = ({
   options = [
@@ -17,7 +16,6 @@ const Dropdown = ({
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(initialLabel);
 
-  //드랍다운 참조값
   const dropdownRef = useRef(null);
 
   const toggleDropdown = () => setIsOpen(!isOpen);
@@ -28,7 +26,6 @@ const Dropdown = ({
     onOptionSelect(option);
   };
 
-  // 이벤트 리스너 등록
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
@@ -36,7 +33,6 @@ const Dropdown = ({
     };
   }, []);
 
-  //드랍다운 밖을 선택하면 실행할 핸들러 함수
   const handleClickOutside = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
       setIsOpen(false);
@@ -51,7 +47,7 @@ const Dropdown = ({
       >
         <span className={styles.dropdownLabel}>{selectedOption}</span>
         <img
-          src={ToggleIcon}
+          src="/assets/images/ic_toggle.svg"
           alt="Toggle Icon"
           className={styles.dropdownIcon}
         />
@@ -80,3 +76,4 @@ const Dropdown = ({
 };
 
 export default Dropdown;
+

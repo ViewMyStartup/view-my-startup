@@ -1,18 +1,15 @@
-import React, { useState } from "react";
-import styles from "./CurrentStateCompare.module.css";
+import { useState } from "react";
+import Head from "next/head";
+import styles from "../styles/pages/CurrentStateCompare.module.css";
+import PageNav from "../components/PageNav";
+import DataRowSetRender from "../components/DataRowSetRender";
+import Pagination from "../components/common/Pagination";
+import DropdownMiddleSize from "../components/common/DropdownMiddleSize";
+import useGetCompanyData from "../hook/useGetCompanyData";
 
-// 컴포넌트
-import PageNav from "components/PageNav";
-import DataRowSetRender from "components/DataRowSetRender";
-import Pagination from "components/common/Pagination";
-import DropdownMiddleSize from "components/common/DropdownMiddleSize";
-
-// 커스텀 훅
-import useGetCompanyData from "hook/useGetCompanyData";
-
-function CurrentStateCompare() {
+export default function CurrentStateCompare() {
   const [sortBy, setSortBy] = useState("mySelectionCount");
-  const [oder, setOrder] = useState("desc");
+  const [order, setOrder] = useState("desc");
   const [currentPage, setCurrentPage] = useState(1);
 
   const {
@@ -20,14 +17,14 @@ function CurrentStateCompare() {
     isLoading,
     error,
     totalPages,
-  } = useGetCompanyData(currentPage, 10, "", sortBy, oder);
+  } = useGetCompanyData(currentPage, 10, "", sortBy, order);
 
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
     }
-  }
-  
+  };
+
   const handleOptionChange = (option) => {
     if (option === "나의 기업 선택 횟수 높은순") {
       setSortBy("mySelectionCount");
@@ -45,7 +42,6 @@ function CurrentStateCompare() {
     setCurrentPage(1);
   };
 
-
   const options = [
     "나의 기업 선택 횟수 높은순",
     "나의 기업 선택 횟수 낮은순",
@@ -55,6 +51,10 @@ function CurrentStateCompare() {
 
   return (
     <div className={styles.bgSet}>
+      <Head>
+        <title>View My Startup 비교 현황</title>
+        <meta name="description" content="기업 선택 횟수를 비교하는 페이지입니다." />
+      </Head>
       <nav className={styles.navSet}>
         <PageNav />
       </nav>
@@ -75,16 +75,14 @@ function CurrentStateCompare() {
           />
         </section>
       </main>
-      <footer className={styles.footerSet}>
+      <div className={styles.pagination}>
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}
           onPageChange={handlePageChange}
           hasNext={currentPage < totalPages}
         />
-      </footer>
+      </div>
     </div>
   );
 }
-
-export default CurrentStateCompare;

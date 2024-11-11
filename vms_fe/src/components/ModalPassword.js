@@ -2,9 +2,6 @@ import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import MediumBtn from "./common/MediumBtn.js";
 import styles from "./ModalPassword.module.css";
-import eyeOpenIcon from "../assets/images/ic_password_eye_open.svg";
-import eyeCloseIcon from "../assets/images/ic_password_eye_close.svg";
-import deleteIcon from "../assets/images/ic_delete.svg";
 import { deleteInvestment } from "API/CompanyInvestDetailAPI";
 import { useCompanyData } from "context/CompanyDataContext";
 
@@ -17,12 +14,10 @@ const ModalPassword = ({ isOpen, onClose, investmentId }) => {
   const { fetchData } = useCompanyData();
 
   useEffect(() => {
-    // 모달이 열릴 때 스크롤을 비활성화
     if (isOpen) {
       document.body.style.overflow = "hidden";
     }
 
-    // 모달이 닫힐 때 스크롤을 활성화
     return () => {
       document.body.style.overflow = "auto";
     };
@@ -69,7 +64,7 @@ const ModalPassword = ({ isOpen, onClose, investmentId }) => {
     <div className={styles.modalOverlay}>
       <div className={styles.modalContainer}>
         <button className={styles.closeButton} onClick={onClose}>
-          <img src={deleteIcon} alt="닫기" />
+          <img src="/assets/images/ic_delete.svg" alt="닫기" />
         </button>
         <h2 className={styles.modalHeader}>삭제 권한 인증</h2>
         <form onSubmit={handleSubmit} className={styles.form}>
@@ -87,7 +82,7 @@ const ModalPassword = ({ isOpen, onClose, investmentId }) => {
                 className={styles.input}
               />
               <img
-                src={isPasswordVisible ? eyeCloseIcon : eyeOpenIcon}
+                src={isPasswordVisible ? "/assets/images/ic_password_eye_close.svg" : "/assets/images/ic_password_eye_open.svg"}
                 alt="Toggle visibility"
                 className={styles.passwordToggle}
                 onClick={togglePasswordVisibility}

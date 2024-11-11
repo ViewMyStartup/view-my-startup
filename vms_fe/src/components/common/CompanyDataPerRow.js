@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
-import { Link } from "react-router-dom";
-import styles from "./CompanyDataPerRow.module.css";
-import iconKebab from "../../assets/images/ic_kebab.svg";
+import Link from "next/link";
+import styles from "../common/CompanyDataPerRow.module.css";
 
 function CompanyDataPerRow({
   type = "rank",
@@ -10,26 +9,23 @@ function CompanyDataPerRow({
   currentPage,
   limit = 10,
   myCompanyId,
-  activeDropdownId,  // 현재 열려있는 드롭다운의 ID를 확인하기 위해 추가
-  onOpenModal, // 모달 열기 핸들러
-  onCloseModal // 모달 닫기 핸들러
+  activeDropdownId,
+  onOpenModal,
+  onCloseModal
 }) {
   const kebabIconRef = useRef(null);
   const isMyCompany = dataObject.id === myCompanyId;
 
   const handleKebabClick = () => {
     if (activeDropdownId === dataObject.id) {
-      // 모달이 열려 있는 경우, 모달을 닫음
       onCloseModal();
     } else {
       const rect = kebabIconRef.current.getBoundingClientRect();
-  
-      const scrollX = window.scrollX
-      const scrollY = window.scrollY
-  
+      const scrollX = window.scrollX;
+      const scrollY = window.scrollY;
       const adjustedX = rect.left + scrollX;
-      const adjustedY = rect.bottom + scrollY + 1; 
-  
+      const adjustedY = rect.bottom + scrollY + 1;
+
       onOpenModal("menu", dataObject, { x: adjustedX, y: adjustedY }, kebabIconRef);
     }
   };
@@ -61,7 +57,7 @@ function CompanyDataPerRow({
           isMyCompany ? styles.myCompanyPerRow : ""
         }`}
       >
-        <Link to={`/id/${id}`}>
+        <Link href={`/id/${id}`}>
           <section className={`${styles.diffSizeContainer} ${styles.rankSize}`}>
             <span className={styles.columnRank}>{`${rank}위`}</span>
             <article className={styles.companyInfoContainer}>
@@ -103,7 +99,7 @@ function CompanyDataPerRow({
           isMyCompany ? styles.myCompany : ""
         }`}
       >
-        <Link to={`/id/${id}`}>
+        <Link href={`/id/${id}`}>
           <section
             className={`${styles.diffSizeContainer} ${styles.investSize}`}
           >
@@ -151,10 +147,10 @@ function CompanyDataPerRow({
           <span className={styles.columnComment}>{userComment}</span>
           <div className={styles.dropdownContainer}>
             <img
-              src={iconKebab}
+              src="/assets/images/ic_kebab.svg"
               alt="kebab"
-              ref={kebabIconRef} // 케밥 아이콘 참조 전달
-              onClick={handleKebabClick} // 클릭 시 모달 열기/닫기 핸들러 호출
+              ref={kebabIconRef}
+              onClick={handleKebabClick}
               className={styles.kebabIcon}
             />
           </div>
@@ -180,7 +176,7 @@ function CompanyDataPerRow({
           isMyCompany ? styles.myCompany : ""
         }`}
       >
-        <Link to={`/id/${id}`}>
+        <Link href={`/id/${id}`}>
           <section
             className={`${styles.diffSizeContainer} ${styles.investSize}`}
           >
