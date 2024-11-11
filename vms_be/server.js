@@ -22,7 +22,7 @@ app.use(express.json());
 
 // cors 설정
 app.use(cors({
-  origin: 'https://view-my-startup-company.netlify.app'
+  origin: '*'
 }));
 
 // 정적 파일 제공 설정 *수정됨
