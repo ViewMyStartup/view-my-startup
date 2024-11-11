@@ -1,6 +1,4 @@
 import React from "react";
-import searchIcon from "assets/images/ic_search.svg";
-import deleteIcon from "assets/images/ic_delete_circle_small.svg";
 import styles from "./SearchBar.module.css";
 
 const SearchBar = ({ value, onChange, onClear, onSearch }) => {
@@ -14,23 +12,21 @@ const SearchBar = ({ value, onChange, onClear, onSearch }) => {
     <div className={styles.searchBar}>
       <input
         type="text"
-        className={`${styles.searchInput} ${value ? styles.textShift : ""}`}
+        className={`${styles.searchInput} ${value ? styles.textShift : ""} ${styles.inputWithPlaceholder}`}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         onKeyDown={handleKeyDown}
         placeholder="검색어를 입력해주세요"
       />
       <img
-        src={searchIcon}
+        src="/assets/images/ic_search.svg"
         alt="Search button"
-        className={`${styles.searchIcon} ${
-          value ? styles.searchIconActive : ""
-        }`}
+        className={`${styles.searchIcon} ${value ? styles.searchIconActive : ""}`}
         onClick={onSearch}
       />
       {value && (
         <img
-          src={deleteIcon}
+          src="/assets/images/ic_delete_circle_small.svg"
           alt="Delete button"
           className={styles.deleteButton}
           onClick={onClear}

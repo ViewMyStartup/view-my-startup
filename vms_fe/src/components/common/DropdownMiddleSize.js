@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./DropdownMiddleSize.module.css";
-import ToggleIcon from "./../../assets/images/ic_toggle.svg";
 
 function DropdownMidleSize({
   options = [
@@ -17,7 +16,6 @@ function DropdownMidleSize({
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(initialLabel);
 
-  //드랍다운 참조값
   const dropdownRef = useRef(null);
 
   const toggleDropdown = () => setIsOpen(!isOpen);
@@ -28,7 +26,6 @@ function DropdownMidleSize({
     handleOptionChange(option);
   };
 
-  // 이벤트 리스너 등록
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
@@ -36,7 +33,6 @@ function DropdownMidleSize({
     };
   }, []);
 
-  //드랍다운 밖을 선택하면 실행할 핸들러 함수
   const handleClickOutside = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
       setIsOpen(false);
@@ -51,7 +47,7 @@ function DropdownMidleSize({
       >
         <span className={styles.dropdownLabel}>{selectedOption}</span>
         <img
-          src={ToggleIcon}
+          src="/assets/images/ic_toggle.svg"
           alt="Toggle Icon"
           className={styles.dropdownIcon}
         />

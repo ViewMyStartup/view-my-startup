@@ -20,7 +20,7 @@
   padding: 0px 24px;
 }
 
-.pageNavBox>img {
+.pageNavBox > span {
   margin: 0px 24px;
 }
 
@@ -65,7 +65,7 @@
     font-weight: 700;
   }
 
-  .pageNavBox>a>img {
+  .pageNavBox > span > img {
     width: 85px;
     height: 100%;
   }
@@ -77,7 +77,7 @@
     padding: 0px 16px;
   }
 
-  .pageNavBox>a>img {
+  .pageNavBox > span > img {
     width: 63.5px;
     height: 100%;
   }

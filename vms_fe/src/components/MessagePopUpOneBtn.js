@@ -1,13 +1,12 @@
 import styles from "./MessagePopUpOneBtn.module.css";
 import LargeBtn from "./common/LargeBtn.js";
-import closeButton from "../assets/images/ic_delete.svg";
 
 const MessagePopUpOneBtn = ({ text, onClose, onConfirm }) => {
   return (
     <div className={styles.overlay}>
       <div className={styles.modal}>
         <img
-          src={closeButton}
+          src="/assets/images/ic_delete.svg"
           alt="close button"
           className={styles.closeButton}
           onClick={onClose}
