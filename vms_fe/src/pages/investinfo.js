@@ -1,23 +1,22 @@
-import React, { useState, useEffect } from "react";
-import styles from "./CurrentStateInvest.module.css";
+import { useState, useEffect } from "react";
+import Head from "next/head";
+import styles from "../styles/pages/CurrentStateInvest.module.css";
 import PageNav from "../components/PageNav";
 import Pagination from "../components/common/Pagination";
 import DropdownMiddleSize from "../components/common/DropdownMiddleSize";
 import DataRowSetRender from "../components/DataRowSetRender";
-import { getApiData } from "../API/api"; // 전체 기업리스트 API 호출
+import { getApiData } from "../API/api";
 
-// 기본 정렬 옵션
 const DEFAULT_SORT_OPTION = "View My Startup 투자 금액 높은순";
 
 function CurrentStateInvest() {
-  const [selectedOption, setSelectedOption] = useState(DEFAULT_SORT_OPTION); // 기본 옵션
-  const [sortedData, setSortedData] = useState([]); // 정렬된 데이터
-  const [totalItems, setTotalItems] = useState(0); // 전체 데이터 수
-  const [loading, setLoading] = useState(true); // 로딩 상태
-  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
-  const [totalPages, setTotalPages] = useState(0); // 전체 페이지 수
+  const [selectedOption, setSelectedOption] = useState(DEFAULT_SORT_OPTION);
+  const [sortedData, setSortedData] = useState([]);
+  const [totalItems, setTotalItems] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
 
-  // 정렬 옵션 리스트
   const customOptions = [
     "View My Startup 투자 금액 높은순",
     "View My Startup 투자 금액 낮은순",
@@ -30,27 +29,25 @@ function CurrentStateInvest() {
       setLoading(true);
 
       // 정렬 기준과 순서 설정
-      const sortBy = selectedOption.includes("실제 누적")
-        ? "totalInvestment"
-        : "virtualInvestment";
+      const sortBy = selectedOption.includes("실제 누적") ? "totalInvestment" : "virtualInvestment";
       const sortOrder = selectedOption.includes("낮은순") ? "asc" : "desc";
 
       // API 호출
       const response = await getApiData(currentPage, 10, "", sortBy, sortOrder);
-      setSortedData(response.companies || []); // 가져온 데이터 저장
-      setTotalItems(response.total || 0); // 전체 데이터 수 저장
-      setTotalPages(Math.ceil(response.total / 10)); // 전체 페이지 수 계산
+      setSortedData(response.companies || []);
+      setTotalItems(response.total || 0);
+      setTotalPages(Math.ceil(response.total / 10));
     } catch (error) {
       console.error("Error fetching data:", error);
       setSortedData([]);
       setTotalItems(0);
-      setTotalPages(0); // 페이지 수 초기화
+      setTotalPages(0);
     } finally {
       setLoading(false);
     }
   };
 
-  // 정렬 옵션과 현재 페이지가 바뀔때
+  // 정렬 옵션과 현재 페이지가 바뀔 때마다 데이터 가져오기
   useEffect(() => {
     fetchData();
   }, [selectedOption, currentPage]);
@@ -63,7 +60,7 @@ function CurrentStateInvest() {
 
   // 페이지 변경 핸들러
   const handlePageClick = (page) => {
-    setCurrentPage(page); // 페이지 변경
+    setCurrentPage(page);
   };
 
   // 현재 페이지의 데이터에 순위 계산
@@ -74,11 +71,14 @@ function CurrentStateInvest() {
     }));
   };
 
-  // 페이지네이션을 고려한 데이터 슬라이싱 및 직접 순위를 추가
   const rankedData = addRankToData(sortedData, currentPage, 10);
 
   return (
-    <div>
+    <div className={styles.bodyBackground}>
+      <Head>
+        <title>View My Startup 투자 현황</title>
+        <meta name="description" content="투자 현황을 보여주는 페이지입니다." />
+      </Head>
       <PageNav />
       <div className={styles.currentStateInvest}>
         <div className={styles.investStateNav}>
