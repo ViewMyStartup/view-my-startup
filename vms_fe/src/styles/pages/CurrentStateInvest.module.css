@@ -1,0 +1,56 @@
+.bodyBackground {
+  background: var(--black-400);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.currentStateInvest {
+  background: var(--black-400);
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 투자 현황, 드롭다운 메뉴 */
+.investStateNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  width: 100%;
+}
+
+/* 투자 현황 문구 */
+.investStateNav p {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.investCompanyList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pagination {
+  margin-top: 40px;
+  padding-bottom: 133px;
+}
+
+@media (max-width: 744px) {
+  /* 투자 현황, 드롭다운 메뉴 */
+  .investStateNav {
+    padding-top: 0;
+  }
+
+  /* 투자 현황 문구 */
+  .investStateNav p {
+    font-size: 16px;
+  }
+
+  .pagination {
+    margin-top: 16px;
+  }
+}

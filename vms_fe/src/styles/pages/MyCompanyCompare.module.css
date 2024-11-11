@@ -1,0 +1,308 @@
+.pageContainer {
+  background-color: #131313;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 1200px;
+  flex-grow: 1;
+}
+
+.icRestart {
+  filter: brightness(0) invert(1);
+}
+
+.headingWrapper,
+.sectionHeadingWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: calc(100% - 3px);
+  max-width: 1200px;
+}
+
+.dropdownWrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.heading {
+  color: #ffffff;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 700;
+  text-align: left;
+  font-size: 20px;
+}
+
+.sectionWrapper {
+  margin-top: 30px;
+  width: calc(100% - 48px);
+  max-width: 1156px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sectionHeading {
+  color: #ffffff;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 700;
+  text-align: left;
+  font-size: 20px;
+}
+
+.dataRowWrapper {
+  width: 100%;
+}
+
+.addMyCompany {
+  margin-top: 30px;
+  width: calc(100% - 48px);
+  background-color: #212121;
+  border-radius: 4px;
+  height: 300px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.addOtherCompany {
+  margin-top: 30px;
+  background-color: #212121;
+  width: calc(100% - 48px);
+  border-radius: 4px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.innerBox {
+  background-color: #212121;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  padding: 0 2px;
+  gap: 1px;
+}
+
+.myCompanyCardWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  flex: 1 1 calc(33.333% - 2px);
+}
+
+.comparisonCompanyCardWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: 5px !important;
+  padding: 0 !important;
+}
+
+.removeText {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #d8d8d8;
+  text-decoration: underline;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.subheadingWrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: calc(100% - 48px);
+  max-width: 1156px;
+  margin-top: 30px;
+}
+
+.subheading {
+  color: #ffffff;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  margin-right: 6px;
+}
+
+.maxCompaniesText {
+  color: #ffffff;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  margin-left: 6px;
+}
+
+.addButton {
+  cursor: pointer;
+}
+
+.addCompanyBtnWrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-left: auto;
+}
+
+.addButtonWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.addButton {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icCircle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  position: relative;
+}
+
+.icPlus {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.addText {
+  font-family: "Pretendard", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21.48px;
+  color: #ffffff;
+  margin-top: 20px;
+}
+
+.noCompaniesInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16.71px;
+  color: #747474;
+  height: 100%;
+  width: 100%;
+}
+
+.btnWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 194px;
+  height: 48px;
+  margin: 30px auto;
+}
+
+.disabledBtn {
+  background-color: #2e2e2e !important;
+  color: #747474 !important;
+  cursor: not-allowed !important;
+}
+
+/* 태블릿용 스타일 */
+@media (min-width: 744px) and (max-width: 1199px) {
+  .addMyCompany {
+    height: 240px;
+  }
+
+  .addOtherCompany {
+    height: 240px;
+  }
+}
+
+/* 모바일 환경 스타일링 */
+@media (max-width: 743px) {
+  .heading,
+  .subheading {
+    font-size: calc(20px - 5px);
+    margin-right: 3px;
+  }
+
+  .maxCompaniesText {
+    font-size: calc(16px - 5px);
+    margin-left: 3px;
+  }
+
+  .addMyCompany {
+    height: 180px;
+  }
+
+  .addOtherCompany {
+    height: 350px;
+  }
+
+  .innerBox {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0 2px;
+    gap: 1px;
+  }
+
+  .myCompanyCardWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    flex: 1 1 calc(33.333% - 2px);
+  }
+
+  .innerBox > .myCompanyCardWrapper:nth-child(4),
+  .innerBox > .myCompanyCardWrapper:nth-child(5) {
+    margin-left: auto;
+    margin-right: auto;
+    flex: 1 1 calc(33.333% - 2px);
+  }
+
+  .dropdown {
+    width: 146px !important;
+    height: 40px !important;
+  }
+
+  .dropdown .options {
+    width: 146px !important;
+    height: 228px !important;
+  }
+}

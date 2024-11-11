@@ -1,0 +1,353 @@
+.pageContainer {
+  background-color: var(--black-400);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 100vh;
+}
+
+.contentsContainer {
+  flex: 1;
+  width: 1150px;
+  max-width: 1200px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  align-self: center;
+}
+
+.titleSection {
+  width: 100%;
+  min-width: 696px;
+  height: 112px;
+  border-bottom: 1px solid var(--black-100);
+  margin-bottom: 32px;
+}
+
+.totalVirtualInvestment {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--white);
+  text-align: start;
+  margin: 16px 0px 16px 0px;
+}
+
+.titleHug {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 18px;
+}
+
+.titleLogo {
+  width: 80px;
+  height: 80px;
+  border-radius: 9999px;
+}
+
+.titleTextHug {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.titleTitle {
+  color: var(--white);
+  font-size: 24px;
+  font-weight: 700px;
+  text-align: start;
+}
+
+.titleCategory {
+  color: var(--gray-200);
+  font-size: 20px;
+  font-weight: 500;
+  text-align: start;
+}
+
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: none;
+  color: var(--gray-400);
+  text-align: center;
+  padding: 20px;
+}
+
+.spinner {
+  border: 8px solid var(--gray-300);
+  border-top: 8px solid var(--white);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.companyDataGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* 가로로 3칸 */
+  grid-gap: 24px;
+  width: 100%;
+  min-width: 696px;
+  margin-bottom: 32px;
+}
+
+.companyDataItem {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--black-200);
+  border: none;
+  border-radius: 10px;
+  padding: 36px 24px;
+  text-align: center;
+  font-size: 1rem;
+  color: var(--white);
+}
+
+.companyDataTitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--gray-100);
+}
+
+.companyDataValue {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.CompanyDescriptionSection {
+  width: 100%;
+  min-width: 696px;
+  background-color: var(--black-300);
+  border-radius: 10px;
+  margin-bottom: 32px;
+}
+
+.CompanyDescriptionContent {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  gap: 16px;
+  word-break: break-all;
+}
+
+.CompanyDescriptionTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--white);
+  text-align: start;
+}
+
+.CompanyDescriptionValue {
+  width: 100%;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--gray-100);
+  text-align: start;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  white-space: pre-line;
+}
+
+.InvestmentButtonSection {
+  width: 100%;
+  min-width: 696px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--black-100);
+}
+
+.InvestmentButtonTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.InvestmentButton {
+  height: 40px;
+  padding: 8px 24px 8px 24px;
+  border: none;
+  border-radius: 50px;
+  background-color: var(--brand-orange);
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+}
+
+.closestMatchText {
+  color: var(--gray-200);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.closestMatchLink {
+  color: var(--brand-orange);
+  font-weight: 700;
+}
+
+.dataRowSetRender {
+  margin-bottom: 40px;
+}
+
+.notFoundContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 93.5vh;
+  background: var(--white);
+  color: var(--gray-400);
+  text-align: center;
+  padding: 20px;
+}
+
+.notFoundContent {
+  max-width: 600px;
+  margin: auto;
+}
+
+.notFoundTitle {
+  font-size: 120px;
+  font-weight: bold;
+  margin: 0;
+  color: var(--brand-orange);
+}
+
+.notFoundMessage {
+  color: var(--gray-200);
+  font-size: 24px;
+  margin: 20px 0;
+}
+
+.notFoundSubmessage {
+  font-size: 16px;
+  color: var(--gray-300);
+  margin-bottom: 30px;
+}
+
+.notFoundHomeButton {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: var(--white);
+  background-color: var(--brand-orange);
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.notFoundHomeButton:hover {
+  background-color: var(--blue-blue);
+}
+
+@media (max-width: 1200px) {
+  .contentsContainer {
+    flex: 1;
+    width: calc(100% - 48px);
+  }
+}
+
+@media (max-width: 744px) {
+  .contentsContainer {
+    flex: 1;
+    width: calc(100% - 32px);
+    align-self: center;
+  }
+
+  .companyDataGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 16px;
+    width: 100%;
+    min-width: 0px;
+    margin-bottom: 32px;
+  }
+
+  .companyDataItem {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background-color: var(--black-200);
+    border: none;
+    border-radius: 10px;
+    padding: 36px 14px;
+    text-align: center;
+    font-size: 1rem;
+    color: var(--white);
+  }
+
+  .companyDataTitle {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--gray-100);
+  }
+
+  .companyDataValue {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  .CompanyDescriptionSection {
+    width: 100%;
+    min-width: 0px;
+    background-color: var(--black-300);
+    border-radius: 10px;
+    margin-bottom: 32px;
+  }
+
+  .InvestmentButtonSection {
+    width: 100%;
+    min-width: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+
+  .InvestmentButtonTitle {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .InvestmentButton {
+    height: 32px;
+    padding: 4px 12px 4px 12px;
+    border: none;
+    border-radius: 50px;
+    background-color: var(--brand-orange);
+    color: var(--white);
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .titleSection {
+    width: 100%;
+    min-width: 0px;
+    height: 112px;
+    border-bottom: 1px solid var(--black-100);
+    margin-bottom: 32px;
+  }
+}
+
