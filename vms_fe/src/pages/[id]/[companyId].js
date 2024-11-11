@@ -264,11 +264,14 @@ function CompanyInvestDetail() {
 }
 
 export default function CompanyInvestDetailWrapper() {
+  const router = useRouter(); // 항상 호출
   const [isClient, setIsClient] = useState(false);
-  useEffect(() => setIsClient(true), []);
 
-  const router = isClient ? useRouter() : null;
-  const { companyId } = router?.query || {};
+  useEffect(() => {
+    setIsClient(true); // 클라이언트 환경 여부 확인
+  }, []);
+
+  const { companyId } = isClient ? router.query : {}; // 조건부 접근
 
   if (!companyId) return null;
 
@@ -278,3 +281,4 @@ export default function CompanyInvestDetailWrapper() {
     </CompanyDataProvider>
   );
 }
+
