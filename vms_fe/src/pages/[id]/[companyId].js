@@ -271,7 +271,7 @@ export default function CompanyInvestDetailWrapper() {
     setIsClient(true); // 클라이언트 환경 여부 확인
   }, []);
 
-  const { companyId } = isClient ? router.query : {}; // 조건부 접근
+  const companyId = isClient ? router.query.companyId : null;
 
   if (!companyId) return null;
 
