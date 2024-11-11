@@ -18,15 +18,17 @@ import styles from "../../styles/pages/CompanyInvestDetail.module.css";
 
 function CompanyInvestDetail() {
   useEffect(() => {
-    const handleResize = () => {
-      handleCloseModal();
-    };
+    if (typeof window !== "undefined") { // 클라이언트 환경 확인
+      const handleResize = () => {
+        handleCloseModal();
+      };
 
-    window.addEventListener('resize', handleResize);
+      window.addEventListener("resize", handleResize);
 
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }
   }, []);
 
   const { companyData, transformedInvestments, loading } = useCompanyData();
