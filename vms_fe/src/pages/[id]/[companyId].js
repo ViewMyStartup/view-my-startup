@@ -37,8 +37,8 @@ function CompanyInvestDetail() {
     setIsClient(true);
   }, []);
 
-  const router = isClient ? useRouter() : null;
-  const companyId = isClient ? router?.query.companyId : null;
+  const router = useRouter(); // 조건 없이 항상 호출
+  const companyId = isClient ? router.query.companyId : null;
 
   useEffect(() => {
     if (isClient) {
@@ -266,12 +266,17 @@ function CompanyInvestDetail() {
 export default function CompanyInvestDetailWrapper() {
   const router = useRouter(); // 항상 호출
   const [isClient, setIsClient] = useState(false);
+  const [companyId, setCompanyId] = useState(null);
 
   useEffect(() => {
     setIsClient(true); // 클라이언트 환경 여부 확인
   }, []);
 
-  const companyId = isClient ? router.query.companyId : null;
+  useEffect(() => {
+    if (router.isReady) {
+      setCompanyId(router.query.companyId || null);
+    }
+  }, [router.isReady, router.query.companyId]);
 
   if (!companyId) return null;
 
@@ -281,4 +286,3 @@ export default function CompanyInvestDetailWrapper() {
     </CompanyDataProvider>
   );
 }
-

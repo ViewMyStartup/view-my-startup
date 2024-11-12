@@ -35,7 +35,7 @@ const ModalInvestment = ({ isOpen, onClose, selectedCompanies }) => {
         alert("투자 저장에 실패했습니다.");
       }
     },
-    [selectedCompanies, onClose]
+    [selectedCompanies, fetchData, onClose] // fetchData를 추가
   );
 
   if (!isOpen) return null;
