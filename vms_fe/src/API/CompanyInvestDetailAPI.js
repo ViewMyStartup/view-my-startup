@@ -1,5 +1,6 @@
 import axios from "axios";
-const API_BASE_URL = window.env.REACT_APP_API_BASE_URL;
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 // Axios 인스턴스 생성
 const apiClient = axios.create({
@@ -24,7 +25,7 @@ export const fetchMultipleUserData = async (investmentIds) => {
     const requests = investmentIds.map(id =>
       apiClient.get(`/api/investments/${id}`)
     );
-    
+
     const responses = await Promise.all(requests);
     // 응답에서 데이터만 추출
     return responses.map(response => response.data);

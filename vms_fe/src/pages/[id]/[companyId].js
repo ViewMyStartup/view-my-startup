@@ -17,6 +17,20 @@ import {
 import styles from "../../styles/pages/CompanyInvestDetail.module.css";
 
 function CompanyInvestDetail() {
+  const { companyData, transformedInvestments, loading } = useCompanyData();
+
+  const [modalInfo, setModalInfo] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeDropdownId, setActiveDropdownId] = useState(null);
+  const [modalType, setModalType] = useState(null);
+
+  const itemsPerPage = 5;
+  const totalPages = Math.ceil(
+    (transformedInvestments.length || 0) / itemsPerPage
+  );
+
+  const { currentPage, handlePageChange } = usePageHandler(totalPages);
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       const handleResize = () => {
@@ -31,37 +45,23 @@ function CompanyInvestDetail() {
     }
   }, []);
 
-  const { companyData, transformedInvestments, loading } = useCompanyData();
-
-  const [modalInfo, setModalInfo] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false); // 모달 상태 관리
-  const [activeDropdownId, setActiveDropdownId] = useState(null); // 드롭다운 상태 관리
-  const [modalType, setModalType] = useState(null); // 모달 타입 상태 관리
-
-  const itemsPerPage = 5;
-  const totalPages = Math.ceil(
-    (transformedInvestments.length || 0) / itemsPerPage
-  );
-
-  const { currentPage, handlePageChange } = usePageHandler(totalPages);
-
   const handleOpenModal = (modalType, dataObject, position, toggleRef) => {
-    setModalType(modalType); // 모달 타입 설정
+    setModalType(modalType);
     setModalInfo({
       modalType,
       dataObject,
       position,
       toggleRef,
     });
-    setActiveDropdownId(dataObject?.id || null); // 드롭다운 ID 설정
-    setIsModalOpen(true); // 모달 열림 상태로 설정
+    setActiveDropdownId(dataObject?.id || null);
+    setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
-    setIsModalOpen(false); // 모달 닫힘 상태로 설정
-    setActiveDropdownId(null); // 드롭다운 ID 초기화
-    setModalType(null); // 모달 타입 초기화
-    setModalInfo(null); // 모달 정보 초기화
+    setIsModalOpen(false);
+    setActiveDropdownId(null);
+    setModalType(null);
+    setModalInfo(null);
   };
 
   const handleEdit = () => {
@@ -256,9 +256,20 @@ function CompanyInvestDetail() {
 
 export default function CompanyInvestDetailWrapper() {
   const router = useRouter();
-  const { companyId } = router.query;
+  const [isClient, setIsClient] = useState(false);
+  const [companyId, setCompanyId] = useState(null);
 
-  if (!companyId) return null;
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (isClient && router.isReady) {
+      setCompanyId(router.query.companyId || null);
+    }
+  }, [isClient, router.isReady, router.query.companyId]);
+
+  if (!isClient || !companyId) return null;
 
   return (
     <CompanyDataProvider companyId={companyId}>
