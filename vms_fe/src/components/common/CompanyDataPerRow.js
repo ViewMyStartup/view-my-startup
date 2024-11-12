@@ -11,7 +11,7 @@ function CompanyDataPerRow({
   myCompanyId,
   activeDropdownId,
   onOpenModal,
-  onCloseModal
+  onCloseModal,
 }) {
   const kebabIconRef = useRef(null);
   const isMyCompany = dataObject.id === myCompanyId;
@@ -20,13 +20,20 @@ function CompanyDataPerRow({
     if (activeDropdownId === dataObject.id) {
       onCloseModal();
     } else {
-      const rect = kebabIconRef.current.getBoundingClientRect();
-      const scrollX = window.scrollX;
-      const scrollY = window.scrollY;
-      const adjustedX = rect.left + scrollX;
-      const adjustedY = rect.bottom + scrollY + 1;
+      if (typeof window !== "undefined") { // 클라이언트 환경에서만 실행
+        const rect = kebabIconRef.current.getBoundingClientRect();
+        const scrollX = window.scrollX;
+        const scrollY = window.scrollY;
+        const adjustedX = rect.left + scrollX;
+        const adjustedY = rect.bottom + scrollY + 1;
 
-      onOpenModal("menu", dataObject, { x: adjustedX, y: adjustedY }, kebabIconRef);
+        onOpenModal(
+          "menu",
+          dataObject,
+          { x: adjustedX, y: adjustedY },
+          kebabIconRef
+        );
+      }
     }
   };
 
@@ -125,8 +132,7 @@ function CompanyDataPerRow({
   };
 
   const typeComment = () => {
-    const { userName, userRank, userTotalInvestment, userComment } =
-      dataObject;
+    const { userName, userRank, userTotalInvestment, userComment } = dataObject;
 
     return (
       <li
