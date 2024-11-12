@@ -102,7 +102,7 @@
  - 배포 주소 : [리액트 기반 배포 주소](https://view-my-startup-me.netlify.app/)
 - [x] Next.js로 마이그레이션 시작 ( `refactor/nextjs-migration` 브랜치) [**2024-11-11**]
 - [x] Next.js 프로젝트 마이그레이션 완료 ( `main` , `refactor/nextjs-migration` 브랜치) [**2024-11-12**]
- - 배포 주소 : [Next.js 기반 배포 주소](view-my-startup.vercel.app)
+ - 배포 주소 : [Next.js 기반 배포 주소](https://view-my-startup.vercel.app/)
 
 ### 4. 백엔드 개발 및 프론트엔드 통합 과정
 
