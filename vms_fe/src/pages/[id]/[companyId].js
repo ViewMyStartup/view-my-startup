@@ -31,13 +31,13 @@ function CompanyInvestDetail() {
 
   const { currentPage, handlePageChange } = usePageHandler(totalPages);
 
-  // 클라이언트 환경에서만 라우터를 사용하도록 설정
   const [isClient, setIsClient] = useState(false);
+
   useEffect(() => {
     setIsClient(true);
   }, []);
 
-  const router = useRouter(); // 조건 없이 항상 호출
+  const router = useRouter();
   const companyId = isClient ? router.query.companyId : null;
 
   useEffect(() => {
@@ -264,12 +264,12 @@ function CompanyInvestDetail() {
 }
 
 export default function CompanyInvestDetailWrapper() {
-  const router = useRouter(); // 항상 호출
+  const router = useRouter();
   const [isClient, setIsClient] = useState(false);
   const [companyId, setCompanyId] = useState(null);
 
   useEffect(() => {
-    setIsClient(true); // 클라이언트 환경 여부 확인
+    setIsClient(true);
   }, []);
 
   useEffect(() => {
@@ -278,7 +278,7 @@ export default function CompanyInvestDetailWrapper() {
     }
   }, [router.isReady, router.query.companyId]);
 
-  if (!companyId) return null;
+  if (!isClient || !companyId) return null;
 
   return (
     <CompanyDataProvider companyId={companyId}>
