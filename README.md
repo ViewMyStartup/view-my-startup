@@ -4,7 +4,7 @@
 
 ![9F90073A-3F89-4AF6-8A8B-52388088CDFC](https://github.com/user-attachments/assets/f0a17654-554e-4f4c-bc4f-c6a2d111df73)
 
-<b>[View My Startup 바로가기](https://view-my-startup-company.netlify.app/)</b> <br>
+<b>[View My Startup 바로가기](view-my-startup.vercel.app)</b> <br>
 
 <br> 
 </div>
@@ -49,11 +49,10 @@
 
 ## <span id="dev">🛠️ 3. 기술 및 개발 환경</span>
 
-![image](https://github.com/user-attachments/assets/36a6768d-6aa9-4f26-b682-d7884f64446f)
-
 ### Frontend
 
-<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black"> <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> <img src="https://img.shields.io/badge/Css-1572B6?style=for-the-badge&logo=Css&logoColor=white">
+![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 
 ### Backend
 
@@ -73,7 +72,8 @@
 
 ### 배포
 
-<img src="https://img.shields.io/badge/netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white"> <img src="https://img.shields.io/badge/render-000000?style=for-the-badge&logo=render&logoColor=white">
+![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
+![Render](https://img.shields.io/badge/Render-%46E3B7.svg?style=for-the-badge&logo=render&logoColor=white)
 
 <br><br>
 
@@ -98,6 +98,11 @@
 - [x] 중간발표 [**2024-08-22**]
 - [x] 백엔드 API 구성, 담당자 지정 및 DB 구축 [**2024-08-22**]
 - [x] 중간 회의
+- [x] 리액트 기반 View My Startup ( `initial/react` 브랜치) 작업 완료
+ - 배포 주소 : [리액트 기반 배포 주소](https://view-my-startup-me.netlify.app/)
+- [x] Next.js로 마이그레이션 시작 ( `refactor/nextjs-migration` 브랜치) [**2024-11-11**]
+- [x] Next.js 프로젝트 마이그레이션 완료 ( `main` , `refactor/nextjs-migration` 브랜치) [**2024-11-12**]
+ - 배포 주소 : [Next.js 기반 배포 주소](view-my-startup.vercel.app)
 
 ### 4. 백엔드 개발 및 프론트엔드 통합 과정
 
@@ -127,8 +132,8 @@
 
 🎨 프론트엔드
 
-- 기업 전체 리스트 페이지 구현
-- 기업 리스트 조회 API를 호출하여 페이지네이션, 검색, 정렬된 데이터를 화면에 렌더링
+- **[전체 스타트업 목록 페이지](https://github.com/ViewMyStartup/view-my-startup/blob/main/vms_fe/src/pages/index.js)** 구현
+- 스타트업 리스트 조회 API를 호출하여 페이지네이션, 검색, 정렬된 데이터를 화면에 렌더링
 
 🛠️ 백엔드
 
@@ -143,7 +148,7 @@
 
 <br>
 
-✨ **기업 전체 리스트 페이지**
+✨ **[전체 스타트업 목록 페이지](https://github.com/ViewMyStartup/view-my-startup/blob/main/vms_fe/src/pages/index.js)**
 
 <table>
   <tr>
@@ -176,7 +181,7 @@
 
 🎨 프론트엔드
 
-- 기업 상세 페이지 구현
+- **[기업 상세 페이지](https://github.com/ViewMyStartup/view-my-startup/blob/main/vms_fe/src/pages/%5Bid%5D/%5BcompanyId%5D.js)** 구현
 - 기업 상세 조회 API를 호출하여 해당 기업의 정보와 가상 투자 내역을 화면에 렌더링 / 투자자 댓글 추가, 수정, 삭제기능 호출
 - 예외 페이지 구현
 
@@ -201,7 +206,7 @@
 
 <br>
 
-✨ **기업 상세 페이지**
+✨ **[기업 상세 페이지](https://github.com/ViewMyStartup/view-my-startup/blob/main/vms_fe/src/pages/%5Bid%5D/%5BcompanyId%5D.js)**
 
 <table>
   <tr>
@@ -282,7 +287,8 @@
 
 🎨 프론트엔드
 
-- 나의 기업 비교 페이지 구현
+- **Next.js 마이그레이션**: 기존 React 프로젝트를 Next.js로 마이그레이션하여 서버 사이드 렌더링 및 파일 기반 라우팅 구현 (브랜치: `refactor/nextjs-migration` , `main` 에 병합됨)
+- **[나의 기업 비교 페이지](https://github.com/ViewMyStartup/view-my-startup/blob/main/vms_fe/src/pages/mycompany.js)** 구현
 - 기업 비교 API를 호출하여 나의 기업과 선택한 기업의 비교 결과를 화면에 렌더링
   - **비교 결과 확인하기 섹션**: 나의 기업과 선택한 기업 간의 비교 결과를 화면에 렌더링
   - **기업 순위 확인하기 섹션**: 나의 기업과 전체 기업에서 나의 기업을 제외한 후, 나의 기업과 근접한 위 2개, 아래 2개 기업을 조회하여 순위와 함께 렌더링 <br> (나의 기업이 상위 또는 하위에 있을 경우, 나의 기업 포함 5개 기업 조회)
@@ -299,7 +305,7 @@
 
 <br>
 
-✨ **나의 기업 비교 페이지**
+✨ **[나의 기업 비교 페이지](https://github.com/ViewMyStartup/view-my-startup/blob/main/vms_fe/src/pages/mycompany.js)**
 
 <table>
   <tr>
@@ -401,7 +407,7 @@
 
 🎨 프론트엔드
 
-- 투자 현황 페이지 구현
+- **[투자 현황 페이지](https://github.com/ViewMyStartup/view-my-startup/blob/main/vms_fe/src/pages/investinfo.js)** 구현
 - 투자 현황 API를 호출하여 전체 스타트업의 투자 정보를 화면에 렌더링
 
 🛠️ 백엔드
@@ -416,7 +422,7 @@
 
 <br>
 
-✨ **투자 현황 페이지**
+✨ **[투자 현황 페이지](https://github.com/ViewMyStartup/view-my-startup/blob/main/vms_fe/src/pages/investinfo.js)**
 
 <table>
   <tr>
@@ -446,8 +452,8 @@
 
 🎨 프론트엔드
 
-- 투자 현황 페이지 구현
-- 가상 투자 수정 및 삭제 API를 호출하여 투자 정보를 수정 및 삭제하고, 이를 화면에 렌더링
+- **[비교 현황 페이지](https://github.com/ViewMyStartup/view-my-startup/blob/main/vms_fe/src/pages/compare.js)** 구현
+- 기업 비교 API를 호출하여 기업들의 비교 정보를 화면에 렌더링
 
 🛠️ 백엔드
 
@@ -469,7 +475,7 @@
 
 <br>
 
-✨ **비교 현황 페이지**
+✨ **[비교 현황 페이지](https://github.com/ViewMyStartup/view-my-startup/blob/main/vms_fe/src/pages/compare.js)**
 
 <table>
   <tr>
@@ -491,11 +497,11 @@
 
 ## <span id="feature">✨ 6. 구현 기능</span>
 
-- 🔗 [기업 전체 리스트 페이지](https://github.com/ViewMyStartup/view-my-startup/blob/main/vms_fe/src/pages/DefaultPage.js)
-- 🔗 [기업 상세 페이지](https://github.com/ViewMyStartup/view-my-startup/blob/main/vms_fe/src/pages/CompanyInvestDetail.js)
-- 🔗 [나의 기업 비교 페이지](https://github.com/ViewMyStartup/view-my-startup/blob/main/vms_fe/src/pages/MyCompanyCompare.js)
-- 🔗 [비교 현황 페이지](https://github.com/ViewMyStartup/view-my-startup/blob/main/vms_fe/src/pages/CurrentStateCompare.js)
-- 🔗 [투자 현황 페이지](https://github.com/ViewMyStartup/view-my-startup/blob/main/vms_fe/src/pages/CurrentStateInvest.js)
+- 🔗 [전체 스타트업 목록 페이지](https://github.com/ViewMyStartup/view-my-startup/blob/main/vms_fe/src/pages/index.js) - [고종민](https://github.com/charlieko123)
+- 🔗 [기업 상세 페이지](https://github.com/ViewMyStartup/view-my-startup/blob/main/vms_fe/src/pages/%5Bid%5D/%5BcompanyId%5D.js) - [김현우](https://github.com/Accreditus)
+- 🔗 [나의 기업 비교 페이지](https://github.com/ViewMyStartup/view-my-startup/blob/main/vms_fe/src/pages/mycompany.js) - [김민서](https://github.com/claudia99503)
+- 🔗 [비교 현황 페이지](https://github.com/ViewMyStartup/view-my-startup/blob/main/vms_fe/src/pages/compare.js) - [정준호](https://github.com/J-Jun5)
+- 🔗 [투자 현황 페이지](https://github.com/ViewMyStartup/view-my-startup/blob/main/vms_fe/src/pages/investinfo.js) - [김소희](https://github.com/S2OHEE)
 
 ### **API 명세**
 
@@ -553,38 +559,87 @@
 
 ### **🎨 프론트엔드**
 
-- public/ : 애플리케이션의 정적 자원 파일을 포함
+- **public/** : 애플리케이션의 정적 자원 파일을 포함
 
-  - images/ : 애플리케이션에서 사용하는 이미지 파일을 포함
-  - favicon/favicon.png : 웹사이트의 파비콘 이미지 파일
-  - index.html: 애플리케이션의 기본 HTML 파일
+  - **assets/** : 애플리케이션에서 사용하는 다양한 자원 파일들을 포함
+    - **images/** : 애플리케이션에서 사용하는 이미지 파일을 포함
+    - **favicon/** : 웹사이트의 파비콘 이미지 파일
+    - **index.html** : 애플리케이션의 기본 HTML 파일
 
-- src/ : 애플리케이션의 주요 소스 코드와 관련 자원을 포함
-  - API/api.js : 기업 데이터 조회 등 다양한 API 호출 함수들이 포함된 파일
-  - API/CompanyInvestDetailAPI.js : 기업 데이터와 관련된 정보를 페이징 및 정렬 옵션에 따라 가져오는 함수가 포함된 파일
-  - API/DefaultPageAPI.js : 기본 페이지와 관련된 데이터를 처리하는 API 호출 함수들이 포함된 파일
-- src/assets/images: 애플리케이션에서 사용하는 이미지 파일들이 포함된 폴더
-- src/components/ : 여러 페이지에서 공통으로 사용되는 컴포넌트들이 포함된 폴더
-- src/context: 애플리케이션에서 전역 상태를 관리하는 데 사용되는 Context API를 포함하는 폴더
-  - CompanyDataContext.js : 기업과 관련된 데이터를 관리하고 제공하는 Context
-  - DropdownContext.js : 드롭다운 메뉴의 표시 상태를 관리하는 Context
-- src/hook : 사용자 정의 훅을 정의하여 컴포넌트에서 재사용 가능한 상태 및 로직을 제공하는 파일들
-  - useGetCompanyData.js: 기업 데이터를 비동기로 가져오고 상태를 관리하는 훅
-  - usePageHandler.js: 페이지 상태를 관리하고 페이지 변경을 처리하는 훅
-- src/pages/ : 각 서비스 페이지를 정의하는 컴포넌트들을 포함하며, 페이지 라우팅 및 페이지별 데이터 제공을 담당
-- src/styles/ : 공통 색상, 폰트, 전역 스타일 등을 정의하여 애플리케이션에 일관된 스타일 제공
-- src/utils/ : 다양한 유틸리티 함수와 도구를 제공하여 코드의 재사용성을 높이고 공통된 기능을 중앙에서 관리
-  - convertTo100mil.js : 주어진 금액을 1억 단위로 변환하는 함수. 소수점 자리수는 기본값으로 1을 사용
-  - similarity.js : 문자열 유사도 측정 및 관련 함수들을 제공
-  - sorting.js : 기본 페이지에서 사용되는 다양한 정렬 옵션을 처리
-- App.css: 애플리케이션의 전반적인 스타일을 정의하는 CSS 파일
-- App.js: 애플리케이션의 루트 컴포넌트를 정의하는 React 컴포넌트 파일
-- index.css: 전역 스타일을 정의하는 CSS 파일
-- index.js: 애플리케이션의 진입점이며, ReactDOM을 사용해 루트 컴포넌트를 렌더링하는 파일
+- **src/** : 애플리케이션의 주요 소스 코드와 관련 자원을 포함
+  - **API/** : 기업 데이터 조회 등 다양한 API 호출 함수들이 포함된 파일
+    - **api.js** : 기업 데이터 조회 함수들이 포함된 파일
+    - **CompanyInvestDetailAPI.js** : 기업 투자 상세 정보와 관련된 데이터를 페이징 및 정렬 옵션에 따라 가져오는 함수
+    - **DefaultPageAPI.js** : 기본 페이지와 관련된 데이터를 처리하는 API 호출 함수들
+
+  - **assets/** : 애플리케이션에서 사용하는 이미지 파일들이 포함된 폴더
+    - **images/** : 다양한 이미지 파일들을 포함
+
+  - **components/** : 여러 페이지에서 공통으로 사용되는 컴포넌트들을 포함하는 폴더
+
+  - **context/** : 애플리케이션에서 전역 상태를 관리하는 데 사용되는 Context API를 포함하는 폴더
+    - **CompanyDataContext.js** : 기업과 관련된 데이터를 관리하고 제공하는 Context
+    - **DropdownContext.js** : 드롭다운 메뉴의 표시 상태를 관리하는 Context
+
+  - **hook/** : 사용자 정의 훅을 정의하여 컴포넌트에서 재사용 가능한 상태 및 로직을 제공하는 파일들
+    - **useGetCompanyData.js** : 기업 데이터를 비동기로 가져오고 상태를 관리하는 훅
+    - **usePageHandler.js** : 페이지 상태를 관리하고 페이지 변경을 처리하는 훅
+
+  - **pages/** : 각 서비스 페이지를 정의하는 파일들을 포함하며, 페이지 라우팅 및 페이지별 데이터 제공을 담당
+    - **[id]/[companyId].js** : 특정 기업 상세 페이지
+    - **compare.js** : 기업 비교 현황 페이지
+    - **index.js** : 전체 스타트업 목록 페이지
+    - **investinfo.js** : 투자 현황 페이지
+    - **mycompany.js** : 나의 기업 비교 페이지
+
+  - **styles/** : 공통 색상, 폰트, 전역 스타일 등을 정의하여 애플리케이션에 일관된 스타일을 제공
+    - **pages/** : 각 페이지에 특화된 스타일 파일들을 포함
+      - **CompanyInvestDetail.module.css** : 기업 투자 상세 페이지 스타일
+      - **CurrentStateCompare.module.css** : 기업 비교 현황 페이지 스타일
+      - **CurrentStateInvest.module.css** : 투자 현황 페이지 스타일
+      - **DefaultPage.module.css** : 전체 스타트업 목록 페이지 스타일
+      - **MyCompanyCompare.module.css** : 나의 기업 비교 페이지 스타일
+    - **App.css** : 애플리케이션의 전반적인 스타일을 정의하는 CSS 파일
+    - **resets.css** : 기본 리셋 스타일 정의
+
+  - **utils/** : 다양한 유틸리티 함수와 도구를 제공하여 코드의 재사용성을 높이고 공통된 기능을 중앙에서 관리
+    - **convertTo100mil.js** : 주어진 금액을 1억 단위로 변환하는 함수. 소수점 자리수는 기본값으로 1을 사용
+    - **similarity.js** : 문자열 유사도 측정 및 관련 함수들을 제공
+    - **sorting.js** : 기본 페이지에서 사용되는 다양한 정렬 옵션을 처리
+
+  - **debug.log** : 디버그 로그 파일
+  - **jsconfig.json** : JavaScript 구성 파일
+  - **package-lock.json** : 프로젝트 의존성 버전 고정 파일
+  - **package.json** : 프로젝트의 의존성 및 설정을 관리하는 파일
 
 ```
 📦vms_fe
  ┣ 📂public
+ ┃ ┣ 📂assets
+ ┃ ┃ ┗ 📂images
+ ┃ ┃ ┃ ┣ 📜backgroundImge.jpg
+ ┃ ┃ ┃ ┣ 📜ic_check.svg
+ ┃ ┃ ┃ ┣ 📜ic_circle.svg
+ ┃ ┃ ┃ ┣ 📜ic_delete.svg
+ ┃ ┃ ┃ ┣ 📜ic_delete_circle_small.svg
+ ┃ ┃ ┃ ┣ 📜ic_kebab.svg
+ ┃ ┃ ┃ ┣ 📜ic_minus.svg
+ ┃ ┃ ┃ ┣ 📜ic_password_eye_close.svg
+ ┃ ┃ ┃ ┣ 📜ic_password_eye_open.svg
+ ┃ ┃ ┃ ┣ 📜ic_plus.svg
+ ┃ ┃ ┃ ┣ 📜ic_restart.svg
+ ┃ ┃ ┃ ┣ 📜ic_search.svg
+ ┃ ┃ ┃ ┣ 📜ic_toggle.svg
+ ┃ ┃ ┃ ┣ 📜logo_desktop_tablet.svg
+ ┃ ┃ ┃ ┣ 📜logo_home.js
+ ┃ ┃ ┃ ┣ 📜logo_home.module.css
+ ┃ ┃ ┃ ┣ 📜logo_mobile.svg
+ ┃ ┃ ┃ ┣ 📜placeHolder1.jpg
+ ┃ ┃ ┃ ┣ 📜placeHolder2.jpg
+ ┃ ┃ ┃ ┣ 📜placeHolder3.jpg
+ ┃ ┃ ┃ ┣ 📜placeHolder4.jpg
+ ┃ ┃ ┃ ┣ 📜placeHolder5.jpg
+ ┃ ┃ ┃ ┗ 📜placeHolder6.jpg
  ┃ ┣ 📂images
  ┃ ┃ ┣ 📜company_logo_1.png
  ┃ ┃ ┣ 📜company_logo_10.png
@@ -638,6 +693,7 @@
  ┃ ┃ ┗ 📜api.js
  ┃ ┣ 📂assets
  ┃ ┃ ┗ 📂images
+ ┃ ┃ ┃ ┣ 📜backgroundImge.jpg
  ┃ ┃ ┃ ┣ 📜ic_check.svg
  ┃ ┃ ┃ ┣ 📜ic_circle.svg
  ┃ ┃ ┃ ┣ 📜ic_delete.svg
@@ -651,7 +707,15 @@
  ┃ ┃ ┃ ┣ 📜ic_search.svg
  ┃ ┃ ┃ ┣ 📜ic_toggle.svg
  ┃ ┃ ┃ ┣ 📜logo_desktop_tablet.svg
- ┃ ┃ ┃ ┗ 📜logo_mobile.svg
+ ┃ ┃ ┃ ┣ 📜logo_home.js
+ ┃ ┃ ┃ ┣ 📜logo_home.module.css
+ ┃ ┃ ┃ ┣ 📜logo_mobile.svg
+ ┃ ┃ ┃ ┣ 📜placeHolder1.jpg
+ ┃ ┃ ┃ ┣ 📜placeHolder2.jpg
+ ┃ ┃ ┃ ┣ 📜placeHolder3.jpg
+ ┃ ┃ ┃ ┣ 📜placeHolder4.jpg
+ ┃ ┃ ┃ ┣ 📜placeHolder5.jpg
+ ┃ ┃ ┃ ┗ 📜placeHolder6.jpg
  ┃ ┣ 📂components
  ┃ ┃ ┣ 📂common
  ┃ ┃ ┃ ┣ 📜AddCompanyBtn.js
@@ -727,27 +791,31 @@
  ┃ ┃ ┣ 📜useGetCompanyData.js
  ┃ ┃ ┗ 📜usePageHandler.js
  ┃ ┣ 📂pages
- ┃ ┃ ┣ 📜CompanyInvestDetail.js
- ┃ ┃ ┣ 📜CompanyInvestDetail.module.css
- ┃ ┃ ┣ 📜CurrentStateCompare.js
- ┃ ┃ ┣ 📜CurrentStateCompare.module.css
- ┃ ┃ ┣ 📜CurrentStateInvest.js
- ┃ ┃ ┣ 📜CurrentStateInvest.module.css
- ┃ ┃ ┣ 📜DefaultPage.js
- ┃ ┃ ┣ 📜DefaultPage.module.css
- ┃ ┃ ┣ 📜MyCompanyCompare.js
- ┃ ┃ ┗ 📜MyCompanyCompare.module.css
+ ┃ ┃ ┣ 📂[id]
+ ┃ ┃ ┃ ┗ 📜[companyId].js
+ ┃ ┃ ┣ 📜_app.js
+ ┃ ┃ ┣ 📜_document.js
+ ┃ ┃ ┣ 📜compare.js
+ ┃ ┃ ┣ 📜index.js
+ ┃ ┃ ┣ 📜investinfo.js
+ ┃ ┃ ┗ 📜mycompany.js
  ┃ ┣ 📂styles
- ┃ ┃ ┗ 📜reset.css
- ┃ ┣ 📂utils
+ ┃ ┃ ┣ 📂pages
+ ┃ ┃ ┃ ┣ 📜CompanyInvestDetail.module.css
+ ┃ ┃ ┃ ┣ 📜CurrentStateCompare.module.css
+ ┃ ┃ ┃ ┣ 📜CurrentStateInvest.module.css
+ ┃ ┃ ┃ ┣ 📜DefaultPage.module.css
+ ┃ ┃ ┃ ┗ 📜MyCompanyCompare.module.css
+ ┃ ┃ ┣ 📜App.css
+ ┃ ┃ ┗ 📜resets.css
+ ┃ ┗ 📂utils
  ┃ ┃ ┣ 📜convertTo100mil.js
  ┃ ┃ ┣ 📜similarity.js
  ┃ ┃ ┗ 📜sorting.js
- ┃ ┣ 📜App.css
- ┃ ┣ 📜App.js
- ┃ ┣ 📜index.css
- ┃ ┗ 📜index.js
  ┣ 📜.env
+ ┣ 📜.gitignore
+ ┣ 📜README.md
+ ┣ 📜debug.log
  ┣ 📜jsconfig.json
  ┣ 📜package-lock.json
  ┗ 📜package.json
@@ -759,27 +827,28 @@
 
 ### **🛠️ 백엔드**
 
-- prisma/ : Prisma 설정 파일과 데이터베이스 스키마를 포함
-  - migrations/ : 데이터베이스 스키마 변경을 위한 마이그레이션 파일이 포함
-  - schema.prisma : 데이터베이스의 데이터 모델을 정의하는 파일
-- seeders/ : 데이터베이스를 초기화하기 위한 스크립트와 이미지를 포함
-  - CompanyData.js, investmentData.js : 초기 데이터가 포함된 JavaScript 파일들
-  - seed.js : 기업, 투자 데이터의 시딩 스크립트
-- src/: 애플리케이션의 주요 코드가 포함
-  - errors/: 커스텀 오류 처리를 정의
-    - CommonException.js: 애플리케이션의 공통 예외를 정의
-    - CustomExceptions.js: 특정 케이스에 대한 커스텀 예외를 정의
-- src/middlewares/ : 요청 처리용 미들웨어 함수가 포함
-  - asyncHandler.js: 비동기 작업을 처리하는 미들웨어
-  - errorHandler.js: 중앙집중식 오류 처리를 위한 미들웨어
-- src/routes/ : 기업 및 투자 API 요청을 처리하는 라우트 정의
-  - companyRoutes.js: 기업 관련 API 엔드포인트 라우트
-  - investmentRoutes.js: 투자 관련 API 엔드포인트 라우트
-- utils/: 유틸리티 함수와 도우미 함수가 포함
-  - initializeVirtualInvestment.js: 가상 투자 초기화 및 업데이트를 수행하는 스크립트
-  - resetIdSequence.js: 데이터베이스의 ID 시퀀스를 리셋하는 스크립트
-- api_test.http: API 테스트를 위한 HTTP 요청이 포함된 파일
-- server.js: 서버 애플리케이션의 진입점
+- **prisma/** : Prisma 설정 파일과 데이터베이스 스키마를 포함
+  - **migrations/** : 데이터베이스 스키마 변경을 위한 마이그레이션 파일이 포함
+  - **schema.prisma** : 데이터베이스의 데이터 모델을 정의하는 파일
+- **seeders/** : 데이터베이스를 초기화하기 위한 스크립트와 이미지를 포함
+  - **CompanyData.js**, **investmentData.js** : 초기 데이터가 포함된 JavaScript 파일들
+  - **seed.js** : 기업, 투자 데이터의 시딩 스크립트
+- **src/** : 애플리케이션의 주요 코드가 포함
+  - **errors/** : 커스텀 오류 처리를 정의
+    - **CommonException.js** : 애플리케이션의 공통 예외를 정의
+    - **CustomExceptions.js** : 특정 케이스에 대한 커스텀 예외를 정의
+  - **src/middlewares/** : 요청 처리용 미들웨어 함수가 포함
+    - **asyncHandler.js** : 비동기 작업을 처리하는 미들웨어
+    - **errorHandler.js** : 중앙집중식 오류 처리를 위한 미들웨어
+  - **src/routes/** : 기업 및 투자 API 요청을 처리하는 라우트 정의
+    - **companyRoutes.js** : 기업 관련 API 엔드포인트 라우트
+    - **investmentRoutes.js** : 투자 관련 API 엔드포인트 라우트
+  - **utils/** : 유틸리티 함수와 도우미 함수가 포함
+    - **initializeVirtualInvestment.js** : 가상 투자 초기화 및 업데이트를 수행하는 스크립트
+    - **resetIdSequence.js** : 데이터베이스의 ID 시퀀스를 리셋하는 스크립트
+- **api_test.http** : API 테스트를 위한 HTTP 요청이 포함된 파일
+- **server.js** : 서버 애플리케이션의 진입점
+
 
 ```
 📦vms_be
