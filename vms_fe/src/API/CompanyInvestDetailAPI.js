@@ -1,10 +1,8 @@
 import axios from "axios";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-
-// Axios 인스턴스 생성
+// 환경 변수를 사용하여 baseURL 설정
 const apiClient = axios.create({
-  baseURL: API_BASE_URL,
+  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
 });
 
 // 개별 투자자 정보 조회
