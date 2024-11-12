@@ -31,17 +31,8 @@ function CompanyInvestDetail() {
 
   const { currentPage, handlePageChange } = usePageHandler(totalPages);
 
-  const [isClient, setIsClient] = useState(false);
-
   useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  const router = useRouter();
-  const companyId = isClient ? router.query.companyId : null;
-
-  useEffect(() => {
-    if (isClient) {
+    if (typeof window !== "undefined") {
       const handleResize = () => {
         handleCloseModal();
       };
@@ -52,7 +43,7 @@ function CompanyInvestDetail() {
         window.removeEventListener("resize", handleResize);
       };
     }
-  }, [isClient]);
+  }, []);
 
   const handleOpenModal = (modalType, dataObject, position, toggleRef) => {
     setModalType(modalType);
@@ -273,10 +264,10 @@ export default function CompanyInvestDetailWrapper() {
   }, []);
 
   useEffect(() => {
-    if (router.isReady) {
+    if (isClient && router.isReady) {
       setCompanyId(router.query.companyId || null);
     }
-  }, [router.isReady, router.query.companyId]);
+  }, [isClient, router.isReady, router.query.companyId]);
 
   if (!isClient || !companyId) return null;
 
