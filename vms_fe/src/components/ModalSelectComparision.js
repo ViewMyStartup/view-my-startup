@@ -12,6 +12,7 @@ const ModalSelectComparision = ({
   title,
   text,
   autoClose = false,
+  autoCloseOnLimit = false,
   preSelectedCompanies = [],
 }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -74,15 +75,22 @@ const ModalSelectComparision = ({
       if (
         !selectedCompanies.some((selected) => selected.name === companyName)
       ) {
-        setSelectedCompanies((prev) => [...prev, company]);
+        const newSelectedCompanies = [...selectedCompanies, company];
+        setSelectedCompanies(newSelectedCompanies);
         setError("");
 
+        // autoClose가 true일 경우 1개 선택 시 닫기 - 나의 기업 선택하기
         if (autoClose) {
-          onClose([company]);
+          onClose(newSelectedCompanies);
+        }
+
+        // autoCloseOnLimit이 true이고 5개 선택 시 모달 자동 닫기 - 비교할 기업 선택하기
+        if (autoCloseOnLimit && newSelectedCompanies.length === 5) {
+          onClose(newSelectedCompanies);
         }
       }
     },
-    [companyList, selectedCompanies, onClose, autoClose]
+    [companyList, selectedCompanies, onClose, autoClose, autoCloseOnLimit]
   );
 
   const handleSearch = () => {

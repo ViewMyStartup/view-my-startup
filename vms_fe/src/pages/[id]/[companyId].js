@@ -88,12 +88,21 @@ function CompanyInvestDetail() {
 
   if (loading) {
     return (
-      <div className={styles.loadingContainer}>
+      <div
+        className={styles.loadingContainer}
+        style={{ backgroundColor: "#212121" }}
+      >
         <div className={styles.spinner}></div>
-        <p className={styles.notFoundMessage}>
+        <p
+          className={styles.notFoundMessage}
+          style={{ color: "#FFFFFF !important" }}
+        >
           로딩중입니다, 잠시만 기다려주세요
         </p>
-        <p className={styles.notFoundSubmessage}>
+        <p
+          className={styles.notFoundSubmessage}
+          style={{ color: "#FFFFFF !important" }}
+        >
           해당 화면이 지속된다면, 관리자에게 문의해주세요!
         </p>
       </div>
