@@ -24,9 +24,12 @@ export default function MyCompanyCompare() {
   const [selectedCompanies, setSelectedCompanies] = useState([]);
   const [additionalCompanies, setAdditionalCompanies] = useState([]);
   const [isComparisonVisible, setIsComparisonVisible] = useState(false);
-  const [sortingOptionForComparison, setSortingOptionForComparison] = useState("매출액 높은순");
-  const [sortingOptionForRank, setSortingOptionForRank] = useState("매출액 높은순");
-  const [sortedCompaniesForComparison, setSortedCompaniesForComparison] = useState([]);
+  const [sortingOptionForComparison, setSortingOptionForComparison] =
+    useState("매출액 높은순");
+  const [sortingOptionForRank, setSortingOptionForRank] =
+    useState("매출액 높은순");
+  const [sortedCompaniesForComparison, setSortedCompaniesForComparison] =
+    useState([]);
   const [rankedCompanies, setRankedCompanies] = useState([]);
   const [resetButtonText, setResetButtonText] = useState("전체 초기화");
   const [allCompanies, setAllCompanies] = useState([]);
@@ -54,14 +57,12 @@ export default function MyCompanyCompare() {
 
   // 선택된 회사와 추가된 회사를 정렬
   useEffect(() => {
-    if (selectedCompanies.length > 0 || additionalCompanies.length > 0) {
-      setIsLoadingComparison(true);
-      const combinedCompanies = selectedCompanies.concat(additionalCompanies);
-      setSortedCompaniesForComparison(
-        sortCompanies(combinedCompanies, sortingOptionForComparison)
-      );
-      setIsLoadingComparison(false);
-    }
+    const combinedCompanies = selectedCompanies.concat(additionalCompanies);
+    setIsLoadingComparison(true);
+    setSortedCompaniesForComparison(
+      sortCompanies(combinedCompanies, sortingOptionForComparison)
+    );
+    setIsLoadingComparison(false);
   }, [selectedCompanies, additionalCompanies, sortingOptionForComparison]);
 
   // 순위 회사 데이터 로드
@@ -86,10 +87,8 @@ export default function MyCompanyCompare() {
   // 비교 결과가 보이는 상태에서 순위 데이터를 로드
   useEffect(() => {
     if (isComparisonVisible && selectedCompanies.length > 0) {
-      setIsLoadingRank(true);
       const fetchData = async () => {
         await fetchRankedCompanies();
-        setIsLoadingRank(false);
       };
       fetchData();
     }
@@ -104,13 +103,13 @@ export default function MyCompanyCompare() {
   const openAdditionalModal = () => setIsAdditionalModalOpen(true);
 
   const closeModal = (companies) => {
-    setSelectedCompanies(companies);
-    setIsModalOpen(false);
+    setSelectedCompanies(companies); // 선택된 나의 기업을 상태에 반영
+    setIsModalOpen(false); // 나의 기업 모달 닫기
   };
 
   const closeAdditionalModal = (companies) => {
-    setAdditionalCompanies(companies);
-    setIsAdditionalModalOpen(false);
+    setAdditionalCompanies(companies); // 선택된 비교 기업들을 상태에 반영
+    setIsAdditionalModalOpen(false); // 비교 기업 모달 닫기
   };
 
   const removeCompany = (index, isAdditional) => {
@@ -118,39 +117,28 @@ export default function MyCompanyCompare() {
       ? [...additionalCompanies]
       : [...selectedCompanies];
     newCompanies.splice(index, 1);
-    if (isAdditional) {
-      setAdditionalCompanies(newCompanies);
-    } else {
-      setSelectedCompanies(newCompanies);
-    }
+    isAdditional
+      ? setAdditionalCompanies(newCompanies)
+      : setSelectedCompanies(newCompanies);
   };
 
   const handleSortingChangeForComparison = async (option) => {
-    setIsLoadingComparison(true);
     setSortingOptionForComparison(option);
-
     const combinedCompanies = selectedCompanies.concat(additionalCompanies);
     const sortedData = sortCompanies(combinedCompanies, option);
     setSortedCompaniesForComparison(sortedData);
-
     await fetchRankedCompanies();
-    setIsLoadingComparison(false);
   };
 
   const handleSortingChangeForRank = async (option) => {
-    setIsLoadingRank(true);
     setSortingOptionForRank(option);
-
     await fetchRankedCompanies();
-
     const combinedCompanies = selectedCompanies.concat(additionalCompanies);
     const sortedData = sortCompanies(
       combinedCompanies,
       sortingOptionForComparison
     );
     setSortedCompaniesForComparison(sortedData);
-
-    setIsLoadingRank(false);
   };
 
   const handleComparisonClick = () => {
@@ -174,7 +162,8 @@ export default function MyCompanyCompare() {
     }
   };
 
-  const myCompanyId = selectedCompanies.length > 0 ? selectedCompanies[0].id : null;
+  const myCompanyId =
+    selectedCompanies.length > 0 ? selectedCompanies[0].id : null;
 
   const handleInvestmentClick = () => {
     if (selectedCompanies.length > 0) {
@@ -247,7 +236,11 @@ export default function MyCompanyCompare() {
                       alt="circle"
                       className={styles.icCircle}
                     />
-                    <img src="/assets/images/ic_plus.svg" alt="plus" className={styles.icPlus} />
+                    <img
+                      src="/assets/images/ic_plus.svg"
+                      alt="plus"
+                      className={styles.icPlus}
+                    />
                   </div>
                   <p className={styles.addText}>기업 추가</p>
                 </div>
@@ -324,7 +317,9 @@ export default function MyCompanyCompare() {
               {selectedCompanies.length > 0 && (
                 <>
                   <div className={styles.subheadingWrapper}>
-                    <h2 className={styles.subheading}>어떤 기업이 궁금하세요?</h2>
+                    <h2 className={styles.subheading}>
+                      어떤 기업이 궁금하세요?
+                    </h2>
                     <p className={styles.maxCompaniesText}>(최대 5개)</p>
                     <div className={styles.addCompanyBtnWrapper}>
                       <AddCompanyBtn
@@ -386,7 +381,7 @@ export default function MyCompanyCompare() {
           onClose={closeModal}
           title="나의 기업 선택하기"
           text="최근 선택된 기업"
-          autoClose={true}
+          autoClose={true} // 1개 선택 시 모달 자동 닫기
           preSelectedCompanies={selectedCompanies}
           allCompanies={allCompanies}
         />
@@ -396,7 +391,7 @@ export default function MyCompanyCompare() {
           onClose={closeAdditionalModal}
           title="비교할 기업 선택하기"
           text="선택한 기업"
-          autoCloseOnSelect={false}
+          autoCloseOnLimit={true} // 5개 선택 시 모달 자동 닫기
           preSelectedCompanies={additionalCompanies}
           allCompanies={allCompanies}
         />
