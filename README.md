@@ -36,6 +36,9 @@
 - **순위 및 선택 현황 조회:** 각 기업의 투자 순위 및 선택된 횟수를 조회할 수 있습니다.
 - **투자 내역 수정 및 삭제:** 가상 투자 내역을 쉽게 수정하거나 삭제할 수 있습니다.
 
+### 시연 영상  
+👉 [시연 영상 보러 가기](https://www.youtube.com/watch?v=MV-qcLeCoKA)
+
 <br><br>
 
 ## <span id="team">🧑🏻‍💻👩🏻‍💻 2. 팀 소개</span>
@@ -287,7 +290,6 @@
 
 🎨 프론트엔드
 
-- **Next.js 마이그레이션**: 기존 React 프로젝트를 Next.js로 마이그레이션하여 서버 사이드 렌더링 및 파일 기반 라우팅 구현 (브랜치: `refactor/nextjs-migration` , `main` 에 병합됨)
 - **[나의 기업 비교 페이지](https://github.com/ViewMyStartup/view-my-startup/blob/main/vms_fe/src/pages/mycompany.js)** 구현
 - 기업 비교 API를 호출하여 나의 기업과 선택한 기업의 비교 결과를 화면에 렌더링
   - **비교 결과 확인하기 섹션**: 나의 기업과 선택한 기업 간의 비교 결과를 화면에 렌더링
